@@ -176,8 +176,8 @@
     <article id="post-iOS开发的一些奇巧淫技" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/24/iOS开发的一些奇巧淫技/" class="article-date">
-  	<time datetime="2016-01-24T15:31:37.000Z" itemprop="datePublished">2016-01-24</time>
+      <a href="/2016/01/27/iOS开发的一些奇巧淫技/" class="article-date">
+  	<time datetime="2016-01-27T03:20:59.000Z" itemprop="datePublished">2016-01-27</time>
 </a>
     </div>
   
@@ -188,14 +188,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="StrangeSkills"><a href="#StrangeSkills" class="headerlink" title="StrangeSkills"></a>StrangeSkills</h1><p>iOS开发的一些奇巧淫技,<br>“奇巧淫技”并非是一些稀奇古怪的技术要点，也不是什么所谓的黑科学，只是一些平时可能会用到但有些又并不是很容易查询得到的小tips.<br><br>下载链接:<a href="https://github.com/ChinaFishNews/StrangeSkills.git" target="_blank" rel="external">https://github.com/ChinaFishNews/StrangeSkills.git</a></p>
+        <h1 id="StrangeSkills"><a href="#StrangeSkills" class="headerlink" title="StrangeSkills"></a>StrangeSkills</h1><p>iOS开发的一些奇巧淫技,<br>“奇巧淫技”并非是一些稀奇古怪的技术要点，也不是什么所谓的黑科学，只是一些平时可能会用到但有些又并不是很容易查询得到的小tips.<br><br>下载链接:<a href="https://github.com/ChinaFishNews/StrangeSkills.git" target="_blank" rel="external">https://github.com/ChinaFishNews/StrangeSkills.git</a><br><br>博客地址:<a href="http://chinafishnews.gitcafe.io" target="_blank" rel="external">http://chinafishnews.gitcafe.io</a></p>
 <p>##<br>如何查看真机沙盒文件?</p>
 <p>一：安装iFunBox或IExployer</p>
 <p>二：在xcode的上部导航栏里，选择window -&gt; Devices,找到目标app<img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/1.png" alt="">,双击选中项目<img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/2.png" alt="">,这样我们只能看到沙盒的目录结构,看不到实体文件。然后点击Download Container<img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/3.png" alt="">,下载后保存到桌面，右键显示包内容即可。</p>
 <p>##<br>如何使用命令行进行打包?</p>
-<p>一： 使用原生xcodebuild、xcrun 打开终端 cd到当前项目,使用如下两条命令即可。(cocoapods项目暂不成功)</p>
-<p>xcodebuild -project 项目名.xcodeproj -target 项目名 -configuration Release<br><br>xcrun -sdk iphoneos -v PackageApplication ./build/Release-iphoneos/项目名.app -o ~/Desktop/项目名.ipa</p>
+<p>一： 使用原生xcodebuild、xcrun 打开终端 cd到当前项目,使用如下两条命令即可。</p>
+<p>###如果项目没有使用cocoapods:<br>xcodebuild -project 项目名.xcodeproj -target 项目名 -configuration Release(生成项目名.app文件)<br><br>xcrun -sdk iphoneos -v PackageApplication ./build/Release-iphoneos/项目名.app -o ~/Desktop/项目名.ipa(-o前为.app文件路径，-o后为生成的.ipa路径)</p>
+<p>###如果使用cocoapods:<br>xcodebuild -workspace Test.xcworkspace -scheme Test -configuration Release<br><br>xcrun -sdk iphoneos -v PackageApplication 项目名.app路径 -o ~/Desktop/Demo.ipa</p>
 <p>二：使用xctool进行自动打包，是FaceBook开源的一个命令行工具，可使用brew安装（安装命令：sudo brew install xctool）</p>
+<p>###如果项目没有使用cocoapods:<br>xctool -scheme Demo archive -archivePath “Demo/“(会生成.xcarchive文件)<br><br>xcrun -sdk iphoneos -v PackageApplication ./Demo.xcarchive/Products/Applications/Demo.app -o ~/Desktop/Demo.ipa</p>
+<p>###如果使用cocoapods:<br>xctool -workspace Demo.xcworkspace -scheme Demo archive -archivePath “Demo”<br><br>xcrun -sdk iphoneos -v PackageApplication ./Demo.xcarchive/Products/Applications/Demo.app -o ~/Desktop/Demo.ipa</p>
 <p>##<br>Xcode历史版本下载地址<br><br><a href="https://developer.apple.com/downloads/" target="_blank" rel="external">https://developer.apple.com/downloads/</a></p>
 <p>##<br>加急审核渠道链接(并非只是加急，包括向苹果申诉、修改appstore上相关信息等)<br><a href="https://developer.apple.com/appstore/contact/appreviewteam/index.html" target="_blank" rel="external">https://developer.apple.com/appstore/contact/appreviewteam/index.html</a><br>也可以直接从ITunes右下角contact us也可以  但是无法填写相关文字描述</p>
 <p>##<br>Autolayout及SizeClass示意图<br><br><img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/4.png" alt=""> <img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/5.png" alt=""> <img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/6.png" alt=""></p>
@@ -212,71 +215,14 @@
 <p>##<br>如何修改图片颜色</p>
 <p>先设置图片的渲染模式为UIImageRenderingModeAlwaysTemplate，再设置tintcolor<br><br>self.imageView.image = [[UIImage imageNamed:@”back”] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];<br>self.imageView.tintColor = [UIColor redColor];<br><br>也可以在Asset catelog中设置render as<br> <img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/7.png" alt=""></p>
 <p>##<br>如何放大图片使之不失真且不产生锯齿</p>
-<p>在Asset Catalog的Attribtues Pane中设置Single Vector为SingleVector<br><img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/8.png" alt=""></p>
+<p>在Asset Catalog的Attribtues Pane中设置Single(前提是图片必须是矢量图) Vector为SingleVector<br><img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/8.png" alt=""></p>
 <p>##<br>如何在拉伸图片的时候使之不变形</p>
 <p>一：stretchableImageWithLeftCapWidth: topCapHeight:<br><br>二：在Xcode中选中图片，然后点击右下角的Show Slicing：<br><img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/9.gif" alt=""></p>
 <p>##<br>Storyboard中如何正确设置控件透明度<br>在直接设置alpha的情况下，如果上面有文字的话会随着透明度的变大而变得越来越不清楚。<br><br>此时应该这样设置 Background →0ther →0pacity</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/18/hello-world/" class="article-date">
-  	<time datetime="2016-01-18T10:17:49.000Z" itemprop="datePublished">2016-01-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<p>##[UIScreen mainScreen].bounds获取屏幕大小不对的问题<br>#define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width<br><br>#define iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242,2208),[[UIScreen mainScreen] currentMode].size) : NO)<br><br>在标准模式下<br><br>6+：<br><br>[[UIScreen mainScreen] currentMode].size为{1242，2208}<br><br>[UIScreen mainScreen].bounds.size为{414，736}<br><br>6:<br><br>[[UIScreen mainScreen] currentMode].size为{750，1334}<br><br>[UIScreen mainScreen].bounds.size为{375，667}<br></p>
+<p>放大模式下(设置-&gt;显示与亮度-&gt;显示模式) <br><br>6+:<br><br>[[UIScreen mainScreen] currentMode].size为{1125,2001}<br><br>[UIScreen mainScreen].bounds.size为{375,667}<br><br>6:<br><br>[[UIScreen mainScreen] currentMode].size为{640,1136}<br><br>[UIScreen mainScreen].bounds.size为{320,568}</p>
+<p>##Mac模式下如何将视频生成Gif文件<br>一：使用GifBrewery直接将视频转为gif文件(安装GifBreweryw密码:www.macx.cn)</p>
+<p>二：安装ffmpeg ( brew install ffmpeg)使用ffmpeg使视频转为多张图片<br><br>（ ffmpeg -i  news.mov -r 10 -f image2 文件夹名/%05d.png）<br><br>然后使用PicGIF (将多张图片生成gif文件)</p>
 
       
     </div>
