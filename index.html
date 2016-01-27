@@ -177,7 +177,7 @@
   
     <div class="article-meta">
       <a href="/2016/01/28/iOS开发的一些奇巧淫技/" class="article-date">
-  	<time datetime="2016-01-27T16:14:04.000Z" itemprop="datePublished">2016-01-28</time>
+  	<time datetime="2016-01-27T16:17:36.000Z" itemprop="datePublished">2016-01-28</time>
 </a>
     </div>
   
@@ -199,7 +199,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>“奇巧淫技”并非是一些稀奇古怪的技术要点，也不是什么所谓的黑科学，只是一些平时可能会用到但有些又并不是很容易查询得到的小tips.<br><br>下载链接:<a href="https://github.com/ChinaFishNews/StrangeSkills.git" target="_blank" rel="external">https://github.com/ChinaFishNews/StrangeSkills.git</a><br><br>博客地址:<a href="http://chinafishnews.gitcafe.io" target="_blank" rel="external">http://chinafishnews.gitcafe.io</a></p>
+        <p>“奇巧淫技”并非是一些稀奇古怪的技术要点，也不是什么所谓的黑科学，只是一些平时可能会用到但有些又并不是很容易查询得到的小tips.</p>
+<p>下载链接:<a href="https://github.com/ChinaFishNews/StrangeSkills.git" target="_blank" rel="external">https://github.com/ChinaFishNews/StrangeSkills.git</a></p>
+<p>博客地址:<a href="http://chinafishnews.gitcafe.io" target="_blank" rel="external">http://chinafishnews.gitcafe.io</a></p>
 <p>##如何查看真机沙盒文件?</p>
 <p>一：安装iFunBox或IExployer</p>
 <p>二：在xcode的上部导航栏里，选择window -&gt; Devices,找到目标app<img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/1.png" alt="">,双击选中项目<img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/2.png" alt="">,这样我们只能看到沙盒的目录结构,看不到实体文件。然后点击Download Container<img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/3.png" alt="">,下载后保存到桌面，右键显示包内容即可。</p>
@@ -234,7 +236,8 @@
 <p>APP升级后，UserDefaults中原有的plist是不会删除的，除非用户卸载APP</p>
 <p>NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];<br>[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];  </p>
 <p>##如何修改图片颜色</p>
-<p>先设置图片的渲染模式为UIImageRenderingModeAlwaysTemplate，再设置tintcolor<br><br>self.imageView.image = [[UIImage imageNamed:@”back”] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];<br>self.imageView.tintColor = [UIColor redColor];</p>
+<p>先设置图片的渲染模式为UIImageRenderingModeAlwaysTemplate，再设置tintcolor</p>
+<p>self.imageView.image = [[UIImage imageNamed:@”back”] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];<br>self.imageView.tintColor = [UIColor redColor];</p>
 <p>也可以在Asset catelog中设置render as</p>
 <p> <img src="https://github.com/ChinaFishNews/StrangeSkills/blob/master/Images/7.png" alt=""></p>
 <p>##如何放大图片使之不失真且不产生锯齿</p>
