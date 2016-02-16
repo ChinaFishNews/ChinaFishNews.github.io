@@ -4,17 +4,32 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Category: OC | 含笑饮砒霜的博客</title>
+  <title>Swift与OC的相互调用 | 含笑饮砒霜的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="含笑饮砒霜的博客">
-<meta property="og:url" content="http://chinafish.news/categories/OC/index.html">
+  <meta name="description" content="###1、 Swift调用OC
+将 Objective-C 导入 Swift 
+要在同一个 app  target 中导入 Objective-C 文件供 Swift 使用，你需要依赖 Objective-C的
+桥接头文件（Objective-C bridging header）来暴露给  Swift。当你添加  Swift  文件到现有
+的 Objective-C 应用时，Xcode  会自动创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift与OC的相互调用">
+<meta property="og:url" content="http://chinafish.news/2015/07/12/Swift与OC的相互调用/index.html">
 <meta property="og:site_name" content="含笑饮砒霜的博客">
-<meta property="og:description">
+<meta property="og:description" content="###1、 Swift调用OC
+将 Objective-C 导入 Swift 
+要在同一个 app  target 中导入 Objective-C 文件供 Swift 使用，你需要依赖 Objective-C的
+桥接头文件（Objective-C bridging header）来暴露给  Swift。当你添加  Swift  文件到现有
+的 Objective-C 应用时，Xcode  会自动创">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-16-01.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-16-02.png?attname=">
+<meta property="og:updated_time" content="2016-02-16T09:01:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="含笑饮砒霜的博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Swift与OC的相互调用">
+<meta name="twitter:description" content="###1、 Swift调用OC
+将 Objective-C 导入 Swift 
+要在同一个 app  target 中导入 Objective-C 文件供 Swift 使用，你需要依赖 Objective-C的
+桥接头文件（Objective-C bridging header）来暴露给  Swift。当你添加  Swift  文件到现有
+的 Objective-C 应用时，Xcode  会自动创">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜的博客" type="application/atom+xml">
   
@@ -192,57 +207,136 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Swift与OC的相互调用" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/28/iOS开发的一些奇巧淫技/" class="archive-article-date">
-  	<time datetime="2015-12-27T16:00:00.000Z" itemprop="datePublished">Dec 28</time>
+    <div class="article-meta">
+      <a href="/2015/07/12/Swift与OC的相互调用/" class="article-date">
+  	<time datetime="2015-07-11T16:00:00.000Z" itemprop="datePublished">2015-07-12</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/28/iOS开发的一些奇巧淫技/">iOS开发的一些奇巧淫技</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Swift与OC的相互调用
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/奇巧淫技/">奇巧淫技</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/奇技淫巧/">奇技淫巧</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift-OC/">Swift,OC</a></li></ul>
 	</div>
 
-          
+        
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/OC/">OC</a>
+	<a class="article-category-link" href="/categories/Swift/">Swift</a>
 	</div>
 
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###1、 Swift调用OC</p>
+<p>将 Objective-C 导入 Swift </p>
+<p>要在同一个 app  target 中导入 Objective-C 文件供 Swift 使用，你需要依赖 Objective-C的</p>
+<p>桥接头文件（Objective-C bridging header）来暴露给  Swift。当你添加  Swift  文件到现有</p>
+<p>的 Objective-C 应用时，Xcode  会自动创建这些头文件，反之亦然。<br><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-16-01.png?attname=" alt=""></p>
+<p>如果同意，Xcode  会在源文件创建的同时生成头文件，并用 product 的模块名加上 </p>
+<p>-Bridging-Header.h 命名。</p>
+<p>在 Build Settings 中，确保 Objective-C 桥接头文件的 build setting 是基于  Swfit  编译器，</p>
+<p>即 Code  Generation  含有头文件的路径。这个路径必须是头文件自身的路径，而不是它所</p>
+<p>在的目录。<br><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-16-02.png?attname=" alt=""></p>
+<p>然后在桥接头文件中，加入OC的头文件，在Swift中即可饮用OC的类</p>
+<p><br></p>
+<p>###2、 OC调用Swift</p>
+<p>1、确保将框架  target  的   Build Settings &gt; Packaging &gt; Defines Module   设置为   Yes</p>
+<p>2、在修改在   build setting   中的   Product Module Name   即可。</p>
+<p>之后的项目会自动生成swift的头文件，头文件名称为Product Module Name-Swift.h</p>
+<p>所有的swift都会在这个头文件里</p>
+<hr>
+<p>如有任何错误之处或疑问，请联系我fishnewsdream@gmail.com,欢迎交流，共同提高。</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/28/Instrument中Timeprofiler的使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Instrument中Timeprofiler的使用
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Swift与OC的相互调用" data-title="Swift与OC的相互调用" data-url="http://chinafish.news/2015/07/12/Swift与OC的相互调用/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -277,10 +371,10 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false
 	}
 </script>
