@@ -16,6 +16,10 @@
 <meta name="twitter:title" content="含笑饮砒霜的博客">
 <meta name="twitter:description">
   
+    <link rel="alternative" href="/atom.xml" title="含笑饮砒霜的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
 
@@ -29,7 +33,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img src="undefined" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			<img lazy-src="http://tp1.sinaimg.cn/2185265952/180/5686790740/1" class="js-avatar">
 			
 		</a>
 
@@ -41,6 +45,39 @@
 		<p class="header-subtitle">如果可以打造非凡应用 为什么要止步于过得去</p>
 		
 
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
 		
 
 		<div class="switch-area">
@@ -68,14 +105,34 @@
 					<nav class="header-nav">
 						<div class="social">
 							
+								<a class="github" target="_blank" href="https://github.com/ChinaFishNews" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2185265952/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/fishnewsdream" title="twitter">twitter</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/新闻-余-ab2b19101?trk=nav_responsive_tab_profile_pic" title="linkedin">linkedin</a>
+					        
 						</div>
 					</nav>
 				</section>
 				
 				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Git，GitHub-回滚，仓库/" style="font-size: 10px;">Git，GitHub,回滚，仓库</a> <a href="/tags/Swift-OC/" style="font-size: 10px;">Swift,OC</a> <a href="/tags/奇巧淫技/" style="font-size: 10px;">奇巧淫技</a> <a href="/tags/奇技淫巧/" style="font-size: 10px;">奇技淫巧</a> <a href="/tags/新年，成长，浮躁/" style="font-size: 10px;">新年，成长，浮躁</a>
+					</div>
+				</section>
+				
 				
 				
 
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">14级毕业生,专注于iOS开发。创建iOS、Swift技术开发交流群201556264,欢迎加入，共同提高!</div>
+				</section>
 				
 			</div>
 		</div>
@@ -93,7 +150,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 			
-				<img src="undefined" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+				<img lazy-src="http://tp1.sinaimg.cn/2185265952/180/5686790740/1" class="js-avatar">
 			
 			</div>
 			<hgroup>
@@ -125,6 +182,14 @@
 			<nav class="header-nav">
 				<div class="social">
 					
+						<a class="github" target="_blank" href="https://github.com/ChinaFishNews" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2185265952/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/fishnewsdream" title="twitter">twitter</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/新闻-余-ab2b19101?trk=nav_responsive_tab_profile_pic" title="linkedin">linkedin</a>
+			        
 				</div>
 			</nav>
 		</header>				
@@ -207,18 +272,20 @@
 
     </div>
     
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
 
 <script>
 	var yiliaConfig = {
-		fancybox: undefined,
-		mathjax: undefined,
-		animate: undefined,
+		fancybox: true,
+		mathjax: true,
+		animate: true,
 		isHome: false,
 		isPost: false,
 		isArchive: false,
 		isTag: true,
 		isCategory: false,
-		open_in_new: undefined
+		open_in_new: false
 	}
 </script>
 <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
@@ -227,6 +294,27 @@
 
 
 
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
   </div>
