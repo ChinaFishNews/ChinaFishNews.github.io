@@ -255,19 +255,15 @@
 <li><p>使用第三方统计工具</p>
 </li>
 </ul>
-<p>###自己实现应用内崩溃收集</p>
-<p>苹果提供了异常处理的类，NSException,这个类可以创建及获取一个异常对象。</p>
+<h3 id="u81EA_u5DF1_u5B9E_u73B0_u5E94_u7528_u5185_u5D29_u6E83_u6536_u96C6"><a href="#u81EA_u5DF1_u5B9E_u73B0_u5E94_u7528_u5185_u5D29_u6E83_u6536_u96C6" class="headerlink" title="自己实现应用内崩溃收集"></a>自己实现应用内崩溃收集</h3><p>苹果提供了异常处理的类，NSException,这个类可以创建及获取一个异常对象。</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-01.png?attname=" alt=""></p>
-<p>###使用苹果提供的Carsh崩溃收集服务</p>
-<p>苹果在Xcode中为我们集成了崩溃统计功能，在Window-&gt;Organizer-&gt;Crashes中可以看到</p>
+<h3 id="u4F7F_u7528_u82F9_u679C_u63D0_u4F9B_u7684Carsh_u5D29_u6E83_u6536_u96C6_u670D_u52A1"><a href="#u4F7F_u7528_u82F9_u679C_u63D0_u4F9B_u7684Carsh_u5D29_u6E83_u6536_u96C6_u670D_u52A1" class="headerlink" title="使用苹果提供的Carsh崩溃收集服务"></a>使用苹果提供的Carsh崩溃收集服务</h3><p>苹果在Xcode中为我们集成了崩溃统计功能，在Window-&gt;Organizer-&gt;Crashes中可以看到</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-02.png?attname=" alt=""></p>
 <p>但是，苹果自带的这个崩溃统计工具需要在手机上额外设置。<br>设置-&gt;隐私-&gt;诊断与用量-&gt;诊断与用户数据(iOS8以下在通用中设置)，选择自动发送并与开发者分享即可。</p>
-<p>###Xcode自带的查看设备崩溃信息</p>
-<p>打开Xcode,选择Windows－&gt; Devices －&gt; 选择自己的手机 -&gt; View Device Logs 就可以查看我们的崩溃信息。</p>
+<h3 id="Xcode_u81EA_u5E26_u7684_u67E5_u770B_u8BBE_u5907_u5D29_u6E83_u4FE1_u606F"><a href="#Xcode_u81EA_u5E26_u7684_u67E5_u770B_u8BBE_u5907_u5D29_u6E83_u4FE1_u606F" class="headerlink" title="Xcode自带的查看设备崩溃信息"></a>Xcode自带的查看设备崩溃信息</h3><p>打开Xcode,选择Windows－&gt; Devices －&gt; 选择自己的手机 -&gt; View Device Logs 就可以查看我们的崩溃信息。</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-03.png?attname=" alt=""></p>
 <p>如果手机上的应用是这台电脑打包安装的，这样崩溃信息已经为我们符号化好了，点击去之后，如果还是没有符号化完毕 ，我们选择文件，然后右击选择Re-Sysbomlicate就可以。如果是使用其他电脑进行的打包，我们可以在这里面将Crash文件导出，自己通过命令行的方式进行解析。</p>
-<p>###使用第三方统计工具</p>
-<p>之前使用过友盟，还需要使用工具自行解析，感觉并不是很好，还有比如百度统计，Crashlytics,BugHD,Fabric等很多。崩溃收集统计函数应该只进行一次调用，如果用第三方的话也最好只用一个第三方，这样我们获取崩溃统计信息的途径也是唯一的。第三方统计工具并不是用的越多越好，使用多个崩溃收集第三方会导致NSSetUncaughtExceptionHandler()函数指针的恶意覆盖，导致有些第三方不能收到崩溃信息。</p>
+<h3 id="u4F7F_u7528_u7B2C_u4E09_u65B9_u7EDF_u8BA1_u5DE5_u5177"><a href="#u4F7F_u7528_u7B2C_u4E09_u65B9_u7EDF_u8BA1_u5DE5_u5177" class="headerlink" title="使用第三方统计工具"></a>使用第三方统计工具</h3><p>之前使用过友盟，还需要使用工具自行解析，感觉并不是很好，还有比如百度统计，Crashlytics,BugHD,Fabric等很多。崩溃收集统计函数应该只进行一次调用，如果用第三方的话也最好只用一个第三方，这样我们获取崩溃统计信息的途径也是唯一的。第三方统计工具并不是用的越多越好，使用多个崩溃收集第三方会导致NSSetUncaughtExceptionHandler()函数指针的恶意覆盖，导致有些第三方不能收到崩溃信息。</p>
 <p>我现在在用的是Fabric，感觉相当不错，下篇文章再做讲解。另外BugHD也还是不错，就是延迟太久才能收到.使用BugHD,需前往官网注册，创建项目，然后集成代码，整个流程非常简单。</p>
 <blockquote>
 <p>1.下载并导入 SDK  <a href="http://qnweb.bughd.com/Bughd_ios_sdk_v1.3.3.zip?t=1455764667698" target="_blank" rel="external">下载 SDK</a></p>
@@ -280,9 +276,8 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-05.png?attname=" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-09.png?attname=" alt=""></p>
 <p>但是这个错误信息延迟的太久，可能需要半天甚至一天的时间才能收集到。</p>
-<p>###dSYM<br>上述中提到的dSYM，是一种文件格式。我们每次Archive之后，都会生成一个dSYM文件，也就是符号集。符号集是我们打包之后，和.app文件同级的后缀名为.dSYM的文件，这个文件必须使用Xcode进行打包才有。每一个.dSYM文件都有一个UUID，和.app文件中的UUID对应，代表着是一个应用。而.dSYM文件中每一条崩溃信息也有一个单独的UUID，用来和程序的UUID进行校对。符号集中存储着文件名、方法名、行号的信息，是和可执行文件的16进制函数地址对应的，通过分析崩溃的.Crash文件可以准确知道具体的崩溃信息。必须使用当前应用打包的电脑所生成的dSYM文件，其他电脑生成的文件可能会导致分析不准确。</p>
-<p>###崩溃分析</p>
-<p>这个崩溃分析我自己并没有实现，觉得比较繁琐，在使用友盟的时候，也需要使用错误分析工具来实现。以下，是网上找的一个方法，可以自行参考。</p>
+<h3 id="dSYM"><a href="#dSYM" class="headerlink" title="dSYM"></a>dSYM</h3><p>上述中提到的dSYM，是一种文件格式。我们每次Archive之后，都会生成一个dSYM文件，也就是符号集。符号集是我们打包之后，和.app文件同级的后缀名为.dSYM的文件，这个文件必须使用Xcode进行打包才有。每一个.dSYM文件都有一个UUID，和.app文件中的UUID对应，代表着是一个应用。而.dSYM文件中每一条崩溃信息也有一个单独的UUID，用来和程序的UUID进行校对。符号集中存储着文件名、方法名、行号的信息，是和可执行文件的16进制函数地址对应的，通过分析崩溃的.Crash文件可以准确知道具体的崩溃信息。必须使用当前应用打包的电脑所生成的dSYM文件，其他电脑生成的文件可能会导致分析不准确。</p>
+<h3 id="u5D29_u6E83_u5206_u6790"><a href="#u5D29_u6E83_u5206_u6790" class="headerlink" title="崩溃分析"></a>崩溃分析</h3><p>这个崩溃分析我自己并没有实现，觉得比较繁琐，在使用友盟的时候，也需要使用错误分析工具来实现。以下，是网上找的一个方法，可以自行参考。</p>
 <p>通过Mac自带的命令行工具解析Crash文件需要具备三个文件</p>
 <ul>
 <li><p>symbolicatecrash，Xcode自带的崩溃分析工具，使用这个工具可以更精确的定位崩溃所在的位置，将0x开头的地址替换为响应的代码和具体行数。</p>
