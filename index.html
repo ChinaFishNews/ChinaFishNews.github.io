@@ -263,7 +263,7 @@
 <h3 id="Xcode_u81EA_u5E26_u7684_u67E5_u770B_u8BBE_u5907_u5D29_u6E83_u4FE1_u606F"><a href="#Xcode_u81EA_u5E26_u7684_u67E5_u770B_u8BBE_u5907_u5D29_u6E83_u4FE1_u606F" class="headerlink" title="Xcode自带的查看设备崩溃信息"></a>Xcode自带的查看设备崩溃信息</h3><p>打开Xcode,选择Windows－&gt; Devices －&gt; 选择自己的手机 -&gt; View Device Logs 就可以查看我们的崩溃信息。</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-03.png?attname=" alt=""></p>
 <p>如果手机上的应用是这台电脑打包安装的，这样崩溃信息已经为我们符号化好了，点击去之后，如果还是没有符号化完毕 ，我们选择文件，然后右击选择Re-Sysbomlicate就可以。如果是使用其他电脑进行的打包，我们可以在这里面将Crash文件导出，自己通过命令行的方式进行解析。</p>
-<h3 id="u4F7F_u7528_u7B2C_u4E09_u65B9_u7EDF_u8BA1_u5DE5_u5177"><a href="#u4F7F_u7528_u7B2C_u4E09_u65B9_u7EDF_u8BA1_u5DE5_u5177" class="headerlink" title="使用第三方统计工具"></a>使用第三方统计工具</h3><p>之前使用过友盟，还需要使用工具自行解析，感觉并不是很好，还有比如百度统计，Crashlytics,BugHD,Fabric等很多。崩溃收集统计函数应该只进行一次调用，如果用第三方的话也最好只用一个第三方，这样我们获取崩溃统计信息的途径也是唯一的。第三方统计工具并不是用的越多越好，使用多个崩溃收集第三方会导致NSSetUncaughtExceptionHandler()函数指针的恶意覆盖，导致有些第三方不能收到崩溃信息。</p>
+<h3 id="u4F7F_u7528_u7B2C_u4E09_u65B9_u7EDF_u8BA1_u5DE5_u5177"><a href="#u4F7F_u7528_u7B2C_u4E09_u65B9_u7EDF_u8BA1_u5DE5_u5177" class="headerlink" title="使用第三方统计工具"></a>使用第三方统计工具</h3><p>之前使用过友盟，还需要使用工具自行解析，感觉并不是很好，还有比如百度统计，BugHD,Fabric等很多。崩溃收集统计函数应该只进行一次调用，如果用第三方的话也最好只用一个第三方，这样我们获取崩溃统计信息的途径也是唯一的。第三方统计工具并不是用的越多越好，使用多个崩溃收集第三方会导致NSSetUncaughtExceptionHandler()函数指针的恶意覆盖，导致有些第三方不能收到崩溃信息。</p>
 <p>我现在在用的是Fabric，感觉相当不错，下篇文章再做讲解。另外BugHD也还是不错，就是延迟太久才能收到.使用BugHD,需前往官网注册，创建项目，然后集成代码，整个流程非常简单。</p>
 <blockquote>
 <p>1.下载并导入 SDK  <a href="http://qnweb.bughd.com/Bughd_ios_sdk_v1.3.3.zip?t=1455764667698" target="_blank" rel="external">下载 SDK</a></p>
@@ -399,7 +399,7 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-17.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-18.png?attname=" alt=""></p>
 <p>继续点击Next</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-19.png?attname=" alt=""></p>
-<p>可拖拽按钮之Xcode中，拖拽成功之后可发现项目中多了Fabric.framework和Crashlytics.framwork。这一步也可以使用pod安装</p>
+<p>可拖拽按钮至Xcode中，拖拽成功之后可发现项目中多了Fabric.framework和Crashlytics.framwork。这一步也可以使用pod安装</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-20.png?attname=" alt=""></p>
 <p>安装完后按如下集成代码</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-21.png?attname=" alt=""></p>
