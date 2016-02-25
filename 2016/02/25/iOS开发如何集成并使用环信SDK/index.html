@@ -4,27 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>此证书的签发者无效问题解决 | 含笑饮砒霜的博客</title>
+  <title>iOS开发如何集成并使用环信SDK | 含笑饮砒霜的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="忽然发现钥匙串中的所有证书都提示此开发者无效，尽管依然可以调试，然而情人节那天我才刚刚整理过所有的证书。查找得知是因为系统证书在2016年2月14日失效，需要更新WWDR系统证书。
-下载证书地址:
-https://developer.apple.com/certificationauthority/AppleWWDRCA.cer 
-下载完双击安装。另外， 在钥匙串里选择”登录”,然后点”证书”，在">
+  <meta name="description" content="如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！
+Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！
+如有转载，请注明出处，谢谢！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="此证书的签发者无效问题解决">
-<meta property="og:url" content="http://chinafish.news/2016/02/17/此证书的签发者无效问题解决/index.html">
+<meta property="og:title" content="iOS开发如何集成并使用环信SDK">
+<meta property="og:url" content="http://chinafish.news/2016/02/25/iOS开发如何集成并使用环信SDK/index.html">
 <meta property="og:site_name" content="含笑饮砒霜的博客">
-<meta property="og:description" content="忽然发现钥匙串中的所有证书都提示此开发者无效，尽管依然可以调试，然而情人节那天我才刚刚整理过所有的证书。查找得知是因为系统证书在2016年2月14日失效，需要更新WWDR系统证书。
-下载证书地址:
-https://developer.apple.com/certificationauthority/AppleWWDRCA.cer 
-下载完双击安装。另外， 在钥匙串里选择”登录”,然后点”证书”，在">
-<meta property="og:updated_time" content="2016-02-19T08:09:19.000Z">
+<meta property="og:description" content="如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！
+Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！
+如有转载，请注明出处，谢谢！">
+<meta property="og:updated_time" content="2016-02-25T05:42:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="此证书的签发者无效问题解决">
-<meta name="twitter:description" content="忽然发现钥匙串中的所有证书都提示此开发者无效，尽管依然可以调试，然而情人节那天我才刚刚整理过所有的证书。查找得知是因为系统证书在2016年2月14日失效，需要更新WWDR系统证书。
-下载证书地址:
-https://developer.apple.com/certificationauthority/AppleWWDRCA.cer 
-下载完双击安装。另外， 在钥匙串里选择”登录”,然后点”证书”，在">
+<meta name="twitter:title" content="iOS开发如何集成并使用环信SDK">
+<meta name="twitter:description" content="如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！
+Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！
+如有转载，请注明出处，谢谢！">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜的博客" type="application/atom+xml">
   
@@ -227,11 +224,11 @@ https://developer.apple.com/certificationauthority/AppleWWDRCA.cer
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-此证书的签发者无效问题解决" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-iOS开发如何集成并使用环信SDK" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/17/此证书的签发者无效问题解决/" class="article-date">
-  	<time datetime="2016-02-16T16:00:00.000Z" itemprop="datePublished">2016-02-17</time>
+      <a href="/2016/02/25/iOS开发如何集成并使用环信SDK/" class="article-date">
+  	<time datetime="2016-02-24T16:00:00.000Z" itemprop="datePublished">2016-02-25</time>
 </a>
     </div>
   
@@ -244,7 +241,7 @@ https://developer.apple.com/certificationauthority/AppleWWDRCA.cer
         
   
     <h1 class="article-title" itemprop="name">
-      此证书的签发者无效问题解决
+      iOS开发如何集成并使用环信SDK
     </h1>
   
 
@@ -252,13 +249,9 @@ https://developer.apple.com/certificationauthority/AppleWWDRCA.cer
       
       <div class="article-info article-info-post">
         
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS-钥匙串/">iOS,钥匙串</a></li></ul>
-	</div>
-
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/OC/">OC</a>
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
 	</div>
 
 
@@ -268,13 +261,8 @@ https://developer.apple.com/certificationauthority/AppleWWDRCA.cer
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>忽然发现钥匙串中的所有证书都提示此开发者无效，尽管依然可以调试，然而情人节那天我才刚刚整理过所有的证书。查找得知是因为系统证书在2016年2月14日失效，需要更新WWDR系统证书。</p>
-<p>下载证书地址:</p>
-<p><a href="https://developer.apple.com/certificationauthority/AppleWWDRCA.cer" target="_blank" rel="external">https://developer.apple.com/certificationauthority/AppleWWDRCA.cer</a> </p>
-<p>下载完双击安装。另外， 在钥匙串里选择”登录”,然后点”证书”，在这个界面，选择工具栏的”显示” -&gt; “显示过期证书”，这时候会发现一个过期的”WWDR Certificate”（Apple Worldwide Developer Relations Certification Authority），删除它。再点击”系统”，如也有个过期证书，也一并删除。</p>
-<p>不出意外的话，所有证书都变成”此证书有效”了。</p>
-<hr>
-<p>如有任何错误之处或疑问，请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+        <hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
 <p>如有转载，请注明出处，谢谢！</p>
 
@@ -286,18 +274,9 @@ https://developer.apple.com/certificationauthority/AppleWWDRCA.cer
     
 <nav id="article-nav">
   
-    <a href="/2016/02/18/iOS崩溃调试的各种方法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS崩溃调试的多种方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/02/17/ 谷歌浏览器翻墙插件-壁虎漫步/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">谷歌浏览器翻墙插件-壁虎漫步</div>
+    <a href="/2016/02/25/iOS开发如何集成并使用支付宝SDK/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS开发如何集成并使用支付宝SDK</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -332,7 +311,7 @@ https://developer.apple.com/certificationauthority/AppleWWDRCA.cer
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="此证书的签发者无效问题解决" data-title="此证书的签发者无效问题解决" data-url="http://chinafish.news/2016/02/17/此证书的签发者无效问题解决/"></div>
+	<div class="ds-thread" data-thread-key="iOS开发如何集成并使用环信SDK" data-title="iOS开发如何集成并使用环信SDK" data-url="http://chinafish.news/2016/02/25/iOS开发如何集成并使用环信SDK/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
