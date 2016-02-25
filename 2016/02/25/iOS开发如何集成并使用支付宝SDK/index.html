@@ -4,55 +4,38 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Crash捕捉工具-Fabric | 含笑饮砒霜的博客</title>
+  <title>iOS开发如何集成并使用支付宝SDK | 含笑饮砒霜的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="上篇文章提到了多种调试记录错误日志的方法。我现在在用的是Fabric，是Twitter的一个工具，目前来看效果不错。下面来看下如何集成并使用。
-前往官网,，先注册账号。
-
-Fabric安装包下载链接:http://pan.baidu.com/s/1qX0Ab96 密码：b8sq
-下载安装
-
-打开Fabric并选中项目，然后在Crashlytics选项点击Installed
-
-复制白色部分到xcod">
+  <meta name="description" content="现在很多App都集成了支付宝SDK中的移动支付功能，但使用支付宝SDK的前提是购买的物品必须是和应用程序无关的商品，比如服装、电子产品等。如果是游戏币、会员等则必须使用内购，内购是用户将钱支付给苹果，之后苹果分成给商户。但即便是使用支付宝SDK购买真实的商品，在提交审核的时候依然可能被拒，这时候需要给苹果回复邮件阐述支付的流程。
+如何集成并使用支付宝SDK呢？
+需要先到 支付宝官网去申请签约，流程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Crash捕捉工具-Fabric">
-<meta property="og:url" content="http://chinafish.news/2016/02/18/Crash捕捉工具-Fabric/index.html">
+<meta property="og:title" content="iOS开发如何集成并使用支付宝SDK">
+<meta property="og:url" content="http://chinafish.news/2016/02/25/iOS开发如何集成并使用支付宝SDK/index.html">
 <meta property="og:site_name" content="含笑饮砒霜的博客">
-<meta property="og:description" content="上篇文章提到了多种调试记录错误日志的方法。我现在在用的是Fabric，是Twitter的一个工具，目前来看效果不错。下面来看下如何集成并使用。
-前往官网,，先注册账号。
-
-Fabric安装包下载链接:http://pan.baidu.com/s/1qX0Ab96 密码：b8sq
-下载安装
-
-打开Fabric并选中项目，然后在Crashlytics选项点击Installed
-
-复制白色部分到xcod">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-10.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-11.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-12.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-13.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-14.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-15.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-17.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-18.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-19.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-20.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-21.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-22.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-23.png?attname=">
-<meta property="og:updated_time" content="2016-02-19T08:08:34.000Z">
+<meta property="og:description" content="现在很多App都集成了支付宝SDK中的移动支付功能，但使用支付宝SDK的前提是购买的物品必须是和应用程序无关的商品，比如服装、电子产品等。如果是游戏币、会员等则必须使用内购，内购是用户将钱支付给苹果，之后苹果分成给商户。但即便是使用支付宝SDK购买真实的商品，在提交审核的时候依然可能被拒，这时候需要给苹果回复邮件阐述支付的流程。
+如何集成并使用支付宝SDK呢？
+需要先到 支付宝官网去申请签约，流程">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-01.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-02.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-04.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-03.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-05.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-07.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-08.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-09.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-10.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-11.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-12.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-13.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-14.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-15.png?attname=">
+<meta property="og:updated_time" content="2016-02-25T05:19:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Crash捕捉工具-Fabric">
-<meta name="twitter:description" content="上篇文章提到了多种调试记录错误日志的方法。我现在在用的是Fabric，是Twitter的一个工具，目前来看效果不错。下面来看下如何集成并使用。
-前往官网,，先注册账号。
-
-Fabric安装包下载链接:http://pan.baidu.com/s/1qX0Ab96 密码：b8sq
-下载安装
-
-打开Fabric并选中项目，然后在Crashlytics选项点击Installed
-
-复制白色部分到xcod">
+<meta name="twitter:title" content="iOS开发如何集成并使用支付宝SDK">
+<meta name="twitter:description" content="现在很多App都集成了支付宝SDK中的移动支付功能，但使用支付宝SDK的前提是购买的物品必须是和应用程序无关的商品，比如服装、电子产品等。如果是游戏币、会员等则必须使用内购，内购是用户将钱支付给苹果，之后苹果分成给商户。但即便是使用支付宝SDK购买真实的商品，在提交审核的时候依然可能被拒，这时候需要给苹果回复邮件阐述支付的流程。
+如何集成并使用支付宝SDK呢？
+需要先到 支付宝官网去申请签约，流程">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜的博客" type="application/atom+xml">
   
@@ -255,11 +238,11 @@ Fabric安装包下载链接:http://pan.baidu.com/s/1qX0Ab96 密码：b8sq
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Crash捕捉工具-Fabric" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-iOS开发如何集成并使用支付宝SDK" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/18/Crash捕捉工具-Fabric/" class="article-date">
-  	<time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2016-02-18</time>
+      <a href="/2016/02/25/iOS开发如何集成并使用支付宝SDK/" class="article-date">
+  	<time datetime="2016-02-24T16:00:00.000Z" itemprop="datePublished">2016-02-25</time>
 </a>
     </div>
   
@@ -272,7 +255,7 @@ Fabric安装包下载链接:http://pan.baidu.com/s/1qX0Ab96 密码：b8sq
         
   
     <h1 class="article-title" itemprop="name">
-      Crash捕捉工具-Fabric
+      iOS开发如何集成并使用支付宝SDK
     </h1>
   
 
@@ -281,7 +264,7 @@ Fabric安装包下载链接:http://pan.baidu.com/s/1qX0Ab96 密码：b8sq
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fabric/">Fabric</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/支付宝SDK/">支付宝SDK</a></li></ul>
 	</div>
 
         
@@ -296,28 +279,33 @@ Fabric安装包下载链接:http://pan.baidu.com/s/1qX0Ab96 密码：b8sq
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>上篇文章提到了多种调试记录错误日志的方法。我现在在用的是Fabric，是Twitter的一个工具，目前来看效果不错。下面来看下如何集成并使用。</p>
-<p><a href="https://get.fabric.io" target="_blank" rel="external">前往官网</a>,，先注册账号。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-10.png?attname=" alt=""></p>
-<p>Fabric安装包下载链接:<a href="http://pan.baidu.com/s/1qX0Ab96" target="_blank" rel="external">http://pan.baidu.com/s/1qX0Ab96</a> 密码：b8sq</p>
-<p>下载安装</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-11.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-12.png?attname=" alt=""></p>
-<p>打开Fabric并选中项目，然后在Crashlytics选项点击Installed</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-13.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-14.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-15.png?attname=" alt=""></p>
-<p>复制白色部分到xcode中</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-17.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-18.png?attname=" alt=""></p>
-<p>继续点击Next</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-19.png?attname=" alt=""></p>
-<p>可拖拽按钮至Xcode中，拖拽成功之后可发现项目中多了Fabric.framework和Crashlytics.framwork。这一步也可以使用pod安装</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-20.png?attname=" alt=""></p>
-<p>安装完后按如下集成代码</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-21.png?attname=" alt=""></p>
-<p>至此集成完毕。</p>
-<p>默认只收集release模式下的错误日志，怎么在Debug模式下也收集呢？可以这样设置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-22.png?attname=" alt=""></p>
-<p>这样在调试和发布后如有遇到崩溃，都会在官网显示，并发往注册邮箱。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-23.png?attname=" alt=""></p>
-<p><br><br>注意：Fabric的原理还是把发布后的dsym上传后对它进行定位，显示出错误的位置。由于版本和系统可能并不一致，集成过程如果步骤有偏差需按照Fabric上显示的的步骤集成。</p>
+        <p>现在很多App都集成了支付宝SDK中的移动支付功能，但使用支付宝SDK的前提是购买的物品必须是和应用程序无关的商品，比如服装、电子产品等。如果是游戏币、会员等则必须使用内购，内购是用户将钱支付给苹果，之后苹果分成给商户。但即便是使用支付宝SDK购买真实的商品，在提交审核的时候依然可能被拒，这时候需要给苹果回复邮件阐述支付的流程。</p>
+<p>如何集成并使用支付宝SDK呢？</p>
+<p>需要先到 <a href="https://www.alipay.com" target="_blank" rel="external">支付宝官网</a>去申请签约，流程比较麻烦,不过有详细文档。签约成功后会获得商户ID(partner)和账户ID(seller)和私钥(私钥需根据公钥按照文档步骤生成)。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-01.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-02.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-04.png?attname=" alt=""></p>
+<p>之后需前往 <a href="http://open.alipay.com/platform/home.htm" target="_blank" rel="external">支付宝开放平台</a>，注册需集成的应用，填写相关信息。</p>
+<p>SDK下载页面: <a href="https://doc.open.alipay.com/doc2/detail?treeId=54&amp;articleId=103419&amp;docType=1" target="_blank" rel="external">点此前往</a></p>
+<p>然后选择 sdk下载<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-03.png?attname=" alt=""></p>
+<p>下载完成后导入项目</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-05.png?attname=" alt=""></p>
+<p>kNotifyURL问后台获取，在支付成功或失败的时候会根绝这个回调同时通知后台。kPrivateKey这个私钥我存储在info.plist里面，也可以从后台获取。kAppScheme用来处理支付宝回调</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-07.png?attname=" alt=""></p>
+<p>Identifier可不填，URL Schemes可随意填写，但需和官网注册应用时填写的一样。</p>
+<p>这里面的AlipayRequestConfig类官网Demo里并没有，是封装了一个支付方法类</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-08.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-09.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-10.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-11.png?attname=" alt=""></p>
+<p>在Appdelegate中别忘了加上下面代码，否则支付后无法跳转回来</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-12.png?attname=" alt=""></p>
+<p>在项目中的具体使用</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-13.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-14.png?attname=" alt=""></p>
+<p>为安全起见，在支付返回应用后要验证返回结果是否是支付宝服务器发来的信息,以帮助校验反馈回来的数据的是否真实。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-15.png?attname=" alt=""></p>
+<p>以上！</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -331,18 +319,9 @@ Fabric安装包下载链接:http://pan.baidu.com/s/1qX0Ab96 密码：b8sq
     
 <nav id="article-nav">
   
-    <a href="/2016/02/19/iOS性能调优-使用Instruments诊断App/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS性能调优-使用Instruments诊断App
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/02/18/iOS崩溃调试的各种方法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iOS崩溃调试的多种方法</div>
+    <a href="/2016/02/24/即时通讯之Openfire+Spark配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">即时通讯之Openfire+Spark配置</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -377,7 +356,7 @@ Fabric安装包下载链接:http://pan.baidu.com/s/1qX0Ab96 密码：b8sq
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Crash捕捉工具-Fabric" data-title="Crash捕捉工具-Fabric" data-url="http://chinafish.news/2016/02/18/Crash捕捉工具-Fabric/"></div>
+	<div class="ds-thread" data-thread-key="iOS开发如何集成并使用支付宝SDK" data-title="iOS开发如何集成并使用支付宝SDK" data-url="http://chinafish.news/2016/02/25/iOS开发如何集成并使用支付宝SDK/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
