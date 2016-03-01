@@ -313,8 +313,7 @@ UIGraphicsBeginImageContextWithOptions(frame.size, NO, [UIScreen mainScreen].sca
 UIGraphicsEndImageContext();
 
 return newimage;
-</code></pre><p>}</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#### 图片叠加</span></span><br></pre></td></tr></table></figure>
+</code></pre><p>}<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#### 图片叠加</span></span><br></pre></td></tr></table></figure></p>
 <p>+(void)maskView:(UIImageView <em>)imageView withImage:(UIImage </em>)image{</p>
 <pre><code>UIImageView *imageViewMask = [[UIImageView alloc] initWithImage:image];
 imageViewMask.frame = CGRectMake(0, 0, imageView.frame.size.width, imageView.frame.size.height);

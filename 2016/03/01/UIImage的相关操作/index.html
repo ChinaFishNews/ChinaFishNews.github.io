@@ -19,7 +19,7 @@ Github下载地址: https://github.com/ChinaFishNews/UIImageDemo
 博客地址: 点此前往
 通过颜色生">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-01-01.gif?attname=">
-<meta property="og:updated_time" content="2016-03-01T10:36:11.000Z">
+<meta property="og:updated_time" content="2016-03-01T10:38:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIImage的相关操作">
 <meta name="twitter:description" content="最近看了下JSQMessage的源码，一个比较优雅的UI库，代码很赞，只用了少量的图片，牵扯了一些UIImage的相关操作。虽然控件比较基本 ，但是一些用法还是不是很清楚，希望接下来能有时间去整理下其他的基础控件。此次仅为UIImage的一些相关操作。
@@ -337,8 +337,7 @@ UIGraphicsBeginImageContextWithOptions(frame.size, NO, [UIScreen mainScreen].sca
 UIGraphicsEndImageContext();
 
 return newimage;
-</code></pre><p>}</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#### 图片叠加</span></span><br></pre></td></tr></table></figure>
+</code></pre><p>}<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#### 图片叠加</span></span><br></pre></td></tr></table></figure></p>
 <p>+(void)maskView:(UIImageView <em>)imageView withImage:(UIImage </em>)image{</p>
 <pre><code>UIImageView *imageViewMask = [[UIImageView alloc] initWithImage:image];
 imageViewMask.frame = CGRectMake(0, 0, imageView.frame.size.width, imageView.frame.size.height);
