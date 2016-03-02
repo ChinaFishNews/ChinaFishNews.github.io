@@ -4,29 +4,19 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Swift与OC的相互调用 | 含笑饮砒霜的博客</title>
+  <title>iOS程序后台无限运行 | 含笑饮砒霜的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、 Swift调用OC将 Objective-C 导入 Swift 
-要在同一个 app  target 中导入 Objective-C 文件供 Swift 使用，你需要依赖 Objective-C的
-桥接头文件（Objective-C bridging header）来暴露给  Swift。当你添加  Swift  文件到现有
-的 Objective-C 应用时，Xcode  会自动创建这些头">
+  <meta name="description" content="让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift与OC的相互调用">
-<meta property="og:url" content="http://chinafish.news/2015/12/22/Swift与OC的相互调用/index.html">
+<meta property="og:title" content="iOS程序后台无限运行">
+<meta property="og:url" content="http://chinafish.news/2016/03/01/iOS程序后台无限运行/index.html">
 <meta property="og:site_name" content="含笑饮砒霜的博客">
-<meta property="og:description" content="1、 Swift调用OC将 Objective-C 导入 Swift 
-要在同一个 app  target 中导入 Objective-C 文件供 Swift 使用，你需要依赖 Objective-C的
-桥接头文件（Objective-C bridging header）来暴露给  Swift。当你添加  Swift  文件到现有
-的 Objective-C 应用时，Xcode  会自动创建这些头">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-16-01.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-16-02.png?attname=">
-<meta property="og:updated_time" content="2016-02-19T08:06:34.000Z">
+<meta property="og:description" content="让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-02-01.png?attname=">
+<meta property="og:updated_time" content="2016-03-02T02:56:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift与OC的相互调用">
-<meta name="twitter:description" content="1、 Swift调用OC将 Objective-C 导入 Swift 
-要在同一个 app  target 中导入 Objective-C 文件供 Swift 使用，你需要依赖 Objective-C的
-桥接头文件（Objective-C bridging header）来暴露给  Swift。当你添加  Swift  文件到现有
-的 Objective-C 应用时，Xcode  会自动创建这些头">
+<meta name="twitter:title" content="iOS程序后台无限运行">
+<meta name="twitter:description" content="让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜的博客" type="application/atom+xml">
   
@@ -229,11 +219,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Swift与OC的相互调用" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-iOS程序后台无限运行" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/12/22/Swift与OC的相互调用/" class="article-date">
-  	<time datetime="2015-12-21T16:00:00.000Z" itemprop="datePublished">2015-12-22</time>
+      <a href="/2016/03/01/iOS程序后台无限运行/" class="article-date">
+  	<time datetime="2016-02-29T16:00:00.000Z" itemprop="datePublished">2016-03-01</time>
 </a>
     </div>
   
@@ -246,7 +236,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Swift与OC的相互调用
+      iOS程序后台无限运行
     </h1>
   
 
@@ -255,12 +245,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift-OC/">Swift,OC</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MMPDeepSleepPreventer-后台无限运行/">MMPDeepSleepPreventer,后台无限运行</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Swift/">Swift</a>
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
 	</div>
 
 
@@ -270,23 +260,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1_u3001_Swift_u8C03_u7528OC"><a href="#1_u3001_Swift_u8C03_u7528OC" class="headerlink" title="1、 Swift调用OC"></a>1、 Swift调用OC</h3><p>将 Objective-C 导入 Swift </p>
-<p>要在同一个 app  target 中导入 Objective-C 文件供 Swift 使用，你需要依赖 Objective-C的</p>
-<p>桥接头文件（Objective-C bridging header）来暴露给  Swift。当你添加  Swift  文件到现有</p>
-<p>的 Objective-C 应用时，Xcode  会自动创建这些头文件，反之亦然。<br><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-16-01.png?attname=" alt=""></p>
-<p>如果同意，Xcode  会在源文件创建的同时生成头文件，并用 product 的模块名加上 </p>
-<p>-Bridging-Header.h 命名。</p>
-<p>在 Build Settings 中，确保 Objective-C 桥接头文件的 build setting 是基于  Swfit  编译器，</p>
-<p>即 Code  Generation  含有头文件的路径。这个路径必须是头文件自身的路径，而不是它所</p>
-<p>在的目录。<br><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-16-02.png?attname=" alt=""></p>
-<p>然后在桥接头文件中，加入OC的头文件，在Swift中即可饮用OC的类</p>
-<p><br></p>
-<h3 id="2_u3001_OC_u8C03_u7528Swift"><a href="#2_u3001_OC_u8C03_u7528Swift" class="headerlink" title="2、 OC调用Swift"></a>2、 OC调用Swift</h3><p>1、确保将框架  target  的   Build Settings &gt; Packaging &gt; Defines Module   设置为   Yes</p>
-<p>2、在修改在   build setting   中的   Product Module Name   即可。</p>
-<p>之后的项目会自动生成swift的头文件，头文件名称为Product Module Name-Swift.h</p>
-<p>所有的swift都会在这个头文件里</p>
+        <p>让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景是因为积分墙刷榜，这个程序要在后台一直运行，来监测其他app的行为，如注册、登陆、认证等，这就要这个app持续运行。鉴于苹果对iOS系统的封闭政策，我们的APP在进入后台能做的事情相对有限。一般只有几秒的时间留给用户进行一些清理和数据保存的时间，当然可以使用开启新任务向系统借点时间，但这时间也是有限的， 不会超过10分钟，10分钟后无论怎么向系统申请继续后台，系统会强制挂起App，挂起所有后台操作、线程，直到用户再次点击App之后才会继续运行。但是系统也预留了一些特殊应用可以实现真后台的方法，包括VoIP、GPS、Audio等。</p>
+<p>这里使用了MMPDeepSleepPreventer类，这个类就是通过一直播放无声音乐来实现永久后台运行。</p>
+<p>下载链接:<a href="https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git" target="_blank" rel="external">https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git</a></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-02-01.png?attname=" alt=""></p>
+<p>把上述问价导入项目，添加AVFoundation.framework、AudioToolbox.framework</p>
+<p>只需在AppDelegate中设置<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#import</span> &lt;AVFoundation/AVFoundation.h&gt;</span><br><span class="line"><span class="id">#import</span> <span class="string">"MMPDeepSleepPreventer.h"</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MMPDeepSleepPreventer * soundBoard =  <span class="string">[MMPDeepSleepPreventer new]</span>;</span><br><span class="line"><span class="string">[soundBoard startPreventSleep]</span>;</span><br></pre></td></tr></table></figure>
 <hr>
-<p>如有任何错误之处或疑问，请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
 <p>如有转载，请注明出处，谢谢！</p>
 
@@ -298,18 +280,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/12/28/iOS开发的一些奇巧淫技/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          iOS开发的一些奇巧淫技
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/12/20/写在开篇/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">写在开篇</div>
+    <a href="/2016/03/01/UIImage的相关操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">UIImage的相关操作</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -344,7 +317,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Swift与OC的相互调用" data-title="Swift与OC的相互调用" data-url="http://chinafish.news/2015/12/22/Swift与OC的相互调用/"></div>
+	<div class="ds-thread" data-thread-key="iOS程序后台无限运行" data-title="iOS程序后台无限运行" data-url="http://chinafish.news/2016/03/01/iOS程序后台无限运行/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
