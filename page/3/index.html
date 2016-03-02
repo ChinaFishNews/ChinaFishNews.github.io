@@ -125,7 +125,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Asstrill-Shadowsocks-云梯，壁虎漫步/" style="font-size: 10px;">Asstrill,Shadowsocks,云梯，壁虎漫步</a> <a href="/tags/BugHD/" style="font-size: 10px;">BugHD</a> <a href="/tags/Core-Graphics/" style="font-size: 10px;">Core Graphics</a> <a href="/tags/Fabric/" style="font-size: 15px;">Fabric</a> <a href="/tags/Git，GitHub-回滚，仓库/" style="font-size: 10px;">Git，GitHub,回滚，仓库</a> <a href="/tags/Leaks，Allocations-Time-Profiler/" style="font-size: 10px;">Leaks，Allocations,Time Profiler</a> <a href="/tags/MMPDeepSleepPreventer-后台无限运行/" style="font-size: 10px;">MMPDeepSleepPreventer,后台无限运行</a> <a href="/tags/Openfire-Spark/" style="font-size: 10px;">Openfire,Spark</a> <a href="/tags/Swift-OC/" style="font-size: 10px;">Swift,OC</a> <a href="/tags/UIBezierPath-CAShapeLayer/" style="font-size: 10px;">UIBezierPath,CAShapeLayer</a> <a href="/tags/iOS-钥匙串/" style="font-size: 10px;">iOS,钥匙串</a> <a href="/tags/奇巧淫技/" style="font-size: 10px;">奇巧淫技</a> <a href="/tags/奇技淫巧/" style="font-size: 10px;">奇技淫巧</a> <a href="/tags/支付宝SDK/" style="font-size: 10px;">支付宝SDK</a> <a href="/tags/环信SDK/" style="font-size: 10px;">环信SDK</a> <a href="/tags/装逼，特技/" style="font-size: 10px;">装逼，特技</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a>
+						<a href="/tags/Asstrill-Shadowsocks-云梯，壁虎漫步/" style="font-size: 10px;">Asstrill,Shadowsocks,云梯，壁虎漫步</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/BugHD/" style="font-size: 10px;">BugHD</a> <a href="/tags/Core-Graphics/" style="font-size: 10px;">Core Graphics</a> <a href="/tags/Fabric/" style="font-size: 15px;">Fabric</a> <a href="/tags/Git，GitHub-回滚，仓库/" style="font-size: 10px;">Git，GitHub,回滚，仓库</a> <a href="/tags/Leaks，Allocations-Time-Profiler/" style="font-size: 10px;">Leaks，Allocations,Time Profiler</a> <a href="/tags/MMPDeepSleepPreventer-后台无限运行/" style="font-size: 10px;">MMPDeepSleepPreventer,后台无限运行</a> <a href="/tags/Openfire-Spark/" style="font-size: 10px;">Openfire,Spark</a> <a href="/tags/Swift-OC/" style="font-size: 10px;">Swift,OC</a> <a href="/tags/UIBezierPath-CAShapeLayer/" style="font-size: 10px;">UIBezierPath,CAShapeLayer</a> <a href="/tags/iOS-钥匙串/" style="font-size: 10px;">iOS,钥匙串</a> <a href="/tags/奇巧淫技/" style="font-size: 10px;">奇巧淫技</a> <a href="/tags/奇技淫巧/" style="font-size: 10px;">奇技淫巧</a> <a href="/tags/支付宝SDK/" style="font-size: 10px;">支付宝SDK</a> <a href="/tags/环信SDK/" style="font-size: 10px;">环信SDK</a> <a href="/tags/装逼，特技/" style="font-size: 10px;">装逼，特技</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a>
 					</div>
 				</section>
 				
@@ -218,6 +218,85 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-Swift与OC的相互调用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/22/Swift与OC的相互调用/" class="article-date">
+  	<time datetime="2015-12-21T16:00:00.000Z" itemprop="datePublished">2015-12-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/22/Swift与OC的相互调用/">Swift与OC的相互调用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1_u3001_Swift_u8C03_u7528OC"><a href="#1_u3001_Swift_u8C03_u7528OC" class="headerlink" title="1、 Swift调用OC"></a>1、 Swift调用OC</h3><p>将 Objective-C 导入 Swift </p>
+<p>要在同一个 app  target 中导入 Objective-C 文件供 Swift 使用，你需要依赖 Objective-C的</p>
+<p>桥接头文件（Objective-C bridging header）来暴露给  Swift。当你添加  Swift  文件到现有</p>
+<p>的 Objective-C 应用时，Xcode  会自动创建这些头文件，反之亦然。<br><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-16-01.png?attname=" alt=""></p>
+<p>如果同意，Xcode  会在源文件创建的同时生成头文件，并用 product 的模块名加上 </p>
+<p>-Bridging-Header.h 命名。</p>
+<p>在 Build Settings 中，确保 Objective-C 桥接头文件的 build setting 是基于  Swfit  编译器，</p>
+<p>即 Code  Generation  含有头文件的路径。这个路径必须是头文件自身的路径，而不是它所</p>
+<p>在的目录。<br><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-16-02.png?attname=" alt=""></p>
+<p>然后在桥接头文件中，加入OC的头文件，在Swift中即可饮用OC的类</p>
+<p><br></p>
+<h3 id="2_u3001_OC_u8C03_u7528Swift"><a href="#2_u3001_OC_u8C03_u7528Swift" class="headerlink" title="2、 OC调用Swift"></a>2、 OC调用Swift</h3><p>1、确保将框架  target  的   Build Settings &gt; Packaging &gt; Defines Module   设置为   Yes</p>
+<p>2、在修改在   build setting   中的   Product Module Name   即可。</p>
+<p>之后的项目会自动生成swift的头文件，头文件名称为Product Module Name-Swift.h</p>
+<p>所有的swift都会在这个头文件里</p>
+<hr>
+<p>如有任何错误之处或疑问，请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift-OC/">Swift,OC</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Swift/">Swift</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-写在开篇" class="article article-type-post" itemscope itemprop="blogPost">
   
