@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>如何发布自己的开源框架到CocoaPods | 含笑饮砒霜的博客</title>
+  <title>如何发布自己的开源框架到CocoaPods(trunk方式) | 含笑饮砒霜的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="现在iOS开发过程中Cocoapods已经用的很普遍了，可以很方便的将第三方框架加到自己的项目中。现在也有个第三方的Cocoapods的插件，下载链接:https://github.com/ChinaFishNews/cocoapods-xcode-plugin.git  安装好后是这样的
 
 还有个管理插件的插件Alcatraz，下载地址:https://github.com/ChinaFishN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何发布自己的开源框架到CocoaPods">
+<meta property="og:title" content="如何发布自己的开源框架到CocoaPods(trunk方式)">
 <meta property="og:url" content="http://chinafish.news/2016/03/04/如何发布自己的开源框架到CocoaPods/index.html">
 <meta property="og:site_name" content="含笑饮砒霜的博客">
 <meta property="og:description" content="现在iOS开发过程中Cocoapods已经用的很普遍了，可以很方便的将第三方框架加到自己的项目中。现在也有个第三方的Cocoapods的插件，下载链接:https://github.com/ChinaFishNews/cocoapods-xcode-plugin.git  安装好后是这样的
@@ -39,9 +39,9 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-21.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-22.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-23.png?attname=">
-<meta property="og:updated_time" content="2016-03-04T10:07:41.000Z">
+<meta property="og:updated_time" content="2016-03-04T10:23:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何发布自己的开源框架到CocoaPods">
+<meta name="twitter:title" content="如何发布自己的开源框架到CocoaPods(trunk方式)">
 <meta name="twitter:description" content="现在iOS开发过程中Cocoapods已经用的很普遍了，可以很方便的将第三方框架加到自己的项目中。现在也有个第三方的Cocoapods的插件，下载链接:https://github.com/ChinaFishNews/cocoapods-xcode-plugin.git  安装好后是这样的
 
 还有个管理插件的插件Alcatraz，下载地址:https://github.com/ChinaFishN">
@@ -264,7 +264,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      如何发布自己的开源框架到CocoaPods
+      如何发布自己的开源框架到CocoaPods(trunk方式)
     </h1>
   
 
@@ -345,9 +345,9 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-15.png?attname=" alt=""></p>
 <p>这时候可以把podspec文件放到自己本机中，目录为~/.cocoapods/repos/master/Specs。</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-17.png?attname=" alt=""></p>
-<p>这时候并没有UIImagDemo文件夹，需要自己创建，也没有json文件，这是之后传到Cocoapod之后才生成的文件。然后搜索这个库就已经有了</p>
+<p>这时候并没有UIImagDemo文件夹，需要自己创建，也没有json文件，这是之后传到Cocoapods trunk之后才生成的文件。然后搜索这个库就已经有了</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-18.png?attname=" alt=""></p>
-<p>但是这个时候别人并不能通过Cocoapod搜索到这个库，需要cocoapods使用了trunk发布上去,这需要0.33以上的版本，可以通过pod –version查看当前版本，上文已讲如何更新cocoapods到最新版本。使用步骤如下</p>
+<p>但是这个时候别人并不能通过Cocoapod搜索到这个库，在cocoapods使用了trunk服务后,这需要0.33以上的版本，可以通过pod –version查看当前版本，上文已讲如何更新cocoapods到最新版本。使用步骤如下</p>
 <h6 id="u6CE8_u518CTrunk"><a href="#u6CE8_u518CTrunk" class="headerlink" title="注册Trunk"></a>注册Trunk</h6><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk <span class="keyword">register</span> your_email <span class="string">'your_name'</span> --description=<span class="string">'macbook pro'</span></span><br></pre></td></tr></table></figure>
 <p>改成自己对应的邮箱和名字即可，会收到一封邮件，点击邮件链接验证，然后<br>可使用<code>pod trunk me</code>查看信息</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-20.png?attname=" alt=""></p>
@@ -378,6 +378,7 @@
 </ul>
 </blockquote>
 <p>以上，流程参考了网上的一篇上传HUPhotoBrowser的文章，过程中遇到不少问题，但是也的确很受帮助，感谢！</p>
+<p>还是得感慨一下，这写博客的时间比我自己操作的时间还要长，心塞！</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -428,7 +429,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="如何发布自己的开源框架到CocoaPods" data-title="如何发布自己的开源框架到CocoaPods" data-url="http://chinafish.news/2016/03/04/如何发布自己的开源框架到CocoaPods/"></div>
+	<div class="ds-thread" data-thread-key="如何发布自己的开源框架到CocoaPods" data-title="如何发布自己的开源框架到CocoaPods(trunk方式)" data-url="http://chinafish.news/2016/03/04/如何发布自己的开源框架到CocoaPods/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
