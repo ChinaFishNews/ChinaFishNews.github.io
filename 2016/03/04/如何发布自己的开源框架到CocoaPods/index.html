@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>如何发布自己的开源框架到CocoaPods | 含笑饮砒霜的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="现在iOS开发过程中Cocoapods已经用的很普遍了，可以很方便的将第三方框架加到自己的项目中。现在也有个第三方的Cocoapods的插件，下载链接:https://github.com/ChinaFishNews/cocoapods-xcode-plugin.git  安装好后是这样的
+
+还有个管理插件的插件Alcatraz，下载地址:https://github.com/ChinaFishN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何发布自己的开源框架到CocoaPods">
+<meta property="og:url" content="http://chinafish.news/2016/03/04/如何发布自己的开源框架到CocoaPods/index.html">
+<meta property="og:site_name" content="含笑饮砒霜的博客">
+<meta property="og:description" content="现在iOS开发过程中Cocoapods已经用的很普遍了，可以很方便的将第三方框架加到自己的项目中。现在也有个第三方的Cocoapods的插件，下载链接:https://github.com/ChinaFishNews/cocoapods-xcode-plugin.git  安装好后是这样的
+
+还有个管理插件的插件Alcatraz，下载地址:https://github.com/ChinaFishN">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-01.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-02.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-03.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-04.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-05.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-06.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-07.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-08.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-09.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-10.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-11.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-12.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-14.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-13.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-16.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-15.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-17.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-18.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-20.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-19.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-21.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-22.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-23.png?attname=">
+<meta property="og:updated_time" content="2016-03-04T10:07:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何发布自己的开源框架到CocoaPods">
+<meta name="twitter:description" content="现在iOS开发过程中Cocoapods已经用的很普遍了，可以很方便的将第三方框架加到自己的项目中。现在也有个第三方的Cocoapods的插件，下载链接:https://github.com/ChinaFishNews/cocoapods-xcode-plugin.git  安装好后是这样的
+
+还有个管理插件的插件Alcatraz，下载地址:https://github.com/ChinaFishN">
+  
+    <link rel="alternative" href="/atom.xml" title="含笑饮砒霜的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://tp1.sinaimg.cn/2185265952/180/5686790740/1" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">含笑饮砒霜</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">如果可以打造非凡应用 为什么要止步于过得去</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">概览</a></li>
+				        
+							<li><a href="/categories/进阶">进阶</a></li>
+				        
+							<li><a href="/categories/OC">OC</a></li>
+				        
+							<li><a href="/categories/Swift">Swift</a></li>
+				        
+							<li><a href="/categories/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/ChinaFishNews" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2185265952/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/fishnewsdream" title="twitter">twitter</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/新闻-余-ab2b19101?trk=nav_responsive_tab_profile_pic" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Asstrill-Shadowsocks-云梯，壁虎漫步/" style="font-size: 10px;">Asstrill,Shadowsocks,云梯，壁虎漫步</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/BugHD/" style="font-size: 10px;">BugHD</a> <a href="/tags/Cocoapods/" style="font-size: 10px;">Cocoapods</a> <a href="/tags/Coding-net/" style="font-size: 10px;">Coding.net</a> <a href="/tags/Core-Graphics/" style="font-size: 10px;">Core Graphics</a> <a href="/tags/Fabric/" style="font-size: 15px;">Fabric</a> <a href="/tags/Git，GitHub-回滚，仓库/" style="font-size: 10px;">Git，GitHub,回滚，仓库</a> <a href="/tags/Leaks，Allocations-Time-Profiler/" style="font-size: 10px;">Leaks，Allocations,Time Profiler</a> <a href="/tags/MMPDeepSleepPreventer-后台无限运行/" style="font-size: 10px;">MMPDeepSleepPreventer,后台无限运行</a> <a href="/tags/MarkDown、Mou、Macdown/" style="font-size: 10px;">MarkDown、Mou、Macdown</a> <a href="/tags/Openfire-Spark/" style="font-size: 10px;">Openfire,Spark</a> <a href="/tags/Reveal/" style="font-size: 10px;">Reveal</a> <a href="/tags/UIBezierPath-CAShapeLayer/" style="font-size: 10px;">UIBezierPath,CAShapeLayer</a> <a href="/tags/iOS-钥匙串/" style="font-size: 10px;">iOS,钥匙串</a> <a href="/tags/奇巧淫技/" style="font-size: 10px;">奇巧淫技</a> <a href="/tags/奇技淫巧/" style="font-size: 10px;">奇技淫巧</a> <a href="/tags/支付宝SDK/" style="font-size: 10px;">支付宝SDK</a> <a href="/tags/环信SDK/" style="font-size: 10px;">环信SDK</a> <a href="/tags/装逼，特技/" style="font-size: 10px;">装逼，特技</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://xhmh.blog.163.com">韩寒的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.devtang.com">唐巧的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.superqq.com">刚刚在线</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://jj59.com">九九文章网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.cocoachina.com">CocoaChina</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.henishuo.com">标哥的技术博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">14级毕业生,专注于iOS开发。创建Objective-C、Swift技术开发交流群201556264,欢迎加入，共同提高!</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">含笑饮砒霜</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://tp1.sinaimg.cn/2185265952/180/5686790740/1" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">含笑饮砒霜</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">如果可以打造非凡应用 为什么要止步于过得去</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">概览</a></li>
+		        
+					<li><a href="/categories/进阶">进阶</a></li>
+		        
+					<li><a href="/categories/OC">OC</a></li>
+		        
+					<li><a href="/categories/Swift">Swift</a></li>
+		        
+					<li><a href="/categories/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/ChinaFishNews" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2185265952/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/fishnewsdream" title="twitter">twitter</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/新闻-余-ab2b19101?trk=nav_responsive_tab_profile_pic" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-如何发布自己的开源框架到CocoaPods" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/04/如何发布自己的开源框架到CocoaPods/" class="article-date">
+  	<time datetime="2016-03-03T16:00:00.000Z" itemprop="datePublished">2016-03-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何发布自己的开源框架到CocoaPods
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cocoapods/">Cocoapods</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在iOS开发过程中Cocoapods已经用的很普遍了，可以很方便的将第三方框架加到自己的项目中。现在也有个第三方的Cocoapods的插件，下载链接:<a href="https://github.com/ChinaFishNews/cocoapods-xcode-plugin.git" target="_blank" rel="external">https://github.com/ChinaFishNews/cocoapods-xcode-plugin.git</a>  安装好后是这样的</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-01.png?attname=" alt=""></p>
+<p>还有个管理插件的插件Alcatraz，下载地址:<a href="https://github.com/ChinaFishNews/Alcatraz.git" target="_blank" rel="external">https://github.com/ChinaFishNews/Alcatraz.git</a>  安装好后是这样的</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-02.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-03.png?attname=" alt=""></p>
+<p>通过Alcatraz可以随意安装很多插件，但是一些插件和当前的Xcode版本有时并不兼容，会导致卡慢、崩溃或者不起作用。这时候可以随意卸载</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-04.png?attname=" alt=""></p>
+<p>目前安装了十多个插件，包括XAlign、Activate Power Mode、VVDocumenter、MacVim等十多个插件，感觉的确更便利于开发，更重要的是，不经意间一些很高大上的效果或动作在产品、测试面前装逼基本会得到满分。</p>
+<p>如果我们想把自己写的组件或者库，甚至一个类开源出去，让别人也可以通过Cocoapods安装我们写的框架该怎么做呢？接下来和大家演示一下如何上传到Cocoapods上。</p>
+<p>这里以我的一个Demo为例，cd到项目根目录，创建Podspec文件,UIImageDemo为项目名<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="operator">spec</span> create UIImageDemo</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-05.png?attname=" alt=""></p>
+<p>打开podspec文件基本是这样的</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-06.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-07.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-08.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-09.png?attname=" alt=""></p>
+<p>不需要填写的可以前面加个#注掉。</p>
+<p>需要填写的大概有这几项<br>s.name ,是库的名称</p>
+<p>s.version是库源代码版本号，项目提交到github上时需要给项目加个标签，这个标签要和这个 version一致，注意，版本号前面不需要加v</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-10.png?attname=" alt=""></p>
+<p>用到的命令是<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m<span class="string">"test"</span></span><br><span class="line">git <span class="keyword">tag</span> </span><br><span class="line"><span class="title">git</span> push --tags</span><br><span class="line">git push origin <span class="literal">master</span></span><br></pre></td></tr></table></figure></p>
+<p>s.summary是对库的简要概述</p>
+<p>s.homepage是库的主页，我在这里填写的是github的链接(<a href="https://github.com/ChinaFishNews/UIImageDemo.git" target="_blank" rel="external">https://github.com/ChinaFishNews/UIImageDemo.git</a>)</p>
+<p>s.license是许可文件，这里填”MIT”</p>
+<p>s.author是库的作者</p>
+<p>s.platform是库所支持的软件平台</p>
+<p>s.source是声明原代码的地址，我这里也是填写的github链接,tag和上述的version要一致</p>
+<p>s.source_files，声明了库中源代码的位置，前面的Classes可以去掉，我这里填的是”UIImageDemo/UIImageDemo/UIImageFactory.{.h,.m}”,{.h,m}匹配所有以.h和.m为扩展名的文件，我是把UIImageFactory这个类提交到Cocoapods上，项目目录如下所示</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-11.png?attname=" alt=""></p>
+<p>s.exclude_files 这里没有用到，注掉就好</p>
+<p>s.framework是依赖的核心库，我这只用了UIKit,如果有用到其他的库，可以用s.frameworks = @”aaa.framework”,@”bbb.framework”</p>
+<p>s.dependency是填写依赖的库，没有的话注释掉就好。</p>
+<p>填写完后，保存退出，需要验证这个文件是否可用，有任何的warning或者errror都不可以，验证命令:<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="operator">spec</span> lint UIImageDemo.podspec</span><br></pre></td></tr></table></figure></p>
+<p>UIImageDemo换成你们自己的名字。我在这里尝试了多次都是失败，如下图所示</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-12.png?attname=" alt=""></p>
+<p>这个错是因为cocoapods不是最新版本，需更新到最新版本，如下图所示</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-14.png?attname=" alt=""></p>
+<p>步骤如下，先输入下面命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources <span class="operator">-l</span></span><br></pre></td></tr></table></figure></p>
+<p>结果若为<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gem sources -l</span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span> CURRENT SOURCES <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">http://ruby.taobao.org/</span><br></pre></td></tr></table></figure></p>
+<p>说明之前我替换过，若没有更改过gem source应该结果为<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gem sources -l</span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span> CURRENT SOURCES <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">https://rubygems.org/</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ gem sources -l</span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span> CURRENT SOURCES <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">http://rubygems.org/</span><br></pre></td></tr></table></figure></p>
+<p>现在淘宝ruby的源现在改成https的了,更换操作如下</p>
+<p>移除操作（移除当前你查询到的gem source）<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove <span class="string">http:</span><span class="comment">//ruby.taobao.org/</span></span><br></pre></td></tr></table></figure></p>
+<p>执行结果为<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">http:</span>//ruby.taobao<span class="preprocessor">.org</span>/ removed from sources</span><br></pre></td></tr></table></figure></p>
+<p>添加操作<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources -<span class="tag">a</span> https:<span class="comment">//ruby.taobao.org/</span></span><br></pre></td></tr></table></figure></p>
+<p>执行结果为<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http<span class="variable">s:</span>//<span class="keyword">ruby</span>.taobao.org/ added <span class="keyword">to</span> sources</span><br></pre></td></tr></table></figure></p>
+<p>再查询<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources <span class="operator">-l</span></span><br></pre></td></tr></table></figure></p>
+<p>结果已经发生变化<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span> CURRENT SOURCES <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">https://ruby.taobao.org/</span><br></pre></td></tr></table></figure></p>
+<p>然后更新<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem <span class="keyword">install</span> cocoapods</span><br></pre></td></tr></table></figure></p>
+<p>更新完毕，再次验证,没有错误，但是有个警告<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="operator">spec</span> lint UIImageDemo.podspec</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-13.png?attname=" alt=""></p>
+<p>这个警告是说没有找到许可文件，我随便从其他第三方库中找到了这个License文件导入到项目目录中</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-16.png?attname=" alt=""></p>
+<p>再次验证，UIImageDemo.podspec passed validation 终于验证通过</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-15.png?attname=" alt=""></p>
+<p>这时候可以把podspec文件放到自己本机中，目录为~/.cocoapods/repos/master/Specs。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-17.png?attname=" alt=""></p>
+<p>这时候并没有UIImagDemo文件夹，需要自己创建，也没有json文件，这是之后传到Cocoapod之后才生成的文件。然后搜索这个库就已经有了</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-18.png?attname=" alt=""></p>
+<p>但是这个时候别人并不能通过Cocoapod搜索到这个库，需要cocoapods使用了trunk发布上去,这需要0.33以上的版本，可以通过pod –version查看当前版本，上文已讲如何更新cocoapods到最新版本。使用步骤如下</p>
+<h6 id="u6CE8_u518CTrunk"><a href="#u6CE8_u518CTrunk" class="headerlink" title="注册Trunk"></a>注册Trunk</h6><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk <span class="keyword">register</span> your_email <span class="string">'your_name'</span> --description=<span class="string">'macbook pro'</span></span><br></pre></td></tr></table></figure>
+<p>改成自己对应的邮箱和名字即可，会收到一封邮件，点击邮件链接验证，然后<br>可使用<code>pod trunk me</code>查看信息</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-20.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-19.png?attname=" alt=""></p>
+<p>如果项目是多人维护，可以添加其他维护者`pod trunk add-owner her_name her_email,不过我并没有尝试。</p>
+<p>最后在工程根目录下执行<code>pod trunk push</code>命令。pod trunk push 命令会首先验证本地的podspec文件(是否有错误)，之后会上传spec文件到trunk，最后会将你上传的podspec文件转换为需要的json文件。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-21.png?attname=" alt=""></p>
+<p>如图，即上传成功了，整个过程就结束了。以后有新版本只需要修改工程根目录下的podspec文件就行了，然后重新执行pod trunk push命令。这时候别人就可以通过cocoapods使用你的库了。</p>
+<p>新建一个项目，创建podfile文件，<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">platform <span class="symbol">:ios</span>, <span class="string">"8.0"</span></span><br><span class="line"></span><br><span class="line">pod <span class="string">'UIImageDemo'</span></span><br></pre></td></tr></table></figure></p>
+<p>这时候使用<code>pod install --verbose --no-repo-update</code>并不会成功，因为这个命令 不会更新本地仓库，需要使用<code>pod  install</code>才可以，下载到本地之后以后再次使用就可以使用<code>`pod install --verbose --no-repo-update</code>命令了。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-22.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-23.png?attname=" alt=""></p>
+<p>整个流程如下</p>
+<blockquote>
+<ul>
+<li><p>上传至github时，给项目打个tag</p>
+</li>
+<li><p>到项目根目录创建podspec文件 命令:<code>pod spec create name.podspec</code> </p>
+</li>
+<li><p>验证podsepc文件  命令:<code>pod spec lint name.podspec</code></p>
+</li>
+<li><p>注册pod trunk  命令:<code>pod trunk register your_email  &#39;your_name&#39; --description=&#39;macbook pro</code></p>
+</li>
+<li><p>发布到pod trunk 命令: <code>pod trunk push</code></p>
+</li>
+<li><p>更新pod库 命令:<code>pod setup</code>  如果pod trunk push成功后无法pod search到自己的库，需要执行该命令。</p>
+</li>
+</ul>
+</blockquote>
+<p>以上，流程参考了网上的一篇上传HUPhotoBrowser的文章，过程中遇到不少问题，但是也的确很受帮助，感谢！</p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/03/Hexo博客托管在Coding上/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo博客托管在Coding上</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="如何发布自己的开源框架到CocoaPods" data-title="如何发布自己的开源框架到CocoaPods" data-url="http://chinafish.news/2016/03/04/如何发布自己的开源框架到CocoaPods/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 含笑饮砒霜
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
