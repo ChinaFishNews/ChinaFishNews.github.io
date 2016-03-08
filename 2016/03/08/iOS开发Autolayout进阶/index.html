@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-15.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-16.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-17.png?attname=">
-<meta property="og:updated_time" content="2016-03-08T08:21:55.000Z">
+<meta property="og:updated_time" content="2016-03-08T08:31:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发Autolayout进阶">
 <meta name="twitter:description" content="一直想写又不想写。因为近来网上关于Autolayout的文章不在少数，重复相同的内容没什么意思。但是只写不同的地方感觉我也写不出多少，比较心塞。既然坑都占了，那就先意思一下，接下来发现Autolayout其他特性或比较高深的用法会再继续补充。
@@ -317,7 +317,7 @@
 <h6 id="UIView+Autolayout_u4E00_u822C_u7528_u6CD5"><a href="#UIView+Autolayout_u4E00_u822C_u7528_u6CD5" class="headerlink" title="UIView+Autolayout一般用法"></a>UIView+Autolayout一般用法</h6><p>直接设置大小<br><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">[<span class="keyword">_redView</span> autoSetDimensionsToSize:CGSizeMake<span class="list">(<span class="keyword">200</span>, <span class="number">200</span>)</span>]<span class="comment">;</span></span></span><br></pre></td></tr></table></figure></p>
 <p>设置除顶部距四周的间隔，然后设置高度<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[_redVeiw autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(<span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>)excludingEdge:ALEdgeTop]; </span><br><span class="line"></span><br><span class="line">[_redView autoSetDimension:ALDimensionHeight toSize:<span class="number">100</span>];</span><br></pre></td></tr></table></figure></p>
 <p>直接设置四周间隔<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_redView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)];</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">###### Masonary一般用法</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">######</span><span class="comment"># Masonary一般用法</span></span><br></pre></td></tr></table></figure>
 <p>UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);</p>
 <p>[view1 mas_makeConstraints:^(MASConstraintMaker *make) {</p>
 <pre><code>make.top.equalTo(superview.mas_top).with.offset(padding.top);               make.left.equalTo(superview.mas_left).with.offset(padding.left);
@@ -391,7 +391,7 @@ make.right.equalTo(superview.mas_right).with.offset(-padding.right);
 <ul>
 <li><p>对于Autolayout，制作动画和以往也有些不同，使用Frame的时候，我们做动画一般都调用-animateWithDuration:animations:方法，在animations的block里面调整Frame即可，使用Autolayout之后，由于Autolayout是延迟布局的，并不是约束更新之后就立刻布局，所以大家可以发现。在-animateWithDuration:animations方法里面修改约束是不能实现动画的。而使用Autolayout该怎么做呢？  应该是在block外改变约束，在block内调用layoutIfNeeded方法。</p>
 </li>
-<li><p>Autolayout自动布局是在UIView的layoutSubviews中，所以TableView上的子view(如：cell，headerView，footerView)使用了Autolayout，tableView在布局的时候调用layoutSubviews，就会抛出异常。直接对TableView使用Autolayout是不会有问题的，TableView是否调用layoutSubviews在于他上面的子view是否使用Autolayout，而不是他本身。<br><br>正确的做法是:如果是cell，我们经常使用[cell addSubview:view]再对view做一个相对cell的约束，这时候就会出现问题。解决方案就是使用[cell.contentView addSubview:view]。我们约束是对cell的contentView添加，跟cell无关。tableView就不会调用layoutSubviews了。<br>如果是headerView或者footView。解决方案是直接使用frame，或者自己定义一个类似Cell的contentView的view，子view相对contentView布局使用Autolayout，contentView对headerView布局使用frame。</p>
+<li><p>Autolayout自动布局是在UIView的layoutSubviews中，所以TableView上的子view(如：cell，headerView，footerView)使用了Autolayout，tableView在布局的时候调用layoutSubviews，就会抛出异常。直接对TableView使用Autolayout是不会有问题的，TableView是否调用layoutSubviews在于他上面的子view是否使用Autolayout，而不是他本身。<br>正确的做法是:如果是cell，我们经常使用[cell addSubview:view]再对view做一个相对cell的约束，这时候就会出现问题。解决方案就是使用[cell.contentView addSubview:view]。我们约束是对cell的contentView添加，跟cell无关。tableView就不会调用layoutSubviews了。<br>如果是headerView或者footView。解决方案是直接使用frame，或者自己定义一个类似Cell的contentView的view，子view相对contentView布局使用Autolayout，contentView对headerView布局使用frame。</p>
 </li>
 <li><p>使用中还会发现一个特殊的控件，UIScrollView,因为contentSize跟着里面的子view发生变化。正确的做法是给UIScrollview添加一个ContentView,设置edge均为0，如果垂直滚动那就设置一个宽度，反之设置一个高度约束。<b></b></p>
 </li>
