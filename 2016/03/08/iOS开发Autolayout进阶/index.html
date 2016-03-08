@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>iOS开发Autolayout进阶 | 含笑饮砒霜的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一直想写又不想写。因为近来网上关于Autolayout的文章不在少数，重复相同的内容没什么意思。但是只写不同的地方感觉我也写不出多少，比较心塞。既然坑都占了，那就先意思一下，接下来发现Autolayout其他特性或比较高深的用法会再继续补充。
+自iOS6苹果就推出了Autolayout,但那时候很多人都在用AutoresizingMasks,国内对新鲜出土的技术并没有那么热衷，最主要的是改变终归是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发Autolayout进阶">
+<meta property="og:url" content="http://chinafish.news/2016/03/08/iOS开发Autolayout进阶/index.html">
+<meta property="og:site_name" content="含笑饮砒霜的博客">
+<meta property="og:description" content="一直想写又不想写。因为近来网上关于Autolayout的文章不在少数，重复相同的内容没什么意思。但是只写不同的地方感觉我也写不出多少，比较心塞。既然坑都占了，那就先意思一下，接下来发现Autolayout其他特性或比较高深的用法会再继续补充。
+自iOS6苹果就推出了Autolayout,但那时候很多人都在用AutoresizingMasks,国内对新鲜出土的技术并没有那么热衷，最主要的是改变终归是">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-01.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/4.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/5.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/6.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-03.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-04.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-05.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-07.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-08.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-09.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-10.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-11.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-12.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-13.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-15.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-16.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-17.png?attname=">
+<meta property="og:updated_time" content="2016-03-08T08:21:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发Autolayout进阶">
+<meta name="twitter:description" content="一直想写又不想写。因为近来网上关于Autolayout的文章不在少数，重复相同的内容没什么意思。但是只写不同的地方感觉我也写不出多少，比较心塞。既然坑都占了，那就先意思一下，接下来发现Autolayout其他特性或比较高深的用法会再继续补充。
+自iOS6苹果就推出了Autolayout,但那时候很多人都在用AutoresizingMasks,国内对新鲜出土的技术并没有那么热衷，最主要的是改变终归是">
+  
+    <link rel="alternative" href="/atom.xml" title="含笑饮砒霜的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://tp1.sinaimg.cn/2185265952/180/5686790740/1" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">含笑饮砒霜</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">如果可以打造非凡应用 为什么要止步于过得去</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">概览</a></li>
+				        
+							<li><a href="/categories/进阶">进阶</a></li>
+				        
+							<li><a href="/categories/OC">OC</a></li>
+				        
+							<li><a href="/categories/Swift">Swift</a></li>
+				        
+							<li><a href="/categories/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/ChinaFishNews" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2185265952/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/fishnewsdream" title="twitter">twitter</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/新闻-余-ab2b19101?trk=nav_responsive_tab_profile_pic" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Asstrill-Shadowsocks-云梯，壁虎漫步/" style="font-size: 10px;">Asstrill,Shadowsocks,云梯，壁虎漫步</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/BugHD/" style="font-size: 10px;">BugHD</a> <a href="/tags/Cocoapods/" style="font-size: 10px;">Cocoapods</a> <a href="/tags/Coding-net/" style="font-size: 10px;">Coding.net</a> <a href="/tags/Core-Graphics/" style="font-size: 10px;">Core Graphics</a> <a href="/tags/Fabric/" style="font-size: 15px;">Fabric</a> <a href="/tags/Git，GitHub-回滚，仓库/" style="font-size: 10px;">Git，GitHub,回滚，仓库</a> <a href="/tags/Leaks，Allocations-Time-Profiler/" style="font-size: 10px;">Leaks，Allocations,Time Profiler</a> <a href="/tags/MMPDeepSleepPreventer-后台无限运行/" style="font-size: 10px;">MMPDeepSleepPreventer,后台无限运行</a> <a href="/tags/MarkDown、Mou、Macdown/" style="font-size: 10px;">MarkDown、Mou、Macdown</a> <a href="/tags/Openfire-Spark/" style="font-size: 10px;">Openfire,Spark</a> <a href="/tags/Reveal/" style="font-size: 10px;">Reveal</a> <a href="/tags/UIBezierPath-CAShapeLayer/" style="font-size: 10px;">UIBezierPath,CAShapeLayer</a> <a href="/tags/iOS-钥匙串/" style="font-size: 10px;">iOS,钥匙串</a> <a href="/tags/奇巧淫技/" style="font-size: 10px;">奇巧淫技</a> <a href="/tags/奇技淫巧/" style="font-size: 10px;">奇技淫巧</a> <a href="/tags/支付宝SDK/" style="font-size: 10px;">支付宝SDK</a> <a href="/tags/环信SDK/" style="font-size: 10px;">环信SDK</a> <a href="/tags/装逼，特技/" style="font-size: 10px;">装逼，特技</a> <a href="/tags/证书，Application-Loader/" style="font-size: 10px;">证书，Application Loader</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://xhmh.blog.163.com">韩寒的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.devtang.com">唐巧的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.superqq.com">刚刚在线</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://jj59.com">九九文章网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.cocoachina.com">CocoaChina</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.henishuo.com">标哥的技术博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">14级毕业生,专注于iOS开发。创建Objective-C、Swift技术开发交流群201556264,欢迎加入，共同提高!</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">含笑饮砒霜</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://tp1.sinaimg.cn/2185265952/180/5686790740/1" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">含笑饮砒霜</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">如果可以打造非凡应用 为什么要止步于过得去</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">概览</a></li>
+		        
+					<li><a href="/categories/进阶">进阶</a></li>
+		        
+					<li><a href="/categories/OC">OC</a></li>
+		        
+					<li><a href="/categories/Swift">Swift</a></li>
+		        
+					<li><a href="/categories/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/ChinaFishNews" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2185265952/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/fishnewsdream" title="twitter">twitter</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/新闻-余-ab2b19101?trk=nav_responsive_tab_profile_pic" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-iOS开发Autolayout进阶" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/08/iOS开发Autolayout进阶/" class="article-date">
+  	<time datetime="2016-03-07T16:00:00.000Z" itemprop="datePublished">2016-03-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS开发Autolayout进阶
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Autolayout/">Autolayout</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一直想写又不想写。因为近来网上关于Autolayout的文章不在少数，重复相同的内容没什么意思。但是只写不同的地方感觉我也写不出多少，比较心塞。既然坑都占了，那就先意思一下，接下来发现Autolayout其他特性或比较高深的用法会再继续补充。</p>
+<p>自iOS6苹果就推出了Autolayout,但那时候很多人都在用AutoresizingMasks,国内对新鲜出土的技术并没有那么热衷，最主要的是改变终归是痛苦的，所以鲜有应用。iOS8之后新推出了iPhone6、iPhone6+及Sizeclass,这时候不得不使用Autolayout了。现在觉得这其实也并不是必须的，代码适配也不是不可以。</p>
+<p>现在代码添加约束一般有三种，常规的约束语法、可视化格式语言约束、使用第三方组件。</p>
+<h4 id="u5E38_u89C4_u7EA6_u675F"><a href="#u5E38_u89C4_u7EA6_u675F" class="headerlink" title="常规约束"></a>常规约束</h4><p>代码基本长这样</p>
+<p> 高度约束（添加到yellowView身上）</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSLayoutConstraint *heightConstraint = [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeHeight <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>nil <span class="string">attribute:</span>NSLayoutAttributeNotAnAttribute <span class="string">multiplier:</span><span class="number">0.0</span> <span class="string">constant:</span><span class="number">50</span>];</span><br><span class="line">[yellowView <span class="string">addConstraint:</span>heightConstraint];</span><br></pre></td></tr></table></figure>
+<p>间距约束（添加到self.view身上）<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CGFloat margin = <span class="number">20</span>;</span><br><span class="line">    [self.view <span class="string">addConstraints:</span>@[</span><br><span class="line">                                [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeLeft <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>self.view <span class="string">attribute:</span>NSLayoutAttributeLeft <span class="string">multiplier:</span><span class="number">1.0</span> <span class="string">constant:</span>margin],</span><br><span class="line"> </span><br><span class="line">                                [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeRight <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>self.view <span class="string">attribute:</span>NSLayoutAttributeRight <span class="string">multiplier:</span><span class="number">1.0</span> <span class="string">constant:</span> - margin],</span><br><span class="line"> </span><br><span class="line">                                [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeBottom <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>self.view <span class="string">attribute:</span>NSLayoutAttributeBottom <span class="string">multiplier:</span><span class="number">1.0</span> <span class="string">constant:</span> - margin]</span><br><span class="line">                                ]];</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-01.png?attname=" alt=""></p>
+<p>用到了一个基本公式<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj1.property1 = (obj2.property2 * multiplier)+ <span class="built_in">constant</span> <span class="built_in">value</span></span><br></pre></td></tr></table></figure></p>
+<p>multiplier和constant 是向量系数和偏移量,一般还要设置translateAutoresizingMaskIntoConstraints为NO,默认是YES，使得不和系统的自动伸缩约束冲突</p>
+<h4 id="u53EF_u89C6_u5316_u683C_u5F0F_u8BED_u8A00_u7EA6_u675F"><a href="#u53EF_u89C6_u5316_u683C_u5F0F_u8BED_u8A00_u7EA6_u675F" class="headerlink" title="可视化格式语言约束"></a>可视化格式语言约束</h4><p>可视化格式语言，即Visual Format Language(VFL),是为了简化Autolayout而推出的抽象语言。</p>
+<p>基本长这样<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">UIButton</span> *<span class="keyword">b1 </span>= ...</span><br><span class="line"><span class="label">UIButton</span> *<span class="keyword">b2 </span>= ...</span><br><span class="line"><span class="label">UIButton</span> *<span class="keyword">b3 </span>= ...</span><br><span class="line"><span class="keyword">b1.translatesAutoresizingMaskIntoConstraints </span>= NO<span class="comment">;</span></span><br><span class="line"><span class="keyword">b2.translatesAutoresizingMaskIntoConstraints </span>= NO<span class="comment">;</span></span><br><span class="line"><span class="keyword">b3.translatesAutoresizingMaskIntoConstraints </span>= NO<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>将传入的对象引用作为value,将引用名变成字符串作为key,生成的字典如: {@”b1”:b1,@”b2”:b2,@”b3”:b3}<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *diction1 = NSDictionaryOfVariableBindings<span class="list">(<span class="keyword">b1</span>,b2,b3)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>为vfl式子中的一些特殊含义的数字做一个名称对照表<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *diction2 = @&#123;@<span class="string">"top"</span>:<span class="constant">@20</span>,@<span class="string">"left"</span>:<span class="constant">@20</span>,@<span class="string">"right"</span>:<span class="constant">@20</span>,@<span class="string">"spacing"</span>:<span class="constant">@10</span>&#125;<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSString *hVFL = @<span class="string">"|-left-[b1]-spacing-[b2(b1)]-spacing-[b3(b1)]-right-|"</span>;</span><br><span class="line">NSArray *cs1 = [NSLayoutConstraint constraintsWithVisualForma<span class="variable">t:hVFL</span> option<span class="variable">s:NSLayoutFormatAlignAllCenterY</span> metric<span class="variable">s:diction2</span> <span class="keyword">view</span><span class="variable">s:diction1</span>];</span><br><span class="line">NSString *vVFL = @<span class="string">"V:|-top-[b1]"</span>;</span><br><span class="line">NSArray *cs2 = [NSLayoutConstraint constraintsWithVisualForma<span class="variable">t:vVFL</span> option<span class="variable">s:0</span> metric<span class="variable">s:diction2</span> <span class="keyword">view</span><span class="variable">s:diction1</span>];</span><br><span class="line">[self.<span class="keyword">view</span> addConstraint<span class="variable">s:cs1</span>];</span><br><span class="line">[self.<span class="keyword">view</span> addConstraint<span class="variable">s:cs2</span>];</span><br></pre></td></tr></table></figure>
+<p>部分使用规则如下:</p>
+<blockquote>
+<p> |: 表示父视图</p>
+<p> -:表示距离</p>
+<p> V:  :表示垂直</p>
+<p>  H:  :表示水平</p>
+<p> >= :表示视图间距、宽度和高度必须大于或等于某个值</p>
+<p>  \&lt;= :表示视图间距、宽度和高度必须小宇或等于某个值</p>
+<p>  == :表示视图间距、宽度或者高度必须等于某个值</p>
+<p>|-30.0-[view]-30.0-|:  表示离父视图 左右间距 30</p>
+<p>[view(200.0)] : 表示视图宽度为 200.0</p>
+<p>|-[view(view1)]-[view1]-| :表示视图宽度一样，并且在父视图左右边缘内</p>
+<p>V:|-[view(50.0)] : 视图高度为  50</p>
+<p>V:|-(==padding)-[imageView]-&gt;=0-[button]-(==padding)-| : 表示离父视图的距离<br>为Padding,这两个视图间距必须大于或等于0并且距离底部父视图为 padding。</p>
+<p>[wideView(&gt;=60@700)]  :视图的宽度为至少为60 不能超过  700 </p>
+</blockquote>
+<p>这里只是基本的部分使用规则，要了解更多请自行查阅。</p>
+<h4 id="u4F7F_u7528_u7B2C_u4E09_u65B9_u7EC4_u4EF6"><a href="#u4F7F_u7528_u7B2C_u4E09_u65B9_u7EC4_u4EF6" class="headerlink" title="使用第三方组件"></a>使用第三方组件</h4><p>UIView+Autolayout下载地址：<a href="https://github.com/ChinaFishNews/UIView-AutoLayout.git" target="_blank" rel="external">https://github.com/ChinaFishNews/UIView-AutoLayout.git</a></p>
+<p>Masonry下载地址 : <a href="https://github.com/ChinaFishNews/Masonry.git" target="_blank" rel="external">https://github.com/ChinaFishNews/Masonry.git</a></p>
+<p>在最初的时候使用的是UIView+Autolayout，后来发现Masonry就基本使用Masonry了，这两个用起来都很好上手。</p>
+<h6 id="UIView+Autolayout_u4E00_u822C_u7528_u6CD5"><a href="#UIView+Autolayout_u4E00_u822C_u7528_u6CD5" class="headerlink" title="UIView+Autolayout一般用法"></a>UIView+Autolayout一般用法</h6><p>直接设置大小<br><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">[<span class="keyword">_redView</span> autoSetDimensionsToSize:CGSizeMake<span class="list">(<span class="keyword">200</span>, <span class="number">200</span>)</span>]<span class="comment">;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>设置除顶部距四周的间隔，然后设置高度<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[_redVeiw autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(<span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>)excludingEdge:ALEdgeTop]; </span><br><span class="line"></span><br><span class="line">[_redView autoSetDimension:ALDimensionHeight toSize:<span class="number">100</span>];</span><br></pre></td></tr></table></figure></p>
+<p>直接设置四周间隔<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_redView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)];</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">###### Masonary一般用法</span></span><br></pre></td></tr></table></figure>
+<p>UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);</p>
+<p>[view1 mas_makeConstraints:^(MASConstraintMaker *make) {</p>
+<pre><code>make.top.equalTo(superview.mas_top).with.offset(padding.top);               make.left.equalTo(superview.mas_left).with.offset(padding.left);
+make.bottom.equalTo(superview.mas_bottom).with.offset(-padding.bottom);
+make.right.equalTo(superview.mas_right).with.offset(-padding.right);
+</code></pre><p>}];<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">或者直接这样</span><br></pre></td></tr></table></figure></p>
+<p>[view1 mas_makeConstraints:^(MASConstraintMaker *make) {<br>    make.edges.equalTo(superview).with.insets(padding);<br>}];<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">make.top.mas_equalTo(<span class="number">42</span>);</span><br><span class="line">make.height.mas_equalTo(<span class="number">20</span>);</span><br><span class="line">make.size.mas_equalTo(CGSizeMake(<span class="number">50</span>, <span class="number">100</span>));</span><br><span class="line">make.edges.mas_equalTo(UIEdgeInsetsMake(<span class="number">10</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>));</span><br><span class="line">make.left.mas_equalTo(view).mas_offset(UIEdgeInsetsMake(<span class="number">10</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>));</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[view1 mas_makeConstraints:^<span class="list">(<span class="keyword">MASConstraintMaker</span> *make)</span> <span class="collection">&#123;</span><br><span class="line">    self.topConstraint = make.top.equalTo<span class="list">(<span class="keyword">superview.mas_top</span>)</span>.with.offset<span class="list">(<span class="keyword">padding.top</span>)</span><span class="comment">;</span></span><br><span class="line">    make.left.equalTo<span class="list">(<span class="keyword">superview.mas_left</span>)</span>.with.offset<span class="list">(<span class="keyword">padding.left</span>)</span><span class="comment">;</span></span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>这只是随便举例，想更详细的了解可以到Github源码处具体学习下。</p>
+<p>以上，代码添加约束总体较为繁琐，然而有些时候布局比较繁杂、不方便在Storyboard添加的只能只用代码来添加约束了。现在对我而言基本是一般约束直接在Storyboard上拖拽添加，一些不太方便的需要代码添加约束的使用Masonary。</p>
+<h4 id="u5728Storyboard_u4E0A_u6DFB_u52A0_u7EA6_u675F"><a href="#u5728Storyboard_u4E0A_u6DFB_u52A0_u7EA6_u675F" class="headerlink" title="在Storyboard上添加约束"></a>在Storyboard上添加约束</h4><p>iOS9之后已经可以使用引用了，把Storyboard拆分成多个。多人合作项目的时候经常会产生冲突，Storyboard的冲突改起来比较酸爽，Sotryboard其实是一个巨大的XML文件，之前每次产生冲突都需要以XML文件的形式打开Storyboard修改冲突。即便现在可以把Storyboard拆分成多个，但有时冲突依然不可避免，XML文件其实也并不可怕，毕竟多改几次就习惯了。</p>
+<p>添加约束其实比较降低效率，随着布局的繁杂效率下降得更为明显，只在在硬件提升的同时一般我们体会的并不明显。iOS9之后新加了UIStackView,一个管理视图的容器，这样只需要对外面的这个容器添加约束，里面的只需要设置一些属性，虽然归根结底还是设置约束。虽然UIStackView是iOS9之后，但是网上已经有支持iOS9以下的框架，叫FDStackView，下载地址:<br><a href="https://github.com/ChinaFishNews/FDStackView.git" target="_blank" rel="external">https://github.com/ChinaFishNews/FDStackView.git</a></p>
+<p>下载后导入项目即可，无需做其他配置，即可在iOS9以下使用StackView。</p>
+<p>先上个图大家感受一下Autolayout</p>
+<p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/4.png?attname=" alt="">  </p>
+<p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/5.png?attname=" alt="">  </p>
+<p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/6.png?attname=" alt=""></p>
+<p>默认大家都已经可以基本使用Autolayout.</p>
+<p>一般在右下角可以方便的添加约束，也有人通过菜单栏中Editor设置，其实也可以按住control键，点击控件拖拽</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-03.png?attname=" alt=""></p>
+<p>添加约束后有时想知道在不同设备上的布局，这时候可以选中控制器，改变Size的大小，也可以这样</p>
+<p>按住option键点击Main.Storyboard</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-04.png?attname=" alt=""></p>
+<p>然后可以添加设备</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-05.png?attname=" alt=""></p>
+<p>还有时候想观察视图的层次机构，可以在运行时点击Debug View Hierarchy</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-07.png?attname=" alt=""></p>
+<p>其实还可以使用工具Reveal,之前的博文中有讲到。</p>
+<p>在添加约束的时候，左侧一般是这样的</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-08.png?attname=" alt=""></p>
+<p>为什么有的约束在这个控件下，有的约束在其他控件下呢？  是因为只有设置当前控件宽高的时候约束才会出现在当前控件下，设置和其他控件相对位置、距离的时候，会找到他们最近的父控件，在他们最近的父控件下显示约束。</p>
+<p>使用Autolayout的时候，有个属性IntrinsicContentSize，UILabel,UIButton,UIImageView拥有这个属性，可以自己根据内容调整大小，不用设置宽和高。文字有多长就显示多长，图片有多大，就显示多大，对于哪些View有IntrinsicContentSize，苹果给了一张表:</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-09.png?attname=" alt=""></p>
+<p>这张表显示，UIView和NSView是没有IntrinsicContentSize的。Sliders只能定义width。Sliders的height拥有IntrinsicContentSize，Labels, buttons, switches,and text fields完全支持，Text viewsand image views，在有内容的时候支持，没有内容的时候不支持。对于没有这个属性的，我们也希望他拥有默认宽高的话该怎么办呢？我们可以重写IntrinsicContentSize方法,这样就可以拥有默认的宽高<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (CGSize)intrinsicContentSize</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> CGSizeMake(<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于IntrinsicContentSize，Autolayout又把他分成了2个部分：ContentHugging和CompressionResistance。我们点击控件的时候在右侧会发现</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-10.png?attname=" alt=""></p>
+<p>ContentHugging是内容凝聚力，优先级是250，表示View的宽度和高度紧靠内容，不让其扩展的力量</p>
+<p>CompressionResistance是指压缩阻力，优先级是750，表示当有力量要对其进行压缩的时候，其阻力的大小</p>
+<p>对于同一个View，ContentHugging和CompressionResistance不会同时起作用</p>
+<p>而我们添加约束的时候是这样的,优先级是1000</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-11.png?attname=" alt=""></p>
+<p>当一个label有文字的时候，label会存在一个内容的Size。<br>如果有外力让其size扩张，ContentHugging会起作用，外力大于ContentHugging的力量，label的size由外力决定，反之，label的Size由内容决定。<br>如果有外力让其size压缩，CompressionResistance会起作用，外力大于CompressionResistance的力量，label的size由外力决定，反之，label的Size由内容决定。</p>
+<p>也就是说如果我们给label加了一个宽度约束，line设为0，我们在给line设置内容的时候，一旦内容size大于其原有大小的时候label的高度就会增加，而当我们只给label添加一个宽度的时候，一旦我们设置的内容size大于其原有宽度的时候label的宽度就会增加。而当我们同时设置宽度和高度约束的时候，无论我们怎么设置内容，其就会被固定在我们设置的这个size里，因为添加约束的优先级默认是1000，优先级最大，默认会执行这个。</p>
+<p>constraint的优先级(Priorities),优先级越高，力量越大，越被优先执行。系统的优先级由1~1000的数字表示，值越大，优先级越高。NSLayoutConstraint中一共定义了4种比较常用的优先级<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">float</span> <span class="built_in">UILayoutPriority</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityRequired</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityDefaultHigh</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">750</span>; </span><br><span class="line"> </span><br><span class="line"> <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityDefaultLow</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">250</span>; </span><br><span class="line"> </span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityFittingSizeLevel</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">50</span>;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>UILayoutPriorityRequired: 必须级别优先级，值为最高值1000，一般平时定义约束，默认都是这个优先级。</p>
+<p>UILayoutPriorityDefaultHigh: 高优先级，值为750，CompressionResistance的默认优先级是这个。</p>
+<p> UILayoutPriorityDefaultLow: 低优先级，值为250，ContentHugging的默认优先级是这个</p>
+<p>UILayoutPriorityFittingSizeLevel: 极低的优先级，让系统估算Size的时候使用，不适合做约束</p>
+</blockquote>
+<p>知道了各个属性的默认优先级之后，就可以解释为什么一般情况我们给Lable设置Size约束之后，Label由我们设置的Size决定，而不是由其内容决定。因为我们没有特意设置优先级，用的都是默认优先级。Size约束的优先级比CompressionResistance和ContentHugging的优先级高。如果我们想让Label由内容决定，我们可以不设置Size约束或者调低自己Size约束的优先级。</p>
+<p>上面参考了网上的一篇文章，讲的很赞，并且给了一个案例。</p>
+<p>假设有2个Label，并列放着，他们都是使用IntrinsicContentSize自动根据文字适应宽度。效果如图所示：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-12.png?attname=" alt=""></p>
+<p>那么我们设置一个优先级为500宽度为100的约束(100小于Label2的宽度，大于Label1的宽度)</p>
+<p>结果是2个Label都变成100的宽度，还是都保持原来的宽度不变？还是一个变成100，一个保持原来的宽度？我们Run一下：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-13.png?attname=" alt=""></p>
+<p>Label1变成了100，Label2还是原来的宽度，为什么呢？</p>
+<blockquote>
+<p> Label1的IntrinsicContentSize宽度比100小，所以当添加一个宽度为100的约束时，ContentHugging在起作用。ContentHugging的优先级为250。宽度为100的约束优先级为500大于ContentHugging。所以宽度为100.</p>
+<p>  <br>Label2的IntrinsicContentSize宽度比100大。所以当添加一个宽度为100的约束时，CompressionResistance在起作用，CompressionResistance的优先级为750。宽度为100的约束优先级为500小于CompressionResistance。所以宽度还是IntrinsicContentSize的宽度</p>
+</blockquote>
+<p>正常情况下我们在设置Label的时候，给它加个宽度约束，运行是这样的</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-15.png?attname=" alt=""></p>
+<p>款读设置的是100，高度没有设置，内容过多的时候回自动自适应，不用使用代码计算size。但是我们设置宽度是100，但是内容太少的时候右边会有空白，这时候怎么办呢?我们可以将宽度设为less than or equal 100,这样在内容少的时候就是这样的</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-16.png?attname=" alt=""></p>
+<p>这样就解决了内容少而右边有空白的问题。有时候可能没有内容，但是我们又希望它占位，这时候该怎么办呢？我们可以这样设置，即便在没有内容的时候依然在占位</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-17.png?attname=" alt=""></p>
+<p>使用的过程中被还会有一些其他的问题</p>
+<blockquote>
+<ul>
+<li><p>对于Autolayout，制作动画和以往也有些不同，使用Frame的时候，我们做动画一般都调用-animateWithDuration:animations:方法，在animations的block里面调整Frame即可，使用Autolayout之后，由于Autolayout是延迟布局的，并不是约束更新之后就立刻布局，所以大家可以发现。在-animateWithDuration:animations方法里面修改约束是不能实现动画的。而使用Autolayout该怎么做呢？  应该是在block外改变约束，在block内调用layoutIfNeeded方法。</p>
+</li>
+<li><p>Autolayout自动布局是在UIView的layoutSubviews中，所以TableView上的子view(如：cell，headerView，footerView)使用了Autolayout，tableView在布局的时候调用layoutSubviews，就会抛出异常。直接对TableView使用Autolayout是不会有问题的，TableView是否调用layoutSubviews在于他上面的子view是否使用Autolayout，而不是他本身。<br><br>正确的做法是:如果是cell，我们经常使用[cell addSubview:view]再对view做一个相对cell的约束，这时候就会出现问题。解决方案就是使用[cell.contentView addSubview:view]。我们约束是对cell的contentView添加，跟cell无关。tableView就不会调用layoutSubviews了。<br>如果是headerView或者footView。解决方案是直接使用frame，或者自己定义一个类似Cell的contentView的view，子view相对contentView布局使用Autolayout，contentView对headerView布局使用frame。</p>
+</li>
+<li><p>使用中还会发现一个特殊的控件，UIScrollView,因为contentSize跟着里面的子view发生变化。正确的做法是给UIScrollview添加一个ContentView,设置edge均为0，如果垂直滚动那就设置一个宽度，反之设置一个高度约束。<b></b></p>
+</li>
+<li><p>使用Autolayout之后，系统中多了一个更新约束的方法updateConstraints。updateConstraints方法仅用于提升性能。当你更新大量约束，发现由于约束太多，布局有点卡。这时候你可以使用updateConstraints，因为在updateConstraints中更新约束会批量操作，能获得更好的性能。</p>
+</li>
+</ul>
+</blockquote>
+<p>以上，只是Autolayout部分用法，具体的需要在项目中体验，注意点比较多。</p>
+<p>就先到这里，今天妇女节，祝广大女同胞节日快乐。觉得应该放半天假，然而这么人性化得公司毕竟不多！</p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/05/iOS开发证书制作及项目上传流程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS开发证书制作及项目上传流程</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="iOS开发Autolayout进阶" data-title="iOS开发Autolayout进阶" data-url="http://chinafish.news/2016/03/08/iOS开发Autolayout进阶/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 含笑饮砒霜
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
