@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/%202016-02-19-12.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/%202016-02-19-13.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-04.gif?attname=">
-<meta property="og:updated_time" content="2016-02-26T05:08:16.000Z">
+<meta property="og:updated_time" content="2016-03-14T03:08:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用UIBezierPath和CAShapeLayer画各种图形">
 <meta name="twitter:description" content="CAShapeLayer是CALayer的子类，但是比CALayer更灵活，可以画出各种图形，当然，你也可以使用其他方式来画，随你。
@@ -278,7 +278,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>CAShapeLayer是CALayer的子类，但是比CALayer更灵活，可以画出各种图形，当然，你也可以使用其他方式来画，随你。</p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>CAShapeLayer是CALayer的子类，但是比CALayer更灵活，可以画出各种图形，当然，你也可以使用其他方式来画，随你。</p>
 <h3 id="u6742_u8C08"><a href="#u6742_u8C08" class="headerlink" title="杂谈"></a>杂谈</h3><p>在 <code>CAShapeLayer</code> 中，也可以像 <code>CALayer</code> 一样指定它的 <code>frame</code> 来画，就像这样：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let layer = <span class="function"><span class="title">CAShapeLayer</span><span class="params">()</span></span></span><br><span class="line">layer<span class="class">.frame</span> = <span class="function"><span class="title">CGRectMake</span><span class="params">(<span class="number">110</span>, <span class="number">100</span>, <span class="number">150</span>, <span class="number">100</span>)</span></span></span><br><span class="line">layer<span class="class">.backgroundColor</span> = UIColor.<span class="function"><span class="title">blackColor</span><span class="params">()</span></span><span class="class">.CGColor</span></span><br><span class="line">view<span class="class">.layer</span><span class="class">.addSublayer</span>(layer)</span><br></pre></td></tr></table></figure>
 <p>然后你就会得到如图这样的黑色矩形</p>

@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="含笑饮砒霜的博客">
 <meta property="og:description" content="让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-02-01.png?attname=">
-<meta property="og:updated_time" content="2016-03-02T02:56:47.000Z">
+<meta property="og:updated_time" content="2016-03-14T03:11:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS程序后台无限运行">
 <meta name="twitter:description" content="让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景">
@@ -260,7 +260,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景是因为积分墙刷榜，这个程序要在后台一直运行，来监测其他app的行为，如注册、登陆、认证等，这就要这个app持续运行。鉴于苹果对iOS系统的封闭政策，我们的APP在进入后台能做的事情相对有限。一般只有几秒的时间留给用户进行一些清理和数据保存的时间，当然可以使用开启新任务向系统借点时间，但这时间也是有限的， 不会超过10分钟，10分钟后无论怎么向系统申请继续后台，系统会强制挂起App，挂起所有后台操作、线程，直到用户再次点击App之后才会继续运行。但是系统也预留了一些特殊应用可以实现真后台的方法，包括VoIP、GPS、Audio等。</p>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景是因为积分墙刷榜，这个程序要在后台一直运行，来监测其他app的行为，如注册、登陆、认证等，这就要这个app持续运行。鉴于苹果对iOS系统的封闭政策，我们的APP在进入后台能做的事情相对有限。一般只有几秒的时间留给用户进行一些清理和数据保存的时间，当然可以使用开启新任务向系统借点时间，但这时间也是有限的， 不会超过10分钟，10分钟后无论怎么向系统申请继续后台，系统会强制挂起App，挂起所有后台操作、线程，直到用户再次点击App之后才会继续运行。但是系统也预留了一些特殊应用可以实现真后台的方法，包括VoIP、GPS、Audio等。</p>
 <p>这里使用了MMPDeepSleepPreventer类，这个类就是通过一直播放无声音乐来实现永久后台运行。</p>
 <p>下载链接:<a href="https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git" target="_blank" rel="external">https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git</a></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-02-01.png?attname=" alt=""></p>
