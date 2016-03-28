@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-01.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-02.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-03.png?attname=">
-<meta property="og:updated_time" content="2016-03-28T08:49:37.000Z">
+<meta property="og:updated_time" content="2016-03-28T08:53:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客托管在Coding上">
 <meta name="twitter:description" content="昨天GitCafe官网上发布声明，截至2016年5月31日停止所有服务，届时上面的资料和项目都将被永久删除，需要尽快将资料和项目迁移至Coding,只是因为被Coding收购了。操了个蛋，之前的博客就是托管在GitCafe上和GitHub上的，好在还有GitHub做后盾，不用太担心。虽然会一直服务到5月31号，不过还是决定将 博客迁移到Coding上。
@@ -294,9 +294,9 @@
 <p>点击新建Hook</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-05.png?attname=" alt=""></p>
 <p>上面 的输入框中是填你的博客域名，也就是前面部署的时候那个域名地址，然后在后面加上/_</p>
-<p>下面的输入框是输入token,直接填写<code>\{\{TOKEN\}\}</code>就可以了</p>
+<p>下面的输入框是输入token,直接填写<code>{ {TOKEN} }</code>就可以了</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-06.png?attname=" alt=""></p>
-<p>然后点击环境变量，变量名填WEBHOOK_TOKEN,值为。然后回到控制台重新启动应用就可以了。这样就实现了自动部署。</p>
+<p>然后点击环境变量，变量名填WEBHOOK_TOKEN,值为<code>{ {TOKEN\} }</code>。然后回到控制台重新启动应用就可以了。这样就实现了自动部署。</p>
 <p>另外，之前的域名指向的是GitCafe，现在被Coding收购，GitCafe的功能激也都基本被保留，只是需要重新解析域名，但是，也有一些改动。如下图添加域名</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-01.png?attname=" alt=""></p>
 <p><b>注意<b>，部署分支的coding-pages需改成master,这是因为Hexo中_config.yml文件中的的coding源默认是master。否则无法成功。</b></b></p>
