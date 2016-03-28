@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-01.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-02.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-03.png?attname=">
-<meta property="og:updated_time" content="2016-03-14T03:10:03.000Z">
+<meta property="og:updated_time" content="2016-03-28T08:18:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客托管在Coding上">
 <meta name="twitter:description" content="昨天GitCafe官网上发布声明，截至2016年5月31日停止所有服务，届时上面的资料和项目都将被永久删除，需要尽快将资料和项目迁移至Coding,只是因为被Coding收购了。操了个蛋，之前的博客就是托管在GitCafe上和GitHub上的，好在还有GitHub做后盾，不用太担心。虽然会一直服务到5月31号，不过还是决定将 博客迁移到Coding上。
@@ -280,6 +280,8 @@
 <p>我还是将博客同时托管在Coding和GitHub两个平台上，无他，只因更相信GitHub。这里面的<code>ChinaFish</code>和<code>ChinaFishNews</code>都是第一个是用户名，第二个是项目名，之前的设置是<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: </span><br><span class="line">      <span class="attribute">github</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.github.io.git</span><br><span class="line">     # <span class="attribute">gitcafe</span>: git<span class="variable">@gitcafe</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.git,gitcafe-pages</span><br></pre></td></tr></table></figure></p>
 <p>可惜GitCafe被收购了。</p>
 <p>然后打开终端使用下面命令push到仓库<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>这一步可能会报错 ERROR Deployer not found: git  使用如下命令</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
 <p>然后回到Coding的仓库下面进行如下配置</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-01.png?attname=" alt=""></p>
 <p>按照如图，点击检测，会提醒没有检测到环境，不过直接点强制开启就可以了</p>
