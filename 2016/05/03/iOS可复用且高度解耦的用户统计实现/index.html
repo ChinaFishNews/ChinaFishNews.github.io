@@ -7,15 +7,15 @@
   <title>iOS可复用且高度解耦的用户统计实现 | 含笑饮砒霜的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。
-&amp;gt;
-用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的">
+
+用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS可复用且高度解耦的用户统计实现">
 <meta property="og:url" content="http://chinafish.news/2016/05/03/iOS可复用且高度解耦的用户统计实现/index.html">
 <meta property="og:site_name" content="含笑饮砒霜的博客">
 <meta property="og:description" content="说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。
-&amp;gt;
-用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的">
+
+用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_04.gif?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_05.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_06.png?attname=">
@@ -27,12 +27,12 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_12.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_19.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_13.png?attname=">
-<meta property="og:updated_time" content="2016-05-03T12:00:55.000Z">
+<meta property="og:updated_time" content="2016-05-03T12:05:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS可复用且高度解耦的用户统计实现">
 <meta name="twitter:description" content="说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。
-&amp;gt;
-用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的">
+
+用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜的博客" type="application/atom+xml">
   
@@ -276,8 +276,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。</p>
-<p>&gt;</p>
+        <video width="498" height="510 " src="http://7xqjid.com1.z0.glb.clouddn.com/2016_04_14.mp4 " poster=" " controls="controls"><br><br></video>
+
+<p><br></p>
+<p>说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。</p>
+<hr>
 <p>用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插入埋点代码。一旦项目越来越复杂，你会发现埋点的代码散落在程序的各个角落，不利于维护以及复用。本文旨在探讨利用iOS的运行时机制实现一种可复、解耦、容易维护的用户统计方案。探讨毕竟是探讨，欢迎到在简书留言讨论。本文虽有些长却是用心之作，希望你有耐心看完。</p>
 <p>注：本文需要一些iOS的Runtime基础<br>该方案的完成将会用到以下知识：</p>
 <p><code>Method Swizzling(Hook)</code></p>
