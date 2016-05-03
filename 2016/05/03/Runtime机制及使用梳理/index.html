@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>RunTime机制及使用梳理 | 含笑饮砒霜的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="从接触iOS至今，关于RunTime少说也集中研究了十几次。如果只把它作为会用的话，其实根本不需要花太多时间。上周团队里有小伙伴分享了RunTime，觉得很不错，每次都会有收获。书写长篇技术博文极其浪费时间，在此我就转载两篇觉得不错的文章了，没这么多的时间，重要的是也无法写的更好！
+**
+相比“凌波微步”的swift，Object-C被誉为“如来神掌”。传说Runtime就是支持这“如来神掌”说法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RunTime机制及使用梳理">
+<meta property="og:url" content="http://chinafish.news/2016/05/03/Runtime机制及使用梳理/index.html">
+<meta property="og:site_name" content="含笑饮砒霜的博客">
+<meta property="og:description" content="从接触iOS至今，关于RunTime少说也集中研究了十几次。如果只把它作为会用的话，其实根本不需要花太多时间。上周团队里有小伙伴分享了RunTime，觉得很不错，每次都会有收获。书写长篇技术博文极其浪费时间，在此我就转载两篇觉得不错的文章了，没这么多的时间，重要的是也无法写的更好！
+**
+相比“凌波微步”的swift，Object-C被誉为“如来神掌”。传说Runtime就是支持这“如来神掌”说法">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_01.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_02.gif?attname=">
+<meta property="og:updated_time" content="2016-05-03T10:24:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RunTime机制及使用梳理">
+<meta name="twitter:description" content="从接触iOS至今，关于RunTime少说也集中研究了十几次。如果只把它作为会用的话，其实根本不需要花太多时间。上周团队里有小伙伴分享了RunTime，觉得很不错，每次都会有收获。书写长篇技术博文极其浪费时间，在此我就转载两篇觉得不错的文章了，没这么多的时间，重要的是也无法写的更好！
+**
+相比“凌波微步”的swift，Object-C被誉为“如来神掌”。传说Runtime就是支持这“如来神掌”说法">
+  
+    <link rel="alternative" href="/atom.xml" title="含笑饮砒霜的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://tp1.sinaimg.cn/2185265952/180/5686790740/1" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">含笑饮砒霜</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">如果可以打造非凡应用 为什么要止步于过得去</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">概览</a></li>
+				        
+							<li><a href="/categories/进阶">进阶</a></li>
+				        
+							<li><a href="/categories/OC">OC</a></li>
+				        
+							<li><a href="/categories/Swift">Swift</a></li>
+				        
+							<li><a href="/categories/随笔">随笔</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/ChinaFishNews" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/2185265952/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+					        
+								<a class="twitter" target="_blank" href="https://twitter.com/fishnewsdream" title="twitter">twitter</a>
+					        
+								<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/新闻-余-ab2b19101?trk=nav_responsive_tab_profile_pic" title="linkedin">linkedin</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AVPlayer、MoviePlayer/" style="font-size: 10px;">AVPlayer、MoviePlayer</a> <a href="/tags/Asstrill-Shadowsocks-云梯，壁虎漫步/" style="font-size: 10px;">Asstrill,Shadowsocks,云梯，壁虎漫步</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/BugHD/" style="font-size: 10px;">BugHD</a> <a href="/tags/Cocoapods/" style="font-size: 10px;">Cocoapods</a> <a href="/tags/Coding-net/" style="font-size: 10px;">Coding.net</a> <a href="/tags/Core-Graphics/" style="font-size: 10px;">Core Graphics</a> <a href="/tags/Fabric/" style="font-size: 15px;">Fabric</a> <a href="/tags/Git，GitHub-回滚，仓库/" style="font-size: 10px;">Git，GitHub,回滚，仓库</a> <a href="/tags/Leaks，Allocations-Time-Profiler/" style="font-size: 10px;">Leaks，Allocations,Time Profiler</a> <a href="/tags/MMPDeepSleepPreventer-后台无限运行/" style="font-size: 10px;">MMPDeepSleepPreventer,后台无限运行</a> <a href="/tags/MarkDown、Mou、Macdown/" style="font-size: 10px;">MarkDown、Mou、Macdown</a> <a href="/tags/Openfire-Spark/" style="font-size: 10px;">Openfire,Spark</a> <a href="/tags/Reveal/" style="font-size: 10px;">Reveal</a> <a href="/tags/UIBezierPath-CAShapeLayer/" style="font-size: 10px;">UIBezierPath,CAShapeLayer</a> <a href="/tags/iOS-钥匙串/" style="font-size: 10px;">iOS,钥匙串</a> <a href="/tags/奇巧淫技/" style="font-size: 10px;">奇巧淫技</a> <a href="/tags/奇技淫巧/" style="font-size: 10px;">奇技淫巧</a> <a href="/tags/支付宝SDK/" style="font-size: 10px;">支付宝SDK</a> <a href="/tags/环信SDK/" style="font-size: 10px;">环信SDK</a> <a href="/tags/装逼，特技/" style="font-size: 10px;">装逼，特技</a> <a href="/tags/证书，Application-Loader/" style="font-size: 10px;">证书，Application Loader</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.devtang.com">唐巧的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.superqq.com">刚刚在线</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://jj59.com">九九文章网</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.cocoachina.com">CocoaChina</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.henishuo.com">标哥的技术博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/yiyaaixuexi/">念茜的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">14级毕业生,专注于iOS开发。创建Objective-C、Swift技术开发交流群201556264,欢迎加入，共同提高!</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">含笑饮砒霜</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://tp1.sinaimg.cn/2185265952/180/5686790740/1" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">含笑饮砒霜</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">如果可以打造非凡应用 为什么要止步于过得去</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">概览</a></li>
+		        
+					<li><a href="/categories/进阶">进阶</a></li>
+		        
+					<li><a href="/categories/OC">OC</a></li>
+		        
+					<li><a href="/categories/Swift">Swift</a></li>
+		        
+					<li><a href="/categories/随笔">随笔</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/ChinaFishNews" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/2185265952/profile?topnav=1&wvr=6&is_all=1" title="weibo">weibo</a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/fishnewsdream" title="twitter">twitter</a>
+			        
+						<a class="linkedin" target="_blank" href="http://www.linkedin.com/in/新闻-余-ab2b19101?trk=nav_responsive_tab_profile_pic" title="linkedin">linkedin</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Runtime机制及使用梳理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/03/Runtime机制及使用梳理/" class="article-date">
+  	<time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RunTime机制及使用梳理
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/随笔/">随笔</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从接触iOS至今，关于RunTime少说也集中研究了十几次。如果只把它作为会用的话，其实根本不需要花太多时间。上周团队里有小伙伴分享了RunTime，觉得很不错，每次都会有收获。书写长篇技术博文极其浪费时间，在此我就转载两篇觉得不错的文章了，没这么多的时间，重要的是也无法写的更好！</p>
+<p>*<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+<p>相比“凌波微步”的swift，Object-C被誉为“如来神掌”。传说Runtime就是支持这“如来神掌”说法的最好体现。听起来总是这么的神秘高级，于是总能在各个论坛看到碎片资料，时间一长总记不住哪里是哪里，每次都要打开还几个网页。这中记不住显然是知识体系还不完整重要体现。还是自己从Runtime的思想到动手代码呈现上做出总结尚为上策。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_01.png?attname=" alt=""></p>
+<h4 id="u4E00-_u57FA_u672C_u6982_u5FF5"><a href="#u4E00-_u57FA_u672C_u6982_u5FF5" class="headerlink" title="一.基本概念"></a>一.基本概念</h4><blockquote>
+<ul>
+<li>RunTime简称运行时,就是系统在运行的时候的一些机制，其中最主要的是消息机制。</li>
+<li>对于C语言，函数的调用在编译的时候会决定调用哪个函数（ C语言的函数调用请看这里 ）。编译完成之后直接顺序执行，无任何二义性。</li>
+<li>OC的函数调用成为消息发送。属于动态调用过程。在编译的时候并不能决定真正调用哪个函数（事实证明，在编 译阶段，OC可以调用任何函数，即使这个函数并未实现，只要申明过就不会报错。而C语言在编译阶段就会报错）。</li>
+<li>只有在真正运行的时候才会根据函数的名称找 到对应的函数来调用。</li>
+</ul>
+</blockquote>
+<p>官网文档还提供关于传统和现代版本Runtime的说明</p>
+<blockquote>
+<ul>
+<li>In the legacy runtime, if you change the layout of instance variables in a class, you must recompile classes that inherit from it.</li>
+<li>In the modern runtime, if you change the layout of instance variables in a class, you do not have to recompile classes that inherit from it.<br>In addition, the modern runtime supports instance variable synthesis for declared properties (see Declared Properties in The Objective-C Programming Language).</li>
+</ul>
+</blockquote>
+<h4 id="u4E8C-_u77E5_u6653OC_u7684_u65B9_u6CD5_u8C03_u7528_u5728Runtime_u4E2D_u5177_u4F53_u7684_u5B9E_u73B0"><a href="#u4E8C-_u77E5_u6653OC_u7684_u65B9_u6CD5_u8C03_u7528_u5728Runtime_u4E2D_u5177_u4F53_u7684_u5B9E_u73B0" class="headerlink" title="二.知晓OC的方法调用在Runtime中具体的实现"></a>二.知晓OC的方法调用在Runtime中具体的实现</h4><h6 id="1-OC_u4EE3_u7801_u8C03_u7528_u4E00_u4E2A_u65B9_u6CD5"><a href="#1-OC_u4EE3_u7801_u8C03_u7528_u4E00_u4E2A_u65B9_u6CD5" class="headerlink" title="1.OC代码调用一个方法"></a>1.OC代码调用一个方法</h6><p><code>[self.loginBt login];</code></p>
+<h6 id="2-_u5728_u7F16_u8BD1_u65F6RunTime_u4F1A_u5C06_u4E0A_u8FF0_u4EE3_u7801_u8F6C_u5316_u6210_5B_u53D1_u9001_u6D88_u606F_5D"><a href="#2-_u5728_u7F16_u8BD1_u65F6RunTime_u4F1A_u5C06_u4E0A_u8FF0_u4EE3_u7801_u8F6C_u5316_u6210_5B_u53D1_u9001_u6D88_u606F_5D" class="headerlink" title="2.在编译时RunTime会将上述代码转化成[发送消息]"></a>2.在编译时RunTime会将上述代码转化成[发送消息]</h6><p><code>objc_msgSend(self.loginB,@selector(login));</code></p>
+<h3 id="u4E09-_u5E38_u89C1_u7684_u4F5C_u7528"><a href="#u4E09-_u5E38_u89C1_u7684_u4F5C_u7528" class="headerlink" title="三.常见的作用"></a>三.常见的作用</h3><p>既然是“如来神掌”，简直可以无法无天啦，当街拦下一个人问道“这是马还是鹿啊？”，那人看是Runtime大人惧怕道“Runtime大人，您说是马就是马，是鹿就是鹿~”。Runtime大快“wow哈哈哈~，见你乖巧，我也不为难于你。你缺头驴是吧？，本大人现在造一头送于你，迁回家便是！喔~哈哈哈”。<br>呵呵，扯远了，回到Runtime作用上。无所不能的事情就不一一介绍了，梳理下较为可能用的几个地方：</p>
+<blockquote>
+<ul>
+<li><ol>
+<li>动态的添加对象的成员变量和方法</li>
+</ol>
+</li>
+<li><ol>
+<li>动态交换两个方法的实现</li>
+</ol>
+</li>
+<li><ol>
+<li>实现分类也可以添加属性</li>
+</ol>
+</li>
+<li><ol>
+<li>实现NSCoding的自动归档和解档</li>
+</ol>
+</li>
+<li><ol>
+<li>实现字典转模型的自动转换</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h4 id="u56DB-_u7F16_u5199_u4EE3_u7801_u5B9E_u73B0"><a href="#u56DB-_u7F16_u5199_u4EE3_u7801_u5B9E_u73B0" class="headerlink" title="四.编写代码实现"></a>四.编写代码实现</h4><h5 id="1-__u52A8_u6001_u53D8_u91CF_u63A7_u5236"><a href="#1-__u52A8_u6001_u53D8_u91CF_u63A7_u5236" class="headerlink" title="1. 动态变量控制"></a>1. 动态变量控制</h5><h6 id="1_uFF09Sense_uFF1A"><a href="#1_uFF09Sense_uFF1A" class="headerlink" title="1）Sense："></a>1）Sense：</h6><p><code>Teacher: What&#39;s your name?</code></p>
+<p><code>XiaoMing: My name is XiaoMing.</code></p>
+<p><code>Teacher: Pardon?</code></p>
+<p><code>XiaoMing: My name is __</code></p>
+<p>在程序当中，假设XiaoMing的name原来的值为XiaoMing，后来被Runtime偷换了一个名字叫Minggo。那么，Runtime是如何做到的呢？</p>
+<h6 id="2_uFF09Step_uFF1A"><a href="#2_uFF09Step_uFF1A" class="headerlink" title="2）Step："></a>2）Step：</h6><p>①动态获取XiaoMing类中的所有属性[当然包括私有]</p>
+<p><code>Ivar *ivar = class_copyIvarList([self.xiaoMing class], &amp;count);</code></p>
+<p>②遍历属性找到对应name字段</p>
+<p><code>const char *varName = ivar_getName(var);</code></p>
+<p>③修改对应的字段值成Minggo</p>
+<p><code>object_setIvar(self.xiaoMing, var, @&quot;Minggo&quot;);</code></p>
+<h6 id="3_uFF09Show_Code_uFF1A"><a href="#3_uFF09Show_Code_uFF1A" class="headerlink" title="3）Show Code："></a>3）Show Code：</h6><p><code>-(void)answer{</code></p>
+<pre><code>unsigned int count = 0;
+
+Ivar *ivar = class_copyIvarList([self.xiaoMing class], &amp;count);
+
+for (int i = 0; i&lt;count; i++) {
+
+    Ivar var = ivar[i];
+
+    const char *varName = ivar_getName(var);
+
+    NSString *name = [NSString stringWithUTF8String:varName];
+
+    if ([name isEqualToString:@&quot;_englishName&quot;]) {
+
+        object_setIvar(self.xiaoMing, var, @&quot;Minggo&quot;);
+
+        break;
+    }
+}
+NSLog(@&quot;XiaoMing first answer is %@&quot;,self.xiaoMing.englishName);
+
+self.nameTf.text = self.xiaoMing.englishName;
+</code></pre><p><code>}</code></p>
+<h5 id="2-__u52A8_u6001_u4EA4_u6362_u65B9_u6CD5"><a href="#2-__u52A8_u6001_u4EA4_u6362_u65B9_u6CD5" class="headerlink" title="2. 动态交换方法"></a>2. 动态交换方法</h5><h6 id="1_uFF09Sense_uFF1A-1"><a href="#1_uFF09Sense_uFF1A-1" class="headerlink" title="1）Sense："></a>1）Sense：</h6><p><code>Teacher: What&#39;s your name?</code></p>
+<p><code>XiaoMing: My name is XiaoMing.</code></p>
+<p><code>Teacher: Pardon?</code></p>
+<p><code>XiaoMing: My name is __</code></p>
+<p>在程序当中，假设XiaoMing的第一次回答为firstSay，后来被Runtime交换了一个名字叫secondSay的方法，最终再调用firstSay的时候，其实是调用了secondSay的实现。那么，Runtime是如何做到的呢？</p>
+<p>######2）Step：</p>
+<p>①动态找到firstSay和secondSay方法</p>
+<p><code>Method m1 = class_getInstanceMethod([self.xiaoMing class], @selector(firstSay));</code> </p>
+<p><code>Method m2 = class_getInstanceMethod([self.xiaoMing class], @selector(secondSay));</code></p>
+<p>②交换两个方法</p>
+<p><code>method_exchangeImplementations(m1, m2);</code></p>
+<h6 id="3_uFF09Show_Code_uFF1A-1"><a href="#3_uFF09Show_Code_uFF1A-1" class="headerlink" title="3）Show Code："></a>3）Show Code：</h6><p><code>-(void)answer{</code></p>
+<pre><code>Method m1 = class_getInstanceMethod([self.xiaoMing class], @selector(firstSay));
+Method m2 = class_getInstanceMethod([self.xiaoMing class], @selector(secondSay));
+
+method_exchangeImplementations(m1, m2);
+NSString *secondName = [self.xiaoMing firstSay];
+
+self.nameTf.text = secondName;
+NSLog(@&quot;XiaoMing:My name is %@&quot;,secondName);
+</code></pre><p> <code>}</code></p>
+<h5 id="3-__u52A8_u6001_u6DFB_u52A0_u65B9_u6CD5"><a href="#3-__u52A8_u6001_u6DFB_u52A0_u65B9_u6CD5" class="headerlink" title="3. 动态添加方法"></a>3. 动态添加方法</h5><h6 id="1_uFF09Sense_uFF1A-2"><a href="#1_uFF09Sense_uFF1A-2" class="headerlink" title="1）Sense："></a>1）Sense：</h6><p><code>Teacher: Where is LiLei from?</code></p>
+<p><code>XiaoMing: I don&#39;t know.</code></p>
+<p><code>Teacher: Guess?.</code></p>
+<p><code>LiHua: He is from __</code></p>
+<p>在程序当中，假设XiaoMing的中没有guess这个方法，后来被Runtime添加一个名字叫guess的方法，最终再调用guess方法做出相应。那么，Runtime是如何做到的呢？</p>
+<p>2）Step：</p>
+<p>①动态给XiaoMing类中添加guess方法：</p>
+<p><code>class_addMethod([self.xiaoMing class], @selector(guess), (IMP)guessAnswer, &quot;v@:&quot;);</code></p>
+<p>这里参数地方说明一下： (IMP)guessAnswer 意思是guessAnswer的地址指针; “v@:” 意思是，v代表无返回值void，如果是i则代表int；@代表 id sel; : 代表 SEL _cmd; “v@:@@” 意思是，两个参数的没有返回值。</p>
+<p>②调用guess方法响应事件：</p>
+<p><code>[self.xiaoMing performSelector:@selector(guess)];</code> </p>
+<p>③编写guessAnswer的实现：</p>
+<p><code>void guessAnswer(id self,SEL _cmd){</code></p>
+<pre><code>NSLog(@&quot;He is from GuangTong&quot;); 
+</code></pre><p><code>}</code></p>
+<p>这个有两个地方留意一下： 1.void的前面没有+、-号，因为只是C的代码。 2.必须有两个指定参数(id self,SEL _cmd)</p>
+<p>3）Show Code：</p>
+<p><code>-(void)answer{</code></p>
+<pre><code>class_addMethod([self.xiaoMing class], @selector(guess), (IMP)guessAnswer, &quot;v@:&quot;);
+
+if ([self.xiaoMing respondsToSelector:@selector(guess)]) {
+
+    [self.xiaoMing performSelector:@selector(guess)];
+
+} else{
+    NSLog(@&quot;Sorry,I don&apos;t know&quot;);
+}
+self.cityTf.text = @&quot;GuangTong&quot;;
+</code></pre><p><code>}</code></p>
+<p><code>void guessAnswer(id self,SEL _cmd){</code></p>
+<pre><code>NSLog(@&quot;He is from GuangTong&quot;);
+</code></pre><p><code>}</code></p>
+<h5 id="4-__u52A8_u6001_u4E3ACategory_u6269_u5C55_u52A0_u5C5E_u6027"><a href="#4-__u52A8_u6001_u4E3ACategory_u6269_u5C55_u52A0_u5C5E_u6027" class="headerlink" title="4. 动态为Category扩展加属性"></a>4. 动态为Category扩展加属性</h5><p>这一点上有两点要表达一下：第一，XCode运行你在Category的.h文件申明@Property，编译通过，但运行时如果没有Runtime处理，进行赋值取值，就马上报错。第二，这一点是iOS面试当中经常面到的问题：如何给扩展添加属性？。</p>
+<h6 id="1_uFF09Sense_uFF1A-3"><a href="#1_uFF09Sense_uFF1A-3" class="headerlink" title="1）Sense："></a>1）Sense：</h6><p><code>Teacher: What&#39;s your Chinese name?</code></p>
+<p><code>XiaoMing: I have no one.</code></p>
+<p><code>LiHua: You should have one.</code></p>
+<p><code>LiHua: Your Chinese name is __</code></p>
+<p>在程序当中，假设XiaoMing的中没有chineseName这个属性，后来被Runtime添加一个名字叫chineseName的属性。那么，Runtime是如何做到的呢？</p>
+<h6 id="2_uFF09Step_uFF1A-1"><a href="#2_uFF09Step_uFF1A-1" class="headerlink" title="2）Step："></a>2）Step：</h6><p>①申明chineseName属性</p>
+<p> <code>#import &quot;XiaoMing.h&quot;</code></p>
+<p><code>@interface XiaoMing (MutipleName)</code></p>
+<p><code>@property(nonatomic,copy) NSString *chineseName;</code></p>
+<p><code>@end</code></p>
+<p>②动态添加属性和实现方法</p>
+<p><code>#import &quot;XiaoMing+MutipleName.h&quot;</code></p>
+<p><code>#import &lt;objc/runtime.h&gt;</code></p>
+<p><code>@implementation XiaoMing (MutipleName)</code></p>
+<p><code>char cName;</code></p>
+<p><code>-(void)setChineseName:(NSString *) chineseName{</code></p>
+<p> <code>objc_setAssociatedObject(self, &amp;cName, chineseName, OBJC_ASSOCIATION_COPY_NONATOMIC);</code></p>
+<p><code>}</code></p>
+<p><code>-(NSString *)chineseName{</code></p>
+<p>   <code>return objc_getAssociatedObject(self, &amp;cName);</code><br><code>}</code></p>
+<p><code>@end</code> </p>
+<p>③使用chineseName属性</p>
+<p><code>-(void)answer{</code></p>
+<p><code>NSLog(@&quot;My Chinese name is %@&quot;,self.xiaoMing.chineseName);</code></p>
+<p>   <code>self.chineseNameTf.text = self.xiaoMing.chineseName;</code></p>
+<p><code>}</code></p>
+<p>3）Show Code：</p>
+<p>上边就是最要的Code了。以下更精彩。</p>
+<p>三.效果图更直观<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_02.gif?attname=" alt=""></p>
+<p>四.源码下载地址更详细</p>
+<p><a href="https://github.com/minggo620/iOSRuntimeLearn.git" target="_blank" rel="external">https://github.com/minggo620/iOSRuntimeLearn.git</a></p>
+<p>*<strong><strong><strong><strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+<blockquote>
+<p>本文系转载</p>
+<p>作者：minggo620</p>
+<p>来源：<a href="https://github.com/minggo620/iOSRuntimeLearn" target="_blank" rel="external">https://github.com/minggo620/iOSRuntimeLearn</a></p>
+</blockquote>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/02/论地球仪打开的正确姿势/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">论地球仪打开的正确姿势</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Runtime机制及使用梳理" data-title="RunTime机制及使用梳理" data-url="http://chinafish.news/2016/05/03/Runtime机制及使用梳理/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 含笑饮砒霜
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+<span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
