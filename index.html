@@ -826,11 +826,11 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-16.png?attname=" alt=""></p>
 <p>再次验证，UIImageDemo.podspec passed validation 终于验证通过</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-15.png?attname=" alt=""></p>
-<p>这时候可以把podspec文件放到自己本机中，目录为~/.cocoapods/repos/master/Specs。</p>
+<p>如果把它作为私有库来使用，可以使用<code>pod &#39;ProjectName&#39;,:git=&gt;&quot;http://xxx.git&quot;</code>(把xxx替换为库的git地址)。这时候可以把podspec文件放到自己本机中，目录为~/.cocoapods/repos/master/Specs。</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-17.png?attname=" alt=""></p>
 <p>这时候并没有UIImagDemo文件夹，需要自己创建，也没有json文件，这是之后传到Cocoapods trunk之后才生成的文件。然后搜索这个库就已经有了</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-18.png?attname=" alt=""></p>
-<p>但是这个时候别人并不能通过Cocoapod搜索到这个库，在cocoapods使用了trunk服务后,这需要0.33以上的版本，可以通过pod –version查看当前版本，上文已讲如何更新cocoapods到最新版本。使用步骤如下</p>
+<p>但是这个时候别人并不能通过Cocoapod搜索到这个库。2014年5月20日，CocoaPods不再接受向CocoaPods/Specs的pull request，官方的说法是为了安全考虑，防止每个人的pod被其他人修改，于是CocoaPods团队开发了trunk服务，这样每个人都是其发布的pod的owner，没有权限的人无法修改，这样更安全。在cocoapods使用了trunk服务后,这需要0.33以上的版本，可以通过pod –version查看当前版本，上文已讲如何更新cocoapods到最新版本。使用步骤如下</p>
 <h6 id="u6CE8_u518CTrunk"><a href="#u6CE8_u518CTrunk" class="headerlink" title="注册Trunk"></a>注册Trunk</h6><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod trunk <span class="keyword">register</span> your_email <span class="string">'your_name'</span> --description=<span class="string">'macbook pro'</span></span><br></pre></td></tr></table></figure>
 <p>改成自己对应的邮箱和名字即可，会收到一封邮件，点击邮件链接验证，然后<br>可使用<code>pod trunk me</code>查看信息</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-20.png?attname=" alt=""></p>
@@ -843,6 +843,7 @@
 <p>这时候使用<code>pod install --verbose --no-repo-update</code>并不会成功，因为这个命令 不会更新本地仓库，需要使用<code>pod  install</code>才可以，下载到本地之后以后再次使用就可以使用<code>`pod install --verbose --no-repo-update</code>命令了。</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-22.png?attname=" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-23.png?attname=" alt=""></p>
+<p>如果想删除已经上传到Cocoapods上的库，只需前往/Users/xinwen/.cocoapods/repos/master/Specs 目录下找到对应名字的文件夹删除即可。对于这一点有些许疑惑，后续有时间再留意下。</p>
 <p>整个流程如下</p>
 <blockquote>
 <ul>
