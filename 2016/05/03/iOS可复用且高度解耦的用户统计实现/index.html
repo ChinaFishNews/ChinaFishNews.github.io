@@ -25,8 +25,9 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_10.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_11.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_12.png?attname=">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_19.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_13.png?attname=">
-<meta property="og:updated_time" content="2016-05-03T11:38:00.000Z">
+<meta property="og:updated_time" content="2016-05-03T12:00:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS可复用且高度解耦的用户统计实现">
 <meta name="twitter:description" content="说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。
@@ -275,116 +276,151 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <video width="498" height="510 " src="http://7xqjid.com1.z0.glb.clouddn.com/2016_04_14.mp4 " poster=" " controls="controls"><br><br></video>
-
-<p><br></p>
-<p>说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。</p>
+        <p>说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。</p>
 <p>&gt;</p>
 <p>用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插入埋点代码。一旦项目越来越复杂，你会发现埋点的代码散落在程序的各个角落，不利于维护以及复用。本文旨在探讨利用iOS的运行时机制实现一种可复、解耦、容易维护的用户统计方案。探讨毕竟是探讨，欢迎到在简书留言讨论。本文虽有些长却是用心之作，希望你有耐心看完。</p>
 <p>注：本文需要一些iOS的Runtime基础<br>该方案的完成将会用到以下知识：</p>
 <p><code>Method Swizzling(Hook)</code></p>
 <p>单元测试</p>
 <h4 id="u4E00_u3001_u5E38_u89C4_u57CB_u70B9_u505A_u6CD5"><a href="#u4E00_u3001_u5E38_u89C4_u57CB_u70B9_u505A_u6CD5" class="headerlink" title="一、常规埋点做法"></a>一、常规埋点做法</h4><p>接着开头的话题，我们先回顾一下主流的埋点是怎么做的。我粗糙地将埋点分为两种：1、页面统计，包括页面停留时间、页面进入次数；2、交互事件统计，包括单击、双击、手势交互等。</p>
-<h6 id="1_29_u5E38_u89C4_u9875_u9762_u7EDF_u8BA1_u57CB_u70B9"><a href="#1_29_u5E38_u89C4_u9875_u9762_u7EDF_u8BA1_u57CB_u70B9" class="headerlink" title="1)常规页面统计埋点"></a>1)常规页面统计埋点</h6><p>以统计页面进入次数为例，最简单粗暴的做法是在所有页面的viewDidAppear:以及viewDidDisappear:中分别埋点，将自己对应的pageID上传给服务端。代码大概长酱紫：</p>
-<p>@implementation HomeViewController<br>//…other methods</p>
-<ul>
-<li><p>(void)viewDidAppear:(BOOL)animated<br>{<br>  [super viewWillAppear:animated];<br>  [WUserStatistics sendEventToServer:@”PAGE_EVENT_HOME_ENTER”];<br>}</p>
-</li>
-<li><p>(void)viewDidDisappear:(BOOL)animated<br>{<br>  [super viewDidDisappear:animated];<br>  [WUserStatistics sendEventToServer:@”PAGE_EVENT_HOME_LEAVE”];<br>}<br>@end<br>+[WUserStatistics sendEventToServer:]封装网络请求，将ID上传给服务器。上述方案有以下弊端：</p>
-</li>
-</ul>
+<h6 id="1_29_u5E38_u89C4_u9875_u9762_u7EDF_u8BA1_u57CB_u70B9"><a href="#1_29_u5E38_u89C4_u9875_u9762_u7EDF_u8BA1_u57CB_u70B9" class="headerlink" title="1)常规页面统计埋点"></a>1)常规页面统计埋点</h6><p>以统计页面进入次数为例，最简单粗暴的做法是在所有页面的<code>viewDid</code>ppear1:以及<code>viewDidDisappear</code>:中分别埋点，将自己对应的pageID上传给服务端。代码大概长酱紫：</p>
+<p><code>@implementation HomeViewController</code></p>
+<p><code>- (void)viewDidAppear:(BOOL)animated</code></p>
+<p><code>{</code></p>
+<p>   <code>[super viewWillAppear:animated];</code></p>
+<p>   <code>[WUserStatistics sendEventToServer:@&quot;PAGE_EVENT_HOME_ENTER&quot;];</code><br><code>}</code></p>
+<p><code>- (void)viewDidDisappear:(BOOL)animated</code></p>
+<p><code>{</code></p>
+<p>   <code>[super viewDidDisappear:animated];</code></p>
+<p>   <code>[WUserStatistics sendEventToServer:@&quot;PAGE_EVENT_HOME_LEAVE&quot;];</code></p>
+<p><code>}</code></p>
+<p><code>@end</code></p>
+<p><code>+[WUserStatistics sendEventToServer:]</code>封装网络请求，将ID上传给服务器。上述方案有以下弊端：</p>
 <p>1、复用性差。这部分埋点代码很难给其他项目复用<br>2、工作量大。尤其当页面较多时，需要修改的代码较多<br>3、引入“脏代码”，不易维护<br>第3点提到的“脏代码”意思是用户行为分析这种业务其实跟主业务没太大关系，不应该保持如此高的耦合度，因为这些代码会干扰我们对项目主业务的维护。这个我个人看法。</p>
 <p>2)常规交互事件埋点<br>常规做法一般在交互事件的selector中获取该事件的ID并上传给服务端，代码大概长酱紫：</p>
-<ul>
-<li>(IBAction)onFavBtnPressed:(id)sender<br>{<br>  [WUserStatistics sendEventToServer:@”CTRL_EVENT_HOME_FAV”];<br>  //…do other things<br>}<br>稍微大一点的APP如果采用这种方式，那诸如此类的埋点代码将遍地都是。它的缺点参考页面统计埋点部分，其复用性基本为零，也就是在新项目中根本无法复用埋点代码。</li>
-</ul>
+<p><code>- (IBAction)onFavBtnPressed:(id)sender</code></p>
+<p><code>{</code></p>
+<p>   <code>[WUserStatistics sendEventToServer:@&quot;CTRL_EVENT_HOME_FAV&quot;];</code></p>
+<p>   <code>//...do other things</code></p>
+<p><code>}</code></p>
+<p>稍微大一点的APP如果采用这种方式，那诸如此类的埋点代码将遍地都是。它的缺点参考页面统计埋点部分，其复用性基本为零，也就是在新项目中根本无法复用埋点代码。</p>
 <p>小总结一下，采用常规的做法虽然直观方便，但在可复用性、可维护性等方面有所欠缺。在我看来，借助运行时可以很好地避开这些缺点。</p>
-<p>二、Method Swizzling、Hook与代码注入<br>由于Runtime知识不属于本文的重点，这里只简单介绍。<br>在iOS中，我们可以在运行时替换两个方法的实现，达到“勾住”某个方法并注入代码的目的。具体做法是:</p>
-<p>重载类的“+(void)load”方法，在程序加载到内存时利用Runtime的method_exchangeImplementations等接口将方法(设为M)的实现互相交换。当方法M被调用时就会被勾住(Hook)，执行我们的方法。<br>这种技术也称为Method Swizzling，属于面向切面编程(Aspect-Oriented Programming)的一种实现。对应的类是Aspects。</p>
+<h4 id="u4E8C_u3001Method_Swizzling_u3001Hook_u4E0E_u4EE3_u7801_u6CE8_u5165"><a href="#u4E8C_u3001Method_Swizzling_u3001Hook_u4E0E_u4EE3_u7801_u6CE8_u5165" class="headerlink" title="二、Method Swizzling、Hook与代码注入"></a>二、Method Swizzling、Hook与代码注入</h4><p>由于Runtime知识不属于本文的重点，这里只简单介绍。</p>
+<p>在iOS中，我们可以在运行时替换两个方法的实现，达到“勾住”某个方法并注入代码的目的。具体做法是:</p>
+<p>重载类的<code>+(void)load</code>方法，在程序加载到内存时利用Runtime的<code>method_exchangeImplementations</code>等接口将方法(设为M)的实现互相交换。当方法M被调用时就会被勾住(Hook)，执行我们的方法。<br>这种技术也称为<code>Method Swizzling</code>，属于面向切面编程(Aspect-Oriented Programming)的一种实现。对应的类是Aspects。</p>
 <p>替换两个方法的实现，代码一般长酱紫：</p>
-<p>@interface WHookUtility : NSObject</p>
-<ul>
-<li>(void)swizzlingInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector;<br>@end</li>
-</ul>
-<p>@implementation WHookUtility</p>
-<ul>
-<li><p>(void)swizzlingInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector<br>{<br>  Class class = cls;<br>  Method originalMethod = class_getInstanceMethod(class, originalSelector);<br>  Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);</p>
-<p>  BOOL didAddMethod =<br>  class_addMethod(class,</p>
-<pre><code>originalSelector,
-method_getImplementation(swizzledMethod),
-method_getTypeEncoding(swizzledMethod));
-</code></pre><p>  if (didAddMethod) {</p>
-<pre><code>class_replaceMethod(class,
-                    swizzledSelector,
-                    method_getImplementation(originalMethod),
-                    method_getTypeEncoding(originalMethod));
-</code></pre><p>  } else {</p>
-<pre><code>method_exchangeImplementations(originalMethod, swizzledMethod);
-</code></pre><p>  }<br>}<br>@end<br>这个WHookUtility工具类下文会用到。比如现在我们要勾住UIViewController的viewWillAppear:方法，可以这样做：</p>
-</li>
-</ul>
-<p>@implementation UIViewController (userStastistics)</p>
-<ul>
-<li>(void)load {<br>  static dispatch_once_t onceToken;<br>  dispatch_once(&amp;onceToken, ^{<pre><code>SEL originalSelector = @selector(viewWillAppear:);
-SEL swizzledSelector = @selector(swiz_viewWillAppear:);
-[WHookUtility swizzlingInClass:[self class] originalSelector:originalSelector swizzledSelector:swizzledSelector];
-</code></pre>  });<br>}<br>#pragma mark - Method Swizzling</li>
-</ul>
-<ul>
-<li>(void)swiz_viewWillAppear:(BOOL)animated<br>{<br>  //插入需要执行的代码<br>  NSLog(@”我在viewWillAppear执行前偷偷插入了一段代码”);<br>  //不能干扰原来的代码流程，插入代码结束后要让本来该执行的代码继续执行<br>  [self swiz_viewWillAppear:animated];<br>}<br>@end<br>更多关于Runtime、method swizzling、面向切面编程的介绍请参考这里</li>
-</ul>
-<p>三、基于运行时的埋点方案<br>为了便于下文叙述，先引入一个简单的项目，共有两个页面(HomeViewController，DetailViewController)，如下：</p>
+<p><code>@interface WHookUtility : NSObject</code></p>
+<p><code>+ (void)swizzlingInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector;</code></p>
+<p><code>@end</code></p>
+<p><code>@implementation WHookUtility</code></p>
+<p><code>+ (void)swizzlingInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector{</code></p>
+<p>   <code>Class class = cls;</code></p>
+<p>   <code>Method originalMethod = class_getInstanceMethod(class, originalSelector);</code></p>
+<p>   <code>Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);</code></p>
+<pre><code>` BOOL didAddMethod =`
+` class_addMethod(class,
+                originalSelector,
+                method_getImplementation(swizzledMethod),
+                method_getTypeEncoding(swizzledMethod));`
+</code></pre><p>   <code>if (didAddMethod) {</code></p>
+<pre><code>    ` class_replaceMethod(class,
+                        swizzledSelector,
+                        method_getImplementation(originalMethod),
+                        method_getTypeEncoding(originalMethod));`
+} else {
+    method_exchangeImplementations(originalMethod, swizzledMethod);
+}
+</code></pre><p>}<br>@end<br>这个WHookUtility工具类下文会用到。比如现在我们要勾住UIViewController的viewWillAppear:方法，可以这样做：</p>
+<p><code>@implementation UIViewController (userStastistics)</code></p>
+<p><code>+ (void)load {</code></p>
+<p>   <code>static dispatch_once_t onceToken;</code></p>
+<p>   <code>dispatch_once(&amp;onceToken, ^{</code></p>
+<pre><code>`SEL originalSelector = @selector(viewWillAppear:);`
+
+`SEL swizzledSelector = @selector(swiz_viewWillAppear:);`
+
+`[WHookUtility swizzlingInClass:[self class] originalSelector:originalSelector swizzledSelector:swizzledSelector];`
+</code></pre><p><code>});</code><br><code>}</code></p>
+<p><code>#pragma mark - Method Swizzling</code></p>
+<p><code>- (void)swiz_viewWillAppear:(BOOL)animated</code><br><code>{</code></p>
+<pre><code>`NSLog(@&quot;...............&quot;);`
+
+`[self swiz_viewWillAppear:animated];`
+</code></pre><p><code>}</code><br><code>@end</code></p>
+<p>更多关于Runtime、method swizzling、面向切面编程的介绍请参考这里</p>
+<h4 id="u4E09_u3001_u57FA_u4E8E_u8FD0_u884C_u65F6_u7684_u57CB_u70B9_u65B9_u6848"><a href="#u4E09_u3001_u57FA_u4E8E_u8FD0_u884C_u65F6_u7684_u57CB_u70B9_u65B9_u6848" class="headerlink" title="三、基于运行时的埋点方案"></a>三、基于运行时的埋点方案</h4><p>为了便于下文叙述，先引入一个简单的项目，共有两个页面(HomeViewController，DetailViewController)，如下：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_04.gif?attname=" alt=""></p>
-<p>需求是</p>
-<p>统计两个页面的展示与离开次数<br>统计收藏、分享单击事件的次数<br>对现有工程代码影响越小越好<br>1)统计两个页面的展示与离开次数<br>这部分应该比较直观了，摒弃掉在每个controller中埋点的方式，我们对UIViewController添加category从而Hook到viewWillAppear:与viewWillDisappear:。在这两个方法中注入埋点代码：</p>
+<p>需求是:</p>
+<p>统计两个页面的展示与离开次数<br>统计收藏、分享单击事件的次数<br>对现有工程代码影响越小越好</p>
+<p>1)统计两个页面的展示与离开次数</p>
+<p>这部分应该比较直观了，摒弃掉在每个controller中埋点的方式，我们对UIViewController添加category从而Hook到viewWillAppear:与viewWillDisappear:。在这两个方法中注入埋点代码：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_05.png?attname=" alt=""></p>
 <p>这时候问题来了，项目中每个页面都会有自己的页面事件编号(pageEventID)，此处的埋点代码如何知道要发送什么pageEventID给服务端呢？轻松祭出if-else神器：</p>
-<ul>
-<li>(NSString <em>)pageEventID:(BOOL)bEnterPage<br>{<br>  NSString </em>selfClassName = NSStringFromClass([self class]);<br>  NSString *pageEventID = nil;<br>  if ([selfClassName isEqualToString:@”HomeViewController”]) {<pre><code>pageEventID = bEnterPage ? @&quot;EVENT_HOME_ENTER_PAGE&quot; : @&quot;EVENT_HOME_LEAVE_PAGE&quot;;
-</code></pre>  } else if ([selfClassName isEqualToString:@”DetailViewController”]) {<pre><code>pageEventID = bEnterPage ? @&quot;EVENT_DETAIL_ENTER_PAGE&quot; : @&quot;EVENT_DETAIL_LEAVE_PAGE&quot;;
-</code></pre>  }<br>  //else if (&lt;#expression#&gt;)…<br>}<br>当然，我们可以有更优雅的方式，比如用一个配置表替代上面一长串的if判断，这样无论页面数怎么增加，代码始终是那么一小段。我们新建一个WGlobalUserStatisticsConfig.plist的配置表来存放每个页面在进入以及离开时的pageEventID，结构如下：</li>
-</ul>
+<p><code>- (NSString *)pageEventID:(BOOL)bEnterPage</code><br><code>{</code></p>
+<p>``<br>    NSString *selfClassName = NSStringFromClass([self class]);</p>
+<pre><code>NSString *pageEventID = nil;
+
+if ([selfClassName isEqualToString:@&quot;HomeViewController&quot;]) {
+
+    pageEventID = bEnterPage ? @&quot;EVENT_HOME_ENTER_PAGE&quot; : @&quot;EVENT_HOME_LEAVE_PAGE&quot;;
+
+} else if ([selfClassName isEqualToString:@&quot;DetailViewController&quot;]) {
+
+    pageEventID = bEnterPage ? @&quot;EVENT_DETAIL_ENTER_PAGE&quot; : @&quot;EVENT_DETAIL_LEAVE_PAGE&quot;;
+}
+//else if (&lt;#expression#&gt;)...
+``
+</code></pre><p><code>}</code></p>
+<p>当然，我们可以有更优雅的方式，比如用一个配置表替代上面一长串的if判断，这样无论页面数怎么增加，代码始终是那么一小段。我们新建一个WGlobalUserStatisticsConfig.plist的配置表来存放每个页面在进入以及离开时的pageEventID，结构如下：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_06.png?attname=" alt=""><br>)</p>
 <p>因此，页面进出统计中获取pageEventID的代码始终是以下这几句：</p>
-<ul>
-<li><p>(NSString <em>)pageEventID:(BOOL)bEnterPage<br>{<br>  NSDictionary </em>configDict = [self dictionaryFromUserStatisticsConfigPlist];<br>  NSString *selfClassName = NSStringFromClass([self class]);<br>  return configDict[selfClassName][@”PageEventIDs”][bEnterPage ? @”Enter” : @”Leave”];<br>}</p>
-</li>
-<li><p>(NSDictionary <em>)dictionaryFromUserStatisticsConfigPlist<br>{<br>  NSString </em>filePath = [[NSBundle mainBundle] pathForResource:@”WGlobalUserStatisticsConfig” ofType:@”plist”];<br>  NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:filePath];<br>  return dic;<br>}</p>
-</li>
-</ul>
+<p><code>- (NSString *)pageEventID:(BOOL)bEnterPage</code><br><code>{</code></p>
+<p>  <code>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];</code></p>
+<p>  <code>NSString *selfClassName = NSStringFromClass([self class]);</code></p>
+<p>  <code>return configDict[selfClassName][@&quot;PageEventIDs&quot;][bEnterPage ? @&quot;Enter&quot; : @&quot;Leave&quot;];</code></p>
+<p><code>}</code></p>
+<p><code>- (NSDictionary *)dictionaryFromUserStatisticsConfigPlist</code><br><code>{</code></p>
+<p>   <code>NSString *filePath = [[NSBundle mainBundle] pathForResource:@&quot;WGlobalUserStatisticsConfig&quot; ofType:@&quot;plist&quot;];</code></p>
+<p>   <code>NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:filePath];</code></p>
+<p>   <code>return dic;</code><br><code>}</code></p>
 <p>效果如下：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_07.gif?attname=" alt=""></p>
 <p>以上就是完成了页面进出统计的埋点，并且达到了我们的第三点预期：对现有代码基本无影响。通过Method Swizzling的方式现有的工程甚至不需要import任何文件！后期代码变动时需要维护的仅仅是plist配置表。</p>
 <p>2)统计收藏、分享单击事件的次数<br>与上一节思路一致，要做到解耦显然需要通过category+hook来实现。本文demo中收藏跟分享都是UIButton类型，可以考虑添加UIButton的catogory。但更好的方式是添加UIControl的category，这样可以让埋点代码覆盖到所有UIControl的子类中去，比如button、switch、segment等，提高复用性。<br>既然要hook，那就要清楚到底要hookUIControl的哪(几)个方法，只有部分方法是满足埋点需求的，最好是所hook的方法能提供target、actionName等信息。这是个尝试的过程。<br>UIControl的方法列表有以下：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_08.png?attname=" alt=""></p>
 <p>通过观察方法名和参数，我们有理由怀疑是倒数第二个，因其携带了不少貌似有价值的信息：</p>
-<ul>
-<li>(void)sendAction:(SEL)action to:(nullable id)target forEvent:(nullable UIEvent *)event;<br>于是写出测试代码看看：</li>
-</ul>
-<p>@implementation UIControl (userStastistics)</p>
-<ul>
-<li>(void)load {<br>  static dispatch_once_t onceToken;<br>  dispatch_once(&amp;onceToken, ^{<pre><code>SEL originalSelector = @selector(sendAction:to:forEvent:);
-SEL swizzledSelector = @selector(swiz_sendAction:to:forEvent:);
-[WHookUtility swizzlingInClass:[self class] originalSelector:originalSelector swizzledSelector:swizzledSelector];
-</code></pre>  });<br>}</li>
-</ul>
-<p>#pragma mark - Method Swizzling</p>
-<ul>
-<li><p>(void)swiz_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event;<br>{<br>  //插入埋点代码<br>  [self performUserStastisticsAction:action to:target forEvent:event];<br>  [self swiz_sendAction:action to:target forEvent:event];<br>}</p>
-</li>
-<li><p>(void)performUserStastisticsAction:(SEL)action to:(id)target forEvent:(UIEvent <em>)event;<br>{<br>  NSLog(@”\n**</em>hook success.\n[1]action:%@\n[2]target:%@ \n[3]event:%ld”, NSStringFromSelector(action), target, (long)event);<br>}<br>@end<br>Log如下图：</p>
-</li>
-</ul>
+<p><code>- (void)sendAction:(SEL)action to:(nullable id)target forEvent:(nullable UIEvent *)event;</code></p>
+<p>于是写出测试代码看看：</p>
+<p><code>@implementation UIControl (userStastistics)</code></p>
+<p><code>+ (void)load {</code> </p>
+<p><code>static dispatch_once_t onceToken;
+    dispatch_once(&amp;onceToken, ^{
+        SEL originalSelector = @selector(sendAction:to:forEvent:);
+        SEL swizzledSelector = @selector(swiz_sendAction:to:forEvent:);
+        [WHookUtility swizzlingInClass:[self class] originalSelector:originalSelector swizzledSelector:swizzledSelector];
+    });</code><br><code>}</code></p>
+<p><code>#pragma mark - Method Swizzling</code></p>
+<p><code>- (void)swiz_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event;</code></p>
+<p><code>{</code><br>    //插入埋点代码</p>
+<p>   <code>[self performUserStastisticsAction:action to:target forEvent:event];</code></p>
+<pre><code>`[self swiz_sendAction:action to:target forEvent:event];`
+</code></pre><p><code>}</code></p>
+<p><code>- (void)performUserStastisticsAction:(SEL)action to:(id)target forEvent:(UIEvent *)event;</code></p>
+<p><code>{</code></p>
+<p>   <code>NSLog(@&quot;\n***hook success.\n[1]action:%@\n[2]target:%@ \n[3]event:%ld&quot;, NSStringFromSelector(action), target, (long)event);</code></p>
+<p><code>}</code></p>
+<p><code>@end</code></p>
+<p>Log如下图：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_09.png?attname=" alt=""></p>
 <p>可以看到，通过category+method swizzling的方式在没有修改现有工程任何代码的情况下已经成功Hook到所有点击事件，在Hook代码中我们知道了一个点击事件的target也就是ViewController，也知道了点击事件的响应函数名，知道了点击的TouchSet。这些信息已经能满足埋点需求了。<br>与页面统计埋点类似，我们同样采用plist配置表的方式避免一大长串的if-else判断：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_10.png?attname=" alt=""></p>
 <p>有了这张配置表就很容易得到某次单击事件的事件ID(ControlEventID)：</p>
-<p>NSString *actionString = NSStringFromSelector(action);</p>
+<p><code>NSString *actionString = NSStringFromSelector(action);</code></p>
 <p>//获取SEL string</p>
-<p>NSString *targetName = NSStringFromClass([target class]);</p>
+<p><code>NSString *targetName = NSStringFromClass([target class]);</code></p>
 <p>//viewController name</p>
-<p>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];</p>
-<p>eventID = configDict[targetName][@”ControlEventIDs”][actionString];</p>
+<p><code>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];</code></p>
+<p><code>eventID = configDict[targetName][@&quot;ControlEventIDs&quot;][actionString];</code></p>
 <p>事实上，我把某个页面单元的所有事件ID分成了两类：页面事件ID(PageEventIDs，页面的进出等)、交互事件ID(ControlEventIDs，单击、双击、手势等)。分类有助于下文使用单元测试(Unit Test)进行自动化后期维护。<br>埋点效果如图：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_11.png?attname=" alt=""></p>
 <p>到这里先做了阶段性的总结，本文提出的思路有以下优越性：</p>
@@ -393,44 +429,8 @@ SEL swizzledSelector = @selector(swiz_sendAction:to:forEvent:);
 <p>1、响应事件方法名称改变或者删除<br>比如收藏事件原先是onFavBtnPressed:，之后被改成onFavouriteBtnPressed:。代码发生变动但是plist配置表中由于开发人员疏忽忘记同步修改了。这种疏忽在开发压力大进度赶的情况下是有很大概率发生的。由于代码与配置表不匹配将导致eventID为nil。在这种情况下单元测试就很有必要了，使用完备的测试用例能在发版前检测到这种不匹配情况从而避免埋点失效。<br>在单元测试中我们首先读取plist配置文件，遍历所有的页面。在一个页面内遍历所有的ControlEventIDs，对每个响应函数名进行respondsToSelector:判断：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_12.png?attname=" alt=""></p>
 <p>单测代码如下：</p>
-<ul>
-<li><p>(void)testIfUserStatisticsConfigPlistValid<br>{<br>  NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];<br>  XCTAssertNotNil(configDict, @”WGlobalUserStatisticsConfig.plist加载失败”);</p>
-<p>  [configDict enumerateKeysAndObjectsUsingBlock:^(NSString <em>  _Nonnull key, id  _Nonnull obj, BOOL </em> _Nonnull stop) {</p>
-<pre><code>XCTAssert([obj isKindOfClass:[NSDictionary class]], @&quot;plist文件结构可能已经改变，请确认&quot;);
-NSString *targetPageName = key;
-Class pageClass = NSClassFromString(targetPageName);
-id pageInstance = [[pageClass alloc] init];
-
-//一个pageDict对应一个页面，存放pageID,所有的action及对应的eventID
-NSDictionary *pageDict = (NSDictionary *)obj;
-
-//页面配置信息
-NSDictionary *pageEventIDDict = pageDict[@&quot;PageEventIDs&quot;];
-
-//交互配置信息
-NSDictionary *controlEventIDDict = pageDict[@&quot;ControlEventIDs&quot;];
-
-XCTAssert(pageEventIDDict, @&quot;plist文件未包含PageID字段或者该字段值为空&quot;);
-XCTAssert(controlEventIDDict, @&quot;plist文件未包含EventIDs字段或者该字段值为空&quot;);
-
-[pageEventIDDict enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, id  _Nonnull value, BOOL * _Nonnull stop) {
-    XCTAssert([value isKindOfClass:[NSString class]], @&quot;plist文件结构可能已经改变，请确认&quot;);
-    XCTAssertNotNil(value, @&quot;EVENT_ID为空，请确认&quot;);
-}];
-
-[controlEventIDDict enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, id  _Nonnull value, BOOL * _Nonnull stop) {
-    XCTAssert([value isKindOfClass:[NSString class]], @&quot;plist文件结构可能已经改变，请确认&quot;);
-    NSString *actionName = key;
-    SEL actionSel = NSSelectorFromString(actionName);
-    XCTAssert([pageInstance respondsToSelector:actionSel], @&quot;代码与plist文件函数不匹配，请确认：-[%@ %@]&quot;, targetPageName, actionName);
-
-    //EVENT_ID不能为空
-    XCTAssertNotNil(value, @&quot;EVENT_ID为空，请确认&quot;);
-}];
-</code></pre><p>  }];</p>
-</li>
-</ul>
-<p>}<br>我们来测试一下，如果把HomeViewController的onFavBtnPressed:改成onMyFavBtnPressed:后单元测试的结果就是：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_19.png?attname=" alt=""></p>
+<p>我们来测试一下，如果把HomeViewController的onFavBtnPressed:改成onMyFavBtnPressed:后单元测试的结果就是：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_13.png?attname=" alt=""></p>
 <p>这种改变给单测轻松捕捉到了，</p>
 <p>只要XCTAssert的log够详细，维护起来其实相当轻松的。<br>上图中的log已经明确指出-[HomeViewController onFavBtnPressed:]方法发生了改变。</p>
