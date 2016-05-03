@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_11.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_12.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_13.png?attname=">
-<meta property="og:updated_time" content="2016-05-03T11:29:05.000Z">
+<meta property="og:updated_time" content="2016-05-03T11:38:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS可复用且高度解耦的用户统计实现">
 <meta name="twitter:description" content="说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。
@@ -275,12 +275,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>说好的两篇的。<br>本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。</p>
+        <video width="498" height="510 " src="http://7xqjid.com1.z0.glb.clouddn.com/2016_04_14.mp4 " poster=" " controls="controls"><br><br></video>
+
+<p><br></p>
+<p>说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。</p>
 <p>&gt;</p>
 <p>用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插入埋点代码。一旦项目越来越复杂，你会发现埋点的代码散落在程序的各个角落，不利于维护以及复用。本文旨在探讨利用iOS的运行时机制实现一种可复、解耦、容易维护的用户统计方案。探讨毕竟是探讨，欢迎到在简书留言讨论。本文虽有些长却是用心之作，希望你有耐心看完。</p>
 <p>注：本文需要一些iOS的Runtime基础<br>该方案的完成将会用到以下知识：</p>
-<p>Method Swizzling(Hook)<br>单元测试<br>一、常规埋点做法<br>接着开头的话题，我们先回顾一下主流的埋点是怎么做的。我粗糙地将埋点分为两种：1、页面统计，包括页面停留时间、页面进入次数；2、交互事件统计，包括单击、双击、手势交互等。</p>
-<p>1)常规页面统计埋点<br>以统计页面进入次数为例，最简单粗暴的做法是在所有页面的viewDidAppear:以及viewDidDisappear:中分别埋点，将自己对应的pageID上传给服务端。代码大概长酱紫：</p>
+<p><code>Method Swizzling(Hook)</code></p>
+<p>单元测试</p>
+<h4 id="u4E00_u3001_u5E38_u89C4_u57CB_u70B9_u505A_u6CD5"><a href="#u4E00_u3001_u5E38_u89C4_u57CB_u70B9_u505A_u6CD5" class="headerlink" title="一、常规埋点做法"></a>一、常规埋点做法</h4><p>接着开头的话题，我们先回顾一下主流的埋点是怎么做的。我粗糙地将埋点分为两种：1、页面统计，包括页面停留时间、页面进入次数；2、交互事件统计，包括单击、双击、手势交互等。</p>
+<h6 id="1_29_u5E38_u89C4_u9875_u9762_u7EDF_u8BA1_u57CB_u70B9"><a href="#1_29_u5E38_u89C4_u9875_u9762_u7EDF_u8BA1_u57CB_u70B9" class="headerlink" title="1)常规页面统计埋点"></a>1)常规页面统计埋点</h6><p>以统计页面进入次数为例，最简单粗暴的做法是在所有页面的viewDidAppear:以及viewDidDisappear:中分别埋点，将自己对应的pageID上传给服务端。代码大概长酱紫：</p>
 <p>@implementation HomeViewController<br>//…other methods</p>
 <ul>
 <li><p>(void)viewDidAppear:(BOOL)animated<br>{<br>  [super viewWillAppear:animated];<br>  [WUserStatistics sendEventToServer:@”PAGE_EVENT_HOME_ENTER”];<br>}</p>
@@ -374,7 +379,12 @@ SEL swizzledSelector = @selector(swiz_sendAction:to:forEvent:);
 <p>可以看到，通过category+method swizzling的方式在没有修改现有工程任何代码的情况下已经成功Hook到所有点击事件，在Hook代码中我们知道了一个点击事件的target也就是ViewController，也知道了点击事件的响应函数名，知道了点击的TouchSet。这些信息已经能满足埋点需求了。<br>与页面统计埋点类似，我们同样采用plist配置表的方式避免一大长串的if-else判断：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_10.png?attname=" alt=""></p>
 <p>有了这张配置表就很容易得到某次单击事件的事件ID(ControlEventID)：</p>
-<p>NSString <em>actionString = NSStringFromSelector(action);//获取SEL string<br>NSString </em>targetName = NSStringFromClass([target class]);//viewController name<br>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];<br>eventID = configDict[targetName][@”ControlEventIDs”][actionString];</p>
+<p>NSString *actionString = NSStringFromSelector(action);</p>
+<p>//获取SEL string</p>
+<p>NSString *targetName = NSStringFromClass([target class]);</p>
+<p>//viewController name</p>
+<p>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];</p>
+<p>eventID = configDict[targetName][@”ControlEventIDs”][actionString];</p>
 <p>事实上，我把某个页面单元的所有事件ID分成了两类：页面事件ID(PageEventIDs，页面的进出等)、交互事件ID(ControlEventIDs，单击、双击、手势等)。分类有助于下文使用单元测试(Unit Test)进行自动化后期维护。<br>埋点效果如图：</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_11.png?attname=" alt=""></p>
 <p>到这里先做了阶段性的总结，本文提出的思路有以下优越性：</p>
@@ -429,6 +439,7 @@ XCTAssert(controlEventIDDict, @&quot;plist文件未包含EventIDs字段或者该
 <p>小总结：<br>合理的单元测试可以为本文方案的后期维护减轻相当大的负担，测试用例的完备性很重要，需要用心设计考虑周全。</p>
 <p>五、结语<br>以上就是结合运行时所设计出的用户统计思路全部内容。应该说该方案的可复用性与解耦程度都是不错的，既适合于新建的工程，也适合于已经创建的工程。看起来内容多，其实总结起来无非几个步骤：plist配置表+Hook+单元测试。利用Method Swizzling把埋点代码集中管理其实也是合理的，有利于专人开发、跟踪及维护。当然以上思路只考虑简单的情形，更复杂的情况就需要变通了，但总体思路就是如此。<br>思路可能不完美，但作为一种尝试也未尝不可。路都是走出来的。</p>
 <p>本文demo地址：<a href="https://github.com/weng1250/UserStatisticsWithRuntime" target="_blank" rel="external">https://github.com/weng1250/UserStatisticsWithRuntime</a></p>
+<p><br></p>
 <blockquote>
 <p>本文系转载</p>
 <p>作者：编程小翁 </p>
