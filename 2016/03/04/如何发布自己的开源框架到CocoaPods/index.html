@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-21.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-22.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-23.png?attname=">
-<meta property="og:updated_time" content="2016-05-03T05:00:15.000Z">
+<meta property="og:updated_time" content="2016-05-03T05:29:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何发布自己的开源框架到CocoaPods">
 <meta name="twitter:description" content="现在iOS开发过程中Cocoapods已经用的很普遍了，可以很方便的将第三方框架加到自己的项目中。现在也有个第三方的Cocoapods的插件，下载链接:https://github.com/ChinaFishNews/cocoapods-xcode-plugin.git  安装好后是这样的
@@ -362,7 +362,7 @@
 <p>这时候使用<code>pod install --verbose --no-repo-update</code>并不会成功，因为这个命令 不会更新本地仓库，需要使用<code>pod  install</code>才可以，下载到本地之后以后再次使用就可以使用<code>`pod install --verbose --no-repo-update</code>命令了。</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-22.png?attname=" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-04-23.png?attname=" alt=""></p>
-<p>如果想删除已经上传到Cocoapods上的库，只需前往/Users/xinwen/.cocoapods/repos/master/Specs 目录下找到对应名字的文件夹删除即可。对于这一点有些许疑惑，后续有时间再留意下。</p>
+<p>如果想删除已经上传到Cocoapods上的库，只需前往/Users/xinwen/.cocoapods/repos/master/Specs 目录下找到对应名字的文件夹删除即可。我只是删除本地对应文件，但是pod search就搜索不到了，看来这应该是本地搜索。但是pod install 也安装不了，有些奇怪。在别人的电脑上，这个库对应的文件还在，还是可以继续使用，这时候如果不想别人继续使用，只能去github上把对应的源删了。关于删除这一点还有些许疑惑，后续有时间再留意下！</p>
 <p>整个流程如下</p>
 <blockquote>
 <ul>
