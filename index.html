@@ -219,6 +219,71 @@
 
       <div class="body-wrap">
   
+    <article id="post-2016" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/01/2016/" class="article-date">
+  	<time datetime="2016-12-31T16:00:00.000Z" itemprop="datePublished">2017-01-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/01/2016/">2016</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://7xqjid.com1.z0.glb.clouddn.com/大张伟-倍儿爽.mp3?attname="></iframe>
+
+
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/随笔/">随笔</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-追" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1460,6 +1525,244 @@ completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStag
 
 
   
+    <article id="post-iOS可复用且高度解耦的用户统计实现" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/03/iOS可复用且高度解耦的用户统计实现/" class="article-date">
+  	<time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/03/iOS可复用且高度解耦的用户统计实现/">iOS可复用且高度解耦的用户统计实现</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <video width="498" height="510 " src="http://7xqjid.com1.z0.glb.clouddn.com/2016_04_14.mp4 " poster=" " controls="controls"><br><br></video>
+
+<p><br></p>
+<p>说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。</p>
+<hr>
+<p>用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插入埋点代码。一旦项目越来越复杂，你会发现埋点的代码散落在程序的各个角落，不利于维护以及复用。本文旨在探讨利用iOS的运行时机制实现一种可复、解耦、容易维护的用户统计方案。探讨毕竟是探讨，欢迎到在简书留言讨论。本文虽有些长却是用心之作，希望你有耐心看完。</p>
+<p>注：本文需要一些iOS的Runtime基础<br>该方案的完成将会用到以下知识：</p>
+<p><code>Method Swizzling(Hook)</code></p>
+<p>单元测试</p>
+<h4 id="u4E00_u3001_u5E38_u89C4_u57CB_u70B9_u505A_u6CD5"><a href="#u4E00_u3001_u5E38_u89C4_u57CB_u70B9_u505A_u6CD5" class="headerlink" title="一、常规埋点做法"></a>一、常规埋点做法</h4><p>接着开头的话题，我们先回顾一下主流的埋点是怎么做的。我粗糙地将埋点分为两种：1、页面统计，包括页面停留时间、页面进入次数；2、交互事件统计，包括单击、双击、手势交互等。</p>
+<h6 id="1_29_u5E38_u89C4_u9875_u9762_u7EDF_u8BA1_u57CB_u70B9"><a href="#1_29_u5E38_u89C4_u9875_u9762_u7EDF_u8BA1_u57CB_u70B9" class="headerlink" title="1)常规页面统计埋点"></a>1)常规页面统计埋点</h6><p>以统计页面进入次数为例，最简单粗暴的做法是在所有页面的<code>viewDid</code>ppear1:以及<code>viewDidDisappear</code>:中分别埋点，将自己对应的pageID上传给服务端。代码大概长酱紫：</p>
+<p><code>@implementation HomeViewController</code></p>
+<p><code>- (void)viewDidAppear:(BOOL)animated</code></p>
+<p><code>{</code></p>
+<p>   <code>[super viewWillAppear:animated];</code></p>
+<p>   <code>[WUserStatistics sendEventToServer:@&quot;PAGE_EVENT_HOME_ENTER&quot;];</code><br><code>}</code></p>
+<p><code>- (void)viewDidDisappear:(BOOL)animated</code></p>
+<p><code>{</code></p>
+<p>   <code>[super viewDidDisappear:animated];</code></p>
+<p>   <code>[WUserStatistics sendEventToServer:@&quot;PAGE_EVENT_HOME_LEAVE&quot;];</code></p>
+<p><code>}</code></p>
+<p><code>@end</code></p>
+<p><code>+[WUserStatistics sendEventToServer:]</code>封装网络请求，将ID上传给服务器。上述方案有以下弊端：</p>
+<p>1、复用性差。这部分埋点代码很难给其他项目复用<br>2、工作量大。尤其当页面较多时，需要修改的代码较多<br>3、引入“脏代码”，不易维护<br>第3点提到的“脏代码”意思是用户行为分析这种业务其实跟主业务没太大关系，不应该保持如此高的耦合度，因为这些代码会干扰我们对项目主业务的维护。这个我个人看法。</p>
+<p>2)常规交互事件埋点<br>常规做法一般在交互事件的selector中获取该事件的ID并上传给服务端，代码大概长酱紫：</p>
+<p><code>- (IBAction)onFavBtnPressed:(id)sender</code></p>
+<p><code>{</code></p>
+<p>   <code>[WUserStatistics sendEventToServer:@&quot;CTRL_EVENT_HOME_FAV&quot;];</code></p>
+<p>   <code>//...do other things</code></p>
+<p><code>}</code></p>
+<p>稍微大一点的APP如果采用这种方式，那诸如此类的埋点代码将遍地都是。它的缺点参考页面统计埋点部分，其复用性基本为零，也就是在新项目中根本无法复用埋点代码。</p>
+<p>小总结一下，采用常规的做法虽然直观方便，但在可复用性、可维护性等方面有所欠缺。在我看来，借助运行时可以很好地避开这些缺点。</p>
+<h4 id="u4E8C_u3001Method_Swizzling_u3001Hook_u4E0E_u4EE3_u7801_u6CE8_u5165"><a href="#u4E8C_u3001Method_Swizzling_u3001Hook_u4E0E_u4EE3_u7801_u6CE8_u5165" class="headerlink" title="二、Method Swizzling、Hook与代码注入"></a>二、Method Swizzling、Hook与代码注入</h4><p>由于Runtime知识不属于本文的重点，这里只简单介绍。</p>
+<p>在iOS中，我们可以在运行时替换两个方法的实现，达到“勾住”某个方法并注入代码的目的。具体做法是:</p>
+<p>重载类的<code>+(void)load</code>方法，在程序加载到内存时利用Runtime的<code>method_exchangeImplementations</code>等接口将方法(设为M)的实现互相交换。当方法M被调用时就会被勾住(Hook)，执行我们的方法。<br>这种技术也称为<code>Method Swizzling</code>，属于面向切面编程(Aspect-Oriented Programming)的一种实现。对应的类是Aspects。</p>
+<p>替换两个方法的实现，代码一般长酱紫：</p>
+<p><code>@interface WHookUtility : NSObject</code></p>
+<p><code>+ (void)swizzlingInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector;</code></p>
+<p><code>@end</code></p>
+<p><code>@implementation WHookUtility</code></p>
+<p><code>+ (void)swizzlingInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector{</code></p>
+<p>   <code>Class class = cls;</code></p>
+<p>   <code>Method originalMethod = class_getInstanceMethod(class, originalSelector);</code></p>
+<p>   <code>Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);</code></p>
+<pre><code>` BOOL didAddMethod =`
+` class_addMethod(class,
+                originalSelector,
+                method_getImplementation(swizzledMethod),
+                method_getTypeEncoding(swizzledMethod));`
+</code></pre><p>   <code>if (didAddMethod) {</code></p>
+<pre><code>    ` class_replaceMethod(class,
+                        swizzledSelector,
+                        method_getImplementation(originalMethod),
+                        method_getTypeEncoding(originalMethod));`
+} else {
+    method_exchangeImplementations(originalMethod, swizzledMethod);
+}
+</code></pre><p>}<br>@end<br>这个WHookUtility工具类下文会用到。比如现在我们要勾住UIViewController的viewWillAppear:方法，可以这样做：</p>
+<p><code>@implementation UIViewController (userStastistics)</code></p>
+<p><code>+ (void)load {</code></p>
+<p>   <code>static dispatch_once_t onceToken;</code></p>
+<p>   <code>dispatch_once(&amp;onceToken, ^{</code></p>
+<pre><code>`SEL originalSelector = @selector(viewWillAppear:);`
+
+`SEL swizzledSelector = @selector(swiz_viewWillAppear:);`
+
+`[WHookUtility swizzlingInClass:[self class] originalSelector:originalSelector swizzledSelector:swizzledSelector];`
+</code></pre><p><code>});</code><br><code>}</code></p>
+<p><code>#pragma mark - Method Swizzling</code></p>
+<p><code>- (void)swiz_viewWillAppear:(BOOL)animated</code><br><code>{</code></p>
+<pre><code>`NSLog(@&quot;...............&quot;);`
+
+`[self swiz_viewWillAppear:animated];`
+</code></pre><p><code>}</code><br><code>@end</code></p>
+<p>更多关于Runtime、method swizzling、面向切面编程的介绍请参考这里</p>
+<h4 id="u4E09_u3001_u57FA_u4E8E_u8FD0_u884C_u65F6_u7684_u57CB_u70B9_u65B9_u6848"><a href="#u4E09_u3001_u57FA_u4E8E_u8FD0_u884C_u65F6_u7684_u57CB_u70B9_u65B9_u6848" class="headerlink" title="三、基于运行时的埋点方案"></a>三、基于运行时的埋点方案</h4><p>为了便于下文叙述，先引入一个简单的项目，共有两个页面(HomeViewController，DetailViewController)，如下：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_04.gif?attname=" alt=""></p>
+<p>需求是:</p>
+<p>统计两个页面的展示与离开次数<br>统计收藏、分享单击事件的次数<br>对现有工程代码影响越小越好</p>
+<p>1)统计两个页面的展示与离开次数</p>
+<p>这部分应该比较直观了，摒弃掉在每个controller中埋点的方式，我们对UIViewController添加category从而Hook到viewWillAppear:与viewWillDisappear:。在这两个方法中注入埋点代码：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_05.png?attname=" alt=""></p>
+<p>这时候问题来了，项目中每个页面都会有自己的页面事件编号(pageEventID)，此处的埋点代码如何知道要发送什么pageEventID给服务端呢？轻松祭出if-else神器：</p>
+<p><code>- (NSString *)pageEventID:(BOOL)bEnterPage</code><br><code>{</code></p>
+<p>``<br>    NSString *selfClassName = NSStringFromClass([self class]);</p>
+<pre><code>NSString *pageEventID = nil;
+
+if ([selfClassName isEqualToString:@&quot;HomeViewController&quot;]) {
+
+    pageEventID = bEnterPage ? @&quot;EVENT_HOME_ENTER_PAGE&quot; : @&quot;EVENT_HOME_LEAVE_PAGE&quot;;
+
+} else if ([selfClassName isEqualToString:@&quot;DetailViewController&quot;]) {
+
+    pageEventID = bEnterPage ? @&quot;EVENT_DETAIL_ENTER_PAGE&quot; : @&quot;EVENT_DETAIL_LEAVE_PAGE&quot;;
+}
+//else if (&lt;#expression#&gt;)...
+``
+</code></pre><p><code>}</code></p>
+<p>当然，我们可以有更优雅的方式，比如用一个配置表替代上面一长串的if判断，这样无论页面数怎么增加，代码始终是那么一小段。我们新建一个WGlobalUserStatisticsConfig.plist的配置表来存放每个页面在进入以及离开时的pageEventID，结构如下：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_06.png?attname=" alt=""><br>)</p>
+<p>因此，页面进出统计中获取pageEventID的代码始终是以下这几句：</p>
+<p><code>- (NSString *)pageEventID:(BOOL)bEnterPage</code><br><code>{</code></p>
+<p>  <code>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];</code></p>
+<p>  <code>NSString *selfClassName = NSStringFromClass([self class]);</code></p>
+<p>  <code>return configDict[selfClassName][@&quot;PageEventIDs&quot;][bEnterPage ? @&quot;Enter&quot; : @&quot;Leave&quot;];</code></p>
+<p><code>}</code></p>
+<p><code>- (NSDictionary *)dictionaryFromUserStatisticsConfigPlist</code><br><code>{</code></p>
+<p>   <code>NSString *filePath = [[NSBundle mainBundle] pathForResource:@&quot;WGlobalUserStatisticsConfig&quot; ofType:@&quot;plist&quot;];</code></p>
+<p>   <code>NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:filePath];</code></p>
+<p>   <code>return dic;</code><br><code>}</code></p>
+<p>效果如下：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_07.gif?attname=" alt=""></p>
+<p>以上就是完成了页面进出统计的埋点，并且达到了我们的第三点预期：对现有代码基本无影响。通过Method Swizzling的方式现有的工程甚至不需要import任何文件！后期代码变动时需要维护的仅仅是plist配置表。</p>
+<p>2)统计收藏、分享单击事件的次数<br>与上一节思路一致，要做到解耦显然需要通过category+hook来实现。本文demo中收藏跟分享都是UIButton类型，可以考虑添加UIButton的catogory。但更好的方式是添加UIControl的category，这样可以让埋点代码覆盖到所有UIControl的子类中去，比如button、switch、segment等，提高复用性。<br>既然要hook，那就要清楚到底要hookUIControl的哪(几)个方法，只有部分方法是满足埋点需求的，最好是所hook的方法能提供target、actionName等信息。这是个尝试的过程。<br>UIControl的方法列表有以下：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_08.png?attname=" alt=""></p>
+<p>通过观察方法名和参数，我们有理由怀疑是倒数第二个，因其携带了不少貌似有价值的信息：</p>
+<p><code>- (void)sendAction:(SEL)action to:(nullable id)target forEvent:(nullable UIEvent *)event;</code></p>
+<p>于是写出测试代码看看：</p>
+<p><code>@implementation UIControl (userStastistics)</code></p>
+<p><code>+ (void)load {</code> </p>
+<p><code>static dispatch_once_t onceToken;
+    dispatch_once(&amp;onceToken, ^{
+        SEL originalSelector = @selector(sendAction:to:forEvent:);
+        SEL swizzledSelector = @selector(swiz_sendAction:to:forEvent:);
+        [WHookUtility swizzlingInClass:[self class] originalSelector:originalSelector swizzledSelector:swizzledSelector];
+    });</code><br><code>}</code></p>
+<p><code>#pragma mark - Method Swizzling</code></p>
+<p><code>- (void)swiz_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event;</code></p>
+<p><code>{</code><br>    //插入埋点代码</p>
+<p>   <code>[self performUserStastisticsAction:action to:target forEvent:event];</code></p>
+<pre><code>`[self swiz_sendAction:action to:target forEvent:event];`
+</code></pre><p><code>}</code></p>
+<p><code>- (void)performUserStastisticsAction:(SEL)action to:(id)target forEvent:(UIEvent *)event;</code></p>
+<p><code>{</code></p>
+<p>   <code>NSLog(@&quot;\n***hook success.\n[1]action:%@\n[2]target:%@ \n[3]event:%ld&quot;, NSStringFromSelector(action), target, (long)event);</code></p>
+<p><code>}</code></p>
+<p><code>@end</code></p>
+<p>Log如下图：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_09.png?attname=" alt=""></p>
+<p>可以看到，通过category+method swizzling的方式在没有修改现有工程任何代码的情况下已经成功Hook到所有点击事件，在Hook代码中我们知道了一个点击事件的target也就是ViewController，也知道了点击事件的响应函数名，知道了点击的TouchSet。这些信息已经能满足埋点需求了。<br>与页面统计埋点类似，我们同样采用plist配置表的方式避免一大长串的if-else判断：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_10.png?attname=" alt=""></p>
+<p>有了这张配置表就很容易得到某次单击事件的事件ID(ControlEventID)：</p>
+<p><code>NSString *actionString = NSStringFromSelector(action);</code></p>
+<p>//获取SEL string</p>
+<p><code>NSString *targetName = NSStringFromClass([target class]);</code></p>
+<p>//viewController name</p>
+<p><code>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];</code></p>
+<p><code>eventID = configDict[targetName][@&quot;ControlEventIDs&quot;][actionString];</code></p>
+<p>事实上，我把某个页面单元的所有事件ID分成了两类：页面事件ID(PageEventIDs，页面的进出等)、交互事件ID(ControlEventIDs，单击、双击、手势等)。分类有助于下文使用单元测试(Unit Test)进行自动化后期维护。<br>埋点效果如图：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_11.png?attname=" alt=""></p>
+<p>到这里先做了阶段性的总结，本文提出的思路有以下优越性：</p>
+<p>与工程代码基本解耦，避免引入“脏代码”<br>即使后期工程代码发生重构，需要修改的仅仅是plist配置表<br>维护配置表比维护散落在工程各个角落的代码简单</p>
+<p>四、基于单元测试的后期维护<br>俗话说，创业难守业更难。前面的思路基本可以完成初步的埋点需求。但是在实际项目中代码重构是很频繁的。这意味着在多人协作开发、代码重构频繁的项目中响应事件方法甚至页面名称都可能被改掉，造成事件ID获取不到导致埋点失效。<br>代码变动的情况无非以下几种(这里只介绍响应事件发生改变的情况)：</p>
+<p>1、响应事件方法名称改变或者删除<br>比如收藏事件原先是onFavBtnPressed:，之后被改成onFavouriteBtnPressed:。代码发生变动但是plist配置表中由于开发人员疏忽忘记同步修改了。这种疏忽在开发压力大进度赶的情况下是有很大概率发生的。由于代码与配置表不匹配将导致eventID为nil。在这种情况下单元测试就很有必要了，使用完备的测试用例能在发版前检测到这种不匹配情况从而避免埋点失效。<br>在单元测试中我们首先读取plist配置文件，遍历所有的页面。在一个页面内遍历所有的ControlEventIDs，对每个响应函数名进行respondsToSelector:判断：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_12.png?attname=" alt=""></p>
+<p>单测代码如下：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_19.png?attname=" alt=""></p>
+<p>我们来测试一下，如果把HomeViewController的onFavBtnPressed:改成onMyFavBtnPressed:后单元测试的结果就是：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_13.png?attname=" alt=""></p>
+<p>这种改变给单测轻松捕捉到了，</p>
+<p>只要XCTAssert的log够详细，维护起来其实相当轻松的。<br>上图中的log已经明确指出-[HomeViewController onFavBtnPressed:]方法发生了改变。</p>
+<p>2、代码中新增了响应事件<br>这种情况常见于新版本中有新的埋点需求。如果代码中新增了响应事件并且该响应事件是在PM要求的埋点列表中，但是plist有可能会漏掉该事件。这种情况是比较棘手的。上一种情况是基于plist列表去校验代码，这里就要反过来，根据代码去校验plist是否有缺失。但问题来了，一个项目中响应函数往往是非常多的，并不是任何响应函数都需要埋点。需要埋点的响应函数与其他响应函数并没有区别。<br>对于这种情况，一种方式是加强code review避免忘记往配置表中添加埋点(这简直就是废话)；一种是：要求埋点响应函数的方法名中包含约定的字符串，比如收藏事件的方法名为onFavBtnPressed_UA:表示这个事件是需要埋点的。然后在单元测试中使用运行时APIclass_copyMethodList取出标记了_UA的所有函数，随后到plist中校验是否存在。不存在则表示测试用例不通过，提示开发人员校验。</p>
+<p>代码略。如果对单元测试不熟悉，可以参考单元测试</p>
+<p>小总结：<br>合理的单元测试可以为本文方案的后期维护减轻相当大的负担，测试用例的完备性很重要，需要用心设计考虑周全。</p>
+<p>五、结语<br>以上就是结合运行时所设计出的用户统计思路全部内容。应该说该方案的可复用性与解耦程度都是不错的，既适合于新建的工程，也适合于已经创建的工程。看起来内容多，其实总结起来无非几个步骤：plist配置表+Hook+单元测试。利用Method Swizzling把埋点代码集中管理其实也是合理的，有利于专人开发、跟踪及维护。当然以上思路只考虑简单的情形，更复杂的情况就需要变通了，但总体思路就是如此。<br>思路可能不完美，但作为一种尝试也未尝不可。路都是走出来的。</p>
+<p>本文demo地址：<a href="https://github.com/weng1250/UserStatisticsWithRuntime" target="_blank" rel="external">https://github.com/weng1250/UserStatisticsWithRuntime</a></p>
+<p><br></p>
+<blockquote>
+<p>本文系转载</p>
+<p>作者：编程小翁 </p>
+<p>来源：<a href="http://www.jianshu.com/p/0497afdad36d" target="_blank" rel="external">http://www.jianshu.com/p/0497afdad36d</a></p>
+</blockquote>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aspects-转载/">Aspects,转载</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Runtime机制及使用梳理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1701,244 +2004,6 @@ self.cityTf.text = @&quot;GuangTong&quot;;
 
 
   
-    <article id="post-iOS可复用且高度解耦的用户统计实现" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/03/iOS可复用且高度解耦的用户统计实现/" class="article-date">
-  	<time datetime="2016-05-02T16:00:00.000Z" itemprop="datePublished">2016-05-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/iOS可复用且高度解耦的用户统计实现/">iOS可复用且高度解耦的用户统计实现</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <video width="498" height="510 " src="http://7xqjid.com1.z0.glb.clouddn.com/2016_04_14.mp4 " poster=" " controls="controls"><br><br></video>
-
-<p><br></p>
-<p>说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。</p>
-<hr>
-<p>用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插入埋点代码。一旦项目越来越复杂，你会发现埋点的代码散落在程序的各个角落，不利于维护以及复用。本文旨在探讨利用iOS的运行时机制实现一种可复、解耦、容易维护的用户统计方案。探讨毕竟是探讨，欢迎到在简书留言讨论。本文虽有些长却是用心之作，希望你有耐心看完。</p>
-<p>注：本文需要一些iOS的Runtime基础<br>该方案的完成将会用到以下知识：</p>
-<p><code>Method Swizzling(Hook)</code></p>
-<p>单元测试</p>
-<h4 id="u4E00_u3001_u5E38_u89C4_u57CB_u70B9_u505A_u6CD5"><a href="#u4E00_u3001_u5E38_u89C4_u57CB_u70B9_u505A_u6CD5" class="headerlink" title="一、常规埋点做法"></a>一、常规埋点做法</h4><p>接着开头的话题，我们先回顾一下主流的埋点是怎么做的。我粗糙地将埋点分为两种：1、页面统计，包括页面停留时间、页面进入次数；2、交互事件统计，包括单击、双击、手势交互等。</p>
-<h6 id="1_29_u5E38_u89C4_u9875_u9762_u7EDF_u8BA1_u57CB_u70B9"><a href="#1_29_u5E38_u89C4_u9875_u9762_u7EDF_u8BA1_u57CB_u70B9" class="headerlink" title="1)常规页面统计埋点"></a>1)常规页面统计埋点</h6><p>以统计页面进入次数为例，最简单粗暴的做法是在所有页面的<code>viewDid</code>ppear1:以及<code>viewDidDisappear</code>:中分别埋点，将自己对应的pageID上传给服务端。代码大概长酱紫：</p>
-<p><code>@implementation HomeViewController</code></p>
-<p><code>- (void)viewDidAppear:(BOOL)animated</code></p>
-<p><code>{</code></p>
-<p>   <code>[super viewWillAppear:animated];</code></p>
-<p>   <code>[WUserStatistics sendEventToServer:@&quot;PAGE_EVENT_HOME_ENTER&quot;];</code><br><code>}</code></p>
-<p><code>- (void)viewDidDisappear:(BOOL)animated</code></p>
-<p><code>{</code></p>
-<p>   <code>[super viewDidDisappear:animated];</code></p>
-<p>   <code>[WUserStatistics sendEventToServer:@&quot;PAGE_EVENT_HOME_LEAVE&quot;];</code></p>
-<p><code>}</code></p>
-<p><code>@end</code></p>
-<p><code>+[WUserStatistics sendEventToServer:]</code>封装网络请求，将ID上传给服务器。上述方案有以下弊端：</p>
-<p>1、复用性差。这部分埋点代码很难给其他项目复用<br>2、工作量大。尤其当页面较多时，需要修改的代码较多<br>3、引入“脏代码”，不易维护<br>第3点提到的“脏代码”意思是用户行为分析这种业务其实跟主业务没太大关系，不应该保持如此高的耦合度，因为这些代码会干扰我们对项目主业务的维护。这个我个人看法。</p>
-<p>2)常规交互事件埋点<br>常规做法一般在交互事件的selector中获取该事件的ID并上传给服务端，代码大概长酱紫：</p>
-<p><code>- (IBAction)onFavBtnPressed:(id)sender</code></p>
-<p><code>{</code></p>
-<p>   <code>[WUserStatistics sendEventToServer:@&quot;CTRL_EVENT_HOME_FAV&quot;];</code></p>
-<p>   <code>//...do other things</code></p>
-<p><code>}</code></p>
-<p>稍微大一点的APP如果采用这种方式，那诸如此类的埋点代码将遍地都是。它的缺点参考页面统计埋点部分，其复用性基本为零，也就是在新项目中根本无法复用埋点代码。</p>
-<p>小总结一下，采用常规的做法虽然直观方便，但在可复用性、可维护性等方面有所欠缺。在我看来，借助运行时可以很好地避开这些缺点。</p>
-<h4 id="u4E8C_u3001Method_Swizzling_u3001Hook_u4E0E_u4EE3_u7801_u6CE8_u5165"><a href="#u4E8C_u3001Method_Swizzling_u3001Hook_u4E0E_u4EE3_u7801_u6CE8_u5165" class="headerlink" title="二、Method Swizzling、Hook与代码注入"></a>二、Method Swizzling、Hook与代码注入</h4><p>由于Runtime知识不属于本文的重点，这里只简单介绍。</p>
-<p>在iOS中，我们可以在运行时替换两个方法的实现，达到“勾住”某个方法并注入代码的目的。具体做法是:</p>
-<p>重载类的<code>+(void)load</code>方法，在程序加载到内存时利用Runtime的<code>method_exchangeImplementations</code>等接口将方法(设为M)的实现互相交换。当方法M被调用时就会被勾住(Hook)，执行我们的方法。<br>这种技术也称为<code>Method Swizzling</code>，属于面向切面编程(Aspect-Oriented Programming)的一种实现。对应的类是Aspects。</p>
-<p>替换两个方法的实现，代码一般长酱紫：</p>
-<p><code>@interface WHookUtility : NSObject</code></p>
-<p><code>+ (void)swizzlingInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector;</code></p>
-<p><code>@end</code></p>
-<p><code>@implementation WHookUtility</code></p>
-<p><code>+ (void)swizzlingInClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector{</code></p>
-<p>   <code>Class class = cls;</code></p>
-<p>   <code>Method originalMethod = class_getInstanceMethod(class, originalSelector);</code></p>
-<p>   <code>Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);</code></p>
-<pre><code>` BOOL didAddMethod =`
-` class_addMethod(class,
-                originalSelector,
-                method_getImplementation(swizzledMethod),
-                method_getTypeEncoding(swizzledMethod));`
-</code></pre><p>   <code>if (didAddMethod) {</code></p>
-<pre><code>    ` class_replaceMethod(class,
-                        swizzledSelector,
-                        method_getImplementation(originalMethod),
-                        method_getTypeEncoding(originalMethod));`
-} else {
-    method_exchangeImplementations(originalMethod, swizzledMethod);
-}
-</code></pre><p>}<br>@end<br>这个WHookUtility工具类下文会用到。比如现在我们要勾住UIViewController的viewWillAppear:方法，可以这样做：</p>
-<p><code>@implementation UIViewController (userStastistics)</code></p>
-<p><code>+ (void)load {</code></p>
-<p>   <code>static dispatch_once_t onceToken;</code></p>
-<p>   <code>dispatch_once(&amp;onceToken, ^{</code></p>
-<pre><code>`SEL originalSelector = @selector(viewWillAppear:);`
-
-`SEL swizzledSelector = @selector(swiz_viewWillAppear:);`
-
-`[WHookUtility swizzlingInClass:[self class] originalSelector:originalSelector swizzledSelector:swizzledSelector];`
-</code></pre><p><code>});</code><br><code>}</code></p>
-<p><code>#pragma mark - Method Swizzling</code></p>
-<p><code>- (void)swiz_viewWillAppear:(BOOL)animated</code><br><code>{</code></p>
-<pre><code>`NSLog(@&quot;...............&quot;);`
-
-`[self swiz_viewWillAppear:animated];`
-</code></pre><p><code>}</code><br><code>@end</code></p>
-<p>更多关于Runtime、method swizzling、面向切面编程的介绍请参考这里</p>
-<h4 id="u4E09_u3001_u57FA_u4E8E_u8FD0_u884C_u65F6_u7684_u57CB_u70B9_u65B9_u6848"><a href="#u4E09_u3001_u57FA_u4E8E_u8FD0_u884C_u65F6_u7684_u57CB_u70B9_u65B9_u6848" class="headerlink" title="三、基于运行时的埋点方案"></a>三、基于运行时的埋点方案</h4><p>为了便于下文叙述，先引入一个简单的项目，共有两个页面(HomeViewController，DetailViewController)，如下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_04.gif?attname=" alt=""></p>
-<p>需求是:</p>
-<p>统计两个页面的展示与离开次数<br>统计收藏、分享单击事件的次数<br>对现有工程代码影响越小越好</p>
-<p>1)统计两个页面的展示与离开次数</p>
-<p>这部分应该比较直观了，摒弃掉在每个controller中埋点的方式，我们对UIViewController添加category从而Hook到viewWillAppear:与viewWillDisappear:。在这两个方法中注入埋点代码：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_05.png?attname=" alt=""></p>
-<p>这时候问题来了，项目中每个页面都会有自己的页面事件编号(pageEventID)，此处的埋点代码如何知道要发送什么pageEventID给服务端呢？轻松祭出if-else神器：</p>
-<p><code>- (NSString *)pageEventID:(BOOL)bEnterPage</code><br><code>{</code></p>
-<p>``<br>    NSString *selfClassName = NSStringFromClass([self class]);</p>
-<pre><code>NSString *pageEventID = nil;
-
-if ([selfClassName isEqualToString:@&quot;HomeViewController&quot;]) {
-
-    pageEventID = bEnterPage ? @&quot;EVENT_HOME_ENTER_PAGE&quot; : @&quot;EVENT_HOME_LEAVE_PAGE&quot;;
-
-} else if ([selfClassName isEqualToString:@&quot;DetailViewController&quot;]) {
-
-    pageEventID = bEnterPage ? @&quot;EVENT_DETAIL_ENTER_PAGE&quot; : @&quot;EVENT_DETAIL_LEAVE_PAGE&quot;;
-}
-//else if (&lt;#expression#&gt;)...
-``
-</code></pre><p><code>}</code></p>
-<p>当然，我们可以有更优雅的方式，比如用一个配置表替代上面一长串的if判断，这样无论页面数怎么增加，代码始终是那么一小段。我们新建一个WGlobalUserStatisticsConfig.plist的配置表来存放每个页面在进入以及离开时的pageEventID，结构如下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_06.png?attname=" alt=""><br>)</p>
-<p>因此，页面进出统计中获取pageEventID的代码始终是以下这几句：</p>
-<p><code>- (NSString *)pageEventID:(BOOL)bEnterPage</code><br><code>{</code></p>
-<p>  <code>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];</code></p>
-<p>  <code>NSString *selfClassName = NSStringFromClass([self class]);</code></p>
-<p>  <code>return configDict[selfClassName][@&quot;PageEventIDs&quot;][bEnterPage ? @&quot;Enter&quot; : @&quot;Leave&quot;];</code></p>
-<p><code>}</code></p>
-<p><code>- (NSDictionary *)dictionaryFromUserStatisticsConfigPlist</code><br><code>{</code></p>
-<p>   <code>NSString *filePath = [[NSBundle mainBundle] pathForResource:@&quot;WGlobalUserStatisticsConfig&quot; ofType:@&quot;plist&quot;];</code></p>
-<p>   <code>NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:filePath];</code></p>
-<p>   <code>return dic;</code><br><code>}</code></p>
-<p>效果如下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_07.gif?attname=" alt=""></p>
-<p>以上就是完成了页面进出统计的埋点，并且达到了我们的第三点预期：对现有代码基本无影响。通过Method Swizzling的方式现有的工程甚至不需要import任何文件！后期代码变动时需要维护的仅仅是plist配置表。</p>
-<p>2)统计收藏、分享单击事件的次数<br>与上一节思路一致，要做到解耦显然需要通过category+hook来实现。本文demo中收藏跟分享都是UIButton类型，可以考虑添加UIButton的catogory。但更好的方式是添加UIControl的category，这样可以让埋点代码覆盖到所有UIControl的子类中去，比如button、switch、segment等，提高复用性。<br>既然要hook，那就要清楚到底要hookUIControl的哪(几)个方法，只有部分方法是满足埋点需求的，最好是所hook的方法能提供target、actionName等信息。这是个尝试的过程。<br>UIControl的方法列表有以下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_08.png?attname=" alt=""></p>
-<p>通过观察方法名和参数，我们有理由怀疑是倒数第二个，因其携带了不少貌似有价值的信息：</p>
-<p><code>- (void)sendAction:(SEL)action to:(nullable id)target forEvent:(nullable UIEvent *)event;</code></p>
-<p>于是写出测试代码看看：</p>
-<p><code>@implementation UIControl (userStastistics)</code></p>
-<p><code>+ (void)load {</code> </p>
-<p><code>static dispatch_once_t onceToken;
-    dispatch_once(&amp;onceToken, ^{
-        SEL originalSelector = @selector(sendAction:to:forEvent:);
-        SEL swizzledSelector = @selector(swiz_sendAction:to:forEvent:);
-        [WHookUtility swizzlingInClass:[self class] originalSelector:originalSelector swizzledSelector:swizzledSelector];
-    });</code><br><code>}</code></p>
-<p><code>#pragma mark - Method Swizzling</code></p>
-<p><code>- (void)swiz_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event;</code></p>
-<p><code>{</code><br>    //插入埋点代码</p>
-<p>   <code>[self performUserStastisticsAction:action to:target forEvent:event];</code></p>
-<pre><code>`[self swiz_sendAction:action to:target forEvent:event];`
-</code></pre><p><code>}</code></p>
-<p><code>- (void)performUserStastisticsAction:(SEL)action to:(id)target forEvent:(UIEvent *)event;</code></p>
-<p><code>{</code></p>
-<p>   <code>NSLog(@&quot;\n***hook success.\n[1]action:%@\n[2]target:%@ \n[3]event:%ld&quot;, NSStringFromSelector(action), target, (long)event);</code></p>
-<p><code>}</code></p>
-<p><code>@end</code></p>
-<p>Log如下图：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_09.png?attname=" alt=""></p>
-<p>可以看到，通过category+method swizzling的方式在没有修改现有工程任何代码的情况下已经成功Hook到所有点击事件，在Hook代码中我们知道了一个点击事件的target也就是ViewController，也知道了点击事件的响应函数名，知道了点击的TouchSet。这些信息已经能满足埋点需求了。<br>与页面统计埋点类似，我们同样采用plist配置表的方式避免一大长串的if-else判断：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_10.png?attname=" alt=""></p>
-<p>有了这张配置表就很容易得到某次单击事件的事件ID(ControlEventID)：</p>
-<p><code>NSString *actionString = NSStringFromSelector(action);</code></p>
-<p>//获取SEL string</p>
-<p><code>NSString *targetName = NSStringFromClass([target class]);</code></p>
-<p>//viewController name</p>
-<p><code>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];</code></p>
-<p><code>eventID = configDict[targetName][@&quot;ControlEventIDs&quot;][actionString];</code></p>
-<p>事实上，我把某个页面单元的所有事件ID分成了两类：页面事件ID(PageEventIDs，页面的进出等)、交互事件ID(ControlEventIDs，单击、双击、手势等)。分类有助于下文使用单元测试(Unit Test)进行自动化后期维护。<br>埋点效果如图：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_11.png?attname=" alt=""></p>
-<p>到这里先做了阶段性的总结，本文提出的思路有以下优越性：</p>
-<p>与工程代码基本解耦，避免引入“脏代码”<br>即使后期工程代码发生重构，需要修改的仅仅是plist配置表<br>维护配置表比维护散落在工程各个角落的代码简单</p>
-<p>四、基于单元测试的后期维护<br>俗话说，创业难守业更难。前面的思路基本可以完成初步的埋点需求。但是在实际项目中代码重构是很频繁的。这意味着在多人协作开发、代码重构频繁的项目中响应事件方法甚至页面名称都可能被改掉，造成事件ID获取不到导致埋点失效。<br>代码变动的情况无非以下几种(这里只介绍响应事件发生改变的情况)：</p>
-<p>1、响应事件方法名称改变或者删除<br>比如收藏事件原先是onFavBtnPressed:，之后被改成onFavouriteBtnPressed:。代码发生变动但是plist配置表中由于开发人员疏忽忘记同步修改了。这种疏忽在开发压力大进度赶的情况下是有很大概率发生的。由于代码与配置表不匹配将导致eventID为nil。在这种情况下单元测试就很有必要了，使用完备的测试用例能在发版前检测到这种不匹配情况从而避免埋点失效。<br>在单元测试中我们首先读取plist配置文件，遍历所有的页面。在一个页面内遍历所有的ControlEventIDs，对每个响应函数名进行respondsToSelector:判断：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_12.png?attname=" alt=""></p>
-<p>单测代码如下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_19.png?attname=" alt=""></p>
-<p>我们来测试一下，如果把HomeViewController的onFavBtnPressed:改成onMyFavBtnPressed:后单元测试的结果就是：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_13.png?attname=" alt=""></p>
-<p>这种改变给单测轻松捕捉到了，</p>
-<p>只要XCTAssert的log够详细，维护起来其实相当轻松的。<br>上图中的log已经明确指出-[HomeViewController onFavBtnPressed:]方法发生了改变。</p>
-<p>2、代码中新增了响应事件<br>这种情况常见于新版本中有新的埋点需求。如果代码中新增了响应事件并且该响应事件是在PM要求的埋点列表中，但是plist有可能会漏掉该事件。这种情况是比较棘手的。上一种情况是基于plist列表去校验代码，这里就要反过来，根据代码去校验plist是否有缺失。但问题来了，一个项目中响应函数往往是非常多的，并不是任何响应函数都需要埋点。需要埋点的响应函数与其他响应函数并没有区别。<br>对于这种情况，一种方式是加强code review避免忘记往配置表中添加埋点(这简直就是废话)；一种是：要求埋点响应函数的方法名中包含约定的字符串，比如收藏事件的方法名为onFavBtnPressed_UA:表示这个事件是需要埋点的。然后在单元测试中使用运行时APIclass_copyMethodList取出标记了_UA的所有函数，随后到plist中校验是否存在。不存在则表示测试用例不通过，提示开发人员校验。</p>
-<p>代码略。如果对单元测试不熟悉，可以参考单元测试</p>
-<p>小总结：<br>合理的单元测试可以为本文方案的后期维护减轻相当大的负担，测试用例的完备性很重要，需要用心设计考虑周全。</p>
-<p>五、结语<br>以上就是结合运行时所设计出的用户统计思路全部内容。应该说该方案的可复用性与解耦程度都是不错的，既适合于新建的工程，也适合于已经创建的工程。看起来内容多，其实总结起来无非几个步骤：plist配置表+Hook+单元测试。利用Method Swizzling把埋点代码集中管理其实也是合理的，有利于专人开发、跟踪及维护。当然以上思路只考虑简单的情形，更复杂的情况就需要变通了，但总体思路就是如此。<br>思路可能不完美，但作为一种尝试也未尝不可。路都是走出来的。</p>
-<p>本文demo地址：<a href="https://github.com/weng1250/UserStatisticsWithRuntime" target="_blank" rel="external">https://github.com/weng1250/UserStatisticsWithRuntime</a></p>
-<p><br></p>
-<blockquote>
-<p>本文系转载</p>
-<p>作者：编程小翁 </p>
-<p>来源：<a href="http://www.jianshu.com/p/0497afdad36d" target="_blank" rel="external">http://www.jianshu.com/p/0497afdad36d</a></p>
-</blockquote>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aspects-转载/">Aspects,转载</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-论地球仪打开的正确姿势" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -2154,189 +2219,6 @@ if ([selfClassName isEqualToString:@&quot;HomeViewController&quot;]) {
 
 
   
-    <article id="post-iOS开发Autolayout进阶" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/08/iOS开发Autolayout进阶/" class="article-date">
-  	<time datetime="2016-03-07T16:00:00.000Z" itemprop="datePublished">2016-03-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/08/iOS开发Autolayout进阶/">iOS开发Autolayout进阶</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe><br>一直想写又不想写。因为近来网上关于Autolayout的文章不在少数，重复相同的内容没什么意思。但是只写不同的地方感觉我也写不出多少，比较心塞。既然坑都占了，那就先意思一下，接下来发现Autolayout其他特性或比较高深的用法会再继续补充。</p>
-<p>自iOS6苹果就推出了Autolayout,但那时候很多人都在用AutoresizingMasks,国内对新鲜出土的技术并没有那么热衷，最主要的是改变终归是痛苦的，所以鲜有应用。iOS8之后新推出了iPhone6、iPhone6+及Sizeclass,这时候不得不使用Autolayout了。现在觉得这其实也并不是必须的，代码适配也不是不可以。</p>
-<p>现在代码添加约束一般有三种，常规的约束语法、可视化格式语言约束、使用第三方组件。</p>
-<h4 id="u5E38_u89C4_u7EA6_u675F"><a href="#u5E38_u89C4_u7EA6_u675F" class="headerlink" title="常规约束"></a>常规约束</h4><p>代码基本长这样</p>
-<p> 高度约束（添加到yellowView身上）</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSLayoutConstraint *heightConstraint = [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeHeight <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>nil <span class="string">attribute:</span>NSLayoutAttributeNotAnAttribute <span class="string">multiplier:</span><span class="number">0.0</span> <span class="string">constant:</span><span class="number">50</span>];</span><br><span class="line">[yellowView <span class="string">addConstraint:</span>heightConstraint];</span><br></pre></td></tr></table></figure>
-<p>间距约束（添加到self.view身上）<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CGFloat margin = <span class="number">20</span>;</span><br><span class="line">    [self.view <span class="string">addConstraints:</span>@[</span><br><span class="line">                                [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeLeft <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>self.view <span class="string">attribute:</span>NSLayoutAttributeLeft <span class="string">multiplier:</span><span class="number">1.0</span> <span class="string">constant:</span>margin],</span><br><span class="line"> </span><br><span class="line">                                [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeRight <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>self.view <span class="string">attribute:</span>NSLayoutAttributeRight <span class="string">multiplier:</span><span class="number">1.0</span> <span class="string">constant:</span> - margin],</span><br><span class="line"> </span><br><span class="line">                                [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeBottom <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>self.view <span class="string">attribute:</span>NSLayoutAttributeBottom <span class="string">multiplier:</span><span class="number">1.0</span> <span class="string">constant:</span> - margin]</span><br><span class="line">                                ]];</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-01.png?attname=" alt=""></p>
-<p>用到了一个基本公式<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj1.property1 = (obj2.property2 * multiplier)+ <span class="built_in">constant</span> <span class="built_in">value</span></span><br></pre></td></tr></table></figure></p>
-<p>multiplier和constant 是向量系数和偏移量,一般还要设置translateAutoresizingMaskIntoConstraints为NO,默认是YES，使得不和系统的自动伸缩约束冲突</p>
-<h4 id="u53EF_u89C6_u5316_u683C_u5F0F_u8BED_u8A00_u7EA6_u675F"><a href="#u53EF_u89C6_u5316_u683C_u5F0F_u8BED_u8A00_u7EA6_u675F" class="headerlink" title="可视化格式语言约束"></a>可视化格式语言约束</h4><p>可视化格式语言，即Visual Format Language(VFL),是为了简化Autolayout而推出的抽象语言。</p>
-<p>基本长这样<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">UIButton</span> *<span class="keyword">b1 </span>= ...</span><br><span class="line"><span class="label">UIButton</span> *<span class="keyword">b2 </span>= ...</span><br><span class="line"><span class="label">UIButton</span> *<span class="keyword">b3 </span>= ...</span><br><span class="line"><span class="keyword">b1.translatesAutoresizingMaskIntoConstraints </span>= NO<span class="comment">;</span></span><br><span class="line"><span class="keyword">b2.translatesAutoresizingMaskIntoConstraints </span>= NO<span class="comment">;</span></span><br><span class="line"><span class="keyword">b3.translatesAutoresizingMaskIntoConstraints </span>= NO<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<p>将传入的对象引用作为value,将引用名变成字符串作为key,生成的字典如: {@”b1”:b1,@”b2”:b2,@”b3”:b3}<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *diction1 = NSDictionaryOfVariableBindings<span class="list">(<span class="keyword">b1</span>,b2,b3)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<p>为vfl式子中的一些特殊含义的数字做一个名称对照表<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *diction2 = @&#123;@<span class="string">"top"</span>:<span class="constant">@20</span>,@<span class="string">"left"</span>:<span class="constant">@20</span>,@<span class="string">"right"</span>:<span class="constant">@20</span>,@<span class="string">"spacing"</span>:<span class="constant">@10</span>&#125;<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSString *hVFL = @<span class="string">"|-left-[b1]-spacing-[b2(b1)]-spacing-[b3(b1)]-right-|"</span>;</span><br><span class="line">NSArray *cs1 = [NSLayoutConstraint constraintsWithVisualForma<span class="variable">t:hVFL</span> option<span class="variable">s:NSLayoutFormatAlignAllCenterY</span> metric<span class="variable">s:diction2</span> <span class="keyword">view</span><span class="variable">s:diction1</span>];</span><br><span class="line">NSString *vVFL = @<span class="string">"V:|-top-[b1]"</span>;</span><br><span class="line">NSArray *cs2 = [NSLayoutConstraint constraintsWithVisualForma<span class="variable">t:vVFL</span> option<span class="variable">s:0</span> metric<span class="variable">s:diction2</span> <span class="keyword">view</span><span class="variable">s:diction1</span>];</span><br><span class="line">[self.<span class="keyword">view</span> addConstraint<span class="variable">s:cs1</span>];</span><br><span class="line">[self.<span class="keyword">view</span> addConstraint<span class="variable">s:cs2</span>];</span><br></pre></td></tr></table></figure>
-<p>部分使用规则如下:</p>
-<blockquote>
-<p> |: 表示父视图</p>
-<p> -:表示距离</p>
-<p> V:  :表示垂直</p>
-<p>  H:  :表示水平</p>
-<p> >= :表示视图间距、宽度和高度必须大于或等于某个值</p>
-<p>  \&lt;= :表示视图间距、宽度和高度必须小宇或等于某个值</p>
-<p>  == :表示视图间距、宽度或者高度必须等于某个值</p>
-<p>|-30.0-[view]-30.0-|:  表示离父视图 左右间距 30</p>
-<p>[view(200.0)] : 表示视图宽度为 200.0</p>
-<p>|-[view(view1)]-[view1]-| :表示视图宽度一样，并且在父视图左右边缘内</p>
-<p>V:|-[view(50.0)] : 视图高度为  50</p>
-<p>V:|-(==padding)-[imageView]-&gt;=0-[button]-(==padding)-| : 表示离父视图的距离<br>为Padding,这两个视图间距必须大于或等于0并且距离底部父视图为 padding。</p>
-<p>[wideView(&gt;=60@700)]  :视图的宽度为至少为60 不能超过  700 </p>
-</blockquote>
-<p>这里只是基本的部分使用规则，要了解更多请自行查阅。</p>
-<h4 id="u4F7F_u7528_u7B2C_u4E09_u65B9_u7EC4_u4EF6"><a href="#u4F7F_u7528_u7B2C_u4E09_u65B9_u7EC4_u4EF6" class="headerlink" title="使用第三方组件"></a>使用第三方组件</h4><p>UIView+Autolayout下载地址：<a href="https://github.com/ChinaFishNews/UIView-AutoLayout.git" target="_blank" rel="external">https://github.com/ChinaFishNews/UIView-AutoLayout.git</a></p>
-<p>Masonry下载地址 : <a href="https://github.com/ChinaFishNews/Masonry.git" target="_blank" rel="external">https://github.com/ChinaFishNews/Masonry.git</a></p>
-<p>在最初的时候使用的是UIView+Autolayout，后来发现Masonry就基本使用Masonry了，这两个用起来都很好上手。</p>
-<h6 id="UIView+Autolayout_u4E00_u822C_u7528_u6CD5"><a href="#UIView+Autolayout_u4E00_u822C_u7528_u6CD5" class="headerlink" title="UIView+Autolayout一般用法"></a>UIView+Autolayout一般用法</h6><p>直接设置大小<br><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">[<span class="keyword">_redView</span> autoSetDimensionsToSize:CGSizeMake<span class="list">(<span class="keyword">200</span>, <span class="number">200</span>)</span>]<span class="comment">;</span></span></span><br></pre></td></tr></table></figure></p>
-<p>设置除顶部距四周的间隔，然后设置高度<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[_redVeiw autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(<span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>, <span class="number">20</span>)excludingEdge:ALEdgeTop]; </span><br><span class="line"></span><br><span class="line">[_redView autoSetDimension:ALDimensionHeight toSize:<span class="number">100</span>];</span><br></pre></td></tr></table></figure></p>
-<p>直接设置四周间隔<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_redView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)];</span><br></pre></td></tr></table></figure></p>
-<h6 id="Masonary_u4E00_u822C_u7528_u6CD5"><a href="#Masonary_u4E00_u822C_u7528_u6CD5" class="headerlink" title="Masonary一般用法"></a>Masonary一般用法</h6><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">UIEdgeInsets padding = UIEdgeInsetsMake(<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">[view1 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line"></span><br><span class="line">    make.top.equalTo(superview.mas_top).<span class="keyword">with</span>.<span class="command">offset</span>(padding.top);           	make.left.equalTo(superview.mas_left).<span class="keyword">with</span>.<span class="command">offset</span>(padding.left);</span><br><span class="line">    make.bottom.equalTo(superview.mas_bottom).<span class="keyword">with</span>.<span class="command">offset</span>(-padding.bottom);</span><br><span class="line">    make.right.equalTo(superview.mas_right).<span class="keyword">with</span>.<span class="command">offset</span>(-padding.right);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-<p>或者直接这样<br><figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[view1 mas_makeConstraints:^<span class="list">(<span class="keyword">MASConstraintMaker</span> *make)</span> <span class="collection">&#123;</span><br><span class="line">    make.edges.equalTo<span class="list">(<span class="keyword">superview</span>)</span>.with.insets<span class="list">(<span class="keyword">padding</span>)</span><span class="comment">;</span></span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">make.top.mas_equalTo(<span class="number">42</span>);</span><br><span class="line">make.height.mas_equalTo(<span class="number">20</span>);</span><br><span class="line">make.size.mas_equalTo(CGSizeMake(<span class="number">50</span>, <span class="number">100</span>));</span><br><span class="line">make.edges.mas_equalTo(UIEdgeInsetsMake(<span class="number">10</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>));</span><br><span class="line">make.left.mas_equalTo(view).mas_offset(UIEdgeInsetsMake(<span class="number">10</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[view1 mas_makeConstraints:^<span class="list">(<span class="keyword">MASConstraintMaker</span> *make)</span> <span class="collection">&#123;</span><br><span class="line">    self.topConstraint = make.top.equalTo<span class="list">(<span class="keyword">superview.mas_top</span>)</span>.with.offset<span class="list">(<span class="keyword">padding.top</span>)</span><span class="comment">;</span></span><br><span class="line">    make.left.equalTo<span class="list">(<span class="keyword">superview.mas_left</span>)</span>.with.offset<span class="list">(<span class="keyword">padding.left</span>)</span><span class="comment">;</span></span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p>这只是随便举例，想更详细的了解可以到Github源码处具体学习下。</p>
-<p>以上，代码添加约束总体较为繁琐，然而有些时候布局比较繁杂、不方便在Storyboard添加的只能只用代码来添加约束了。现在对我而言基本是一般约束直接在Storyboard上拖拽添加，一些不太方便的需要代码添加约束的使用Masonary。</p>
-<h4 id="u5728Storyboard_u4E0A_u6DFB_u52A0_u7EA6_u675F"><a href="#u5728Storyboard_u4E0A_u6DFB_u52A0_u7EA6_u675F" class="headerlink" title="在Storyboard上添加约束"></a>在Storyboard上添加约束</h4><p>iOS9之后已经可以使用引用了，把Storyboard拆分成多个。多人合作项目的时候经常会产生冲突，Storyboard的冲突改起来比较酸爽，Sotryboard其实是一个巨大的XML文件，之前每次产生冲突都需要以XML文件的形式打开Storyboard修改冲突。即便现在可以把Storyboard拆分成多个，但有时冲突依然不可避免，XML文件其实也并不可怕，毕竟多改几次就习惯了。</p>
-<p>添加约束其实比较降低效率，随着布局的繁杂效率下降得更为明显，只在在硬件提升的同时一般我们体会的并不明显。iOS9之后新加了UIStackView,一个管理视图的容器，这样只需要对外面的这个容器添加约束，里面的只需要设置一些属性，虽然归根结底还是设置约束。虽然UIStackView是iOS9之后，但是网上已经有支持iOS9以下的框架，叫FDStackView，下载地址:<br><a href="https://github.com/ChinaFishNews/FDStackView.git" target="_blank" rel="external">https://github.com/ChinaFishNews/FDStackView.git</a></p>
-<p>下载后导入项目即可，无需做其他配置，即可在iOS9以下使用StackView。</p>
-<p>先上个图大家感受一下Autolayout</p>
-<p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/4.png?attname=" alt="">  </p>
-<p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/5.png?attname=" alt="">  </p>
-<p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/6.png?attname=" alt=""></p>
-<p>默认大家都已经可以基本使用Autolayout.</p>
-<p>一般在右下角可以方便的添加约束，也有人通过菜单栏中Editor设置，其实也可以按住control键，点击控件拖拽</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-03.png?attname=" alt=""></p>
-<p>添加约束后有时想知道在不同设备上的布局，这时候可以选中控制器，改变Size的大小，也可以这样</p>
-<p>按住option键点击Main.Storyboard</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-04.png?attname=" alt=""></p>
-<p>然后可以添加设备</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-05.png?attname=" alt=""></p>
-<p>还有时候想观察视图的层次机构，可以在运行时点击Debug View Hierarchy</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-07.png?attname=" alt=""></p>
-<p>其实还可以使用工具Reveal,之前的博文中有讲到。</p>
-<p>在添加约束的时候，左侧一般是这样的</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-08.png?attname=" alt=""></p>
-<p>为什么有的约束在这个控件下，有的约束在其他控件下呢？  是因为只有设置当前控件宽高的时候约束才会出现在当前控件下，设置和其他控件相对位置、距离的时候，会找到他们最近的父控件，在他们最近的父控件下显示约束。</p>
-<p>使用Autolayout的时候，有个属性IntrinsicContentSize，UILabel,UIButton,UIImageView拥有这个属性，可以自己根据内容调整大小，不用设置宽和高。文字有多长就显示多长，图片有多大，就显示多大，对于哪些View有IntrinsicContentSize，苹果给了一张表:</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-09.png?attname=" alt=""></p>
-<p>这张表显示，UIView和NSView是没有IntrinsicContentSize的。Sliders只能定义width。Sliders的height拥有IntrinsicContentSize，Labels, buttons, switches,and text fields完全支持，Text viewsand image views，在有内容的时候支持，没有内容的时候不支持。对于没有这个属性的，我们也希望他拥有默认宽高的话该怎么办呢？我们可以重写IntrinsicContentSize方法,这样就可以拥有默认的宽高<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (CGSize)intrinsicContentSize</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> CGSizeMake(<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>对于IntrinsicContentSize，Autolayout又把他分成了2个部分：ContentHugging和CompressionResistance。我们点击控件的时候在右侧会发现</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-10.png?attname=" alt=""></p>
-<p>ContentHugging是内容凝聚力，优先级是250，表示View的宽度和高度紧靠内容，不让其扩展的力量</p>
-<p>CompressionResistance是指压缩阻力，优先级是750，表示当有力量要对其进行压缩的时候，其阻力的大小</p>
-<p>对于同一个View，ContentHugging和CompressionResistance不会同时起作用</p>
-<p>而我们添加约束的时候是这样的,优先级是1000</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-11.png?attname=" alt=""></p>
-<p>当一个label有文字的时候，label会存在一个内容的Size。<br>如果有外力让其size扩张，ContentHugging会起作用，外力大于ContentHugging的力量，label的size由外力决定，反之，label的Size由内容决定。<br>如果有外力让其size压缩，CompressionResistance会起作用，外力大于CompressionResistance的力量，label的size由外力决定，反之，label的Size由内容决定。</p>
-<p>也就是说如果我们给label加了一个宽度约束，line设为0，我们在给line设置内容的时候，一旦内容size大于其原有大小的时候label的高度就会增加，而当我们只给label添加一个宽度的时候，一旦我们设置的内容size大于其原有宽度的时候label的宽度就会增加。而当我们同时设置宽度和高度约束的时候，无论我们怎么设置内容，其就会被固定在我们设置的这个size里，因为添加约束的优先级默认是1000，优先级最大，默认会执行这个。</p>
-<p>constraint的优先级(Priorities),优先级越高，力量越大，越被优先执行。系统的优先级由1~1000的数字表示，值越大，优先级越高。NSLayoutConstraint中一共定义了4种比较常用的优先级<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">float</span> <span class="built_in">UILayoutPriority</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityRequired</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityDefaultHigh</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">750</span>; </span><br><span class="line"> </span><br><span class="line"> <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityDefaultLow</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">250</span>; </span><br><span class="line"> </span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityFittingSizeLevel</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">50</span>;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>UILayoutPriorityRequired: 必须级别优先级，值为最高值1000，一般平时定义约束，默认都是这个优先级。</p>
-<p>UILayoutPriorityDefaultHigh: 高优先级，值为750，CompressionResistance的默认优先级是这个。</p>
-<p> UILayoutPriorityDefaultLow: 低优先级，值为250，ContentHugging的默认优先级是这个</p>
-<p>UILayoutPriorityFittingSizeLevel: 极低的优先级，让系统估算Size的时候使用，不适合做约束</p>
-</blockquote>
-<p>知道了各个属性的默认优先级之后，就可以解释为什么一般情况我们给Lable设置Size约束之后，Label由我们设置的Size决定，而不是由其内容决定。因为我们没有特意设置优先级，用的都是默认优先级。Size约束的优先级比CompressionResistance和ContentHugging的优先级高。如果我们想让Label由内容决定，我们可以不设置Size约束或者调低自己Size约束的优先级。</p>
-<p>上面参考了网上的一篇文章，讲的很赞，并且给了一个案例。</p>
-<p>假设有2个Label，并列放着，他们都是使用IntrinsicContentSize自动根据文字适应宽度。效果如图所示：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-12.png?attname=" alt=""></p>
-<p>那么我们设置一个优先级为500宽度为100的约束(100小于Label2的宽度，大于Label1的宽度)</p>
-<p>结果是2个Label都变成100的宽度，还是都保持原来的宽度不变？还是一个变成100，一个保持原来的宽度？我们Run一下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-13.png?attname=" alt=""></p>
-<p>Label1变成了100，Label2还是原来的宽度，为什么呢？</p>
-<blockquote>
-<p> Label1的IntrinsicContentSize宽度比100小，所以当添加一个宽度为100的约束时，ContentHugging在起作用。ContentHugging的优先级为250。宽度为100的约束优先级为500大于ContentHugging。所以宽度为100.</p>
-<p>  <br>Label2的IntrinsicContentSize宽度比100大。所以当添加一个宽度为100的约束时，CompressionResistance在起作用，CompressionResistance的优先级为750。宽度为100的约束优先级为500小于CompressionResistance。所以宽度还是IntrinsicContentSize的宽度</p>
-</blockquote>
-<p>正常情况下我们在设置Label的时候，给它加个宽度约束，运行是这样的</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-15.png?attname=" alt=""></p>
-<p>款读设置的是100，高度没有设置，内容过多的时候回自动自适应，不用使用代码计算size。但是我们设置宽度是100，但是内容太少的时候右边会有空白，这时候怎么办呢?我们可以将宽度设为less than or equal 100,这样在内容少的时候就是这样的</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-16.png?attname=" alt=""></p>
-<p>这样就解决了内容少而右边有空白的问题。有时候可能没有内容，但是我们又希望它占位，这时候该怎么办呢？我们可以这样设置，即便在没有内容的时候依然在占位</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-17.png?attname=" alt=""></p>
-<p>使用的过程中被还会有一些其他的问题</p>
-<blockquote>
-<ul>
-<li><p>对于Autolayout，制作动画和以往也有些不同，使用Frame的时候，我们做动画一般都调用-animateWithDuration:animations:方法，在animations的block里面调整Frame即可，使用Autolayout之后，由于Autolayout是延迟布局的，并不是约束更新之后就立刻布局，所以大家可以发现。在-animateWithDuration:animations方法里面修改约束是不能实现动画的。而使用Autolayout该怎么做呢？  应该是在block外改变约束，在block内调用layoutIfNeeded方法。</p>
-</li>
-<li><p>Autolayout自动布局是在UIView的layoutSubviews中，所以TableView上的子view(如：cell，headerView，footerView)使用了Autolayout，tableView在布局的时候调用layoutSubviews，就会抛出异常。直接对TableView使用Autolayout是不会有问题的，TableView是否调用layoutSubviews在于他上面的子view是否使用Autolayout，而不是他本身。<br>正确的做法是:如果是cell，我们经常使用[cell addSubview:view]再对view做一个相对cell的约束，这时候就会出现问题。解决方案就是使用[cell.contentView addSubview:view]。我们约束是对cell的contentView添加，跟cell无关。tableView就不会调用layoutSubviews了。<br>如果是headerView或者footView。解决方案是直接使用frame，或者自己定义一个类似Cell的contentView的view，子view相对contentView布局使用Autolayout，contentView对headerView布局使用frame。</p>
-</li>
-<li><p>使用中还会发现一个特殊的控件，UIScrollView,因为contentSize跟着里面的子view发生变化。正确的做法是给UIScrollview添加一个ContentView,设置edge均为0，如果垂直滚动那就设置一个宽度，反之设置一个高度约束。<b></b></p>
-</li>
-<li><p>使用Autolayout之后，系统中多了一个更新约束的方法updateConstraints。updateConstraints方法仅用于提升性能。当你更新大量约束，发现由于约束太多，布局有点卡。这时候你可以使用updateConstraints，因为在updateConstraints中更新约束会批量操作，能获得更好的性能。</p>
-</li>
-</ul>
-</blockquote>
-<p>以上，只是Autolayout部分用法，具体的需要在项目中体验，注意点比较多。</p>
-<p>就先到这里，今天妇女节，祝广大女同胞节日快乐。觉得应该放半天假，然而这么人性化得公司毕竟不多！</p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Autolayout/">Autolayout</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -2347,7 +2229,7 @@ if ([selfClassName isEqualToString:@&quot;HomeViewController&quot;]) {
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 含笑饮砒霜
+    		&copy; 2017 含笑饮砒霜
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
