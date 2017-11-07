@@ -363,7 +363,8 @@
 <ul>
 <li>ARLightEstimate类<br>在一个AR会话中估计场景照明信息关联到一个捕获的视频帧</li>
 </ul>
-<h4 id="coreML"><a href="#coreML" class="headerlink" title="coreML"></a>coreML</h4><p>iOS11引入的一个全新的机器学习框架，同时伴随着Vision框架。coreML让我们更容易在 App 中使用训练过的模型, 而Vision让我们轻松访问苹果的模型，用于面部检测、面部特征点、文字、矩形、条形码和物体等。Vision模型中可以包装任意的图像分析coreML模型。Vision框架其实就是对coreML框架的一层封装，使用起来更加方便。根据官方文档提供的图像可以看出，这两个框架的作用，就是将一个ML模型，转换成我们的app工程可以直接使用的对象。<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_10_29_01.png" alt=""></p>
+<h4 id="coreML"><a href="#coreML" class="headerlink" title="coreML"></a>coreML</h4><p>iOS11引入的一个全新的机器学习框架，同时伴随着Vision框架。Core ML 是特定框架功能的基础，支持用于用户图像分析的 Vision，用于自然语言处理的 Foundation (如 NSLinguisticTagger 类）和用于评估已经学习到的决策树 GamePlayKit。Core ML 本身构建于低层面的原语上，比如 Accelerate、BNNS、Metal Performance Shaders。coreML让我们更容易在App中使用训练过的模型, 而Vision让我们轻松访问苹果的模型，用于面部检测、面部特征点、文字、矩形、条形码和物体等。Vision模型中可以包装任意的图像分析coreML模型。Vision框架其实就是对coreML框架的一层封装，使用起来更加方便。根据官方文档提供的图像可以看出，这两个框架的作用，就是将一个ML模型，转换成我们的app工程可以直接使用的对象。<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_10_29_01.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_02.png" alt=""></p>
 <ul>
 <li>机器学习(ML:Machine Learning)：<br>是一种人工智能，计算机会“学习”而不是被明确编程。不用编写算法，机器学习工具通过在大量数据中寻找模式，使计算机能够开发和优化算法。机器学习(ML)是人工智能(AI)的一个分支，深度学习(DL)又是更小分一个分支，大概关系如图所示</li>
 </ul>
@@ -686,6 +687,40 @@
         <p><br></p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=492151700&auto=0&height=66"></iframe>
 
+<p>Vision是建立在Core ML上层的Framework。Vision专门用来处理视觉。Vison可以进行多种应用场景的机器学习处理，使用场景：</p>
+<ul>
+<li>人脸检测：支持检测笑脸、侧脸、局部遮挡脸部、戴眼镜和帽子等场景，可以标记出人脸的矩形区域</li>
+<li>人脸特征点：可以标记出人脸和眼睛、眉毛、鼻子、嘴、牙齿的轮廓，以及人脸的中轴线</li>
+<li>图像配准</li>
+<li>矩形检测</li>
+<li>二维码/条形码检测</li>
+<li>文字检测</li>
+<li>目标跟踪</li>
+</ul>
+<p>Vision是将各种功能的Request提供给一个 RequestHandler，Handler持有图片信息，并将处理结果分发给每个Request的completion Block中。可以从 results 属性中得到 Observation 数组，然后进行更新 UI 等操作。Vision中包含的重要类：</p>
+<ul>
+<li>VNImageRequestHandler: 处理单张图片的分析请求的类</li>
+<li>VNSequenceRequestHandler: 处理连续图片的分析请求的类</li>
+<li>VNDetectFaceRectanglesRequest: 图片中人脸的分析请求类</li>
+<li>VNDetectFaceLandmarksRequest: 图片中人脸特征(眼睛、嘴)的分析请求类</li>
+<li>VNFaceObservation: 通过图片分析请求得到的人脸信息</li>
+<li>VNDetectBarcodesRequest: 查找图片中二维码的请求</li>
+<li>VNBarcodeObservation: 图片请求获取的二维码的信息</li>
+<li>VNCoreMLRequest: 使用 Core ML 处理图片生成的请求类</li>
+<li>VNClassificationObservation: 图片分析请求获取的场景分类信息</li>
+<li>VNPixelBufferObservation:Core ML图片分析请求输出的图片信息</li>
+<li>VNCoreMLFeatureValueObservation: Core ML 图片分析请求获取的一系列 key-value 信息</li>
+</ul>
+<p>Vision支持的图片类型包括：</p>
+<ul>
+<li>CVPixelBufferRef</li>
+<li>CGImageRef</li>
+<li>CIImage</li>
+<li>NSURL</li>
+<li>NSData</li>
+</ul>
+<p>关联关系如下：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_01.png" alt=""></p>
 <p>到官网先下载一个模型，比如GoogLeNetPlaces(<a href="https://developer.apple.com/machine-learning/" target="_blank" rel="external">链接</a>)，一个识别场景的模型,创建一个Single View App工程，拖入下载好的模型 ,搭建基本的UI页面</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/%202017_10_29_08.png" alt=""></p>
 <p>使用两种方式分析图片场景，coreML和Vision。</p>

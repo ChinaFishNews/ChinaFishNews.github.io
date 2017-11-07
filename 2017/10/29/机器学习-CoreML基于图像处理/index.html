@@ -6,31 +6,50 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>机器学习-CoreML基于图像处理 | 含笑饮砒霜的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="到官网先下载一个模型，比如GoogLeNetPlaces(链接)，一个识别场景的模型,创建一个Single View App工程，拖入下载好的模型 ,搭建基本的UI页面
+  <meta name="description" content="Vision是建立在Core ML上层的Framework。Vision专门用来处理视觉。Vison可以进行多种应用场景的机器学习处理，使用场景：
 
-使用两种方式分析图片场景，coreML和Vision。
+人脸检测：支持检测笑脸、侧脸、局部遮挡脸部、戴眼镜和帽子等场景，可以标记出人脸的矩形区域
+人脸特征点：可以标记出人脸和眼睛、眉毛、鼻子、嘴、牙齿的轮廓，以及人脸的中轴线
+图像配准
+矩形检测
+二维码/条形码检测
+文字检测
+目标跟踪
 
-Vision处理图片123456func coreMLprocessImage(image:UIImage) &amp;#123;      let hander = VNIma">
+Vision是将各">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习-CoreML基于图像处理">
 <meta property="og:url" content="http://chinafish.news/2017/10/29/机器学习-CoreML基于图像处理/index.html">
 <meta property="og:site_name" content="含笑饮砒霜的博客">
-<meta property="og:description" content="到官网先下载一个模型，比如GoogLeNetPlaces(链接)，一个识别场景的模型,创建一个Single View App工程，拖入下载好的模型 ,搭建基本的UI页面
+<meta property="og:description" content="Vision是建立在Core ML上层的Framework。Vision专门用来处理视觉。Vison可以进行多种应用场景的机器学习处理，使用场景：
 
-使用两种方式分析图片场景，coreML和Vision。
+人脸检测：支持检测笑脸、侧脸、局部遮挡脸部、戴眼镜和帽子等场景，可以标记出人脸的矩形区域
+人脸特征点：可以标记出人脸和眼睛、眉毛、鼻子、嘴、牙齿的轮廓，以及人脸的中轴线
+图像配准
+矩形检测
+二维码/条形码检测
+文字检测
+目标跟踪
 
-Vision处理图片123456func coreMLprocessImage(image:UIImage) &amp;#123;      let hander = VNIma">
+Vision是将各">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_01.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/%202017_10_29_08.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_10_29_09.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2019_10_29_10.gif">
-<meta property="og:updated_time" content="2017-11-06T14:55:45.000Z">
+<meta property="og:updated_time" content="2017-11-07T12:45:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习-CoreML基于图像处理">
-<meta name="twitter:description" content="到官网先下载一个模型，比如GoogLeNetPlaces(链接)，一个识别场景的模型,创建一个Single View App工程，拖入下载好的模型 ,搭建基本的UI页面
+<meta name="twitter:description" content="Vision是建立在Core ML上层的Framework。Vision专门用来处理视觉。Vison可以进行多种应用场景的机器学习处理，使用场景：
 
-使用两种方式分析图片场景，coreML和Vision。
+人脸检测：支持检测笑脸、侧脸、局部遮挡脸部、戴眼镜和帽子等场景，可以标记出人脸的矩形区域
+人脸特征点：可以标记出人脸和眼睛、眉毛、鼻子、嘴、牙齿的轮廓，以及人脸的中轴线
+图像配准
+矩形检测
+二维码/条形码检测
+文字检测
+目标跟踪
 
-Vision处理图片123456func coreMLprocessImage(image:UIImage) &amp;#123;      let hander = VNIma">
+Vision是将各">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜的博客" type="application/atom+xml">
   
@@ -277,6 +296,40 @@ Vision处理图片123456func coreMLprocessImage(image:UIImage) &amp;#123;      l
         <p><br></p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=492151700&auto=0&height=66"></iframe>
 
+<p>Vision是建立在Core ML上层的Framework。Vision专门用来处理视觉。Vison可以进行多种应用场景的机器学习处理，使用场景：</p>
+<ul>
+<li>人脸检测：支持检测笑脸、侧脸、局部遮挡脸部、戴眼镜和帽子等场景，可以标记出人脸的矩形区域</li>
+<li>人脸特征点：可以标记出人脸和眼睛、眉毛、鼻子、嘴、牙齿的轮廓，以及人脸的中轴线</li>
+<li>图像配准</li>
+<li>矩形检测</li>
+<li>二维码/条形码检测</li>
+<li>文字检测</li>
+<li>目标跟踪</li>
+</ul>
+<p>Vision是将各种功能的Request提供给一个 RequestHandler，Handler持有图片信息，并将处理结果分发给每个Request的completion Block中。可以从 results 属性中得到 Observation 数组，然后进行更新 UI 等操作。Vision中包含的重要类：</p>
+<ul>
+<li>VNImageRequestHandler: 处理单张图片的分析请求的类</li>
+<li>VNSequenceRequestHandler: 处理连续图片的分析请求的类</li>
+<li>VNDetectFaceRectanglesRequest: 图片中人脸的分析请求类</li>
+<li>VNDetectFaceLandmarksRequest: 图片中人脸特征(眼睛、嘴)的分析请求类</li>
+<li>VNFaceObservation: 通过图片分析请求得到的人脸信息</li>
+<li>VNDetectBarcodesRequest: 查找图片中二维码的请求</li>
+<li>VNBarcodeObservation: 图片请求获取的二维码的信息</li>
+<li>VNCoreMLRequest: 使用 Core ML 处理图片生成的请求类</li>
+<li>VNClassificationObservation: 图片分析请求获取的场景分类信息</li>
+<li>VNPixelBufferObservation:Core ML图片分析请求输出的图片信息</li>
+<li>VNCoreMLFeatureValueObservation: Core ML 图片分析请求获取的一系列 key-value 信息</li>
+</ul>
+<p>Vision支持的图片类型包括：</p>
+<ul>
+<li>CVPixelBufferRef</li>
+<li>CGImageRef</li>
+<li>CIImage</li>
+<li>NSURL</li>
+<li>NSData</li>
+</ul>
+<p>关联关系如下：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_01.png" alt=""></p>
 <p>到官网先下载一个模型，比如GoogLeNetPlaces(<a href="https://developer.apple.com/machine-learning/" target="_blank" rel="external">链接</a>)，一个识别场景的模型,创建一个Single View App工程，拖入下载好的模型 ,搭建基本的UI页面</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/%202017_10_29_08.png" alt=""></p>
 <p>使用两种方式分析图片场景，coreML和Vision。</p>
