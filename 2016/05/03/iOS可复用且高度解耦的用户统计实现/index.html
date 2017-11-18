@@ -6,16 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>iOS可复用且高度解耦的用户统计实现 | 含笑饮砒霜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。
+  <meta name="description" content="本文系转载
+作者：编程小翁 
+来源：http://www.jianshu.com/p/0497afdad36d
 
-用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插">
+
+用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS可复用且高度解耦的用户统计实现">
 <meta property="og:url" content="http://chinafish.news/2016/05/03/iOS可复用且高度解耦的用户统计实现/index.html">
 <meta property="og:site_name" content="含笑饮砒霜">
-<meta property="og:description" content="说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。
+<meta property="og:description" content="本文系转载
+作者：编程小翁 
+来源：http://www.jianshu.com/p/0497afdad36d
 
-用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插">
+
+用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_04.gif?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_05.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_06.png?attname=">
@@ -27,12 +33,15 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_12.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_19.png?attname=">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_13.png?attname=">
-<meta property="og:updated_time" content="2016-05-08T14:04:36.000Z">
+<meta property="og:updated_time" content="2017-11-18T02:39:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS可复用且高度解耦的用户统计实现">
-<meta name="twitter:description" content="说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。
+<meta name="twitter:description" content="本文系转载
+作者：编程小翁 
+来源：http://www.jianshu.com/p/0497afdad36d
 
-用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插">
+
+用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜" type="application/atom+xml">
   
@@ -123,6 +132,8 @@
 				        
 							<li><a href="/categories/随笔">随笔</a></li>
 				        
+							<li><a href="/categories/转载">转载</a></li>
+				        
 						</ul>
 					</nav>
 					<nav class="header-nav">
@@ -143,7 +154,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/AVPlayer、MoviePlayer/" style="font-size: 10px;">AVPlayer、MoviePlayer</a> <a href="/tags/Aspects-转载/" style="font-size: 10px;">Aspects,转载</a> <a href="/tags/Asstrill-Shadowsocks-云梯，壁虎漫步/" style="font-size: 10px;">Asstrill,Shadowsocks,云梯，壁虎漫步</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/BugHD/" style="font-size: 10px;">BugHD</a> <a href="/tags/Cocoapods/" style="font-size: 10px;">Cocoapods</a> <a href="/tags/Coding-net/" style="font-size: 10px;">Coding.net</a> <a href="/tags/Core-Graphics/" style="font-size: 10px;">Core Graphics</a> <a href="/tags/Core-ML-Siri-AVFoundation/" style="font-size: 10px;">Core ML, Siri, AVFoundation</a> <a href="/tags/Core-ML-Vision-人脸识别/" style="font-size: 10px;">Core ML, Vision,人脸识别</a> <a href="/tags/Fabric/" style="font-size: 15px;">Fabric</a> <a href="/tags/Git，GitHub-回滚，仓库/" style="font-size: 10px;">Git，GitHub,回滚，仓库</a> <a href="/tags/Leaks，Allocations-Time-Profiler/" style="font-size: 10px;">Leaks，Allocations,Time Profiler</a> <a href="/tags/MMPDeepSleepPreventer-后台无限运行/" style="font-size: 10px;">MMPDeepSleepPreventer,后台无限运行</a> <a href="/tags/MarkDown、Mou、Macdown/" style="font-size: 10px;">MarkDown、Mou、Macdown</a> <a href="/tags/Openfire-Spark/" style="font-size: 10px;">Openfire,Spark</a> <a href="/tags/Reveal/" style="font-size: 10px;">Reveal</a> <a href="/tags/RunTime-转载/" style="font-size: 10px;">RunTime,转载</a> <a href="/tags/UIBezierPath-CAShapeLayer/" style="font-size: 10px;">UIBezierPath,CAShapeLayer</a> <a href="/tags/Vision-文字检测，VNDetectTextRectanglesRequest/" style="font-size: 10px;">Vision,文字检测，VNDetectTextRectanglesRequest</a> <a href="/tags/Vision-目标跟踪，VNDetectedObjectObservation-VNSequenceRequestHandler/" style="font-size: 10px;">Vision,目标跟踪，VNDetectedObjectObservation,VNSequenceRequestHandler</a> <a href="/tags/YYKit/" style="font-size: 10px;">YYKit</a> <a href="/tags/coremlTools-scikitLearn-Python-Anaconda/" style="font-size: 15px;">coremlTools,scikitLearn,Python,Anaconda</a> <a href="/tags/人工智能，机器学习，CoreML-Vision/" style="font-size: 10px;">人工智能，机器学习，CoreML, Vision</a> <a href="/tags/免证书，免数据线/" style="font-size: 10px;">免证书，免数据线</a> <a href="/tags/奇巧淫技/" style="font-size: 10px;">奇巧淫技</a> <a href="/tags/奇技淫巧/" style="font-size: 10px;">奇技淫巧</a> <a href="/tags/拖延症/" style="font-size: 10px;">拖延症</a> <a href="/tags/支付宝SDK/" style="font-size: 10px;">支付宝SDK</a> <a href="/tags/机器学习，人工智能，CoreML-Vision-ARKit/" style="font-size: 10px;">机器学习，人工智能，CoreML, Vision, ARKit</a> <a href="/tags/环信SDK/" style="font-size: 10px;">环信SDK</a> <a href="/tags/装逼，特技/" style="font-size: 10px;">装逼，特技</a> <a href="/tags/证书，Application-Loader/" style="font-size: 10px;">证书，Application Loader</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/AVPlayer、MoviePlayer/" style="font-size: 10px;">AVPlayer、MoviePlayer</a> <a href="/tags/Asstrill-Shadowsocks-云梯，壁虎漫步/" style="font-size: 10px;">Asstrill,Shadowsocks,云梯，壁虎漫步</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/BugHD/" style="font-size: 10px;">BugHD</a> <a href="/tags/Cocoapods/" style="font-size: 10px;">Cocoapods</a> <a href="/tags/Coding-net/" style="font-size: 10px;">Coding.net</a> <a href="/tags/Core-Graphics/" style="font-size: 10px;">Core Graphics</a> <a href="/tags/Core-ML-Siri-AVFoundation/" style="font-size: 10px;">Core ML, Siri, AVFoundation</a> <a href="/tags/Core-ML-Vision-人脸识别/" style="font-size: 10px;">Core ML, Vision,人脸识别</a> <a href="/tags/Fabric/" style="font-size: 15px;">Fabric</a> <a href="/tags/Git，GitHub-回滚，仓库/" style="font-size: 10px;">Git，GitHub,回滚，仓库</a> <a href="/tags/Leaks，Allocations-Time-Profiler/" style="font-size: 10px;">Leaks，Allocations,Time Profiler</a> <a href="/tags/MMPDeepSleepPreventer-后台无限运行/" style="font-size: 10px;">MMPDeepSleepPreventer,后台无限运行</a> <a href="/tags/MarkDown、Mou、Macdown/" style="font-size: 10px;">MarkDown、Mou、Macdown</a> <a href="/tags/Openfire-Spark/" style="font-size: 10px;">Openfire,Spark</a> <a href="/tags/Reveal/" style="font-size: 10px;">Reveal</a> <a href="/tags/Vision-文字检测，VNDetectTextRectanglesRequest/" style="font-size: 10px;">Vision,文字检测，VNDetectTextRectanglesRequest</a> <a href="/tags/Vision-目标跟踪，VNDetectedObjectObservation-VNSequenceRequestHandler/" style="font-size: 10px;">Vision,目标跟踪，VNDetectedObjectObservation,VNSequenceRequestHandler</a> <a href="/tags/YYKit/" style="font-size: 10px;">YYKit</a> <a href="/tags/coremlTools-scikitLearn-Python-Anaconda/" style="font-size: 15px;">coremlTools,scikitLearn,Python,Anaconda</a> <a href="/tags/人工智能，机器学习，CoreML-Vision/" style="font-size: 10px;">人工智能，机器学习，CoreML, Vision</a> <a href="/tags/免证书，免数据线/" style="font-size: 10px;">免证书，免数据线</a> <a href="/tags/奇巧淫技/" style="font-size: 10px;">奇巧淫技</a> <a href="/tags/奇技淫巧/" style="font-size: 10px;">奇技淫巧</a> <a href="/tags/拖延症/" style="font-size: 10px;">拖延症</a> <a href="/tags/支付宝SDK/" style="font-size: 10px;">支付宝SDK</a> <a href="/tags/机器学习，人工智能，CoreML-Vision-ARKit/" style="font-size: 10px;">机器学习，人工智能，CoreML, Vision, ARKit</a> <a href="/tags/环信SDK/" style="font-size: 10px;">环信SDK</a> <a href="/tags/装逼，特技/" style="font-size: 10px;">装逼，特技</a> <a href="/tags/证书，Application-Loader/" style="font-size: 10px;">证书，Application Loader</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -215,6 +226,8 @@
 		        
 					<li><a href="/categories/随笔">随笔</a></li>
 		        
+					<li><a href="/categories/转载">转载</a></li>
+		        
 		        <div class="clearfix"></div>
 				</ul>
 			</nav>
@@ -261,12 +274,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aspects-转载/">Aspects,转载</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	<a class="article-category-link" href="/categories/转载/">转载</a>
 	</div>
 
 
@@ -278,9 +291,13 @@
       
         <video width="498" height="510 " src="http://7xqjid.com1.z0.glb.clouddn.com/2016_04_14.mp4 " poster=" " controls="controls"><br><br></video>
 
+
+<blockquote>
+<p>本文系转载</p>
+<p>作者：编程小翁 </p>
+<p>来源：<a href="http://www.jianshu.com/p/0497afdad36d" target="_blank" rel="external">http://www.jianshu.com/p/0497afdad36d</a></p>
+</blockquote>
 <p><br></p>
-<p>说好的两篇的。本文接上篇博文RunTime机制及使用梳理。很久以前看到一篇类似的文章，不知道是不是这一篇。</p>
-<hr>
 <p>用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地方都插入埋点代码。一旦项目越来越复杂，你会发现埋点的代码散落在程序的各个角落，不利于维护以及复用。本文旨在探讨利用iOS的运行时机制实现一种可复、解耦、容易维护的用户统计方案。探讨毕竟是探讨，欢迎到在简书留言讨论。本文虽有些长却是用心之作，希望你有耐心看完。</p>
 <p>注：本文需要一些iOS的Runtime基础<br>该方案的完成将会用到以下知识：</p>
 <p><code>Method Swizzling(Hook)</code></p>
@@ -442,18 +459,6 @@ if ([selfClassName isEqualToString:@&quot;HomeViewController&quot;]) {
 <p>小总结：<br>合理的单元测试可以为本文方案的后期维护减轻相当大的负担，测试用例的完备性很重要，需要用心设计考虑周全。</p>
 <p>五、结语<br>以上就是结合运行时所设计出的用户统计思路全部内容。应该说该方案的可复用性与解耦程度都是不错的，既适合于新建的工程，也适合于已经创建的工程。看起来内容多，其实总结起来无非几个步骤：plist配置表+Hook+单元测试。利用Method Swizzling把埋点代码集中管理其实也是合理的，有利于专人开发、跟踪及维护。当然以上思路只考虑简单的情形，更复杂的情况就需要变通了，但总体思路就是如此。<br>思路可能不完美，但作为一种尝试也未尝不可。路都是走出来的。</p>
 <p>本文demo地址：<a href="https://github.com/weng1250/UserStatisticsWithRuntime" target="_blank" rel="external">https://github.com/weng1250/UserStatisticsWithRuntime</a></p>
-<p><br></p>
-<blockquote>
-<p>本文系转载</p>
-<p>作者：编程小翁 </p>
-<p>来源：<a href="http://www.jianshu.com/p/0497afdad36d" target="_blank" rel="external">http://www.jianshu.com/p/0497afdad36d</a></p>
-</blockquote>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
 
       
     </div>
