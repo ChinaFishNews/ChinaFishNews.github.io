@@ -19,7 +19,7 @@ block常用用法1. block作为对象的属性新建一个Single工程，创建�
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_01.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_02.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_03.png">
-<meta property="og:updated_time" content="2017-11-26T16:23:31.000Z">
+<meta property="og:updated_time" content="2017-11-26T16:31:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa探究一">
 <meta name="twitter:description" content="谈到ReactiveCocoa(RAC),说它比较火似乎也没有那么火，一些大厂用的也并不多，说它不火貌似又经常看到或听到一些鼓吹RAC的文章和言论。尽管它很强大，但是也并没有很普及，即便它很强大！
@@ -282,36 +282,51 @@ block常用用法1. block作为对象的属性新建一个Single工程，创建�
 <p>注意，在非ARC环境下block需要使用copy声明，使用copy的原因,是把block从栈区拷贝到堆区,因为栈区中的变量出了作用域之后就会被销毁,无法在全局使用,所以应该把栈区的属性拷贝到堆区中全局共享,这样就不会被销毁了,在MRC手动管理的就是堆区,不需要系统管理,MRC环境必须使用copy把变量拷贝到全局的堆区。而如果在ARC环境下就可以不使用copy修饰,因为ARC下的属性本来就在堆区。所以现在在默认是ARC环境下依然沿袭了之前的使用方式copy，使用strong也没有问题。</p>
 </blockquote>
 <p>在Person类中声明一个block</p>
-<p><code>@property (nonatomic, strong) void(^myBlock)(void);</code></p>
-<p>在控制器中持有一个Person对象，并声明一个block接受Person的这个block属性</p>
-<p><code>self.p = [[Person alloc] init];</code></p>
-<p><code>void(^testBlock)(void) = ^() {</code></p>
-<p><code>NSLog(@&quot;block as params&quot;);</code></p>
-<p><code>};</code></p>
-<p><code>self.p.myBlock = testBlock</code></p>
-<p>在点击屏幕的时候实现这个block</p>
-<p><code>self.p.myBlock();</code></p>
-<h4 id="2-block_u4F5C_u4E3A_u65B9_u6CD5_u7684_u53C2_u6570"><a href="#2-block_u4F5C_u4E3A_u65B9_u6CD5_u7684_u53C2_u6570" class="headerlink" title="2.block作为方法的参数"></a>2.block作为方法的参数</h4><p>同样在Person类中声明一个带有block参数的方法并实现</p>
-<p><code>`-</code> (void)eat:(void(^)(NSString *someThing))block;<br>`</p>
-<p><code>`-</code> (void)eat:(void(^)(NSString * someThing))block {<br>`</p>
-<p><code>block(@&quot;delicious&quot;);</code></p>
-<p><code>}</code></p>
-<p>在控制器中调用,其中block中的已知数据类型的参数是Person对象提供给外界使用的，AFNetworing中返回的block结果就是如此。</p>
-<p><code>[self.p eat:^(NSString *someThing) {
-        NSLog(@&quot;eat %@&quot;,someThing);
-    }];</code></p>
-<h4 id="3-_u4F5C_u4E3A_u65B9_u6CD5_u7684_u8FD4_u56DE_u503C"><a href="#3-_u4F5C_u4E3A_u65B9_u6CD5_u7684_u8FD4_u56DE_u503C" class="headerlink" title="3.作为方法的返回值"></a>3.作为方法的返回值</h4><p>block作为方法的返回值这种用法开发中其实并不常用，但是一些第三方，最典型的常用约束库<br><code>Masonry</code>库就将block作为方法的返回值来使用。</p>
+<pre><code>@property (nonatomic, strong) void(^myBlock)(void);
+</code></pre><p>在控制器中持有一个Person对象，并声明一个block接受Person的这个block属性</p>
+<pre><code>self.p = [[Person alloc] init];
+
+void(^testBlock)(void) = ^() {
+
+ NSLog(@&quot;block as params&quot;);
+
+    };
+
+self.p.myBlock = testBlock
+</code></pre><p>在点击屏幕的时候实现这个block</p>
+<pre><code>self.p.myBlock();
+</code></pre><h4 id="2-block_u4F5C_u4E3A_u65B9_u6CD5_u7684_u53C2_u6570"><a href="#2-block_u4F5C_u4E3A_u65B9_u6CD5_u7684_u53C2_u6570" class="headerlink" title="2.block作为方法的参数"></a>2.block作为方法的参数</h4><p>同样在Person类中声明一个带有block参数的方法并实现</p>
+<pre><code>- (void)eat:(void(^)(NSString *someThing))block;
+
+- (void)eat:(void(^)(NSString * someThing))block {
+
+block(@&quot;delicious&quot;);
+
+}
+</code></pre><p>在控制器中调用,其中block中的已知数据类型的参数是Person对象提供给外界使用的，AFNetworing中返回的block结果就是如此。</p>
+<pre><code>[self.p eat:^(NSString *someThing) {
+       NSLog(@&quot;eat %@&quot;,someThing);
+   }];
+</code></pre><h4 id="3-_u4F5C_u4E3A_u65B9_u6CD5_u7684_u8FD4_u56DE_u503C"><a href="#3-_u4F5C_u4E3A_u65B9_u6CD5_u7684_u8FD4_u56DE_u503C" class="headerlink" title="3.作为方法的返回值"></a>3.作为方法的返回值</h4><p>block作为方法的返回值这种用法开发中其实并不常用，但是一些第三方，最典型的常用约束库<br><code>Masonry</code>库就将block作为方法的返回值来使用。</p>
 <p>同样在Person中声明一个run方法并实现,将block作为方法的返回值</p>
-<p><code>`-</code> (void(^)(int m))run;<br>`</p>
-<p><code>`-</code> (void(^)(int m))run {<br>    return ^(int m) {<br>        NSLog(@”run %d”,m);<br>    };<br>}<br>`</p>
-<p>在控制器找那个可以这样调用</p>
-<p><code>`-</code> (void)methodTree {<br>    void(^block)(int m) =  self.p.run;<br>    block(100);<br>}<br>`</p>
-<p>并没需要一个block先接收再实现，可以直接调用</p>
-<p><code>[self.p run](100);</code></p>
-<p>有没有觉得这种调用怪怪的，其实就是调用方法返回一个block再调用 这个block，block的调用方式就是<code>block()</code></p>
+<pre><code>- (void(^)(int m))run;
+
+- (void(^)(int m))run {
+    return ^(int m) {
+        NSLog(@&quot;run %d&quot;,m);
+    };
+}
+</code></pre><p>在控制器找那个可以这样调用</p>
+<pre><code>- (void)methodTree {
+    void(^block)(int m) =  self.p.run;
+    block(100);
+}
+</code></pre><p>并没需要一个block先接收再实现，可以直接调用</p>
+<pre><code>[self.p run](100);
+</code></pre><p>有没有觉得这种调用怪怪的，其实就是调用方法返回一个block再调用 这个block，block的调用方式就是<code>block()</code></p>
 <p>有没有更简单的写法呢？答案是有！</p>
-<p><code>self.p.run(100);</code></p>
-<p>为什么可以使用点语法调用？</p>
+<pre><code>self.p.run(100);
+</code></pre><p>为什么可以使用点语法调用？</p>
 <p>在OC中只有形如get类型的方法才可以使用点语法点出来，否则是能使用形如<code>[self run]</code>这种加空格的调用方法。而这种将block作为返回值的方法语法类型和get方法相同，所以可以使用点语法调用，但是如果将block作为方法的返回值，而且这个方法又有其他参数，是无法通过点语法调用的，因为系统判断这不是get方法，get方法是没有参数的。</p>
 <p><a href="https://github.com/ChinaFishNews/BlockDemo.git" target="_blank" rel="external">Demo地址</a></p>
 <h3 id="u7F16_u7A0B_u601D_u60F3"><a href="#u7F16_u7A0B_u601D_u60F3" class="headerlink" title="编程思想"></a>编程思想</h3><p>了解几种常规的编程思想，如链式编程，响应式编程，函数式编程等。</p>
@@ -378,8 +393,7 @@ redView.backgroundColor = [UIColor redColor];
     return [self.delegate constraint:self     addConstraintWithLayoutAttribute:layoutAttribute];
 }
 </code></pre><p>可以发现都是通过代理来实现，最终返回的是一个约束<code>MASConstraint</code>，并添加到约束数组中,这也就可以解释了为什么<code>make.left</code>后依然可以<code>.top</code>,<code>.right</code>继续点出来，事实上只要你愿意，你可以一直这么写下去，因为返回值都是这些方法的调用者。而这也是链式编程最重要的思想特点，即：</p>
-<p>###方法的返回值必须要有方法调用者</p>
-<p>为什么是 “要有方法调用者”而不是“要是方法的调用者”呢？</p>
+<h3 id="u65B9_u6CD5_u7684_u8FD4_u56DE_u503C_u5FC5_u987B_u8981_u6709_u65B9_u6CD5_u8C03_u7528_u8005"><a href="#u65B9_u6CD5_u7684_u8FD4_u56DE_u503C_u5FC5_u987B_u8981_u6709_u65B9_u6CD5_u8C03_u7528_u8005" class="headerlink" title="方法的返回值必须要有方法调用者"></a>方法的返回值必须要有方法调用者</h3><p>为什么是 “要有方法调用者”而不是“要是方法的调用者”呢？</p>
 <p>我们接着看<code>make.left.top.equalTo(@100)</code>中的<code>equalTo</code>方法</p>
 <pre><code>- (MASConstraint * (^)(id))equalTo {
     return ^id(id attribute) {
