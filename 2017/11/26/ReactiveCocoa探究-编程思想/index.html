@@ -11,7 +11,7 @@
 block常用用法1. block作为对象的属性新建一个Single工程，创建一个Person类，在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ReactiveCocoa探究一">
-<meta property="og:url" content="http://chinafish.news/2017/11/26/ReactiveCocoa探究一/index.html">
+<meta property="og:url" content="http://chinafish.news/2017/11/26/ReactiveCocoa探究-编程思想/index.html">
 <meta property="og:site_name" content="含笑饮砒霜">
 <meta property="og:description" content="谈到ReactiveCocoa(RAC),说它比较火似乎也没有那么火，一些大厂用的也并不多，说它不火貌似又经常看到或听到一些鼓吹RAC的文章和言论。尽管它很强大，但是也并没有很普及，即便它很强大！
 在了解ReactiveCocoa前，先简单粗略回顾一下block的几种常用用法及几种常见的编程思想。
@@ -19,7 +19,12 @@ block常用用法1. block作为对象的属性新建一个Single工程，创建�
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_01.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_02.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_03.png">
-<meta property="og:updated_time" content="2017-11-26T16:31:47.000Z">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_01.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_02.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_03.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_04.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_05.png">
+<meta property="og:updated_time" content="2017-12-02T14:55:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa探究一">
 <meta name="twitter:description" content="谈到ReactiveCocoa(RAC),说它比较火似乎也没有那么火，一些大厂用的也并不多，说它不火貌似又经常看到或听到一些鼓吹RAC的文章和言论。尽管它很强大，但是也并没有很普及，即便它很强大！
@@ -229,10 +234,10 @@ block常用用法1. block作为对象的属性新建一个Single工程，创建�
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-ReactiveCocoa探究一" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-ReactiveCocoa探究-编程思想" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/11/26/ReactiveCocoa探究一/" class="article-date">
+      <a href="/2017/11/26/ReactiveCocoa探究-编程思想/" class="article-date">
   	<time datetime="2017-11-25T16:00:00.000Z" itemprop="datePublished">2017-11-26</time>
 </a>
     </div>
@@ -330,7 +335,7 @@ block(@&quot;delicious&quot;);
 <p>在OC中只有形如get类型的方法才可以使用点语法点出来，否则是能使用形如<code>[self run]</code>这种加空格的调用方法。而这种将block作为返回值的方法语法类型和get方法相同，所以可以使用点语法调用，但是如果将block作为方法的返回值，而且这个方法又有其他参数，是无法通过点语法调用的，因为系统判断这不是get方法，get方法是没有参数的。</p>
 <p><a href="https://github.com/ChinaFishNews/BlockDemo.git" target="_blank" rel="external">Demo地址</a></p>
 <h3 id="u7F16_u7A0B_u601D_u60F3"><a href="#u7F16_u7A0B_u601D_u60F3" class="headerlink" title="编程思想"></a>编程思想</h3><p>了解几种常规的编程思想，如链式编程，响应式编程，函数式编程等。</p>
-<h4 id="1-__u94FE_u5F0F_u7F16_u7A0B_u601D_u60F3"><a href="#1-__u94FE_u5F0F_u7F16_u7A0B_u601D_u60F3" class="headerlink" title="1. 链式编程思想"></a>1. 链式编程思想</h4><p>典型的使用链式编程思想的有<code>Masonry</code>库,通过分析<code>Mansory</code>库的使用机制来了解一下链式编程。</p>
+<h4 id="1-__u94FE_u5F0F_u7F16_u7A0B_u601D_u60F3"><a href="#1-__u94FE_u5F0F_u7F16_u7A0B_u601D_u60F3" class="headerlink" title="1. 链式编程思想"></a>1. 链式编程思想</h4><p>链式编程就是可以通过”点”语法，将需要执行的代码块连续的书写下去，使得代码简单易读，书写方便。典型的使用链式编程思想的有<code>Masonry</code>库,通过分析<code>Mansory</code>库的使用机制来了解一下链式编程。</p>
 <p>同样新建一个Single工程，添加一个View</p>
 <pre><code>UIView *redView = [[UIView alloc] init];
 
@@ -403,8 +408,136 @@ redView.backgroundColor = [UIColor redColor];
 </code></pre><p>可见，这个<code>equalTo</code>方法返回的不是方法调用者，而是一个返回值为方法调用者的block。而我们在调用<code>equalTo</code>方法的时候紧跟着后面加了“(100)”,也就是说调用了这个返回的<code>block</code>,<code>bclok</code>执行后返回的又是一个方法调用者<code>MASConstraint</code>。也就是说，只要你愿意，在<code>make.left.top.equalTo(@100)</code>之后，你依然可以继续调用<code>get</code>方法，形如</p>
 <p><code>make.left.top.equalTo(@100).right.bottom.equalTo(@-100);</code></p>
 <p>只是在<code>equalTo</code>之后继续调用<code>get</code>方法，后面的约束值会覆盖掉前面的约束值。所以，理论上可以，然而并不应该这么做。</p>
-<h5 id="u90A3_u5982_u679C_u6211_u4EEC_u81EA_u5DF1_u4E5F_u60F3_u73A9_u4E00_u4E2A_u5177_u5907_u94FE_u5F0F_u7F16_u7A0B_u7279_u70B9_u7684_u7C7B_u8BE5_u600E_u4E48_u5199_u5462_uFF1F_u8BB0_u4F4F_uFF0C_u94FE_u5F0F_u7F16_u7A0B_uFF0C_u65B9_u6CD5_u8FD4_u56DE_u503C_u5FC5_u987B_u8981_u6709_u65B9_u6CD5_u8C03_u7528_u8005_u3002_u7136_u540E_u53EF_u4EE5_u53C2_u8003Masonary_u5E93_u7C97_u7565_u73A9_u4E00_u4E0B_u3002"><a href="#u90A3_u5982_u679C_u6211_u4EEC_u81EA_u5DF1_u4E5F_u60F3_u73A9_u4E00_u4E2A_u5177_u5907_u94FE_u5F0F_u7F16_u7A0B_u7279_u70B9_u7684_u7C7B_u8BE5_u600E_u4E48_u5199_u5462_uFF1F_u8BB0_u4F4F_uFF0C_u94FE_u5F0F_u7F16_u7A0B_uFF0C_u65B9_u6CD5_u8FD4_u56DE_u503C_u5FC5_u987B_u8981_u6709_u65B9_u6CD5_u8C03_u7528_u8005_u3002_u7136_u540E_u53EF_u4EE5_u53C2_u8003Masonary_u5E93_u7C97_u7565_u73A9_u4E00_u4E0B_u3002" class="headerlink" title="那如果我们自己也想玩一个具备链式编程特点的类该怎么写呢？记住，链式编程，方法返回值必须要有方法调用者。然后可以参考Masonary库粗略玩一下。"></a>那如果我们自己也想玩一个具备链式编程特点的类该怎么写呢？记住，链式编程，方法返回值必须要有方法调用者。然后可以参考<code>Masonary</code>库粗略玩一下。</h5><p><a href="https://github.com/ChinaFishNews/ChainProgrammingDemo" target="_blank" rel="external">Demo下载</a></p>
-<h5 id="u672A_u5B8C_u5F85_u7EED_u2026"><a href="#u672A_u5B8C_u5F85_u7EED_u2026" class="headerlink" title="未完待续…"></a>未完待续…</h5><hr>
+<h5 id="u90A3_u5982_u679C_u6211_u4EEC_u81EA_u5DF1_u4E5F_u60F3_u73A9_u4E00_u4E2A_u5177_u5907_u94FE_u5F0F_u7F16_u7A0B_u7279_u70B9_u7684_u7C7B_u8BE5_u600E_u4E48_u5199_u5462_uFF1F_u8BB0_u4F4F_uFF0C_u94FE_u5F0F_u7F16_u7A0B_uFF0C_u65B9_u6CD5_u8FD4_u56DE_u503C_u5FC5_u987B_u8981_u6709_u65B9_u6CD5_u8C03_u7528_u8005_u3002_u7136_u540E_u53EF_u4EE5_u53C2_u8003Masonary_u5E93_u7C97_u7565_u73A9_u4E00_u4E0B_u3002"><a href="#u90A3_u5982_u679C_u6211_u4EEC_u81EA_u5DF1_u4E5F_u60F3_u73A9_u4E00_u4E2A_u5177_u5907_u94FE_u5F0F_u7F16_u7A0B_u7279_u70B9_u7684_u7C7B_u8BE5_u600E_u4E48_u5199_u5462_uFF1F_u8BB0_u4F4F_uFF0C_u94FE_u5F0F_u7F16_u7A0B_uFF0C_u65B9_u6CD5_u8FD4_u56DE_u503C_u5FC5_u987B_u8981_u6709_u65B9_u6CD5_u8C03_u7528_u8005_u3002_u7136_u540E_u53EF_u4EE5_u53C2_u8003Masonary_u5E93_u7C97_u7565_u73A9_u4E00_u4E0B_u3002" class="headerlink" title="那如果我们自己也想玩一个具备链式编程特点的类该怎么写呢？记住，链式编程，方法返回值必须要有方法调用者。然后可以参考Masonary库粗略玩一下。"></a>那如果我们自己也想玩一个具备链式编程特点的类该怎么写呢？记住，链式编程，方法返回值必须要有方法调用者。然后可以参考<code>Masonary</code>库粗略玩一下。</h5><ol>
+<li>先创建一个计算管理器吧<code>CalculateManager</code>，定义简单的加减乘除方法并逐一趋实现，并声明一个属性去保存计算结果, 这些方法都有一个共同的特点，就是返回值是一个block，而block的返回值是这个类本身，这就确保了在调用方法后依然可以继续调用。</li>
+</ol>
+<pre><code>@interface CalculateManager : NSObject
+
+@property(assign,nonatomic)double result;
+
++ (instancetype)sharedInstance;
+
+-(CalculateManager *(^)(float value))add;
+
+-(CalculateManager *(^)(float value))minus;
+
+-(CalculateManager *(^)(float value))multi;
+
+-(CalculateManager *(^)(float value))divis;
+
+@end
+
+@implementation CalculateManager
+
+    + (instancetype)sharedInstance {
+    static dispatch_once_t onceToken;
+    static CalculateManager *mgr = nil;
+    dispatch_once(&amp;onceToken, ^{
+        mgr = [[self alloc] init];
+    });
+    return mgr;
+}
+
+-(CalculateManager * (^)(float value))add{
+    return ^(float value){
+        _result += value;
+        return self;
+    };
+}
+
+-(CalculateManager *(^)(float value))minus {
+    return ^(float value){
+        _result -= value;
+        return self;
+    };
+}
+
+-(CalculateManager *(^)(float value))multi {
+    return ^(float value){
+        _result *= value;
+        return self;
+    };
+}
+
+-(CalculateManager *(^)(float value))divis {
+    return ^(float value){
+        _result /= value;
+        return self;
+    };
+}
+</code></pre><p> 2.接下来你会发现已经可以使用链式编程了</p>
+<pre><code>CalculateManager *manger = [[CalculateManager alloc] init];
+double result = manger.add(3).minus(3).result;
+</code></pre><p>  只要你愿意，依然可以在返回结果前继续点下去。但是你会发现在返回结果后没法继续调用方法了。而且这种调用依然需要创建实例，和<code>Masonry</code>形式依然不同，那就继续改进。在使用<code>Masonry</code>时你会发现任何继承自<code>UIView</code>的控件都可以调用<code>mas_makeConstraints</code>或其他方法，那说明这绝壁是个<code>UIView</code>的分类。仿照此思路，我们创建一个<code>NSObject</code>的分类，使得<code>NSObject</code>任何子类实例都可以调用。</p>
+<pre><code> @interface NSObject (Calculate)
+
+- (double)fn_calculate:(void(^)(CalculateManager * mgr))block;
+
+@end
+
+@implementation NSObject (Calculate)
+
+- (double)fn_calculate:(void(^)(CalculateManager * mgr))block {
+    CalculateManager * mgr = [CalculateManager sharedInstance];
+    block(mgr);
+    return mgr.result;
+}
+</code></pre><p>上面这个方法的参数是参数为<code>CalculateManager</code>的block，返回结果为<code>CalculateManager</code>的属性值。现在就可以这么使用了：</p>
+<pre><code>double result = [self fn_calculate:^(CalculateManager *mgr) {
+        mgr.add(10).add(10).divis(3).multi(5.8).minus(2.2);
+    }];
+</code></pre><p>@end</p>
+<p>只要你愿意，你可以一直点下去。这种写法其实在OC中非常少见，但是像<code>Masonry</code>一些第三方库都使用了这种思想。</p>
+<p><a href="https://github.com/ChinaFishNews/ChainProgrammingDemo" target="_blank" rel="external">Demo下载</a></p>
+<h4 id="u51FD_u6570_u7F16_u7A0B_u601D_u60F3_28FP_29"><a href="#u51FD_u6570_u7F16_u7A0B_u601D_u60F3_28FP_29" class="headerlink" title="函数编程思想(FP)"></a>函数编程思想(FP)</h4><p>函数编程是把操作尽量写成一系列嵌套的函数或者方法调用。每个方法必须要有返回值，把函数或者block当作参数。</p>
+<p>继续上面的例子，在<code>CalculateManager</code>中声明并实现一个方法</p>
+<pre><code>- (instancetype)manager:(double(^)(double))block;
+
+
+- (instancetype)manager:(double(^)(double))block {
+    _result = block(_result);
+        return self;
+}
+</code></pre><p>这个方法参数是一个block，这个block又有返回值和参数，方法的返回值又是自己的一个实例。这里方法的返回值完全可以不是自己的实例，而是一个具体的结果。但是如果是一个具体的结果，如果这个类中有很多其他的属性，那对应的就相应有很多雷同的方法，所以返回一个实例，调用的时候可以通过这个实例去获得对应的属性值。</p>
+<pre><code>CalculateManager * mgr = [[CalculateManager alloc] init];
+    double h_Result = [[mgr manager:^double(double parameter) {
+       parameter += 10;
+          parameter *= 2;
+          return parameter;
+   }] result];
+   NSLog(@&quot;%f&quot;,h_Result);
+</code></pre><h4 id="u54CD_u5E94_u5F0F_u7F16_u7A0B_u601D_u60F3_28RP_29"><a href="#u54CD_u5E94_u5F0F_u7F16_u7A0B_u601D_u60F3_28RP_29" class="headerlink" title="响应式编程思想(RP)"></a>响应式编程思想(RP)</h4><p>响应式编程不需要考虑调用顺序，只需要考虑结果。 iOS中最具代表性的就是<code>KVO</code>的使用。看一下简单实用。</p>
+<p>先创建一个<code>Person</code>类，声明一个<code>name</code>属性，监听<code>Person</code>的<code>name</code>属性</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_01.png" alt=""></p>
+<p>你会发现没什么毛病。如果这时候，我们把<code>name</code>属性变成一个成员变量，再去使用箭头函数方式去修改<code>name</code>的值</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_02.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_03.png" alt=""></p>
+<p>这个时候你会发现并没有走进监听函数。这和上面正常使用的时候有什么区别呢？那就是修改<code>name</code>属性的时候，成员变量不会调用<code>set</code>方法, 而使用点语法总是会调用<code>set</code>函数。有理由相信，使用<code>KVO</code>的时候重写了属性的<code>set</code>方法。</p>
+<blockquote>
+<p>###怎么可以重写<code>set</code>方法？</p>
+<ol>
+<li>可以使用分类的形式重写</li>
+<li>可以使用子类去重写</li>
+</ol>
+</blockquote>
+<p>想想看，苹果有没有可能去使用分类的形式去重写？ 绝壁不可能！因为如果分类中去重写属性的<code>set</code>方法，则原有类中即便重写了该属性的<code>set</code>方法也不会调用,会优先使用分类中的方法。而我们在日常开发中，经常会去重写<code>set</code>方法去做一些其他操作。所以只可能是第二种情况，使用子类去重写了<code>set</code>方法。那过程应该是怎样的呢？</p>
+<blockquote>
+<ol>
+<li>自定义被监听类的子类</li>
+<li>重写被监听属性的<code>set</code>方法，在内部调用<code>super</code>恢复父类的做法，通知观察者</li>
+</ol>
+</blockquote>
+<p>还有一个问题？ 如何让外界调用自定义子类的方法？所以还有最重要的一点</p>
+<blockquote>
+<p> iOS中有个<code>isa</code>指针, 修改当前对象的isa指针,指向自定义的子类!</p>
+</blockquote>
+<p>验证一下猜测，查看一下在走进监听方法后对象的<code>isa</code>指针指向。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_04.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_05.png" alt=""></p>
+<p>知道了<code>KVO</code>的内部机制，那我们自己就可以写一个简单的<code>KVO</code>。</p>
+<p><a href="https://github.com/ChinaFishNews/ReactProgrammingDemo" target="_blank" rel="external">Demo下载</a></p>
+<p>未完待续<del>~</del></p>
+<hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
 <p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
@@ -456,7 +589,7 @@ redView.backgroundColor = [UIColor redColor];
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="ReactiveCocoa探究一" data-title="ReactiveCocoa探究一" data-url="http://chinafish.news/2017/11/26/ReactiveCocoa探究一/"></div>
+	<div class="ds-thread" data-thread-key="ReactiveCocoa探究-编程思想" data-title="ReactiveCocoa探究一" data-url="http://chinafish.news/2017/11/26/ReactiveCocoa探究-编程思想/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
