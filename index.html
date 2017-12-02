@@ -238,7 +238,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/26/ReactiveCocoa探究-编程思想/">ReactiveCocoa探究一</a>
+      <a class="article-title" href="/2017/11/26/ReactiveCocoa探究-编程思想/">ReactiveCocoa探究-编程思想</a>
     </h1>
   
 
@@ -486,8 +486,7 @@ double result = manger.add(3).minus(3).result;
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_03.png" alt=""></p>
 <p>这个时候你会发现并没有走进监听函数。这和上面正常使用的时候有什么区别呢？那就是修改<code>name</code>属性的时候，成员变量不会调用<code>set</code>方法, 而使用点语法总是会调用<code>set</code>函数。有理由相信，使用<code>KVO</code>的时候重写了属性的<code>set</code>方法。</p>
 <blockquote>
-<p>###怎么可以重写<code>set</code>方法？</p>
-<ol>
+<h3 id="u600E_u4E48_u53EF_u4EE5_u91CD_u5199set_u65B9_u6CD5_uFF1F"><a href="#u600E_u4E48_u53EF_u4EE5_u91CD_u5199set_u65B9_u6CD5_uFF1F" class="headerlink" title="怎么可以重写set方法？"></a>怎么可以重写<code>set</code>方法？</h3><ol>
 <li>可以使用分类的形式重写</li>
 <li>可以使用子类去重写</li>
 </ol>
