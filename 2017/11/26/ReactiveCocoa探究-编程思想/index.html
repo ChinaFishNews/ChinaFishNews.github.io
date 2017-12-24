@@ -24,7 +24,11 @@ block常用用法1. block作为对象的属性新建一个Single工程，创建�
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_03.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_04.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_05.png">
-<meta property="og:updated_time" content="2017-12-02T14:57:36.000Z">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_02.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_03.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_04.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_01.png">
+<meta property="og:updated_time" content="2017-12-24T08:20:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa探究-编程思想">
 <meta name="twitter:description" content="谈到ReactiveCocoa(RAC),说它比较火似乎也没有那么火，一些大厂用的也并不多，说它不火貌似又经常看到或听到一些鼓吹RAC的文章和言论。尽管它很强大，但是也并没有很普及，即便它很强大！
@@ -534,8 +538,13 @@ double result = manger.add(3).minus(3).result;
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_04.png" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_05.png" alt=""></p>
 <p>知道了<code>KVO</code>的内部机制，那我们自己就可以写一个简单的<code>KVO</code>。</p>
+<p>以上面为例，监听Person类的name属性，创建一个NSObject的分类，添加监听方法并实现,最后再使用添加的这个方法监听即可。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_02.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_03.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_04.png" alt=""></p>
+<p>注意在使用<code>objc_msgSend</code>时需要在Build Setting中将<code>Enable Strict Checking of objc_msgSend Calls</code>设置为<code>NO</code></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_01.png" alt=""></p>
 <p><a href="https://github.com/ChinaFishNews/ReactProgrammingDemo" target="_blank" rel="external">Demo下载</a></p>
-<p>未完待续<del>~</del></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
