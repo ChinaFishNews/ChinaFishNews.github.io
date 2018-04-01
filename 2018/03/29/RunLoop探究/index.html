@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_07.gif">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_02.gif">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_03.gif">
-<meta property="og:updated_time" content="2018-04-01T15:44:42.000Z">
+<meta property="og:updated_time" content="2018-04-01T15:56:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RunLoop探究">
 <meta name="twitter:description" content="RunLoop,即运行循环，你非要叫它跑圈，也不是不可以
@@ -291,7 +291,7 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_01.png" alt=""></p>
 <p>程序启动首先就会走到这里，这里有个自动释放池，一般在创建大量临时变量的时候会手动创建释放池，这里将整个程序运行期间都置于这个释放池内，程序运行结束之时，自动释放池结束，内存回收。这个自动释放池内，就一句代码，这是什么意思？进入<code>UIApplicationMain</code>函数内可以发现，这个函数返回值是<code>int</code>型。那我们换种写法</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_02.png" alt=""></p>
-<p>运行起来，会发现第十六行并不会执行，代码停留在了第十五行，不会再继续往下执行，也就是说<code>UIApplicationMain</code>函数一直没有返回。我们的程序一直只在主线程上执行的，我们打印下看看</p>
+<p>运行起来，会发现第十六行并不会执行，代码停留在了第十五行，不会再继续往下执行，也就是说<code>UIApplicationMain</code>函数一直没有返回。我们的程序一直是在主线程上执行的，我们打印下看看</p>
 <pre><code>NSLog(@&quot;thread=%@&quot;,[NSThread currentThread]);
 
 2018-03-30 22:53:12.821131+0800 RunLoopDemo[74265:4182972] thread=&lt;NSThread: 0x604000066180&gt;{number = 1, name = main}
@@ -313,7 +313,7 @@
     a++;
     NSLog(@&quot;a=%zd&quot;,a);
 }
-</code></pre><p>一个很简单的时钟事件，这个时候你会发现方法并没有走。上面已经提到，RunLoop用来监听事件，需要将<code>timer</code>加到<code>RunLoop</code>中去</p>
+</code></pre><p>一个很简单的时钟事件，这个时候你会发现方法并没有走。上面已经提到，<code>RunLoop</code>用来监听事件，需要将<code>timer</code>加到<code>RunLoop</code>中去</p>
 <pre><code>[[NSRunLoop currentRunLoop] addTimer:timer     forMode:NSDefaultRunLoopMode];
 </code></pre><p>注意RunLoop无法手动创建，只能获取，不过其实第一次获取就是创建。这里面有个<code>mode</code>属性，暂时写默认，这时候运行程序，正常运行。这时候我们往控制器上拖个textView, 运行</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_03.gif" alt=""></p>
@@ -338,7 +338,7 @@
 <p>[[NSRunLoop currentRunLoop] addTimer:timer     forMode:NSRunLoopCommonModes];</p>
 <p>再次运行，会发现上述问题都得到了解决，拖拽不再影响时钟方法的执行了。简单画个图</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_06.png" alt=""></p>
-<p>上面提到，<code>RunLoop</code>的作用之一就是监听事件并执行，事件可以有很多种，比如时钟事件、监听事件、源事件等。<code>UI</code>模式下的这些事件必须通过触摸才能唤醒<code>RunLoop</code>去执行，而默认模式下，只要有这些事件，就会及时通知<code>RunLoop</code>去执行，执行完之后RunLoop就处于休眠状态，有时间后再去唤醒<code>RunLoop</code>去执行，循环往复</p>
+<p>上面提到，<code>RunLoop</code>的作用之一就是监听事件并执行，事件可以有很多种，比如时钟事件、监听事件、网络事件等等。<code>UI</code>模式下的这些事件必须通过触摸才能唤醒<code>RunLoop</code>去执行，执行完之后RunLoop就处于休眠状态，循环往复。而默认模式下，只要有这些事件，就会及时通知<code>RunLoop</code>去执行。</p>
 <p>继续深究，如果这个事件是个耗时操作会怎样？我们在<code>timerMethod</code>这个时间下模拟一下</p>
 <pre><code>[NSThread sleepForTimeInterval:1.0];
 </code></pre><p>我让它每次睡个2秒钟再执行</p>
@@ -387,7 +387,8 @@ _thread = thread;
 <p>这是因为，这个线程已经挂了，已经被释放了，肯定无法被开启，但是这个<code>OC</code>对象<code>thread</code>还在，因为被我们强引用了。强引用线程对象，并不会阻止线程的释放。所以会出现上述情况。事实上，子线程<code>block</code>内的代码执行完线程就会被释放，要想线程不被释放。就必须让线程有执行不完的任务。那我们可以手动让线程一直在执行,在<code>block</code>内加如下代码</p>
 <pre><code>while (true) {     }
 </code></pre><p>这时候会发现程序可以正常运行了。但这并不是正确的解决方法。正确的姿势应该是将事件加到<code>RunLoop</code>中，然后开启它，因为</p>
-<h4 id="u6BCF_u4E2A_u7EBF_u7A0B_u90FD_u5BF9_u5E94_u4E00_u4E2ARunLoop_2C_u4F46_u662F_u9664_u4E86_u4E3B_u7EBF_u7A0B_uFF0C_u6240_u6709_u5B50_u7EBF_u7A0B_u7684RunLoop_u9ED8_u8BA4_u90FD_u6CA1_u6709_u5F00_u542F_uFF0C_u9700_u8981_u624B_u52A8_u5F00_u542F"><a href="#u6BCF_u4E2A_u7EBF_u7A0B_u90FD_u5BF9_u5E94_u4E00_u4E2ARunLoop_2C_u4F46_u662F_u9664_u4E86_u4E3B_u7EBF_u7A0B_uFF0C_u6240_u6709_u5B50_u7EBF_u7A0B_u7684RunLoop_u9ED8_u8BA4_u90FD_u6CA1_u6709_u5F00_u542F_uFF0C_u9700_u8981_u624B_u52A8_u5F00_u542F" class="headerlink" title="每个线程都对应一个RunLoop,但是除了主线程，所有子线程的RunLoop默认都没有开启，需要手动开启"></a>每个线程都对应一个<code>RunLoop</code>,但是除了主线程，所有子线程的<code>RunLoop</code>默认都没有开启，需要手动开启</h4><p>在<code>NSLog(@&quot;111&quot;);</code>代码前加上</p>
+<p>###</p>
+<h3 id="u6BCF_u4E2A_u7EBF_u7A0B_u90FD_u5BF9_u5E94_u4E00_u4E2ARunLoop_2C_u4F46_u662F_u9664_u4E86_u4E3B_u7EBF_u7A0B_uFF0C_u6240_u6709_u5B50_u7EBF_u7A0B_u7684RunLoop_u9ED8_u8BA4_u90FD_u6CA1_u6709_u5F00_u542F_uFF0C_u9700_u8981_u624B_u52A8_u5F00_u542F"><a href="#u6BCF_u4E2A_u7EBF_u7A0B_u90FD_u5BF9_u5E94_u4E00_u4E2ARunLoop_2C_u4F46_u662F_u9664_u4E86_u4E3B_u7EBF_u7A0B_uFF0C_u6240_u6709_u5B50_u7EBF_u7A0B_u7684RunLoop_u9ED8_u8BA4_u90FD_u6CA1_u6709_u5F00_u542F_uFF0C_u9700_u8981_u624B_u52A8_u5F00_u542F" class="headerlink" title="每个线程都对应一个RunLoop,但是除了主线程，所有子线程的RunLoop默认都没有开启，需要手动开启"></a>每个线程都对应一个<code>RunLoop</code>,但是除了主线程，所有子线程的<code>RunLoop</code>默认都没有开启，需要手动开启</h3><p>在<code>NSLog(@&quot;111&quot;);</code>代码前加上</p>
 <pre><code>[[NSRunLoop currentRunLoop] run];
 </code></pre><p>再次运行，会发现时钟方法<code>timeMethod</code>终于可以正常运行了，但是你会发现<code>NSLog(@&quot;111&quot;);</code>这句代码又没有走了？这是因为<code>NSRunLoop</code>是个死循环，下面的代码根本不会执行。好在，<code>RunLoop</code>还提供给了一个指定线程运行时间的方法<code>[[NSRunLoop currentRunLoop] runUntilDate:];</code>,毕竟一开启就停不下来，这操作很难接得住</p>
 <p>这里就让线程存活指定时间感受一下</p>
@@ -409,9 +410,9 @@ _thread = thread;
 - (void)performMethod {
     NSLog(@&quot;performMethod&quot;);
 }
-</code></pre><p>这时候你会发现<code>performMethod</code>方法根本就没走，<code>performSelector</code>就是线程间的通信，<code>performMethod</code>是在子线程<code>thread</code>上执行的，<code>thread</code>线程的<code>block</code>代码走完线程就挂了，所以不会走进<code>performMethod</code>方法，需要加上下面这句代码保住线程的生命</p>
+</code></pre><p>这时候你会发现<code>performMethod</code>方法根本就没走，<code>performSelector</code>就是线程间的通信，<code>performMethod</code>是在子线程<code>thread</code>上执行的，<code>thread</code>线程的<code>block</code>代码走完线程就挂了，所以不会走进<code>performMethod</code>方法，需要加上下面这句代码保住子线程的生命</p>
 <pre><code>[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
-</code></pre><p>这里的<code>performSelector</code>事件就是上面提到的<code>RunLoop</code>处理的<code>Source</code>事件。如果是<code>performSelectorOnMainThread</code>方法就不需要开启<code>RunLoop</code>,因为主线程的<code>RunLoop</code>在程序启动之时就已经默认开启了</p>
+</code></pre><p>这里的<code>performSelector</code>事件就是上面提到的<code>RunLoop</code>处理的<code>Source</code>事件源。如果是<code>performSelectorOnMainThread</code>方法就不需要开启<code>RunLoop</code>,因为主线程的<code>RunLoop</code>在程序启动之时就已经默认开启了</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
