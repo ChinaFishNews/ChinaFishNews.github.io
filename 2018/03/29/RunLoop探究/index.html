@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_07.gif">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_02.gif">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_03.gif">
-<meta property="og:updated_time" content="2018-04-01T15:56:26.000Z">
+<meta property="og:updated_time" content="2018-04-01T16:03:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RunLoop探究">
 <meta name="twitter:description" content="RunLoop,即运行循环，你非要叫它跑圈，也不是不可以
@@ -388,7 +388,10 @@ _thread = thread;
 <pre><code>while (true) {     }
 </code></pre><p>这时候会发现程序可以正常运行了。但这并不是正确的解决方法。正确的姿势应该是将事件加到<code>RunLoop</code>中，然后开启它，因为</p>
 <p>###</p>
-<h3 id="u6BCF_u4E2A_u7EBF_u7A0B_u90FD_u5BF9_u5E94_u4E00_u4E2ARunLoop_2C_u4F46_u662F_u9664_u4E86_u4E3B_u7EBF_u7A0B_uFF0C_u6240_u6709_u5B50_u7EBF_u7A0B_u7684RunLoop_u9ED8_u8BA4_u90FD_u6CA1_u6709_u5F00_u542F_uFF0C_u9700_u8981_u624B_u52A8_u5F00_u542F"><a href="#u6BCF_u4E2A_u7EBF_u7A0B_u90FD_u5BF9_u5E94_u4E00_u4E2ARunLoop_2C_u4F46_u662F_u9664_u4E86_u4E3B_u7EBF_u7A0B_uFF0C_u6240_u6709_u5B50_u7EBF_u7A0B_u7684RunLoop_u9ED8_u8BA4_u90FD_u6CA1_u6709_u5F00_u542F_uFF0C_u9700_u8981_u624B_u52A8_u5F00_u542F" class="headerlink" title="每个线程都对应一个RunLoop,但是除了主线程，所有子线程的RunLoop默认都没有开启，需要手动开启"></a>每个线程都对应一个<code>RunLoop</code>,但是除了主线程，所有子线程的<code>RunLoop</code>默认都没有开启，需要手动开启</h3><p>在<code>NSLog(@&quot;111&quot;);</code>代码前加上</p>
+<font color="black" size="6px"> 每个线程都对应一个<code>RunLoop</code>,但是除了主线程，所有子线程的<code>RunLoop</code>默认都没有开启，需要手动开启</font>
+
+
+<p>在<code>NSLog(@&quot;111&quot;);</code>代码前加上</p>
 <pre><code>[[NSRunLoop currentRunLoop] run];
 </code></pre><p>再次运行，会发现时钟方法<code>timeMethod</code>终于可以正常运行了，但是你会发现<code>NSLog(@&quot;111&quot;);</code>这句代码又没有走了？这是因为<code>NSRunLoop</code>是个死循环，下面的代码根本不会执行。好在，<code>RunLoop</code>还提供给了一个指定线程运行时间的方法<code>[[NSRunLoop currentRunLoop] runUntilDate:];</code>,毕竟一开启就停不下来，这操作很难接得住</p>
 <p>这里就让线程存活指定时间感受一下</p>
