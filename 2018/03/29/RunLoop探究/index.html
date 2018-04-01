@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_07.gif">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_02.gif">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_03.gif">
-<meta property="og:updated_time" content="2018-04-01T16:03:32.000Z">
+<meta property="og:updated_time" content="2018-04-01T16:05:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RunLoop探究">
 <meta name="twitter:description" content="RunLoop,即运行循环，你非要叫它跑圈，也不是不可以
@@ -387,8 +387,7 @@ _thread = thread;
 <p>这是因为，这个线程已经挂了，已经被释放了，肯定无法被开启，但是这个<code>OC</code>对象<code>thread</code>还在，因为被我们强引用了。强引用线程对象，并不会阻止线程的释放。所以会出现上述情况。事实上，子线程<code>block</code>内的代码执行完线程就会被释放，要想线程不被释放。就必须让线程有执行不完的任务。那我们可以手动让线程一直在执行,在<code>block</code>内加如下代码</p>
 <pre><code>while (true) {     }
 </code></pre><p>这时候会发现程序可以正常运行了。但这并不是正确的解决方法。正确的姿势应该是将事件加到<code>RunLoop</code>中，然后开启它，因为</p>
-<p>###</p>
-<font color="black" size="6px"> 每个线程都对应一个<code>RunLoop</code>,但是除了主线程，所有子线程的<code>RunLoop</code>默认都没有开启，需要手动开启</font>
+<font color="black" size="4px"><br>每个线程都对应一个<code>RunLoop</code>,但是除了主线程，所有子线程的<code>RunLoop</code>默认都没有开启，需要手动开启<br></font>
 
 
 <p>在<code>NSLog(@&quot;111&quot;);</code>代码前加上</p>
