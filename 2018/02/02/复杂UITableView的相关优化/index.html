@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>复杂UITableView的相关优化 | 含笑饮砒霜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="仅为自己做记录使用，会比较粗糙，不过多探讨！
+  <meta name="description" content="仅做记录使用，会比较粗糙，不过多探讨！
 iOS开发中，UITableView存在于几乎每一个应用中。不是那么复杂的UITableView使用常规写法没有任何问题，但是对于复杂业务一个UITableView中存在几十个不同的UITableViewCell，再使用常规写法简直就是灾难，有些写法性能上并无问题，但是优雅度不够，维护性较差。以下从几点阐述，为了方便，多是图片
-UITableVIewC">
+UITableVIewCell">
 <meta property="og:type" content="article">
 <meta property="og:title" content="复杂UITableView的相关优化">
 <meta property="og:url" content="http://chinafish.news/2018/02/02/复杂UITableView的相关优化/index.html">
 <meta property="og:site_name" content="含笑饮砒霜">
-<meta property="og:description" content="仅为自己做记录使用，会比较粗糙，不过多探讨！
+<meta property="og:description" content="仅做记录使用，会比较粗糙，不过多探讨！
 iOS开发中，UITableView存在于几乎每一个应用中。不是那么复杂的UITableView使用常规写法没有任何问题，但是对于复杂业务一个UITableView中存在几十个不同的UITableViewCell，再使用常规写法简直就是灾难，有些写法性能上并无问题，但是优雅度不够，维护性较差。以下从几点阐述，为了方便，多是图片
-UITableVIewC">
+UITableVIewCell">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_11.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_35.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_10.png">
@@ -28,7 +28,6 @@ UITableVIewC">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_18.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_19.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_20.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_21.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_22.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_23.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_24.png">
@@ -41,12 +40,12 @@ UITableVIewC">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_32.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_33.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_34.png">
-<meta property="og:updated_time" content="2018-04-06T14:39:51.000Z">
+<meta property="og:updated_time" content="2018-04-06T14:44:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="复杂UITableView的相关优化">
-<meta name="twitter:description" content="仅为自己做记录使用，会比较粗糙，不过多探讨！
+<meta name="twitter:description" content="仅做记录使用，会比较粗糙，不过多探讨！
 iOS开发中，UITableView存在于几乎每一个应用中。不是那么复杂的UITableView使用常规写法没有任何问题，但是对于复杂业务一个UITableView中存在几十个不同的UITableViewCell，再使用常规写法简直就是灾难，有些写法性能上并无问题，但是优雅度不够，维护性较差。以下从几点阐述，为了方便，多是图片
-UITableVIewC">
+UITableVIewCell">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜" type="application/atom+xml">
   
@@ -296,7 +295,7 @@ UITableVIewC">
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=536502758&auto=0&height=66"></iframe>
 
 
-<p>仅为自己做记录使用，会比较粗糙，不过多探讨！</p>
+<p>仅做记录使用，会比较粗糙，不过多探讨！</p>
 <p><code>iOS</code>开发中，<code>UITableView</code>存在于几乎每一个应用中。不是那么复杂的<code>UITableView</code>使用常规写法没有任何问题，但是对于复杂业务一个<code>UITableView</code>中存在几十个不同的<code>UITableViewCell</code>，再使用常规写法简直就是灾难，有些写法性能上并无问题，但是优雅度不够，维护性较差。以下从几点阐述，为了方便，多是图片</p>
 <h3 id="UITableVIewCell_u7684_u521B_u5EFA"><a href="#UITableVIewCell_u7684_u521B_u5EFA" class="headerlink" title="UITableVIewCell的创建"></a><code>UITableVIewCell</code>的创建</h3><ol>
 <li>每个cell对应一个viewModel</li>
@@ -318,7 +317,6 @@ UITableVIewC">
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_19.png" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_20.png" alt=""></p>
 <p>2.遍历获取所有可响应键盘的<code>textField</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_21.png" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_22.png" alt=""></p>
 <pre><code>    #import &quot;UIView+NextKeyBoard.h&quot;
 
