@@ -256,7 +256,7 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_07_01.png" alt=""></p>
 <p>控制器中调用<code>Person</code>方法</p>
 <pre><code>Person * p = [[Person alloc] init];
-  [p eat];
+[p eat];
 </code></pre><p>当然还可以写成</p>
 <pre><code>Person * p = [Person alloc];
 p = [p init];
@@ -272,16 +272,16 @@ objc_msgSend(p, @selector(eat));
 <pre><code>Person *p = objc_msgSend(objc_getClass(&quot;Person&quot;), sel_registerName(&quot;alloc&quot;));
 p = objc_msgSend(p, sel_registerName(&quot;init&quot;));
 objc_msgSend(p, sel_registerName(&quot;eat&quot;));
-</code></pre><p><code>objc_getClass</code>其实就相当于<code>OC</code>中的<code>NSClassFromString</code>，<code>sel_registerName</code>相当于<code>OC</code>中的<br><code>NSSelectorFromString</code></p>
+</code></pre><p><code>objc_getClass</code>其实就相当于<code>OC</code>中的<code>NSClassFromString</code>，<code>sel_registerName</code>相当于<code>OC</code>中的<code>NSSelectorFromString</code></p>
 <p>其实也可以借助我们的<code>Clang</code>编译器查看我们底层代码的实现</p>
 <p>可以新建一个<code>macOS</code>的命令行项目,在<code>main.m</code>文件中依然调用上面代码，使用<code>clang -rewrite-objc main.m</code>会生成一个<code>main.cpp</code>文件，这个文件下会找到最终的实现代码</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_07_02.png" alt=""></p>
 <p>我们在<code>objc/message.h</code>和<code>objc/runtime</code>文件中可以看到，系统给我们提供了众多接口，下面列举部分，仅做记录使用</p>
 <pre><code>// 获取实例对象的所属的类
-Class object_getClass(id obj) ;
+Class object_getClass(id obj);
 
 // 设置实例对象的所属的类
-Class object_setClass(id obj, Class cls) ;
+Class object_setClass(id obj, Class cls);
 
 // 获取实例对象的所属类的类名
 const char *object_getClassName(id obj);
@@ -290,10 +290,10 @@ const char *object_getClassName(id obj);
 void *object_getIndexedIvars(id obj);
 
 // 获取实例对象的成员变量
-id object_getIvar(id obj, Ivar ivar) ;
+id object_getIvar(id obj, Ivar ivar);
 
 // 设置实例对象的成员变量
- void object_setIvar(id obj, Ivar ivar, id value)
+ void object_setIvar(id obj, Ivar ivar, id value);
 
 // 修改类实例的实例变量的值
 Ivar object_setInstanceVariable(id obj, const char *name, void     *value);
@@ -317,16 +317,16 @@ int objc_getClassList(Class *buffer, int bufferCount);
 Class *objc_copyClassList(unsigned int *outCount);
 
 // 获取类的类名
-const char *class_getName(Class cls) ;
+const char *class_getName(Class cls);
 
 // 是否是元类
-BOOL class_isMetaClass(Class cls) ;
+BOOL class_isMetaClass(Class cls);
 
 // 获取类的父类
-Class class_getSuperclass(Class cls) ;
+Class class_getSuperclass(Class cls);
 
 // 设置新类的父类
-Class class_setSuperclass(Class cls, Class newSuper) ;
+Class class_setSuperclass(Class cls, Class newSuper);
 
 // 类的版本信息
 int class_getVersion(Class cls);
@@ -335,16 +335,16 @@ int class_getVersion(Class cls);
 void class_setVersion(Class cls, int version);
 
 // 获取该类实例对象大小
-size_t class_getInstanceSize(Class cls) ;
+size_t class_getInstanceSize(Class cls);
 
 // 获取类中指定名称实例对象的信息
 Ivar class_getInstanceVariable(Class cls, const char *name);
 
 // 获取类成员变量的信息
-Ivar class_getClassVariable(Class cls, const char *name) ;
+Ivar class_getClassVariable(Class cls, const char *name);
 
 // 获取整个成员变量列表
-Ivar *class_copyIvarList(Class cls, unsigned int *outCount) ;
+Ivar *class_copyIvarList(Class cls, unsigned int *outCount);
 
 // 获取实例方法.
 Method class_getInstanceMethod(Class cls, SEL name);
@@ -353,19 +353,19 @@ Method class_getInstanceMethod(Class cls, SEL name);
 Method class_getClassMethod(Class cls, SEL name);
 
 // 返回方法的具体实现
-IMP class_getMethodImplementation(Class cls, SEL name) ;
+IMP class_getMethodImplementation(Class cls, SEL name);
 
 // 返回方法的具体实现
-IMP class_getMethodImplementation_stret(Class cls, SEL name) ;
+IMP class_getMethodImplementation_stret(Class cls, SEL name);
 
 // 检查类是否响应指定的消息.
-BOOL class_respondsToSelector(Class cls, SEL sel) ;
+BOOL class_respondsToSelector(Class cls, SEL sel);
 
 // 获取类方法列表.
 Method *class_copyMethodList(Class cls, unsigned int *outCount);
 
 // 检查类是否实现了指定协议类的方法.
-BOOL class_conformsToProtocol(Class cls, Protocol *protocol) ;
+BOOL class_conformsToProtocol(Class cls, Protocol *protocol);
 
 // 返回类遵守的协议列表.
 Protocol * __unsafe_unretained *class_copyProtocolList(Class cls,     unsigned int *outCount);
@@ -380,34 +380,34 @@ objc_property_t *class_copyPropertyList(Class cls, unsigned int     *outCount);
 id class_createInstance(Class cls, size_t extraBytes);
 
 // 在指定位置创建类实例
-id objc_constructInstance(Class cls, void *bytes) ;
+id objc_constructInstance(Class cls, void *bytes);
 
 // 销毁类实例
-void *objc_destructInstance(id obj) ;
+void *objc_destructInstance(id obj);
 
 // 创建一个新类和元类  (ClassPair:包含类和元类)
-Class objc_allocateClassPair(Class superclass, const char *name,     size_t extraBytes) ;
+Class objc_allocateClassPair(Class superclass, const char *name,     size_t extraBytes);
 
 // 在应用中注册由objc_allocateClassPair创建的类
-void objc_registerClassPair(Class cls) ;
+void objc_registerClassPair(Class cls);
 
 // 复制一份类
-Class objc_duplicateClass(Class original, const char *name,size_t     extraBytes) ;
+Class objc_duplicateClass(Class original, const char *name,size_t     extraBytes);
 
 // 销毁一个类及其相关联的类
-void objc_disposeClassPair(Class cls) ;
+void objc_disposeClassPair(Class cls);
 
 // 添加某个类的方法
-BOOL class_addMethod(Class cls, SEL name, IMP imp,const char         *types) ;
+BOOL class_addMethod(Class cls, SEL name, IMP imp,const char         *types);
 
 // 替换某个类的方法
-IMP class_replaceMethod(Class cls, SEL name, IMP imp,const char     *types) ;
+IMP class_replaceMethod(Class cls, SEL name, IMP imp,const char     *types);
 
 // 添加某个类的变量,这个方法只能在objc_allocateClassPair函数与objc_registerClassPair之间调用
-BOOL class_addIvar(Class cls, const char *name, size_t size,         uint8_t alignment, const char *types) ;
+BOOL class_addIvar(Class cls, const char *name, size_t size,         uint8_t alignment, const char *types);
 
 // 添加某个类的协议
-BOOL class_addProtocol(Class cls, Protocol *protocol) ;
+BOOL class_addProtocol(Class cls, Protocol *protocol);
 
 // 添加某个类的属性
  BOOL class_addProperty(Class cls, const char *name, const         objc_property_attribute_t *attributes, unsigned int attributeCount);
@@ -416,10 +416,10 @@ BOOL class_addProtocol(Class cls, Protocol *protocol) ;
 void class_replaceProperty(Class cls, const char *name, const     objc_property_attribute_t *attributes, unsigned int attributeCount);
 
 // 通过方法名返回方法
-SEL method_getName(Method m) ;
+SEL method_getName(Method m);
 
 // 获取方法的实现地址
-IMP method_getImplementation(Method m) ;
+IMP method_getImplementation(Method m);
 
 // 获取方法参数列表
 unsigned int method_getNumberOfArguments(Method m);
