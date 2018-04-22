@@ -507,6 +507,83 @@
 
 
   
+    <article id="post-iOS程序后台无限运行" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/01/iOS程序后台无限运行/" class="article-date">
+  	<time datetime="2016-02-29T16:00:00.000Z" itemprop="datePublished">2016-03-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/01/iOS程序后台无限运行/">iOS程序后台无限运行</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景是因为积分墙刷榜，这个程序要在后台一直运行，来监测其他app的行为，如注册、登陆、认证等，这就要这个app持续运行。鉴于苹果对iOS系统的封闭政策，我们的APP在进入后台能做的事情相对有限。一般只有几秒的时间留给用户进行一些清理和数据保存的时间，当然可以使用开启新任务向系统借点时间，但这时间也是有限的， 不会超过10分钟，10分钟后无论怎么向系统申请继续后台，系统会强制挂起App，挂起所有后台操作、线程，直到用户再次点击App之后才会继续运行。但是系统也预留了一些特殊应用可以实现真后台的方法，包括VoIP、GPS、Audio等。</p>
+<p>这里使用了MMPDeepSleepPreventer类，这个类就是通过一直播放无声音乐来实现永久后台运行。一般来说在播放音乐的时候，如果打开其他播放音乐的应用，那之前的音乐就会被关闭，但是MMPDeepSleepPreventer这个类使用了定时器每5秒播放一次，所以不会被中断，除非手动kill掉项目。</p>
+<p>下载链接:<a href="https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git" target="_blank" rel="external">https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git</a></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-02-01.png?attname=" alt=""></p>
+<p>把上述问价导入项目，添加AVFoundation.framework、AudioToolbox.framework</p>
+<p>在Info.plist中设置添加Required background modes键值，设置为App provides Voice over IP services</p>
+<p>另外在Bulid Phases中将MMPDeepSleepPreventer.m类设置为-fno-objc-arc</p>
+<p>然后需在AppDelegate中设置<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#import</span> &lt;AVFoundation/AVFoundation.h&gt;</span><br><span class="line"><span class="id">#import</span> <span class="string">"MMPDeepSleepPreventer.h"</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MMPDeepSleepPreventer * soundBoard =  <span class="string">[MMPDeepSleepPreventer new]</span>;</span><br><span class="line"><span class="string">[soundBoard startPreventSleep]</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MMPDeepSleepPreventer-后台无限运行/">MMPDeepSleepPreventer,后台无限运行</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-UIImage的相关操作" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -588,83 +665,6 @@
 
 
   
-    <article id="post-iOS程序后台无限运行" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/01/iOS程序后台无限运行/" class="article-date">
-  	<time datetime="2016-02-29T16:00:00.000Z" itemprop="datePublished">2016-03-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/01/iOS程序后台无限运行/">iOS程序后台无限运行</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
-
-<p>让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景是因为积分墙刷榜，这个程序要在后台一直运行，来监测其他app的行为，如注册、登陆、认证等，这就要这个app持续运行。鉴于苹果对iOS系统的封闭政策，我们的APP在进入后台能做的事情相对有限。一般只有几秒的时间留给用户进行一些清理和数据保存的时间，当然可以使用开启新任务向系统借点时间，但这时间也是有限的， 不会超过10分钟，10分钟后无论怎么向系统申请继续后台，系统会强制挂起App，挂起所有后台操作、线程，直到用户再次点击App之后才会继续运行。但是系统也预留了一些特殊应用可以实现真后台的方法，包括VoIP、GPS、Audio等。</p>
-<p>这里使用了MMPDeepSleepPreventer类，这个类就是通过一直播放无声音乐来实现永久后台运行。一般来说在播放音乐的时候，如果打开其他播放音乐的应用，那之前的音乐就会被关闭，但是MMPDeepSleepPreventer这个类使用了定时器每5秒播放一次，所以不会被中断，除非手动kill掉项目。</p>
-<p>下载链接:<a href="https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git" target="_blank" rel="external">https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git</a></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-02-01.png?attname=" alt=""></p>
-<p>把上述问价导入项目，添加AVFoundation.framework、AudioToolbox.framework</p>
-<p>在Info.plist中设置添加Required background modes键值，设置为App provides Voice over IP services</p>
-<p>另外在Bulid Phases中将MMPDeepSleepPreventer.m类设置为-fno-objc-arc</p>
-<p>然后需在AppDelegate中设置<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#import</span> &lt;AVFoundation/AVFoundation.h&gt;</span><br><span class="line"><span class="id">#import</span> <span class="string">"MMPDeepSleepPreventer.h"</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MMPDeepSleepPreventer * soundBoard =  <span class="string">[MMPDeepSleepPreventer new]</span>;</span><br><span class="line"><span class="string">[soundBoard startPreventSleep]</span>;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MMPDeepSleepPreventer-后台无限运行/">MMPDeepSleepPreventer,后台无限运行</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-iOS开发使用AVPlayer、MoviePlayer播放本地、网络视频" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -721,106 +721,6 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/Swift/">Swift</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-父母尚在苟且，而你却在炫耀诗和远方" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/26/父母尚在苟且，而你却在炫耀诗和远方/" class="article-date">
-  	<time datetime="2016-02-25T16:00:00.000Z" itemprop="datePublished">2016-02-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/26/父母尚在苟且，而你却在炫耀诗和远方/">父母尚在苟且，而你却在炫耀诗和远方</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
-
-
-<blockquote>
-<p>本文系转载</p>
-<p>作者：入江之鲸</p>
-<p>来源：入江之鲸（rujiangzhijing001）<br><br></p>
-</blockquote>
-<p>前段时间，和朋友聊天，他陪一个弟弟在北海道旅行。我问他玩得是不是很开心。他告诉我，他和弟弟不是一路人，所以旅途并不是很愉快。</p>
-<p>他细细跟我讲道，弟弟缠着爸妈要去日本玩，他妈不放心，便邀请我朋友跟着弟弟过去。</p>
-<p>他的弟弟，家境不算富裕，刚上大学也没有能力自己赚钱，却有着挥金如土的本事。就拿一件小事来讲吧，日本物价很贵，一片哈密瓜要三十人民币左右。</p>
-<p>朋友问我：“你能够认同自己还不能挣钱，家里也不是很有钱，眼都不眨只是因为口渴了，不肯买水却一口气吃了三片哈密瓜的小孩吗？”</p>
-<p>这孩子，让我想到一句印象很深刻的话：父母尚在苟且，你却在炫耀诗和远方。</p>
-<p>身边这样的人，挺多的。</p>
-<p>我另外一个朋友，家庭条件很一般，却把日子过得很“高级”。</p>
-<p>她嫌单位盒饭难吃，每天中午出去下馆子，下午还必定订一杯十几块钱的奶茶外送。和她一起出去逛街，她总会拉着我吃人气很高、价格也很昂贵的餐厅。和她旅游，她对景区里各式物价虚高的食物和纪念品，向来都是潇洒地买买买，花钱如流水。臭豆腐不算好吃，她尝了一块，吐出来，嫌恶地皱皱眉，扔了。</p>
-<p>我都不敢劝她花钱别太大手大脚。每次试图奉劝她，她都不服气地斜乜着眼，搬出她的有两句名言，理直气壮地开腔。</p>
-<p>第一句，“女孩子，要富养”；第二句，“出来玩，就一定要开心，别太在乎钱。”似乎我要是劝她适当地节约，倒显得我太抠门太小气了。</p>
-<p>我本以为她必定家境殷实，直到有一次去她家里。她住在城郊的民房里，老旧潮湿，又窄又小，从一楼上二楼，要从一个很陡峭的楼梯爬上去。</p>
-<p>她的奶奶穿着她高中时的校服外套，坐在家里拣菜。她问奶奶怎么不去打牌，老人家说道：这两天输了几十块钱，今天不高兴去了。</p>
-<p>我借用他们家卫生间，奶奶不忘嘱咐我，要用桶里盛的洗过拖把的水冲，别按按钮，水一冲哗啦啦的，浪费钱。</p>
-<p>正是这样节俭的老人，却把自己靠卖菜一块一块攒来的积蓄，尽数交给孙女，任由孙女挥霍。</p>
-<p>中午和她爸爸妈妈一起吃饭，她爸表态，不指望她赚钱养家，她赚的那点工资，给自己吃穿用度就好了。</p>
-<p>后来，那位朋友约我假期一起去旅游，向我提起冬天上下班很冷，她准备买车，家里人也同意给她买。听到这些，我都只能笑笑，不知道该回应些什么。</p>
-<p>有句笑话这样说，“我视金钱如粪土，爸妈视我如化粪池。”</p>
-<p>我们这一代，不少人如此。</p>
-<p>前段时间网上讨论孩子究竟该穷养还是富养，提倡富养的人问：男孩要穷养？你孩子跟你多大仇啊？</p>
-<p>我也想问问那些拿着父母的血汗钱挥霍无度的子女：孩子要富养？你爸妈欠你多少钱啊？</p>
-<p>我认识一个男生，他从上大学后到工作前的所有花销，都是向父母打了欠条的。偶尔出行旅游花的钱，也是靠自己兼职打工赚来的。工作后，他就从每个月的工资里抽钱一笔笔地偿还父母。</p>
-<p>孩子成年后，父母已经没有了抚养义务，压根不必探讨穷养、富养的话题。</p>
-<p>可现实情况是，不少人结了婚，还让爸妈背房贷。</p>
-<p>如果你和我一样，出身于平凡的家庭，那么你应该很清楚，父母挣来的每一分钱，都很不容易。</p>
-<p>当父母在烈日炎炎下满头大汗地从事体力劳作时，当父母在小小格子间里腰酸背痛地从事脑力劳动时，你一顿大餐就消费掉他们一天的薪水，真的不会有一丝丝愧疚吗？</p>
-<p>当父母被领导大呼小叫的时候，当父母被客户呼来喝去的时候，你却在呼朋引伴、潇洒度日，真的不会于心不忍吗？</p>
-<p>当你用iPhone、iPad、Mac把自己全副武装的时候，父母却连买个10块钱100M的流量包都要思忖好久，最后还没舍得买；</p>
-<p>当你穿着一身说得出名字的品牌，一双鞋就要几千块的时候，父母却在穿着被你淘汰的旧鞋，他们不懂你说的品牌，你还笑他们落伍；</p>
-<p>当你觉得你的知识、素养、视野都远超父母，因此嫌弃父母“没见过世面”的时候，有没有想过，其实，正是父母托举着你到更高的地方，你才有机会看到了更大的世界？</p>
-<p>你活得青春无敌、你过得光鲜亮丽，却看不见你身后，默默供养着你的父母，为了让你过上更好的生活，还在向这个世界低声下气。</p>
-<p>别在缺钱的时候才想起父母，他们不是ATM，他们胸膛上有温度，他们心跳里有感情。</p>
-<p>—— 爸妈爱我们，爱得不容易。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/转载/">转载</a>
 	</div>
 
 
@@ -921,11 +821,11 @@
 
 
   
-    <article id="post-iOS开发如何集成并使用支付宝SDK" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-父母尚在苟且，而你却在炫耀诗和远方" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/25/iOS开发如何集成并使用支付宝SDK/" class="article-date">
-  	<time datetime="2016-02-24T16:00:00.000Z" itemprop="datePublished">2016-02-25</time>
+      <a href="/2016/02/26/父母尚在苟且，而你却在炫耀诗和远方/" class="article-date">
+  	<time datetime="2016-02-25T16:00:00.000Z" itemprop="datePublished">2016-02-26</time>
 </a>
     </div>
   
@@ -938,7 +838,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/25/iOS开发如何集成并使用支付宝SDK/">iOS开发如何集成并使用支付宝SDK</a>
+      <a class="article-title" href="/2016/02/26/父母尚在苟且，而你却在炫耀诗和远方/">父母尚在苟且，而你却在炫耀诗和远方</a>
     </h1>
   
 
@@ -949,44 +849,44 @@
       
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
 
-<p>现在很多App都集成了支付宝SDK中的移动支付功能，但使用支付宝SDK的前提是购买的物品必须是和应用程序无关的商品，比如服装、电子产品等。如果是游戏币、会员等则必须使用内购，内购是用户将钱支付给苹果，之后苹果分成给商户。但即便是使用支付宝SDK购买真实的商品，在提交审核的时候依然可能被拒，这时候需要给苹果回复邮件阐述支付的流程。</p>
-<p>如何集成并使用支付宝SDK呢？</p>
-<p>需要先到 <a href="https://www.alipay.com" target="_blank" rel="external">支付宝官网</a>去申请签约，流程比较麻烦,不过有详细文档。签约成功后会获得商户ID(partner)和账户ID(seller)和私钥(私钥需根据公钥按照文档步骤生成)。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-01.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-02.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-04.png?attname=" alt=""></p>
-<p>之后需前往 <a href="http://open.alipay.com/platform/home.htm" target="_blank" rel="external">支付宝开放平台</a>，注册需集成的应用，填写相关信息。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-26-16.png?attname=" alt=""></p>
-<p>SDK下载页面: <a href="https://doc.open.alipay.com/doc2/detail?treeId=54&amp;articleId=103419&amp;docType=1" target="_blank" rel="external">点此前往</a></p>
-<p>然后选择 SDK下载(注意:也有人使用CocoaPods集成SDK,但是CocoaPods上SDK不是最新的，所以支付时的回调会有问题，建议到官网下载)<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-03.png?attname=" alt=""></p>
-<p>下载完成后导入项目</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-05.png?attname=" alt=""></p>
-<p>kNotifyURL问后台获取，在支付成功或失败的时候会根绝这个回调同时通知后台。kPrivateKey这个私钥我存储在info.plist里面，也可以从后台获取。kAppScheme用来处理支付宝回调</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-07.png?attname=" alt=""></p>
-<p>Identifier可不填，URL Schemes可随意填写，但需和官网注册应用时填写的一样。</p>
-<p>这里面的AlipayRequestConfig类官网Demo里并没有，是封装了一个支付方法类</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-08.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-09.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-10.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-11.png?attname=" alt=""></p>
-<p>在Appdelegate中别忘了加上下面代码，否则支付后无法跳转回来</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-12.png?attname=" alt=""></p>
-<p>在项目中的具体使用</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-13.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-14.png?attname=" alt=""></p>
-<p>为安全起见，在支付返回应用后要验证返回结果是否是支付宝服务器发来的信息,以帮助校验反馈回来的数据是否真实。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-15.png?attname=" alt=""></p>
-<p>网上有个第三方库模仿支付宝支付的页面</p>
-<p><a href="https://github.com/ChinaFishNews/CYPasswordView" target="_blank" rel="external">CYPasswordView</a></p>
-<p>在集成支付宝的时候也参考了网上的文章</p>
-<p><a href="http://www.sxt.cn/u/4647/blog/5554" target="_blank" rel="external">2分钟快速集成支付宝快捷支付</a></p>
-<p>以上！</p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
+
+<blockquote>
+<p>本文系转载</p>
+<p>作者：入江之鲸</p>
+<p>来源：入江之鲸（rujiangzhijing001）<br><br></p>
+</blockquote>
+<p>前段时间，和朋友聊天，他陪一个弟弟在北海道旅行。我问他玩得是不是很开心。他告诉我，他和弟弟不是一路人，所以旅途并不是很愉快。</p>
+<p>他细细跟我讲道，弟弟缠着爸妈要去日本玩，他妈不放心，便邀请我朋友跟着弟弟过去。</p>
+<p>他的弟弟，家境不算富裕，刚上大学也没有能力自己赚钱，却有着挥金如土的本事。就拿一件小事来讲吧，日本物价很贵，一片哈密瓜要三十人民币左右。</p>
+<p>朋友问我：“你能够认同自己还不能挣钱，家里也不是很有钱，眼都不眨只是因为口渴了，不肯买水却一口气吃了三片哈密瓜的小孩吗？”</p>
+<p>这孩子，让我想到一句印象很深刻的话：父母尚在苟且，你却在炫耀诗和远方。</p>
+<p>身边这样的人，挺多的。</p>
+<p>我另外一个朋友，家庭条件很一般，却把日子过得很“高级”。</p>
+<p>她嫌单位盒饭难吃，每天中午出去下馆子，下午还必定订一杯十几块钱的奶茶外送。和她一起出去逛街，她总会拉着我吃人气很高、价格也很昂贵的餐厅。和她旅游，她对景区里各式物价虚高的食物和纪念品，向来都是潇洒地买买买，花钱如流水。臭豆腐不算好吃，她尝了一块，吐出来，嫌恶地皱皱眉，扔了。</p>
+<p>我都不敢劝她花钱别太大手大脚。每次试图奉劝她，她都不服气地斜乜着眼，搬出她的有两句名言，理直气壮地开腔。</p>
+<p>第一句，“女孩子，要富养”；第二句，“出来玩，就一定要开心，别太在乎钱。”似乎我要是劝她适当地节约，倒显得我太抠门太小气了。</p>
+<p>我本以为她必定家境殷实，直到有一次去她家里。她住在城郊的民房里，老旧潮湿，又窄又小，从一楼上二楼，要从一个很陡峭的楼梯爬上去。</p>
+<p>她的奶奶穿着她高中时的校服外套，坐在家里拣菜。她问奶奶怎么不去打牌，老人家说道：这两天输了几十块钱，今天不高兴去了。</p>
+<p>我借用他们家卫生间，奶奶不忘嘱咐我，要用桶里盛的洗过拖把的水冲，别按按钮，水一冲哗啦啦的，浪费钱。</p>
+<p>正是这样节俭的老人，却把自己靠卖菜一块一块攒来的积蓄，尽数交给孙女，任由孙女挥霍。</p>
+<p>中午和她爸爸妈妈一起吃饭，她爸表态，不指望她赚钱养家，她赚的那点工资，给自己吃穿用度就好了。</p>
+<p>后来，那位朋友约我假期一起去旅游，向我提起冬天上下班很冷，她准备买车，家里人也同意给她买。听到这些，我都只能笑笑，不知道该回应些什么。</p>
+<p>有句笑话这样说，“我视金钱如粪土，爸妈视我如化粪池。”</p>
+<p>我们这一代，不少人如此。</p>
+<p>前段时间网上讨论孩子究竟该穷养还是富养，提倡富养的人问：男孩要穷养？你孩子跟你多大仇啊？</p>
+<p>我也想问问那些拿着父母的血汗钱挥霍无度的子女：孩子要富养？你爸妈欠你多少钱啊？</p>
+<p>我认识一个男生，他从上大学后到工作前的所有花销，都是向父母打了欠条的。偶尔出行旅游花的钱，也是靠自己兼职打工赚来的。工作后，他就从每个月的工资里抽钱一笔笔地偿还父母。</p>
+<p>孩子成年后，父母已经没有了抚养义务，压根不必探讨穷养、富养的话题。</p>
+<p>可现实情况是，不少人结了婚，还让爸妈背房贷。</p>
+<p>如果你和我一样，出身于平凡的家庭，那么你应该很清楚，父母挣来的每一分钱，都很不容易。</p>
+<p>当父母在烈日炎炎下满头大汗地从事体力劳作时，当父母在小小格子间里腰酸背痛地从事脑力劳动时，你一顿大餐就消费掉他们一天的薪水，真的不会有一丝丝愧疚吗？</p>
+<p>当父母被领导大呼小叫的时候，当父母被客户呼来喝去的时候，你却在呼朋引伴、潇洒度日，真的不会于心不忍吗？</p>
+<p>当你用iPhone、iPad、Mac把自己全副武装的时候，父母却连买个10块钱100M的流量包都要思忖好久，最后还没舍得买；</p>
+<p>当你穿着一身说得出名字的品牌，一双鞋就要几千块的时候，父母却在穿着被你淘汰的旧鞋，他们不懂你说的品牌，你还笑他们落伍；</p>
+<p>当你觉得你的知识、素养、视野都远超父母，因此嫌弃父母“没见过世面”的时候，有没有想过，其实，正是父母托举着你到更高的地方，你才有机会看到了更大的世界？</p>
+<p>你活得青春无敌、你过得光鲜亮丽，却看不见你身后，默默供养着你的父母，为了让你过上更好的生活，还在向这个世界低声下气。</p>
+<p>别在缺钱的时候才想起父母，他们不是ATM，他们胸膛上有温度，他们心跳里有感情。</p>
+<p>—— 爸妈爱我们，爱得不容易。</p>
 
       
     </div>
@@ -995,12 +895,12 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/支付宝SDK/">支付宝SDK</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	<a class="article-category-link" href="/categories/转载/">转载</a>
 	</div>
 
 
@@ -1130,6 +1030,106 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/环信SDK/">环信SDK</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-iOS开发如何集成并使用支付宝SDK" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/25/iOS开发如何集成并使用支付宝SDK/" class="article-date">
+  	<time datetime="2016-02-24T16:00:00.000Z" itemprop="datePublished">2016-02-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/25/iOS开发如何集成并使用支付宝SDK/">iOS开发如何集成并使用支付宝SDK</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>现在很多App都集成了支付宝SDK中的移动支付功能，但使用支付宝SDK的前提是购买的物品必须是和应用程序无关的商品，比如服装、电子产品等。如果是游戏币、会员等则必须使用内购，内购是用户将钱支付给苹果，之后苹果分成给商户。但即便是使用支付宝SDK购买真实的商品，在提交审核的时候依然可能被拒，这时候需要给苹果回复邮件阐述支付的流程。</p>
+<p>如何集成并使用支付宝SDK呢？</p>
+<p>需要先到 <a href="https://www.alipay.com" target="_blank" rel="external">支付宝官网</a>去申请签约，流程比较麻烦,不过有详细文档。签约成功后会获得商户ID(partner)和账户ID(seller)和私钥(私钥需根据公钥按照文档步骤生成)。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-01.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-02.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-04.png?attname=" alt=""></p>
+<p>之后需前往 <a href="http://open.alipay.com/platform/home.htm" target="_blank" rel="external">支付宝开放平台</a>，注册需集成的应用，填写相关信息。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-26-16.png?attname=" alt=""></p>
+<p>SDK下载页面: <a href="https://doc.open.alipay.com/doc2/detail?treeId=54&amp;articleId=103419&amp;docType=1" target="_blank" rel="external">点此前往</a></p>
+<p>然后选择 SDK下载(注意:也有人使用CocoaPods集成SDK,但是CocoaPods上SDK不是最新的，所以支付时的回调会有问题，建议到官网下载)<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-03.png?attname=" alt=""></p>
+<p>下载完成后导入项目</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-05.png?attname=" alt=""></p>
+<p>kNotifyURL问后台获取，在支付成功或失败的时候会根绝这个回调同时通知后台。kPrivateKey这个私钥我存储在info.plist里面，也可以从后台获取。kAppScheme用来处理支付宝回调</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-07.png?attname=" alt=""></p>
+<p>Identifier可不填，URL Schemes可随意填写，但需和官网注册应用时填写的一样。</p>
+<p>这里面的AlipayRequestConfig类官网Demo里并没有，是封装了一个支付方法类</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-08.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-09.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-10.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-11.png?attname=" alt=""></p>
+<p>在Appdelegate中别忘了加上下面代码，否则支付后无法跳转回来</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-12.png?attname=" alt=""></p>
+<p>在项目中的具体使用</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-13.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-14.png?attname=" alt=""></p>
+<p>为安全起见，在支付返回应用后要验证返回结果是否是支付宝服务器发来的信息,以帮助校验反馈回来的数据是否真实。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-15.png?attname=" alt=""></p>
+<p>网上有个第三方库模仿支付宝支付的页面</p>
+<p><a href="https://github.com/ChinaFishNews/CYPasswordView" target="_blank" rel="external">CYPasswordView</a></p>
+<p>在集成支付宝的时候也参考了网上的文章</p>
+<p><a href="http://www.sxt.cn/u/4647/blog/5554" target="_blank" rel="external">2分钟快速集成支付宝快捷支付</a></p>
+<p>以上！</p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/支付宝SDK/">支付宝SDK</a></li></ul>
 	</div>
 
       
