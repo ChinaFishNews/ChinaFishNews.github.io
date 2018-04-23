@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_16.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_17.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_19.png">
-<meta property="og:updated_time" content="2018-04-22T17:57:18.744Z">
+<meta property="og:updated_time" content="2018-04-23T15:42:56.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置Cycript环境及部分常用命令">
 <meta name="twitter:description" content="Cycript 是一个能够理解Objective-C语法的javascript解释器，让开发者在命令行下和应用交互，在运行时查看和修改应用，一般用于动态调试应用
@@ -285,7 +285,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Cycript 是一个能够理解Objective-C语法的javascript解释器，让开发者在命令行下和应用交互，在运行时查看和修改应用，一般用于动态调试应用</p>
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=108914&auto=0&height=66"></iframe>
+
+
+<p>Cycript 是一个能够理解Objective-C语法的javascript解释器，让开发者在命令行下和应用交互，在运行时查看和修改应用，一般用于动态调试应用</p>
 <p>1.到官网下载并拖到具体位置即可</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_16.png" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_17.png" alt=""></p>
@@ -313,8 +317,9 @@
 </li>
 <li><p>直接复制一份，改为2.0即可</p>
 <ul>
-<li><p><code>sudo mkdir -p /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/
-sudo ln -s /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/libruby.2.0.0.dylib</code></p>
+<li><p><code>sudo mkdir -p /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/</code></p>
+</li>
+<li><p><code>sudo ln -s /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/libruby.2.0.0.dylib</code></p>
 </li>
 <li><p>根据每个人ruby版本不同，将上面第二条命令的/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib中的2.3改成本机的ruby版本。<br>这里不是降级ruby，只是复制一份2.0的ruby的dylib，让cycript运行起来</p>
 </li>
