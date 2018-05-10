@@ -23,7 +23,7 @@
 减：DEC EAX        通过编译器 0100 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="汇编探究">
-<meta property="og:url" content="http://chinafish.news/2018/04/07/汇编探究/index.html">
+<meta property="og:url" content="http://chinafish.news/2018/05/10/汇编探究/index.html">
 <meta property="og:site_name" content="含笑饮砒霜">
 <meta property="og:description" content="汇编语言的发展机器语言
 由0和1组成的机器指令.
@@ -55,7 +55,7 @@
 <meta property="og:image" content="http://chinafish.news/media/15193666448504/15193738988252.jpg">
 <meta property="og:image" content="http://chinafish.news/media/15193666448504/15193699098685.jpg">
 <meta property="og:image" content="http://chinafish.news/media/15193666448504/15193703231861.jpg">
-<meta property="og:updated_time" content="2018-05-10T14:48:34.654Z">
+<meta property="og:updated_time" content="2018-05-10T15:52:25.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编探究">
 <meta name="twitter:description" content="汇编语言的发展机器语言
@@ -280,8 +280,8 @@
       <div class="body-wrap"><article id="post-汇编探究" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/04/07/汇编探究/" class="article-date">
-  	<time datetime="2018-04-06T16:00:00.000Z" itemprop="datePublished">2018-04-07</time>
+      <a href="/2018/05/10/汇编探究/" class="article-date">
+  	<time datetime="2018-05-09T16:00:00.000Z" itemprop="datePublished">2018-05-10</time>
 </a>
     </div>
   
@@ -565,6 +565,12 @@
 </ul>
 <h3 id="bl_u6307_u4EE4__u2013__u7EC3_u4E60"><a href="#bl_u6307_u4EE4__u2013__u7EC3_u4E60" class="headerlink" title="bl指令 – 练习"></a>bl指令 – 练习</h3><p>现在有两段代码!假设程序先执行A,请写出指令执行顺序.最终寄存器x0的值是多少?</p>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">_A:</span></span><br><span class="line">    <span class="keyword">mov</span> x0,<span class="preprocessor">#0xa0</span></span><br><span class="line">    <span class="keyword">mov</span> x1,<span class="preprocessor">#0x00</span></span><br><span class="line">    <span class="keyword">add</span> x1, x0, <span class="preprocessor">#0x14</span></span><br><span class="line">    <span class="keyword">mov</span> x0,x1</span><br><span class="line">    bl _B</span><br><span class="line">    <span class="keyword">mov</span> x0,<span class="preprocessor">#0x0</span></span><br><span class="line">    <span class="keyword">ret</span></span><br><span class="line"></span><br><span class="line"><span class="label">_B:</span></span><br><span class="line">    <span class="keyword">add</span> x0, x0, <span class="preprocessor">#0x10</span></span><br><span class="line">    <span class="keyword">ret</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
 
       
     </div>
@@ -574,18 +580,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/04/22/配置Cycript环境前常用工具的安装配置/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          配置Cycript环境前常用工具的安装配置
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/07/RunTime探究/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">RunTime探究</div>
+    <a href="/2018/04/22/使用Cycript修改微信红包数额/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Cycript修改微信红包数额</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -620,7 +617,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="汇编探究" data-title="汇编探究" data-url="http://chinafish.news/2018/04/07/汇编探究/"></div>
+	<div class="ds-thread" data-thread-key="汇编探究" data-title="汇编探究" data-url="http://chinafish.news/2018/05/10/汇编探究/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
