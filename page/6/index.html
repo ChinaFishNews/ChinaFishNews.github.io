@@ -221,6 +221,77 @@
 
       <div class="body-wrap">
   
+    <article id="post-iOS性能调优-使用Instruments诊断App" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/19/iOS性能调优-使用Instruments诊断App/" class="article-date">
+  	<time datetime="2016-02-18T16:00:00.000Z" itemprop="datePublished">2016-02-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/19/iOS性能调优-使用Instruments诊断App/">iOS性能调优-使用Instruments诊断App</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>Instruments是Xcode提供的一个强大的工具，Allocations,Leaks,Time Profiler被戏称为Instruments的救命三招。Alocations通常用来跟踪app内存使用情况，Leaks用来检查app运行时产生的内存泄露，Time profiler用来帮助我们分析代码的执行时间，找出程序变慢的原因。</p>
+<p>本来想写一篇总结Instruments下各工具使用的博客，网上查了下，资料已经很丰富，讲解的也远比我想讲的要好的多，最主要的是，写博客太费时间，尤其是长篇博客，在此，对那些乐此不疲产生优质文章的博主、作者致以崇高的敬意,感谢你们的劳动成果让开发者们受益！</p>
+<p>下面这篇文章讲得比价全面，可以自行阅读探索</p>
+<p><a href="http://www.cocoachina.com/swift/20150623/12237.html" target="_blank" rel="external">如何使用Instruments诊断App（Swift版)</a></p>
+<hr>
+<p>如有任何错误之处或疑问，请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leaks，Allocations-Time-Profiler/">Leaks，Allocations,Time Profiler</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-使用UIBezierPath和CAShapeLayer画各种图形" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -321,96 +392,6 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/转载/">转载</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Crash捕捉工具-Fabric" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/18/Crash捕捉工具-Fabric/" class="article-date">
-  	<time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2016-02-18</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/18/Crash捕捉工具-Fabric/">Crash捕捉工具-Fabric</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
-
-<p>上篇文章提到了多种调试记录错误日志的方法。我现在在用的是Fabric，是Twitter的一个工具，目前来看效果不错。下面来看下如何集成并使用。</p>
-<p><a href="https://get.fabric.io" target="_blank" rel="external">前往官网</a>,，先注册账号。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-10.png?attname=" alt=""></p>
-<p>Fabric安装包下载链接:<a href="http://pan.baidu.com/s/1qX0Ab96" target="_blank" rel="external">http://pan.baidu.com/s/1qX0Ab96</a> 密码：b8sq</p>
-<p>下载安装</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-11.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-12.png?attname=" alt=""></p>
-<p>打开Fabric并选中项目，然后在Crashlytics选项点击Installed</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-13.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-14.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-15.png?attname=" alt=""></p>
-<p>复制白色部分到xcode中</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-17.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-18.png?attname=" alt=""></p>
-<p>继续点击Next</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-19.png?attname=" alt=""></p>
-<p>可拖拽按钮至Xcode中，拖拽成功之后可发现项目中多了Fabric.framework和Crashlytics.framwork。这一步也可以使用pod安装</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-20.png?attname=" alt=""></p>
-<p>安装完后按如下集成代码</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-21.png?attname=" alt=""></p>
-<p>至此集成完毕。</p>
-<p>默认只收集release模式下的错误日志，怎么在Debug模式下也收集呢？可以这样设置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-22.png?attname=" alt=""></p>
-<p>这样在调试和发布后如有遇到崩溃，都会在官网显示，并发往注册邮箱。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-23.png?attname=" alt=""></p>
-<p><br><br>注意：Fabric的原理还是把发布后的dsym上传后对它进行定位，显示出错误的位置。由于版本和系统可能并不一致，集成过程如果步骤有偏差需按照Fabric上显示的的步骤集成。</p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fabric/">Fabric</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/OC/">OC</a>
 	</div>
 
 
@@ -555,6 +536,96 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BugHD/">BugHD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fabric/">Fabric</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/OC/">OC</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Crash捕捉工具-Fabric" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/18/Crash捕捉工具-Fabric/" class="article-date">
+  	<time datetime="2016-02-17T16:00:00.000Z" itemprop="datePublished">2016-02-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/18/Crash捕捉工具-Fabric/">Crash捕捉工具-Fabric</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>上篇文章提到了多种调试记录错误日志的方法。我现在在用的是Fabric，是Twitter的一个工具，目前来看效果不错。下面来看下如何集成并使用。</p>
+<p><a href="https://get.fabric.io" target="_blank" rel="external">前往官网</a>,，先注册账号。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-10.png?attname=" alt=""></p>
+<p>Fabric安装包下载链接:<a href="http://pan.baidu.com/s/1qX0Ab96" target="_blank" rel="external">http://pan.baidu.com/s/1qX0Ab96</a> 密码：b8sq</p>
+<p>下载安装</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-11.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-12.png?attname=" alt=""></p>
+<p>打开Fabric并选中项目，然后在Crashlytics选项点击Installed</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-13.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-14.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2012-02-16-15.png?attname=" alt=""></p>
+<p>复制白色部分到xcode中</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-17.png?attname=" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-18.png?attname=" alt=""></p>
+<p>继续点击Next</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-19.png?attname=" alt=""></p>
+<p>可拖拽按钮至Xcode中，拖拽成功之后可发现项目中多了Fabric.framework和Crashlytics.framwork。这一步也可以使用pod安装</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-20.png?attname=" alt=""></p>
+<p>安装完后按如下集成代码</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-21.png?attname=" alt=""></p>
+<p>至此集成完毕。</p>
+<p>默认只收集release模式下的错误日志，怎么在Debug模式下也收集呢？可以这样设置</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-22.png?attname=" alt=""></p>
+<p>这样在调试和发布后如有遇到崩溃，都会在官网显示，并发往注册邮箱。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-23.png?attname=" alt=""></p>
+<p><br><br>注意：Fabric的原理还是把发布后的dsym上传后对它进行定位，显示出错误的位置。由于版本和系统可能并不一致，集成过程如果步骤有偏差需按照Fabric上显示的的步骤集成。</p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fabric/">Fabric</a></li></ul>
 	</div>
 
       
