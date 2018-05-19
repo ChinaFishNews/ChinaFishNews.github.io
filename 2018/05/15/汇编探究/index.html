@@ -68,7 +68,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_28.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_23.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_22.gif">
-<meta property="og:updated_time" content="2018-05-15T16:09:24.812Z">
+<meta property="og:updated_time" content="2018-05-19T00:23:33.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇编探究">
 <meta name="twitter:description" content="机器语言
@@ -639,8 +639,7 @@
 <p><strong>ldr(load register)指令</strong></p>
 <p>将数据从内存中读出来,存到寄存器中</p>
 <p>此<code>ldr</code> 和 <code>str</code> 的变种<code>ldp</code> 和 <code>stp</code> 还可以操作2个寄存器.</p>
-<p>###堆栈操作</p>
-<p>使用32个字节空间作为这段程序的栈空间,然后利用栈将x0和x1的值进行交换.</p>
+<h3 id="u5806_u6808_u64CD_u4F5C"><a href="#u5806_u6808_u64CD_u4F5C" class="headerlink" title="堆栈操作"></a>堆栈操作</h3><p>使用32个字节空间作为这段程序的栈空间,然后利用栈将x0和x1的值进行交换.</p>
 <pre><code>sub    sp, sp, #0x20    ;拉伸栈空间32个字节
 
 stp    x0, x1, [sp, #0x10] ;sp往上加16个字节的地址,存放x0 和 x1
