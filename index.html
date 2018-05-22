@@ -652,9 +652,43 @@ ldp    x1, x0, [sp, #0x10] ;将sp偏移16个字节地址的值取出来,放入x1
 <p>x30寄存器存放的是函数的返回地址.当ret指令执行时刻,会寻找x30寄存器保存的地址值</p>
 <p>注意:在函数嵌套调用的时候.需要将x30入栈，因为嵌套调用时x30寄存器的值会被覆盖，导致死循环</p>
 </blockquote>
-<h3 id="u51FD_u6570_u7684_u53C2_u6570_u548C_u8FD4_u56DE_u503C"><a href="#u51FD_u6570_u7684_u53C2_u6570_u548C_u8FD4_u56DE_u503C" class="headerlink" title="函数的参数和返回值"></a>函数的参数和返回值</h3><p>ARM64下,<strong>函数的参数</strong>是存放在X0到X7(W0到W7)这8个寄存器里面的.如果超过8个参数,就会入栈</p>
+<h3 id="u51FD_u6570_u7684_u53C2_u6570_u548C_u8FD4_u56DE_u503C_u53CA_u5C40_u90E8_u53D8_u91CF"><a href="#u51FD_u6570_u7684_u53C2_u6570_u548C_u8FD4_u56DE_u503C_u53CA_u5C40_u90E8_u53D8_u91CF" class="headerlink" title="函数的参数和返回值及局部变量"></a>函数的参数和返回值及局部变量</h3><p>ARM64下,<strong>函数的参数</strong>是存放在X0到X7(W0到W7)这8个寄存器里面的.如果超过8个参数,就会入栈，函数的局部变量放在栈中</p>
 <p><strong>函数的返回值</strong>是放在X0 寄存器里面的.</p>
-<h3 id="u51FD_u6570_u7684_u5C40_u90E8_u53D8_u91CF"><a href="#u51FD_u6570_u7684_u5C40_u90E8_u53D8_u91CF" class="headerlink" title="函数的局部变量"></a>函数的局部变量</h3><p>函数的局部变量放在栈里面</p>
+<pre><code>int sum(int a,int b) {
+    return a + b;
+}
+
+int main(int argc, char * argv[]) { 
+    sum(16, 32);
+}
+</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_22_01.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_22_02.png" alt=""></p>
+<pre><code>int sum(int a,int b,int c,int d, int e, int f, int g,int h,int i,int j) {
+    return a + b + c + d + e + f + g + h + i + j;
+}
+
+int main(int argc, char * argv[]) {
+    sum(16, 16 * 2, 16 * 3, 16 * 4, 16 * 5, 16 * 6, 16 * 7, 16 * 8, 16 * 9,16 * 10);
+}
+</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_22_03.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_22_04.png" alt=""></p>
+<h3 id="ARM64_u4E0B_u90E8_u5206_u5E38_u7528_u6C47_u7F16_u6307_u4EE4"><a href="#ARM64_u4E0B_u90E8_u5206_u5E38_u7528_u6C47_u7F16_u6307_u4EE4" class="headerlink" title="ARM64下部分常用汇编指令"></a>ARM64下部分常用汇编指令</h3><blockquote>
+<p>MOV X1，X0 ;将寄存器X0的值传送到寄存器X1</p>
+<p>ADD X0，X1，X2 ;寄存器X1和X2的值相加后传送到X0</p>
+<p>SUB X0，X1，X2 ;寄存器X1和X2的值相减后传送到X0</p>
+<p>AND X0，X0，#0xF ; X0的值与0xF相位与后的值传送到X0</p>
+<p>ORR X0，X0，#0x9 ; X0的值与9逻辑或后的值传送到X0</p>
+<p>EOR X0，X0，#0xF ; X0的值与0xF相异或后的值传送到X0</p>
+<p>LDR X5，[X6，#0x08] ；X6寄存器加0x08的和的地址值内的数据传送到X5</p>
+<p>STR X0, [SP, #0x8] ；X0寄存器的数据传送到SP+0x8地址值指向的存储空间</p>
+<p>STP x29, x30, [sp, #0x10] ;入栈指令</p>
+<p>LDP x29, x30, [sp, #0x10] ;出栈指令</p>
+<p>CBZ;比较（Compare），如果结果为零（Zero）就转移（只能跳到后面的指令）</p>
+<p>CBNZ;比较，如果结果非零（Non Zero）就转移（只能跳到后面的指令）</p>
+<p>CMP;比较指令，相当于SUBS，影响程序状态寄存器</p>
+<p>CPSR B/BL ;绝对跳转#imm， 返回地址保存到LR（X30）</p>
+<p>RET;子程序返回指令，返回地址默认保存在LR（X30）</p>
+</blockquote>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
