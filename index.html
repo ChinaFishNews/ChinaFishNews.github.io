@@ -740,7 +740,7 @@ int main(int argc, char * argv[]) {
 <p>2.将PC寄存器的低12位清零(2^12 = 4kb) 0x1002e6874  ==&gt; 0x1002e6000</p>
 <p>3.将1和2的结果相加给X0寄存器</p>
 <p><strong>常量获取：基地址+偏移地址</strong></p>
-<p><br><br>在arm中，ADD加法不带进位，ADDS是带进位的，运算完成要置符号位(最高位作为符号位)，SUB和SUBS类似</p>
+<p>在arm中，ADD加法不带进位，ADDS是带进位的，运算完成要置符号位(最高位作为符号位)，SUB和SUBS类似</p>
 <pre><code>void funA() {
     asm(
         &quot;mov w0,#0x7fffffff\n&quot;
