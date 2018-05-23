@@ -652,7 +652,7 @@ ldp    x1, x0, [sp, #0x10] ;将sp偏移16个字节地址的值取出来,放入x1
 <p>x30寄存器存放的是函数的返回地址.当ret指令执行时刻,会寻找x30寄存器保存的地址值</p>
 <p>注意:在函数嵌套调用的时候.需要将x30入栈，因为嵌套调用时x30寄存器的值会被覆盖，导致死循环</p>
 </blockquote>
-<h3 id="u51FD_u6570_u7684_u53C2_u6570_u548C_u8FD4_u56DE_u503C_u53CA_u5C40_u90E8_u53D8_u91CF"><a href="#u51FD_u6570_u7684_u53C2_u6570_u548C_u8FD4_u56DE_u503C_u53CA_u5C40_u90E8_u53D8_u91CF" class="headerlink" title="函数的参数和返回值及局部变量"></a>函数的参数和返回值及局部变量</h3><p>ARM64下,<strong>函数的参数</strong>是存放在X0到X7(W0到W7)这8个寄存器里面的.如果超过8个参数,就会入栈，函数的局部变量放在栈中</p>
+<h3 id="u51FD_u6570_u7684_u53C2_u6570_u548C_u8FD4_u56DE_u503C_u53CA_u5C40_u90E8_u53D8_u91CF"><a href="#u51FD_u6570_u7684_u53C2_u6570_u548C_u8FD4_u56DE_u503C_u53CA_u5C40_u90E8_u53D8_u91CF" class="headerlink" title="函数的参数和返回值及局部变量"></a>函数的参数和返回值及局部变量</h3><p>ARM64下,函数调用会开辟一段空间，每个函数调用完毕之后，会将拉伸的栈空间平衡（将sp加回去）,<strong>函数的参数</strong>是存放在X0到X7(W0到W7)这8个寄存器里面的.如果超过8个参数,就会入栈，函数的局部变量放在栈中</p>
 <p><strong>函数的返回值</strong>是放在X0 寄存器里面的.</p>
 <pre><code>int sum(int a,int b) {
     return a + b;
@@ -689,7 +689,80 @@ int main(int argc, char * argv[]) {
 <p>CPSR B/BL ;绝对跳转#imm， 返回地址保存到LR（X30）</p>
 <p>RET;子程序返回指令，返回地址默认保存在LR（X30）</p>
 </blockquote>
-<hr>
+<h3 id="u72B6_u6001_u5BC4_u5B58_u5668_28_u6807_u8BB0_u5BC4_u5B58_u5668_29"><a href="#u72B6_u6001_u5BC4_u5B58_u5668_28_u6807_u8BB0_u5BC4_u5B58_u5668_29" class="headerlink" title="状态寄存器(标记寄存器)"></a>状态寄存器(标记寄存器)</h3><p>CPU内部的寄存器中,有一种特殊的寄存器(对于不同的处理器,个数和结构都可能不同).这种寄存器在ARM中,被称为状态寄存器就是CPSR(current program status register)寄存器</p>
+<p>CPSR和其他寄存器不一样,其他寄存器是用来存放数据的,都是整个寄存器具有一个含义.而CPSR寄存器是按位起作用的,也就是说,它的每一位都有专门的含义,记录特定的信息</p>
+<blockquote>
+<p>注意:CPSR寄存器是32位的</p>
+</blockquote>
+<ul>
+<li>CPSR的低8位（包括I、F、T和M[4：0]）称为控制位，程序无法修改,除非CPU运行于特权模式下,程序才能修改控制位!</li>
+<li>N、Z、C、V均为条件码标志位。它们的内容可被算术或逻辑运算的结果所改变，并且可以决定某条指令是否被执行!意义重大!</li>
+</ul>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_23_01.jpg" alt=""></p>
+<h4 id="N_uFF08Negative_uFF09_u6807_u5FD7"><a href="#N_uFF08Negative_uFF09_u6807_u5FD7" class="headerlink" title="N（Negative）标志"></a>N（Negative）标志</h4><blockquote>
+<p>CPSR的第31位是 N，符号标志位。它记录相关指令执行后,其结果是否为负.如果为负 N = 1,如果是非负数 N = 0.</p>
+</blockquote>
+<p><strong>注意</strong>,在ARM64的指令集中,有的指令的执行时影响状态寄存器的,比如add\sub\or等,他们大都是运算指令(进行逻辑或算数运算)；</p>
+<h4 id="Z_28Zero_29_u6807_u5FD7"><a href="#Z_28Zero_29_u6807_u5FD7" class="headerlink" title="Z(Zero)标志"></a>Z(Zero)标志</h4><blockquote>
+<p>CPSR的第30位是Z，0标志位。它记录相关指令执行后,其结果是否为0.如果结果为0.那么Z = 1.如果结果不为0,那么Z = 0</p>
+</blockquote>
+<p>对于Z的值,我们可以这样来看,Z标记相关指令的计算结果是否为0,如果为0,则N要记录下”是0”这样的肯定信息.在计算机中1表示逻辑真,表示肯定.所以当结果为0的时候Z = 1,表示”结果是0”.如果结果不为0,则Z要记录下”不是0”这样的否定信息.在计算机中0表示逻辑假,表示否定,所以当结果不为0的时候Z = 0,表示”结果不为0”。</p>
+<h4 id="C_28Carry_29_u6807_u5FD7"><a href="#C_28Carry_29_u6807_u5FD7" class="headerlink" title="C(Carry)标志"></a>C(Carry)标志</h4><blockquote>
+<p>CPSR的第29位是C，进位标志位。一般情况下,进行<strong>无符号数</strong>的运算</p>
+<p>加法运算：当运算结果产生了进位时（无符号数溢出），C=1，否则C=0</p>
+<p>减法运算（包括CMP）：当运算时产生了借位时（无符号数溢出），C=0，否则C=1</p>
+</blockquote>
+<p>&emsp;&emsp;&ensp;对于位数为N的无符号数来说，其对应的二进制信息的最高位，即第N - 1位，就是它的最高有效位，而假想存在的第N位，就是相对于最高有效位的更高位。如下图所示：</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_23_02.jpg" alt=""></p>
+<p><strong>进位</strong></p>
+<p>我们知道，当两个数据相加的时候，有可能产生从最高有效位向更高位的进位。比如两个32位数据：0xaaaaaaaa + 0xaaaaaaaa,将产生进位。由于这个进位值在32位中无法保存，我们就只是简单的说这个进位值丢失了。其实CPU在运算的时候，并不丢弃这个进位值，而是记录在一个特殊的寄存器的某一位上。ARM下就用C位来记录这个进位值。比如，下面的指令</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mov w0,<span class="preprocessor">#<span class="number">0xaaaaaaaa</span>；<span class="number">0xa</span> 的二进制是 <span class="number">1010</span></span></span><br><span class="line">adds w0,w0,w0； 执行后 相当于 <span class="number">1010</span> &lt;&lt; <span class="number">1</span> 进位<span class="number">1</span>（无符号溢出） 所以C标记 为 <span class="number">1</span></span><br><span class="line">adds w0,w0,w0； 执行后 相当于 <span class="number">0101</span> &lt;&lt; <span class="number">1</span> 进位<span class="number">0</span>（无符号没溢出） 所以C标记 为 <span class="number">0</span></span><br><span class="line">adds w0,w0,w0； 重复上面操作</span><br><span class="line">adds w0,w0,w0</span><br></pre></td></tr></table></figure>
+<p><strong>借位</strong></p>
+<p>当两个数据做减法的时候，有可能向更高位借位。再比如，两个32位数据：0x00000000 - 0x000000ff,将产生借位，借位后，相当于计算0x100000000 - 0x000000ff。得到0xffffff01 这个值。由于借了一位，所以C位 用来标记借位。C = 0.比如下面指令：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov w0,<span class="preprocessor">#<span class="number">0x0</span></span></span><br><span class="line">subs w0,w0,<span class="preprocessor">#<span class="number">0xff</span> ;</span></span><br><span class="line">subs w0,w0,<span class="preprocessor">#<span class="number">0xff</span></span></span><br><span class="line">subs w0,w0,<span class="preprocessor">#<span class="number">0xff</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="V_28Overflow_29_u6EA2_u51FA_u6807_u5FD7"><a href="#V_28Overflow_29_u6EA2_u51FA_u6807_u5FD7" class="headerlink" title="V(Overflow)溢出标志"></a>V(Overflow)溢出标志</h3><blockquote>
+<p>CPSR的第28位是V，溢出标志位。在进行有符号数运算的时候，如果超过了机器所能标识的范围，称为溢出。</p>
+</blockquote>
+<ul>
+<li>正数 +  正数  为负数  溢出</li>
+<li>负数 +  负数  为正数  溢出</li>
+<li>正数 +  负数  不可能溢出</li>
+</ul>
+<h3 id="u5185_u5B58_u5206_u533A"><a href="#u5185_u5B58_u5206_u533A" class="headerlink" title="内存分区"></a>内存分区</h3><p>代码区:  可读可写</p>
+<p>栈区域:  放参数和局部变量，可读可写</p>
+<p>堆区域: 动态申请 可读可写</p>
+<p>全局:  可读可写</p>
+<p>常量区: 只读</p>
+<p><strong>adrp指令</strong></p>
+<p><code>adrp</code> 是计算指定的数据地址 到当前PC值的相对偏移</p>
+<p><code>adrp   x0, 1</code></p>
+<p>1.将1的值,左移12位 1 0000 0000 0000 == 0x1000</p>
+<p>2.将PC寄存器的低12位清零(2^12 = 4kb) 0x1002e6874  ==&gt; 0x1002e6000</p>
+<p>3.将1和2的结果相加给X0寄存器</p>
+<p><strong>常量获取：基地址+偏移地址</strong></p>
+<p><br><br>在arm中，ADD加法不带进位，ADDS是带进位的，运算完成要置符号位(最高位作为符号位)，SUB和SUBS类似</p>
+<pre><code>void funA() {
+    asm(
+        &quot;mov w0,#0x7fffffff\n&quot;
+        &quot;adds w0,w0,#0x2\n&quot;
+        &quot;mov w0,#0x80000000\n&quot;
+        &quot;subs w0,w0,#0x2\n&quot;
+        );
+}
+
+void funB() {
+    int32_t a = 0x80000000;
+    printf(&quot;%d\n&quot;,a);
+    a = a - 2;
+    printf(&quot;%d\n&quot;,a);
+}
+
+int main(int argc, char * argv[]) {
+    funA();
+    funB();
+}
+</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_23_03.png" alt=""></p>
+<h3 id="u5C06_u6C47_u7F16_u4EE3_u7801_u8FD8_u539F_u6210_u9AD8_u7EA7_u4EE3_u7801"><a href="#u5C06_u6C47_u7F16_u4EE3_u7801_u8FD8_u539F_u6210_u9AD8_u7EA7_u4EE3_u7801" class="headerlink" title="将汇编代码还原成高级代码"></a>将汇编代码还原成高级代码</h3><hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
 <p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
