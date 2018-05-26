@@ -221,11 +221,11 @@
 
       <div class="body-wrap">
   
-    <article id="post-iOS开发使用AVPlayer、MoviePlayer播放本地、网络视频" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-遍地的奢华与奇缺的教养" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/28/iOS开发使用AVPlayer、MoviePlayer播放本地、网络视频/" class="article-date">
-  	<time datetime="2016-02-27T16:00:00.000Z" itemprop="datePublished">2016-02-28</time>
+      <a href="/2016/02/26/遍地的奢华与奇缺的教养/" class="article-date">
+  	<time datetime="2016-02-25T16:00:00.000Z" itemprop="datePublished">2016-02-26</time>
 </a>
     </div>
   
@@ -238,7 +238,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/28/iOS开发使用AVPlayer、MoviePlayer播放本地、网络视频/">iOS开发使用AVPlayer、MoviePlayer播放本地、网络视频</a>
+      <a class="article-title" href="/2016/02/26/遍地的奢华与奇缺的教养/">遍地的奢华与奇缺的教养</a>
     </h1>
   
 
@@ -247,22 +247,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
-
-
-<p>Github下载地址: <a href="https://github.com/ChinaFishNews/VideoPlay.git" target="_blank" rel="external">https://github.com/ChinaFishNews/VideoPlay.git</a></p>
-<p>Demo中使用的ALMoviePlayerController是一个框架，继承了系统的MPMoviePlayerController，做了一些扩展和封装 。</p>
-<p>代码我就不过多解读了，相对是比较清晰的，仅是为了实现播放功能，虽然很简陋且还有一些问题。</p>
-<p>其中在使用AVPlayer播放视频的时候滑动进度条稍微有些不灵敏，之前在做项目的时候因为是使用Swift语言实现的，所以功能没法直接拿出来，就用OC也勉强实现了这个功能。项目中的解决方法是通过在进度条上画了热点，判断当前点击的点或滑动停止的点占总长度的百分比，从而定位到正确的播放位置。代码如下:</p>
-<p>画出热点<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">func drawHotField()</span><br><span class="line">&#123;</span><br><span class="line">    let width:<span class="built_in">CGFloat</span> = <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.bounds</span><span class="variable">.size</span><span class="variable">.width</span></span><br><span class="line">    let height:<span class="built_in">CGFloat</span> = <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.bounds</span><span class="variable">.size</span><span class="variable">.height</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">self</span><span class="variable">.buttonMaintain</span> = <span class="built_in">CGPathCreateMutable</span>()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">self</span><span class="variable">.whetherPortrate</span> == <span class="literal">true</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">CGPathMoveToPoint</span>(buttonMaintain,<span class="literal">nil</span>, <span class="number">38</span>, height-<span class="number">60</span>)</span><br><span class="line">        <span class="built_in">CGPathAddLineToPoint</span>(buttonMaintain, <span class="literal">nil</span>, width-<span class="number">170</span>,  height-<span class="number">60</span>)</span><br><span class="line">        <span class="built_in">CGPathAddLineToPoint</span>(buttonMaintain, <span class="literal">nil</span>, width-<span class="number">170</span>,  height)</span><br><span class="line">        <span class="built_in">CGPathAddLineToPoint</span>(buttonMaintain, <span class="literal">nil</span>, <span class="number">38</span>, height)</span><br><span class="line">        <span class="built_in">CGPathCloseSubpath</span>(<span class="keyword">self</span><span class="variable">.buttonMaintain</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">CGPathMoveToPoint</span>(buttonMaintain,<span class="literal">nil</span>, <span class="number">60</span>, <span class="number">65</span>)</span><br><span class="line">        <span class="built_in">CGPathAddLineToPoint</span>(buttonMaintain, <span class="literal">nil</span>, <span class="number">60</span>,  height-<span class="number">150</span>)</span><br><span class="line">        <span class="built_in">CGPathAddLineToPoint</span>(buttonMaintain, <span class="literal">nil</span>, <span class="number">0</span>,  height-<span class="number">150</span>)</span><br><span class="line">        <span class="built_in">CGPathAddLineToPoint</span>(buttonMaintain, <span class="literal">nil</span>, <span class="number">0</span>,<span class="number">65</span> )</span><br><span class="line">        <span class="built_in">CGPathCloseSubpath</span>(<span class="keyword">self</span><span class="variable">.buttonMaintain</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    Logger<span class="variable">.info</span>(<span class="string">"pathPoint:  \(self.buttonMaintain)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>点击<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">func controlViewClicked(tapGesture:UITapGestureRecognizer)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">self</span><span class="built_in">.</span>drawHotField()</span><br><span class="line">        Logger<span class="built_in">.</span>info(<span class="string">"tap:---------------"</span>)</span><br><span class="line">        <span class="keyword">let</span> tapPoint:CGPoint = tapGesture<span class="built_in">.</span>locationInView(<span class="built_in">self</span><span class="built_in">.</span>view)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> CGPathContainsPoint(<span class="built_in">self</span><span class="built_in">.</span>buttonMaintain,nil,tapPoint,<span class="literal">false</span>) == <span class="literal">true</span></span><br><span class="line">        &#123;</span><br><span class="line">             <span class="built_in">var</span> currentX = tapPoint<span class="built_in">.</span>x</span><br><span class="line">             <span class="built_in">var</span> percent = (currentX-<span class="number">38</span>)/<span class="built_in">self</span><span class="built_in">.</span>progessSlider<span class="subst">!</span><span class="built_in">.</span>frame<span class="built_in">.</span>size<span class="built_in">.</span>width</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">self</span><span class="built_in">.</span>whetherPortrate != <span class="literal">true</span></span><br><span class="line">            &#123;</span><br><span class="line">                currentX = tapPoint<span class="built_in">.</span>y</span><br><span class="line">                percent = (currentX-<span class="number">65</span>)/<span class="built_in">self</span><span class="built_in">.</span>progessSlider<span class="subst">!</span><span class="built_in">.</span>frame<span class="built_in">.</span>size<span class="built_in">.</span>width</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">let</span> <span class="built_in">duration</span>: CMTime = <span class="built_in">self</span><span class="built_in">.</span>player<span class="subst">!</span><span class="built_in">.</span>currentItem<span class="subst">!</span><span class="built_in">.</span><span class="built_in">duration</span></span><br><span class="line">            <span class="built_in">var</span> currentSecond: Float64 = CMTimeGetSeconds(<span class="built_in">duration</span>)</span><br><span class="line">            currentSecond = currentSecond * Float64(percent)</span><br><span class="line">            <span class="built_in">self</span><span class="built_in">.</span>progessSlider?<span class="built_in">.</span>value = Float( currentSecond / CMTimeGetSeconds(<span class="built_in">self</span><span class="built_in">.</span>player<span class="subst">!</span><span class="built_in">.</span>currentItem<span class="subst">!</span><span class="built_in">.</span><span class="built_in">duration</span>))</span><br><span class="line">            <span class="built_in">self</span><span class="built_in">.</span>player?<span class="built_in">.</span>currentItem<span class="subst">!</span><span class="built_in">.</span>seekToTime(CMTimeMakeWithSeconds(Float64(Float(CMTimeGetSeconds(<span class="built_in">duration</span>)) * <span class="built_in">self</span><span class="built_in">.</span>progessSlider<span class="subst">!</span><span class="built_in">.</span>value), Int32(CMTimeGetSeconds(<span class="built_in">duration</span>))))</span><br><span class="line">            <span class="built_in">self</span><span class="built_in">.</span>progressLabel?<span class="built_in">.</span>text = <span class="built_in">self</span><span class="built_in">.</span>getCurrentTime(currentSecond)</span><br><span class="line">            </span><br><span class="line">            <span class="built_in">self</span><span class="built_in">.</span>judgeWhetherEnd()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>滑动<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">func controlViewPaned(panGesture:UIPanGestureRecognizer)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">self</span><span class="built_in">.</span>drawHotField()</span><br><span class="line">        Logger<span class="built_in">.</span>info(<span class="string">"pan:---------------"</span>)</span><br><span class="line">        <span class="keyword">let</span> tapPoint:CGPoint = panGesture<span class="built_in">.</span>locationInView(<span class="built_in">self</span><span class="built_in">.</span>view)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> panGesture<span class="built_in">.</span>state == UIGestureRecognizerState<span class="built_in">.</span>Began <span class="subst">||</span> panGesture<span class="built_in">.</span>state == UIGestureRecognizerState<span class="built_in">.</span>Changed</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> CGPathContainsPoint(<span class="built_in">self</span><span class="built_in">.</span>buttonMaintain,nil,tapPoint,<span class="literal">false</span>) == <span class="literal">true</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">var</span> currentX = tapPoint<span class="built_in">.</span>x</span><br><span class="line">                <span class="built_in">var</span> percent = (currentX-<span class="number">38</span>)/<span class="built_in">self</span><span class="built_in">.</span>progessSlider<span class="subst">!</span><span class="built_in">.</span>frame<span class="built_in">.</span>size<span class="built_in">.</span>width</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">self</span><span class="built_in">.</span>whetherPortrate != <span class="literal">true</span></span><br><span class="line">                &#123;</span><br><span class="line">                    currentX = tapPoint<span class="built_in">.</span>y</span><br><span class="line">                    percent = (currentX-<span class="number">65</span>)/<span class="built_in">self</span><span class="built_in">.</span>progessSlider<span class="subst">!</span><span class="built_in">.</span>frame<span class="built_in">.</span>size<span class="built_in">.</span>width</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">let</span> <span class="built_in">duration</span>: CMTime = <span class="built_in">self</span><span class="built_in">.</span>player<span class="subst">!</span><span class="built_in">.</span>currentItem<span class="subst">!</span><span class="built_in">.</span><span class="built_in">duration</span></span><br><span class="line">                <span class="built_in">var</span> currentSecond: Float64 = CMTimeGetSeconds(<span class="built_in">duration</span>)</span><br><span class="line">                currentSecond = currentSecond * Float64(percent)</span><br><span class="line">                <span class="built_in">self</span><span class="built_in">.</span>progessSlider?<span class="built_in">.</span>value = Float( currentSecond / CMTimeGetSeconds(<span class="built_in">self</span><span class="built_in">.</span>player<span class="subst">!</span><span class="built_in">.</span>currentItem<span class="subst">!</span><span class="built_in">.</span><span class="built_in">duration</span>))</span><br><span class="line">                <span class="built_in">self</span><span class="built_in">.</span>player?<span class="built_in">.</span>currentItem<span class="subst">!</span><span class="built_in">.</span>seekToTime(CMTimeMakeWithSeconds(Float64(Float(CMTimeGetSeconds(<span class="built_in">duration</span>)) * <span class="built_in">self</span><span class="built_in">.</span>progessSlider<span class="subst">!</span><span class="built_in">.</span>value), Int32(CMTimeGetSeconds(<span class="built_in">duration</span>))))</span><br><span class="line">                <span class="built_in">self</span><span class="built_in">.</span>progressLabel?<span class="built_in">.</span>text = <span class="built_in">self</span><span class="built_in">.</span>getCurrentTime(currentSecond)</span><br><span class="line">                </span><br><span class="line">                <span class="built_in">self</span><span class="built_in">.</span>judgeWhetherEnd()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;s</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
+        <blockquote>
+<p>本文系转载</p>
+<p>作者：梁文道</p>
+<p>来源：新华网思客精选</p>
+<p> 原题:《什么是奢华，什么是教养》</p>
+</blockquote>
+<p>今天的中国，无论你走到哪里，几乎都能看见“奢华”这两个字。每一本时尚生活杂志都在不厌其烦地告诉你有关奢华的故事，每一个商品广告都试图让你感到它要卖的商品有多奢华。<br>于是房子是奢华的，车子是奢华的，大衣是奢华的，手表是奢华的，皮鞋也是奢华的，就连内裤也可以很奢华，乃至于我刚刚吃过的涮羊肉也标榜自己的用料十分奢华。本来这种东西是可以见怪不怪的，正所谓奢华见惯亦平常。</p>
+<p>可是有一天，我在杂志上看到一篇介绍英国手工定制鞋的文章，作者先是不断渲染英国绅士的低调含蓄，一两千字之后笔锋忽然一转，他还是未能免俗地要大谈这鞋子有多奢华，并将其定位为“低调的奢华”。然后把绅士等同于品位，再将品位等同于奢华。许多媒体早就在“奢华”和“品位”之间画上等号了，但现在有人进一步连“绅士”也挂了上去，这就让我觉得有些刺眼了。</p>
+<p>我的生活奢华不起，我的言行也离绅士甚远，可我总算读过不少传说中的英国绅士写的东西，在我的印象中，绅士和奢华根本是两个完全不同的概念。且看19世纪英国绅士之间的通信，关于绅士的品位，他们是这么说的：“×××的家朴实无华，真是难得的好品位。”“他是那种老派的绅士，一件大衣穿了20年。”他们会称赞一个人的朴实和惜物，低调而不张扬，却绝对不会把看得见的奢华当作品位，尤其不会把它视为绅士的品位。</p>
+<p>就以一双手工制作的顶级皮鞋来说吧，它是很贵，但它可以穿上一二十年，这里头的学问不只是它自身的质量，更是你穿它、用它的态度。</p>
+<p>首先，你会珍惜它，所以走路的姿势是端正的，不会在街上看见什么都随便踢一脚。其次，你愿意花点时间和心思去护理它，平常回家脱下来不忘为它拂尘拭灰，周末则悠悠闲闲地替它抹油补色，权当一种调剂身心的休息活动（就算他有佣人，他也宁愿自己动手）。所以这双鞋能够穿得久，10年之后，它略显老态，但不腐旧，看得出是经过了不错的照料，也看得出其主人对它的爱惜。</p>
+<p><b> 这叫作绅士<b>。</b></b></p>
+<p>不一定喜欢昂贵的身外物，但一定不随便花钱，朝秦暮楚。他的品位不在于他买了什么，而在于他的生活风格甚至为人；他拥有的物质不能说明他，他拥有物质的方式才能道出他是个怎么样的人。</p>
+<p>当然，一个人不能做物质的奴隶，但他的人格、性情或许可以借着物质偶尔散发出来。<b>简单地讲，这就是教养<br>。</b></p>
+<p>“教养”是一个何其古老、于今天何其陌生的词啊。这个词本来才是品位的绝配，不过，由于教养困难，奢华容易，我们今天才会把品位许给了奢华，让空洞的、无止境的消费去遮掩教养的匮乏。久而久之，甚至开始有人以为，英国的传统绅士皆以奢华为人生第一目标。如果你觉得“教养”太过抽象，我可以为你举一些没有教养的好例子。开着一部奔驰车在街上横冲直撞，觉得行人全是活该被吓死的贱民，这是没有教养的。手上戴着伯爵表，然后借醉酒臭骂上错菜的服务员小妹妹，这也是没有教养的。教养不必来自家教，更不是贵族的专利，上进的绅士更看重后天的自我养成。</p>
+<p>然而，如今有力奢华地招摇过市之辈多如过江之鲫，甘于谦逊、力求品格善美的人却几不可闻，岂不可叹？我只不过是在北京一家火锅店见着它用“奢华”二字形容自己的材料，便忍不住发出这一大堆牢骚，这自然也是没有教养的表现。</p>
+<p><br>奢华和教养的分界点在哪里？一个向外——求胜。一个向内——求安。无时无刻不在和他人相比，自然就倾慕奢华。无时无刻不在要求自己进步，自然就有了教养<br>。</p>
+<p>真正的奢华是内心的高尚，这不是昂贵的物品所能装饰出来的。所以如何去做一个高尚的人，这才是我们最应该要去购买的“奢侈品”，当你拥有了这件专属于你的私人定制品时，你所散发出的气质会遮挡每一件价值不菲的身外之物。</p>
+<p>在这个最美好，同时也是最物质的年代，我们都应变得物质。但这里所说的物质我们不能狭隘的只看它表面的意思、不能只想到现在的社会风气所熏陶出来的“物质”。现代社会的物质更准确的理解就是梁文道老师在文章中所说的“一个人的人格、性情或许可以借着物质偶尔散发出来。简单地讲，这就是教养。”</p>
+<p>如果有了教养，你的内心自然会变得高尚，内心高尚的人，请你自信的告诉世人，你就是一件无与伦比的奢侈品。</p>
 
       
     </div>
@@ -271,12 +275,12 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AVPlayer、MoviePlayer/">AVPlayer、MoviePlayer</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Swift/">Swift</a>
+	<a class="article-category-link" href="/categories/转载/">转载</a>
 	</div>
 
 
@@ -377,186 +381,6 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/转载/">转载</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-遍地的奢华与奇缺的教养" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/26/遍地的奢华与奇缺的教养/" class="article-date">
-  	<time datetime="2016-02-25T16:00:00.000Z" itemprop="datePublished">2016-02-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/26/遍地的奢华与奇缺的教养/">遍地的奢华与奇缺的教养</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>本文系转载</p>
-<p>作者：梁文道</p>
-<p>来源：新华网思客精选</p>
-<p> 原题:《什么是奢华，什么是教养》</p>
-</blockquote>
-<p>今天的中国，无论你走到哪里，几乎都能看见“奢华”这两个字。每一本时尚生活杂志都在不厌其烦地告诉你有关奢华的故事，每一个商品广告都试图让你感到它要卖的商品有多奢华。<br>于是房子是奢华的，车子是奢华的，大衣是奢华的，手表是奢华的，皮鞋也是奢华的，就连内裤也可以很奢华，乃至于我刚刚吃过的涮羊肉也标榜自己的用料十分奢华。本来这种东西是可以见怪不怪的，正所谓奢华见惯亦平常。</p>
-<p>可是有一天，我在杂志上看到一篇介绍英国手工定制鞋的文章，作者先是不断渲染英国绅士的低调含蓄，一两千字之后笔锋忽然一转，他还是未能免俗地要大谈这鞋子有多奢华，并将其定位为“低调的奢华”。然后把绅士等同于品位，再将品位等同于奢华。许多媒体早就在“奢华”和“品位”之间画上等号了，但现在有人进一步连“绅士”也挂了上去，这就让我觉得有些刺眼了。</p>
-<p>我的生活奢华不起，我的言行也离绅士甚远，可我总算读过不少传说中的英国绅士写的东西，在我的印象中，绅士和奢华根本是两个完全不同的概念。且看19世纪英国绅士之间的通信，关于绅士的品位，他们是这么说的：“×××的家朴实无华，真是难得的好品位。”“他是那种老派的绅士，一件大衣穿了20年。”他们会称赞一个人的朴实和惜物，低调而不张扬，却绝对不会把看得见的奢华当作品位，尤其不会把它视为绅士的品位。</p>
-<p>就以一双手工制作的顶级皮鞋来说吧，它是很贵，但它可以穿上一二十年，这里头的学问不只是它自身的质量，更是你穿它、用它的态度。</p>
-<p>首先，你会珍惜它，所以走路的姿势是端正的，不会在街上看见什么都随便踢一脚。其次，你愿意花点时间和心思去护理它，平常回家脱下来不忘为它拂尘拭灰，周末则悠悠闲闲地替它抹油补色，权当一种调剂身心的休息活动（就算他有佣人，他也宁愿自己动手）。所以这双鞋能够穿得久，10年之后，它略显老态，但不腐旧，看得出是经过了不错的照料，也看得出其主人对它的爱惜。</p>
-<p><b> 这叫作绅士<b>。</b></b></p>
-<p>不一定喜欢昂贵的身外物，但一定不随便花钱，朝秦暮楚。他的品位不在于他买了什么，而在于他的生活风格甚至为人；他拥有的物质不能说明他，他拥有物质的方式才能道出他是个怎么样的人。</p>
-<p>当然，一个人不能做物质的奴隶，但他的人格、性情或许可以借着物质偶尔散发出来。<b>简单地讲，这就是教养<br>。</b></p>
-<p>“教养”是一个何其古老、于今天何其陌生的词啊。这个词本来才是品位的绝配，不过，由于教养困难，奢华容易，我们今天才会把品位许给了奢华，让空洞的、无止境的消费去遮掩教养的匮乏。久而久之，甚至开始有人以为，英国的传统绅士皆以奢华为人生第一目标。如果你觉得“教养”太过抽象，我可以为你举一些没有教养的好例子。开着一部奔驰车在街上横冲直撞，觉得行人全是活该被吓死的贱民，这是没有教养的。手上戴着伯爵表，然后借醉酒臭骂上错菜的服务员小妹妹，这也是没有教养的。教养不必来自家教，更不是贵族的专利，上进的绅士更看重后天的自我养成。</p>
-<p>然而，如今有力奢华地招摇过市之辈多如过江之鲫，甘于谦逊、力求品格善美的人却几不可闻，岂不可叹？我只不过是在北京一家火锅店见着它用“奢华”二字形容自己的材料，便忍不住发出这一大堆牢骚，这自然也是没有教养的表现。</p>
-<p><br>奢华和教养的分界点在哪里？一个向外——求胜。一个向内——求安。无时无刻不在和他人相比，自然就倾慕奢华。无时无刻不在要求自己进步，自然就有了教养<br>。</p>
-<p>真正的奢华是内心的高尚，这不是昂贵的物品所能装饰出来的。所以如何去做一个高尚的人，这才是我们最应该要去购买的“奢侈品”，当你拥有了这件专属于你的私人定制品时，你所散发出的气质会遮挡每一件价值不菲的身外之物。</p>
-<p>在这个最美好，同时也是最物质的年代，我们都应变得物质。但这里所说的物质我们不能狭隘的只看它表面的意思、不能只想到现在的社会风气所熏陶出来的“物质”。现代社会的物质更准确的理解就是梁文道老师在文章中所说的“一个人的人格、性情或许可以借着物质偶尔散发出来。简单地讲，这就是教养。”</p>
-<p>如果有了教养，你的内心自然会变得高尚，内心高尚的人，请你自信的告诉世人，你就是一件无与伦比的奢侈品。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/转载/">转载</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS开发如何集成并使用支付宝SDK" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/25/iOS开发如何集成并使用支付宝SDK/" class="article-date">
-  	<time datetime="2016-02-24T16:00:00.000Z" itemprop="datePublished">2016-02-25</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/25/iOS开发如何集成并使用支付宝SDK/">iOS开发如何集成并使用支付宝SDK</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
-
-<p>现在很多App都集成了支付宝SDK中的移动支付功能，但使用支付宝SDK的前提是购买的物品必须是和应用程序无关的商品，比如服装、电子产品等。如果是游戏币、会员等则必须使用内购，内购是用户将钱支付给苹果，之后苹果分成给商户。但即便是使用支付宝SDK购买真实的商品，在提交审核的时候依然可能被拒，这时候需要给苹果回复邮件阐述支付的流程。</p>
-<p>如何集成并使用支付宝SDK呢？</p>
-<p>需要先到 <a href="https://www.alipay.com" target="_blank" rel="external">支付宝官网</a>去申请签约，流程比较麻烦,不过有详细文档。签约成功后会获得商户ID(partner)和账户ID(seller)和私钥(私钥需根据公钥按照文档步骤生成)。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-01.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-02.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-04.png?attname=" alt=""></p>
-<p>之后需前往 <a href="http://open.alipay.com/platform/home.htm" target="_blank" rel="external">支付宝开放平台</a>，注册需集成的应用，填写相关信息。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-26-16.png?attname=" alt=""></p>
-<p>SDK下载页面: <a href="https://doc.open.alipay.com/doc2/detail?treeId=54&amp;articleId=103419&amp;docType=1" target="_blank" rel="external">点此前往</a></p>
-<p>然后选择 SDK下载(注意:也有人使用CocoaPods集成SDK,但是CocoaPods上SDK不是最新的，所以支付时的回调会有问题，建议到官网下载)<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-03.png?attname=" alt=""></p>
-<p>下载完成后导入项目</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-05.png?attname=" alt=""></p>
-<p>kNotifyURL问后台获取，在支付成功或失败的时候会根绝这个回调同时通知后台。kPrivateKey这个私钥我存储在info.plist里面，也可以从后台获取。kAppScheme用来处理支付宝回调</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-07.png?attname=" alt=""></p>
-<p>Identifier可不填，URL Schemes可随意填写，但需和官网注册应用时填写的一样。</p>
-<p>这里面的AlipayRequestConfig类官网Demo里并没有，是封装了一个支付方法类</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-08.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-09.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-10.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-11.png?attname=" alt=""></p>
-<p>在Appdelegate中别忘了加上下面代码，否则支付后无法跳转回来</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-12.png?attname=" alt=""></p>
-<p>在项目中的具体使用</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-13.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-14.png?attname=" alt=""></p>
-<p>为安全起见，在支付返回应用后要验证返回结果是否是支付宝服务器发来的信息,以帮助校验反馈回来的数据是否真实。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-15.png?attname=" alt=""></p>
-<p>网上有个第三方库模仿支付宝支付的页面</p>
-<p><a href="https://github.com/ChinaFishNews/CYPasswordView" target="_blank" rel="external">CYPasswordView</a></p>
-<p>在集成支付宝的时候也参考了网上的文章</p>
-<p><a href="http://www.sxt.cn/u/4647/blog/5554" target="_blank" rel="external">2分钟快速集成支付宝快捷支付</a></p>
-<p>以上！</p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/支付宝SDK/">支付宝SDK</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
 	</div>
 
 
@@ -711,6 +535,106 @@
 
 
   
+    <article id="post-iOS开发如何集成并使用支付宝SDK" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/25/iOS开发如何集成并使用支付宝SDK/" class="article-date">
+  	<time datetime="2016-02-24T16:00:00.000Z" itemprop="datePublished">2016-02-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/25/iOS开发如何集成并使用支付宝SDK/">iOS开发如何集成并使用支付宝SDK</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>现在很多App都集成了支付宝SDK中的移动支付功能，但使用支付宝SDK的前提是购买的物品必须是和应用程序无关的商品，比如服装、电子产品等。如果是游戏币、会员等则必须使用内购，内购是用户将钱支付给苹果，之后苹果分成给商户。但即便是使用支付宝SDK购买真实的商品，在提交审核的时候依然可能被拒，这时候需要给苹果回复邮件阐述支付的流程。</p>
+<p>如何集成并使用支付宝SDK呢？</p>
+<p>需要先到 <a href="https://www.alipay.com" target="_blank" rel="external">支付宝官网</a>去申请签约，流程比较麻烦,不过有详细文档。签约成功后会获得商户ID(partner)和账户ID(seller)和私钥(私钥需根据公钥按照文档步骤生成)。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-01.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-02.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-04.png?attname=" alt=""></p>
+<p>之后需前往 <a href="http://open.alipay.com/platform/home.htm" target="_blank" rel="external">支付宝开放平台</a>，注册需集成的应用，填写相关信息。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-26-16.png?attname=" alt=""></p>
+<p>SDK下载页面: <a href="https://doc.open.alipay.com/doc2/detail?treeId=54&amp;articleId=103419&amp;docType=1" target="_blank" rel="external">点此前往</a></p>
+<p>然后选择 SDK下载(注意:也有人使用CocoaPods集成SDK,但是CocoaPods上SDK不是最新的，所以支付时的回调会有问题，建议到官网下载)<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-03.png?attname=" alt=""></p>
+<p>下载完成后导入项目</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-05.png?attname=" alt=""></p>
+<p>kNotifyURL问后台获取，在支付成功或失败的时候会根绝这个回调同时通知后台。kPrivateKey这个私钥我存储在info.plist里面，也可以从后台获取。kAppScheme用来处理支付宝回调</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-07.png?attname=" alt=""></p>
+<p>Identifier可不填，URL Schemes可随意填写，但需和官网注册应用时填写的一样。</p>
+<p>这里面的AlipayRequestConfig类官网Demo里并没有，是封装了一个支付方法类</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-08.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-09.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-10.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-11.png?attname=" alt=""></p>
+<p>在Appdelegate中别忘了加上下面代码，否则支付后无法跳转回来</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-12.png?attname=" alt=""></p>
+<p>在项目中的具体使用</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-13.png?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-14.png?attname=" alt=""></p>
+<p>为安全起见，在支付返回应用后要验证返回结果是否是支付宝服务器发来的信息,以帮助校验反馈回来的数据是否真实。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015-02-25-15.png?attname=" alt=""></p>
+<p>网上有个第三方库模仿支付宝支付的页面</p>
+<p><a href="https://github.com/ChinaFishNews/CYPasswordView" target="_blank" rel="external">CYPasswordView</a></p>
+<p>在集成支付宝的时候也参考了网上的文章</p>
+<p><a href="http://www.sxt.cn/u/4647/blog/5554" target="_blank" rel="external">2分钟快速集成支付宝快捷支付</a></p>
+<p>以上！</p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/支付宝SDK/">支付宝SDK</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-iOS开发即时通讯之Openfire+Spark配置" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -837,10 +761,10 @@
 
 
   
-    <article id="post-Hexo博客绑定域名" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Xcode中的一些装逼快捷键" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/21/Hexo博客绑定域名/" class="article-date">
+      <a href="/2016/02/21/Xcode中的一些装逼快捷键/" class="article-date">
   	<time datetime="2016-02-20T16:00:00.000Z" itemprop="datePublished">2016-02-21</time>
 </a>
     </div>
@@ -854,7 +778,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/21/Hexo博客绑定域名/">Hexo博客绑定域名</a>
+      <a class="article-title" href="/2016/02/21/Xcode中的一些装逼快捷键/">Xcode中的常用略带装逼的快捷键</a>
     </h1>
   
 
@@ -865,18 +789,34 @@
       
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
 
-<p>前段时间买了个域名,<a href="http://chinafish.news">chinafish.news</a>,36元/年，别问我为什么买了个后缀为.news的域名，我这也是没办法。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-01.png?attname=" alt=""></p>
-<p>之间搭建了个博客，<a href="http://chinafishnews.gitcafe.io" target="_blank" rel="external">chinafishnews.gitcafe.io</a>或者<a href="http://chinafishnews.github.io" target="_blank" rel="external">chinafishnews.github.io</a>,欢迎访问。</p>
-<p>博客如何绑定域名呢，以gitcafe为例。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-03.png?attname=" alt=""></p>
-<p>按如下配置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-02.png?attname=" alt=""></p>
-<p>然后登陆阿里云</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-04.png?attname=" alt=""></p>
-<p>域名处点击解析，按如下配置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-05.png?attname=" alt=""></p>
-<p>配置完后，静待几分钟后，便发现可以使用购买的域名访问你的博客了~</p>
+<p>开发人员的工作内容在很多外人眼里都是很神秘的存在，而作为开发又经常和产品、UI、运维等打交道，而这些人又以女人居多，而女人又是相信眼睛看到的多过大脑思考的物种，偶尔当她们在身旁时，脱离鼠标，“意外”的炫技也十分有必要。尽管可能最终什么也没实现，但是这个过程很重要，毕竟你看哥玩的这么大气精炼，想必也不是小菜，这在她们的心里定位都不是一个层级的，所以给大家介绍几个常用的，其实毫无难度的快捷键。</p>
+<p>Xcode中或者Mac OS系统的快捷键多了去了，触控板用着也不能更爽，脱离鼠标操作也很容易。快捷键太多，这里就以图文的形式只给大家说几个我常用的Xcode中的快捷键，一些诸如缩进、注释、运行、停止、拍照、光标移动等快捷键我就不一一演示了，大家如果有觉得好的常用的装逼的快捷键欢迎告知。</p>
+<h6 id="commond+alt+_26lt_3B_/_commond+alt+_26gt_3B__28_u6298_u53E0/_u5C55_u5F00_u4EE3_u7801_29"><a href="#commond+alt+_26lt_3B_/_commond+alt+_26gt_3B__28_u6298_u53E0/_u5C55_u5F00_u4EE3_u7801_29" class="headerlink" title="commond+alt+&lt; / commond+alt+&gt; (折叠/展开代码)"></a>commond+alt+&lt; / commond+alt+&gt; (折叠/展开代码)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-10.gif?attname=" alt=""></p>
+<h6 id="commond+alt+shift+_26lt_3B_/commond+alt+shift+_26gt_3B__28_u5168_u5C40_u6298_u53E0/_u5C55_u5F00_u4EE3_u7801_29"><a href="#commond+alt+shift+_26lt_3B_/commond+alt+shift+_26gt_3B__28_u5168_u5C40_u6298_u53E0/_u5C55_u5F00_u4EE3_u7801_29" class="headerlink" title="commond+alt+shift+&lt; /commond+alt+shift+&gt; (全局折叠/展开代码)"></a>commond+alt+shift+&lt; /commond+alt+shift+&gt; (全局折叠/展开代码)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-25-35.gif?attname=" alt=""></p>
+<h6 id="commond+alt+_5B_/_commond+alt+_5D__28_u4E0A_u79FB/_u4E0B_u79FB_u4EE3_u7801_29"><a href="#commond+alt+_5B_/_commond+alt+_5D__28_u4E0A_u79FB/_u4E0B_u79FB_u4EE3_u7801_29" class="headerlink" title="commond+alt+[ / commond+alt+]  (上移/下移代码)"></a>commond+alt+[ / commond+alt+]  (上移/下移代码)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-11.gif?attname=" alt=""></p>
+<h6 id="commond+alt+return/commond+return__28_u62C6_u5206_29"><a href="#commond+alt+return/commond+return__28_u62C6_u5206_29" class="headerlink" title="commond+alt+return/commond+return (拆分)"></a>commond+alt+return/commond+return (拆分)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-12.gif?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-13.gif?attname=" alt=""></p>
+<h6 id="commond+shift+_3D__28_u66F4_u65B0_u7EA6_u675F_29"><a href="#commond+shift+_3D__28_u66F4_u65B0_u7EA6_u675F_29" class="headerlink" title="commond+shift+= (更新约束)"></a>commond+shift+= (更新约束)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-14.gif?attname=" alt=""></p>
+<h6 id="commond+l__28_u6839_u636E_u884C_u6570_u5FEB_u901F_u5B9A_u4F4D_u4EE3_u7801_29"><a href="#commond+l__28_u6839_u636E_u884C_u6570_u5FEB_u901F_u5B9A_u4F4D_u4EE3_u7801_29" class="headerlink" title="commond+l  (根据行数快速定位代码)"></a>commond+l  (根据行数快速定位代码)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-15.gif?attname=" alt=""></p>
+<h6 id="control+space__28_u5168_u5C40_u641C_u7D22_29"><a href="#control+space__28_u5168_u5C40_u641C_u7D22_29" class="headerlink" title="control+space  (全局搜索)"></a>control+space  (全局搜索)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-16.gif?attname=" alt=""></p>
+<h6 id="commond+shift+o__28_u5FEB_u901F_u6253_u5F00_29"><a href="#commond+shift+o__28_u5FEB_u901F_u6253_u5F00_29" class="headerlink" title="commond+shift+o (快速打开)"></a>commond+shift+o (快速打开)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-17.gif?attname=" alt=""></p>
+<h6 id="commond+0_/_commond+alt+0_/_commond+shift+y__28_u663E_u793A/_u5173_u95ED_u5DE6_u53F3_u5BFC_u822A_u680F/_u63A7_u5236_u53F0_29"><a href="#commond+0_/_commond+alt+0_/_commond+shift+y__28_u663E_u793A/_u5173_u95ED_u5DE6_u53F3_u5BFC_u822A_u680F/_u63A7_u5236_u53F0_29" class="headerlink" title="commond+0 / commond+alt+0 / commond+shift+y (显示/关闭左右导航栏/控制台)"></a>commond+0 / commond+alt+0 / commond+shift+y (显示/关闭左右导航栏/控制台)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-18.gif?attname=" alt=""></p>
+<h6 id="commond+shift+0_28zero_29__28_u5FEB_u901F_u6253_u5F00_u6587_u6863_29"><a href="#commond+shift+0_28zero_29__28_u5FEB_u901F_u6253_u5F00_u6587_u6863_29" class="headerlink" title="commond+shift+0(zero) (快速打开文档)"></a>commond+shift+0(zero) (快速打开文档)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-19.gif?attname=" alt=""></p>
+<h6 id="control+i__28_u683C_u5F0F_u5316_u4EE3_u7801_29"><a href="#control+i__28_u683C_u5F0F_u5316_u4EE3_u7801_29" class="headerlink" title="control+i  (格式化代码)"></a>control+i  (格式化代码)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-20.gif?attname=" alt=""></p>
+<h6 id="commond+shift+_26lt_3B/_26gt_3B+_u5411_u4E0A/_u5411_u4E0B_u7BAD_u5934__28_u4EE3_u7801_u591A_u9009_29"><a href="#commond+shift+_26lt_3B/_26gt_3B+_u5411_u4E0A/_u5411_u4E0B_u7BAD_u5934__28_u4EE3_u7801_u591A_u9009_29" class="headerlink" title="commond+shift+&lt;/&gt;+向上/向下箭头 (代码多选)"></a>commond+shift+&lt;/&gt;+向上/向下箭头 (代码多选)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-21.gif?attname=" alt=""></p>
+<h6 id="commond+shift+x__28_u4EE3_u7801_u6574_u7406_29"><a href="#commond+shift+x__28_u4EE3_u7801_u6574_u7406_29" class="headerlink" title="commond+shift+x (代码整理)"></a>commond+shift+x (代码整理)</h6><p>需使用xalign插件  下载地址:<a href="https://github.com/ChinaFishNews/XAlign.git" target="_blank" rel="external">https://github.com/ChinaFishNews/XAlign.git</a></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-22.gif?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-23.gif?attname=" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-24.gif?attname=" alt=""></p>
+<h3 id="commond+n_/commond+shift+n__28_u65B0_u5EFA_u6587_u4EF6/_u9879_u76EE_29"><a href="#commond+n_/commond+shift+n__28_u65B0_u5EFA_u6587_u4EF6/_u9879_u76EE_29" class="headerlink" title="commond+n /commond+shift+n (新建文件/项目)"></a>commond+n /commond+shift+n (新建文件/项目)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-25.gif?attname=" alt=""></p>
+<h3 id="commond+k__28_u6E05_u7A7A_u63A7_u5236_u53F0_u5185_u5BB9_29"><a href="#commond+k__28_u6E05_u7A7A_u63A7_u5236_u53F0_u5185_u5BB9_29" class="headerlink" title="commond+k (清空控制台内容)"></a>commond+k (清空控制台内容)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_06_02_01.gif?attname=" alt=""></p>
+<h3 id="commond+shift+j__28_u5FEB_u901F_u663E_u793A_u5F53_u524D_u7C7B_u6240_u5728_u9879_u76EE_u4E2D_u7684_u4F4D_u7F6E_29"><a href="#commond+shift+j__28_u5FEB_u901F_u663E_u793A_u5F53_u524D_u7C7B_u6240_u5728_u9879_u76EE_u4E2D_u7684_u4F4D_u7F6E_29" class="headerlink" title="commond+shift+j (快速显示当前类所在项目中的位置)"></a>commond+shift+j (快速显示当前类所在项目中的位置)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_06_02_03.gif?attname=" alt=""></p>
+<h3 id="commond+option+r__28_u7F16_u8F91_u914D_u7F6EEdit_Scheme_29"><a href="#commond+option+r__28_u7F16_u8F91_u914D_u7F6EEdit_Scheme_29" class="headerlink" title="commond+option+r (编辑配置Edit Scheme)"></a>commond+option+r (编辑配置Edit Scheme)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_06_02_05.gif?attname=" alt=""></p>
+<h3 id="commond+control+a__28QQ_u622A_u5C4F_uFF0C_u7136_u540E_u5728_u5BF9_u8BDD_u6846_u70B9_u51FB_u7C98_u8D34_29"><a href="#commond+control+a__28QQ_u622A_u5C4F_uFF0C_u7136_u540E_u5728_u5BF9_u8BDD_u6846_u70B9_u51FB_u7C98_u8D34_29" class="headerlink" title="commond+control+a (QQ截屏，然后在对话框点击粘贴)"></a>commond+control+a (QQ截屏，然后在对话框点击粘贴)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_06_02_02.gif?attname=" alt=""></p>
+<h3 id="commond+control+_u7A7A_u683C__28_u6253_u5F00emoji_u8868_u60C5_29"><a href="#commond+control+_u7A7A_u683C__28_u6253_u5F00emoji_u8868_u60C5_29" class="headerlink" title="commond+control+空格 (打开emoji表情)"></a>commond+control+空格 (打开emoji表情)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_06_02_04.gif?attname=" alt=""></p>
+<h3 id="commond+_5B/_5D__28_u663E_u793A_u4E0A/_u4E0B_u4E00_u5C42_u6587_u4EF6_u76EE_u5F55_29"><a href="#commond+_5B/_5D__28_u663E_u793A_u4E0A/_u4E0B_u4E00_u5C42_u6587_u4EF6_u76EE_u5F55_29" class="headerlink" title="commond+[/] (显示上/下一层文件目录)"></a>commond+[/] (显示上/下一层文件目录)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_05_30_01.gif" alt=""></p>
+<h3 id="commond+shift+A__28_u6EDA_u52A8_u622A_u5C4F_2C_u524D_u63D0_u662F_u5185_u5BB9_u8D85_u51FA_u4E00_u5C4F_uFF0C_u975EMac_u81EA_u5E26_uFF0C_u800C_u662Fsnip_u8F6F_u4EF6_29"><a href="#commond+shift+A__28_u6EDA_u52A8_u622A_u5C4F_2C_u524D_u63D0_u662F_u5185_u5BB9_u8D85_u51FA_u4E00_u5C4F_uFF0C_u975EMac_u81EA_u5E26_uFF0C_u800C_u662Fsnip_u8F6F_u4EF6_29" class="headerlink" title="commond+shift+A (滚动截屏,前提是内容超出一屏，非Mac自带，而是snip软件)"></a>commond+shift+A (滚动截屏,前提是内容超出一屏，非Mac自带，而是snip软件)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_07_03_01.gif" alt=""></p>
+<h3 id="commond+shift+-__28_u9690_u85CF/_u663E_u793A_u9690_u85CF_u6587_u4EF6_29"><a href="#commond+shift+-__28_u9690_u85CF/_u663E_u793A_u9690_u85CF_u6587_u4EF6_29" class="headerlink" title="commond+shift+. (隐藏/显示隐藏文件)"></a>commond+shift+. (隐藏/显示隐藏文件)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_10_01.gif" alt=""></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -890,93 +830,13 @@
     <div class="article-info article-info-index">
       
       
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/装逼，特技/">装逼，特技</a></li></ul>
 	</div>
 
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hexo博客主题设置" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/21/Hexo博客主题设置/" class="article-date">
-  	<time datetime="2016-02-20T16:00:00.000Z" itemprop="datePublished">2016-02-21</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/21/Hexo博客主题设置/">Hexo博客yilia主题设置</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
-
-<p>Hexo博客搭建完成后，页面长这样</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-06.png?attname=" alt=""></p>
-<p>简单大气，然而很多人觉得这不够精炼，想自己定制更个性化的主题。<a href="http://www.zhihu.com/question/24422335" target="_blank" rel="external">有哪些好看的Hexo主题呢</a>，这是知乎上的问题，答的很全面，读者可以点进去看下，其中列举了github上starts比较多的前十五名的主题样式，当然还有更多。我选择的主题是</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-07.png?attname=" alt=""></p>
-<p>链接地址: <a href="https://github.com/ChinaFishNews/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/ChinaFishNews/hexo-theme-yilia.git</a>  </p>
-<p>这个主题也是我在尝试了几个主题之后最终选择的一个，最终效果如下</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-08.png?attname=" alt=""></p>
-<h5 id="u5982_u4F55_u8BBE_u7F6E"><a href="#u5982_u4F55_u8BBE_u7F6E" class="headerlink" title="如何设置"></a>如何设置</h5><p>1.打开Hexo所在的目录</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-11.png?attname=" alt=""></p>
-<p>这样在themes目录下就下载了yilia主题<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-10.png?attname=" alt=""></p>
-<p>2.修改Hexo目录下的_config,yml文件: theme:yilla</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-12.png?attname=" alt=""></p>
-<p>3.前往themes文件，打开yilia文件夹，打开_config.yml文件作如下设置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-13.png?attname=" alt=""></p>
-<p>其中的一些设置可随意设定，并不固定，这样基本设置就已完成，里面包含使用的多说评论系统。</p>
-<p>设置完成后，可能还需要添加统计功能，统计访问量、单篇文章访问量等,这个需要修改里面的JS代码。这个忘了记录具体修改的文件，就不贴出来了，大家可自行百度设置方法，效果如下</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-14.png?attname=" alt=""></p>
-<p>然后使用如下命令发布即可。</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">ge</span><span class="label">nerate</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> deploy</span><br></pre></td></tr></table></figure>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	<a class="article-category-link" href="/categories/OC/">OC</a>
 	</div>
 
 
@@ -1114,10 +974,10 @@
 
 
   
-    <article id="post-Xcode中的一些装逼快捷键" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Hexo博客主题设置" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/21/Xcode中的一些装逼快捷键/" class="article-date">
+      <a href="/2016/02/21/Hexo博客主题设置/" class="article-date">
   	<time datetime="2016-02-20T16:00:00.000Z" itemprop="datePublished">2016-02-21</time>
 </a>
     </div>
@@ -1131,7 +991,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/21/Xcode中的一些装逼快捷键/">Xcode中的常用略带装逼的快捷键</a>
+      <a class="article-title" href="/2016/02/21/Hexo博客主题设置/">Hexo博客yilia主题设置</a>
     </h1>
   
 
@@ -1142,34 +1002,26 @@
       
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
 
-<p>开发人员的工作内容在很多外人眼里都是很神秘的存在，而作为开发又经常和产品、UI、运维等打交道，而这些人又以女人居多，而女人又是相信眼睛看到的多过大脑思考的物种，偶尔当她们在身旁时，脱离鼠标，“意外”的炫技也十分有必要。尽管可能最终什么也没实现，但是这个过程很重要，毕竟你看哥玩的这么大气精炼，想必也不是小菜，这在她们的心里定位都不是一个层级的，所以给大家介绍几个常用的，其实毫无难度的快捷键。</p>
-<p>Xcode中或者Mac OS系统的快捷键多了去了，触控板用着也不能更爽，脱离鼠标操作也很容易。快捷键太多，这里就以图文的形式只给大家说几个我常用的Xcode中的快捷键，一些诸如缩进、注释、运行、停止、拍照、光标移动等快捷键我就不一一演示了，大家如果有觉得好的常用的装逼的快捷键欢迎告知。</p>
-<h6 id="commond+alt+_26lt_3B_/_commond+alt+_26gt_3B__28_u6298_u53E0/_u5C55_u5F00_u4EE3_u7801_29"><a href="#commond+alt+_26lt_3B_/_commond+alt+_26gt_3B__28_u6298_u53E0/_u5C55_u5F00_u4EE3_u7801_29" class="headerlink" title="commond+alt+&lt; / commond+alt+&gt; (折叠/展开代码)"></a>commond+alt+&lt; / commond+alt+&gt; (折叠/展开代码)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-10.gif?attname=" alt=""></p>
-<h6 id="commond+alt+shift+_26lt_3B_/commond+alt+shift+_26gt_3B__28_u5168_u5C40_u6298_u53E0/_u5C55_u5F00_u4EE3_u7801_29"><a href="#commond+alt+shift+_26lt_3B_/commond+alt+shift+_26gt_3B__28_u5168_u5C40_u6298_u53E0/_u5C55_u5F00_u4EE3_u7801_29" class="headerlink" title="commond+alt+shift+&lt; /commond+alt+shift+&gt; (全局折叠/展开代码)"></a>commond+alt+shift+&lt; /commond+alt+shift+&gt; (全局折叠/展开代码)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-25-35.gif?attname=" alt=""></p>
-<h6 id="commond+alt+_5B_/_commond+alt+_5D__28_u4E0A_u79FB/_u4E0B_u79FB_u4EE3_u7801_29"><a href="#commond+alt+_5B_/_commond+alt+_5D__28_u4E0A_u79FB/_u4E0B_u79FB_u4EE3_u7801_29" class="headerlink" title="commond+alt+[ / commond+alt+]  (上移/下移代码)"></a>commond+alt+[ / commond+alt+]  (上移/下移代码)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-11.gif?attname=" alt=""></p>
-<h6 id="commond+alt+return/commond+return__28_u62C6_u5206_29"><a href="#commond+alt+return/commond+return__28_u62C6_u5206_29" class="headerlink" title="commond+alt+return/commond+return (拆分)"></a>commond+alt+return/commond+return (拆分)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-12.gif?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-13.gif?attname=" alt=""></p>
-<h6 id="commond+shift+_3D__28_u66F4_u65B0_u7EA6_u675F_29"><a href="#commond+shift+_3D__28_u66F4_u65B0_u7EA6_u675F_29" class="headerlink" title="commond+shift+= (更新约束)"></a>commond+shift+= (更新约束)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-14.gif?attname=" alt=""></p>
-<h6 id="commond+l__28_u6839_u636E_u884C_u6570_u5FEB_u901F_u5B9A_u4F4D_u4EE3_u7801_29"><a href="#commond+l__28_u6839_u636E_u884C_u6570_u5FEB_u901F_u5B9A_u4F4D_u4EE3_u7801_29" class="headerlink" title="commond+l  (根据行数快速定位代码)"></a>commond+l  (根据行数快速定位代码)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-15.gif?attname=" alt=""></p>
-<h6 id="control+space__28_u5168_u5C40_u641C_u7D22_29"><a href="#control+space__28_u5168_u5C40_u641C_u7D22_29" class="headerlink" title="control+space  (全局搜索)"></a>control+space  (全局搜索)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-16.gif?attname=" alt=""></p>
-<h6 id="commond+shift+o__28_u5FEB_u901F_u6253_u5F00_29"><a href="#commond+shift+o__28_u5FEB_u901F_u6253_u5F00_29" class="headerlink" title="commond+shift+o (快速打开)"></a>commond+shift+o (快速打开)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-17.gif?attname=" alt=""></p>
-<h6 id="commond+0_/_commond+alt+0_/_commond+shift+y__28_u663E_u793A/_u5173_u95ED_u5DE6_u53F3_u5BFC_u822A_u680F/_u63A7_u5236_u53F0_29"><a href="#commond+0_/_commond+alt+0_/_commond+shift+y__28_u663E_u793A/_u5173_u95ED_u5DE6_u53F3_u5BFC_u822A_u680F/_u63A7_u5236_u53F0_29" class="headerlink" title="commond+0 / commond+alt+0 / commond+shift+y (显示/关闭左右导航栏/控制台)"></a>commond+0 / commond+alt+0 / commond+shift+y (显示/关闭左右导航栏/控制台)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-18.gif?attname=" alt=""></p>
-<h6 id="commond+shift+0_28zero_29__28_u5FEB_u901F_u6253_u5F00_u6587_u6863_29"><a href="#commond+shift+0_28zero_29__28_u5FEB_u901F_u6253_u5F00_u6587_u6863_29" class="headerlink" title="commond+shift+0(zero) (快速打开文档)"></a>commond+shift+0(zero) (快速打开文档)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-19.gif?attname=" alt=""></p>
-<h6 id="control+i__28_u683C_u5F0F_u5316_u4EE3_u7801_29"><a href="#control+i__28_u683C_u5F0F_u5316_u4EE3_u7801_29" class="headerlink" title="control+i  (格式化代码)"></a>control+i  (格式化代码)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-20.gif?attname=" alt=""></p>
-<h6 id="commond+shift+_26lt_3B/_26gt_3B+_u5411_u4E0A/_u5411_u4E0B_u7BAD_u5934__28_u4EE3_u7801_u591A_u9009_29"><a href="#commond+shift+_26lt_3B/_26gt_3B+_u5411_u4E0A/_u5411_u4E0B_u7BAD_u5934__28_u4EE3_u7801_u591A_u9009_29" class="headerlink" title="commond+shift+&lt;/&gt;+向上/向下箭头 (代码多选)"></a>commond+shift+&lt;/&gt;+向上/向下箭头 (代码多选)</h6><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-21.gif?attname=" alt=""></p>
-<h6 id="commond+shift+x__28_u4EE3_u7801_u6574_u7406_29"><a href="#commond+shift+x__28_u4EE3_u7801_u6574_u7406_29" class="headerlink" title="commond+shift+x (代码整理)"></a>commond+shift+x (代码整理)</h6><p>需使用xalign插件  下载地址:<a href="https://github.com/ChinaFishNews/XAlign.git" target="_blank" rel="external">https://github.com/ChinaFishNews/XAlign.git</a></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-22.gif?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-23.gif?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-24.gif?attname=" alt=""></p>
-<h3 id="commond+n_/commond+shift+n__28_u65B0_u5EFA_u6587_u4EF6/_u9879_u76EE_29"><a href="#commond+n_/commond+shift+n__28_u65B0_u5EFA_u6587_u4EF6/_u9879_u76EE_29" class="headerlink" title="commond+n /commond+shift+n (新建文件/项目)"></a>commond+n /commond+shift+n (新建文件/项目)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-19-25.gif?attname=" alt=""></p>
-<h3 id="commond+k__28_u6E05_u7A7A_u63A7_u5236_u53F0_u5185_u5BB9_29"><a href="#commond+k__28_u6E05_u7A7A_u63A7_u5236_u53F0_u5185_u5BB9_29" class="headerlink" title="commond+k (清空控制台内容)"></a>commond+k (清空控制台内容)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_06_02_01.gif?attname=" alt=""></p>
-<h3 id="commond+shift+j__28_u5FEB_u901F_u663E_u793A_u5F53_u524D_u7C7B_u6240_u5728_u9879_u76EE_u4E2D_u7684_u4F4D_u7F6E_29"><a href="#commond+shift+j__28_u5FEB_u901F_u663E_u793A_u5F53_u524D_u7C7B_u6240_u5728_u9879_u76EE_u4E2D_u7684_u4F4D_u7F6E_29" class="headerlink" title="commond+shift+j (快速显示当前类所在项目中的位置)"></a>commond+shift+j (快速显示当前类所在项目中的位置)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_06_02_03.gif?attname=" alt=""></p>
-<h3 id="commond+option+r__28_u7F16_u8F91_u914D_u7F6EEdit_Scheme_29"><a href="#commond+option+r__28_u7F16_u8F91_u914D_u7F6EEdit_Scheme_29" class="headerlink" title="commond+option+r (编辑配置Edit Scheme)"></a>commond+option+r (编辑配置Edit Scheme)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_06_02_05.gif?attname=" alt=""></p>
-<h3 id="commond+control+a__28QQ_u622A_u5C4F_uFF0C_u7136_u540E_u5728_u5BF9_u8BDD_u6846_u70B9_u51FB_u7C98_u8D34_29"><a href="#commond+control+a__28QQ_u622A_u5C4F_uFF0C_u7136_u540E_u5728_u5BF9_u8BDD_u6846_u70B9_u51FB_u7C98_u8D34_29" class="headerlink" title="commond+control+a (QQ截屏，然后在对话框点击粘贴)"></a>commond+control+a (QQ截屏，然后在对话框点击粘贴)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_06_02_02.gif?attname=" alt=""></p>
-<h3 id="commond+control+_u7A7A_u683C__28_u6253_u5F00emoji_u8868_u60C5_29"><a href="#commond+control+_u7A7A_u683C__28_u6253_u5F00emoji_u8868_u60C5_29" class="headerlink" title="commond+control+空格 (打开emoji表情)"></a>commond+control+空格 (打开emoji表情)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_06_02_04.gif?attname=" alt=""></p>
-<h3 id="commond+_5B/_5D__28_u663E_u793A_u4E0A/_u4E0B_u4E00_u5C42_u6587_u4EF6_u76EE_u5F55_29"><a href="#commond+_5B/_5D__28_u663E_u793A_u4E0A/_u4E0B_u4E00_u5C42_u6587_u4EF6_u76EE_u5F55_29" class="headerlink" title="commond+[/] (显示上/下一层文件目录)"></a>commond+[/] (显示上/下一层文件目录)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_05_30_01.gif" alt=""></p>
-<h3 id="commond+shift+A__28_u6EDA_u52A8_u622A_u5C4F_2C_u524D_u63D0_u662F_u5185_u5BB9_u8D85_u51FA_u4E00_u5C4F_uFF0C_u975EMac_u81EA_u5E26_uFF0C_u800C_u662Fsnip_u8F6F_u4EF6_29"><a href="#commond+shift+A__28_u6EDA_u52A8_u622A_u5C4F_2C_u524D_u63D0_u662F_u5185_u5BB9_u8D85_u51FA_u4E00_u5C4F_uFF0C_u975EMac_u81EA_u5E26_uFF0C_u800C_u662Fsnip_u8F6F_u4EF6_29" class="headerlink" title="commond+shift+A (滚动截屏,前提是内容超出一屏，非Mac自带，而是snip软件)"></a>commond+shift+A (滚动截屏,前提是内容超出一屏，非Mac自带，而是snip软件)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_07_03_01.gif" alt=""></p>
-<h3 id="commond+shift+-__28_u9690_u85CF/_u663E_u793A_u9690_u85CF_u6587_u4EF6_29"><a href="#commond+shift+-__28_u9690_u85CF/_u663E_u793A_u9690_u85CF_u6587_u4EF6_29" class="headerlink" title="commond+shift+. (隐藏/显示隐藏文件)"></a>commond+shift+. (隐藏/显示隐藏文件)</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_10_01.gif" alt=""></p>
+<p>Hexo博客搭建完成后，页面长这样</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-06.png?attname=" alt=""></p>
+<p>简单大气，然而很多人觉得这不够精炼，想自己定制更个性化的主题。<a href="http://www.zhihu.com/question/24422335" target="_blank" rel="external">有哪些好看的Hexo主题呢</a>，这是知乎上的问题，答的很全面，读者可以点进去看下，其中列举了github上starts比较多的前十五名的主题样式，当然还有更多。我选择的主题是</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-07.png?attname=" alt=""></p>
+<p>链接地址: <a href="https://github.com/ChinaFishNews/hexo-theme-yilia.git" target="_blank" rel="external">https://github.com/ChinaFishNews/hexo-theme-yilia.git</a>  </p>
+<p>这个主题也是我在尝试了几个主题之后最终选择的一个，最终效果如下</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-08.png?attname=" alt=""></p>
+<h5 id="u5982_u4F55_u8BBE_u7F6E"><a href="#u5982_u4F55_u8BBE_u7F6E" class="headerlink" title="如何设置"></a>如何设置</h5><p>1.打开Hexo所在的目录</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-11.png?attname=" alt=""></p>
+<p>这样在themes目录下就下载了yilia主题<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-10.png?attname=" alt=""></p>
+<p>2.修改Hexo目录下的_config,yml文件: theme:yilla</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-12.png?attname=" alt=""></p>
+<p>3.前往themes文件，打开yilia文件夹，打开_config.yml文件作如下设置</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-13.png?attname=" alt=""></p>
+<p>其中的一些设置可随意设定，并不固定，这样基本设置就已完成，里面包含使用的多说评论系统。</p>
+<p>设置完成后，可能还需要添加统计功能，统计访问量、单篇文章访问量等,这个需要修改里面的JS代码。这个忘了记录具体修改的文件，就不贴出来了，大家可自行百度设置方法，效果如下</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-14.png?attname=" alt=""></p>
+<p>然后使用如下命令发布即可。</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">ge</span><span class="label">nerate</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> deploy</span><br></pre></td></tr></table></figure>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -1183,13 +1035,156 @@
     <div class="article-info article-info-index">
       
       
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Hexo博客绑定域名" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/21/Hexo博客绑定域名/" class="article-date">
+  	<time datetime="2016-02-20T16:00:00.000Z" itemprop="datePublished">2016-02-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/21/Hexo博客绑定域名/">Hexo博客绑定域名</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>前段时间买了个域名,<a href="http://chinafish.news">chinafish.news</a>,36元/年，别问我为什么买了个后缀为.news的域名，我这也是没办法。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-01.png?attname=" alt=""></p>
+<p>之间搭建了个博客，<a href="http://chinafishnews.gitcafe.io" target="_blank" rel="external">chinafishnews.gitcafe.io</a>或者<a href="http://chinafishnews.github.io" target="_blank" rel="external">chinafishnews.github.io</a>,欢迎访问。</p>
+<p>博客如何绑定域名呢，以gitcafe为例。</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-03.png?attname=" alt=""></p>
+<p>按如下配置</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-02.png?attname=" alt=""></p>
+<p>然后登陆阿里云</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-04.png?attname=" alt=""></p>
+<p>域名处点击解析，按如下配置</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-21-05.png?attname=" alt=""></p>
+<p>配置完后，静待几分钟后，便发现可以使用购买的域名访问你的博客了~</p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-iOS性能调优-使用Instruments诊断App" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/19/iOS性能调优-使用Instruments诊断App/" class="article-date">
+  	<time datetime="2016-02-18T16:00:00.000Z" itemprop="datePublished">2016-02-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/19/iOS性能调优-使用Instruments诊断App/">iOS性能调优-使用Instruments诊断App</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>Instruments是Xcode提供的一个强大的工具，Allocations,Leaks,Time Profiler被戏称为Instruments的救命三招。Alocations通常用来跟踪app内存使用情况，Leaks用来检查app运行时产生的内存泄露，Time profiler用来帮助我们分析代码的执行时间，找出程序变慢的原因。</p>
+<p>本来想写一篇总结Instruments下各工具使用的博客，网上查了下，资料已经很丰富，讲解的也远比我想讲的要好的多，最主要的是，写博客太费时间，尤其是长篇博客，在此，对那些乐此不疲产生优质文章的博主、作者致以崇高的敬意,感谢你们的劳动成果让开发者们受益！</p>
+<p>下面这篇文章讲得比价全面，可以自行阅读探索</p>
+<p><a href="http://www.cocoachina.com/swift/20150623/12237.html" target="_blank" rel="external">如何使用Instruments诊断App（Swift版)</a></p>
+<hr>
+<p>如有任何错误之处或疑问，请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/装逼，特技/">装逼，特技</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leaks，Allocations-Time-Profiler/">Leaks，Allocations,Time Profiler</a></li></ul>
 	</div>
 
       
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/OC/">OC</a>
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
 	</div>
 
 
