@@ -224,8 +224,8 @@
     <article id="post-5月19号" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/05/26/5月19号/" class="article-date">
-  	<time datetime="2018-05-26T12:08:18.999Z" itemprop="datePublished">2018-05-26</time>
+      <a href="/2018/05/19/5月19号/" class="article-date">
+  	<time datetime="2018-05-18T16:00:00.000Z" itemprop="datePublished">2018-05-19</time>
 </a>
     </div>
   
@@ -234,16 +234,20 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/19/5月19号/">5月19号</a>
+    </h1>
+  
+
+      </header>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p> title: 5月19号</p>
-<p> date: 2018-05-19</p>
-<p> categories: 随笔</p>
-<p> tags:</p>
-<ul>
-<li></li>
-</ul>
-<p><a href="https://pan.baidu.com/s/1PH_VG-_EW-mSssov4SDqPQ" target="_blank" rel="external">视频点这里</a></p>
+        <p><a href="https://pan.baidu.com/s/1PH_VG-_EW-mSssov4SDqPQ" target="_blank" rel="external">视频点这里</a></p>
 <p>感谢所有参与的朋友</p>
 <p>没参与的也依然感谢</p>
 <p>见证了我们这些年的风雨历程</p>
@@ -256,6 +260,7 @@
 <p>也许这种形式并不那么好，但总比懒得走过场要好的多</p>
 <p>生活也许很操蛋，但姿势一定要好看</p>
 <p>非常感谢🍻🍻🍻</p>
+<hr>
 
       
     </div>
@@ -264,6 +269,10 @@
       
       
       
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/随笔/">随笔</a>
+	</div>
+
 
       
       <div class="clearfix"></div>
@@ -808,6 +817,125 @@ int main(int argc, char * argv[]) {
 
 
   
+    <article id="post-配置Cycript环境及部分常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/04/22/配置Cycript环境及部分常用命令/" class="article-date">
+  	<time datetime="2018-04-21T16:00:00.000Z" itemprop="datePublished">2018-04-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/22/配置Cycript环境及部分常用命令/">配置Cycript环境及部分常用命令</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=108914&auto=0&height=66"></iframe>
+
+
+<p>Cycript 是一个能够理解Objective-C语法的javascript解释器，让开发者在命令行下和应用交互，在运行时查看和修改应用，一般用于动态调试应用</p>
+<p>1.到官网下载并拖到具体位置即可</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_16.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_17.png" alt=""></p>
+<p>2.打开.bash_profile做相应配置</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_19.png" alt=""></p>
+<p>如果使用的是iTerm2和on my zsh组合，又没有设置兼容bash,则需要在.zshrc文件下配置</p>
+<p>3.在终端或iTerm2输入cycript验证是否配置成功</p>
+<p>使用commond+D退出，我在公司的电脑上验证通过，但是在自己的电脑上却报错</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">dyld:</span> <span class="constant">Library</span> not <span class="symbol">loaded:</span> /<span class="constant">System</span>/<span class="constant">Library</span>/<span class="constant">Frameworks</span>/<span class="constant">Ruby</span>.framework/<span class="constant">Versions</span>/<span class="number">2.0</span>/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libruby</span>.2.0.0.<span class="title">dylib</span></span></span><br><span class="line">  <span class="constant">Referenced</span> <span class="symbol">from:</span> /<span class="constant">Users</span>/devzkn/<span class="constant">Downloads</span>/cycript_0.<span class="number">9.594</span>/<span class="constant">Cycript</span>.<span class="keyword">lib</span>/cycript-apl</span><br><span class="line">  <span class="constant">Reason</span>: image not found</span><br></pre></td></tr></table></figure>
+<p>这个错误是因为ruby版本太高导致</p>
+<p>解决方法：</p>
+<ul>
+<li>查看电脑ruby版本，我的版本是2.3<ul>
+<li>cd /System/Library/Frameworks/Ruby.framework/Versions/</li>
+<li>ls</li>
+</ul>
+</li>
+<li><p>关闭系统的SIP</p>
+<ul>
+<li>在 OS X El Capitan 中有一个跟安全相关的模式叫 SIP（System Integrity Protection ），它禁止让软件以 root 身份来在 Mac 上运行，在升级到 OS X 10.11 中或许你就会看到部分应用程序被禁用了，这些或许是你通过终端或者第三方软件源安装。对于大多数用户来说，这种安全设置很方便，但是也有些开发者或者高级 Mac 用户不需要这样的设置</li>
+<li>电脑重启按住command+R，进入恢复模式</li>
+<li>打开终端，输入csrutil disable，重启</li>
+<li>如果想打开SIP，重复上两步，命令改为csrutil enable</li>
+</ul>
+</li>
+<li><p>直接复制一份，改为2.0即可</p>
+<ul>
+<li><p><code>sudo mkdir -p /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/</code></p>
+</li>
+<li><p><code>sudo ln -s /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/libruby.2.0.0.dylib</code></p>
+</li>
+<li><p>根据每个人ruby版本不同，将上面第二条命令的/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib中的2.3改成本机的ruby版本。<br>这里不是降级ruby，只是复制一份2.0的ruby的dylib，让cycript运行起来</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>4.cycript部分常用命令</p>
+<ul>
+<li>获取项目单例： UIApp或者[uiapplication sharedApplication]</li>
+<li>格式化： .toString()</li>
+<li>根据地址获取对象： #内存地址</li>
+<li>打印当前页面view层级： UIApp.keyWindow.recursiveDescription().toString()</li>
+<li>获取下一个响应者： [#内存地址 nextResponder]</li>
+<li>查找指定类型: choose(UILabel)</li>
+<li>获取指定对象的所有属性： [#内存地址 _ivarDescription].toString()</li>
+<li>查看安装的进程： ps -e |grep  /var/mobile*</li>
+<li>查看架构层级： [[UIApp keyWindow] _autolayoutTrace].toString()</li>
+</ul>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby，Cycript/">Ruby，Cycript</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-配置Cycript环境前常用工具的安装配置" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1119,125 +1247,6 @@ sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cycript/">Cycript</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-配置Cycript环境及部分常用命令" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/04/22/配置Cycript环境及部分常用命令/" class="article-date">
-  	<time datetime="2018-04-21T16:00:00.000Z" itemprop="datePublished">2018-04-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/22/配置Cycript环境及部分常用命令/">配置Cycript环境及部分常用命令</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=108914&auto=0&height=66"></iframe>
-
-
-<p>Cycript 是一个能够理解Objective-C语法的javascript解释器，让开发者在命令行下和应用交互，在运行时查看和修改应用，一般用于动态调试应用</p>
-<p>1.到官网下载并拖到具体位置即可</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_16.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_17.png" alt=""></p>
-<p>2.打开.bash_profile做相应配置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_19.png" alt=""></p>
-<p>如果使用的是iTerm2和on my zsh组合，又没有设置兼容bash,则需要在.zshrc文件下配置</p>
-<p>3.在终端或iTerm2输入cycript验证是否配置成功</p>
-<p>使用commond+D退出，我在公司的电脑上验证通过，但是在自己的电脑上却报错</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">dyld:</span> <span class="constant">Library</span> not <span class="symbol">loaded:</span> /<span class="constant">System</span>/<span class="constant">Library</span>/<span class="constant">Frameworks</span>/<span class="constant">Ruby</span>.framework/<span class="constant">Versions</span>/<span class="number">2.0</span>/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libruby</span>.2.0.0.<span class="title">dylib</span></span></span><br><span class="line">  <span class="constant">Referenced</span> <span class="symbol">from:</span> /<span class="constant">Users</span>/devzkn/<span class="constant">Downloads</span>/cycript_0.<span class="number">9.594</span>/<span class="constant">Cycript</span>.<span class="keyword">lib</span>/cycript-apl</span><br><span class="line">  <span class="constant">Reason</span>: image not found</span><br></pre></td></tr></table></figure>
-<p>这个错误是因为ruby版本太高导致</p>
-<p>解决方法：</p>
-<ul>
-<li>查看电脑ruby版本，我的版本是2.3<ul>
-<li>cd /System/Library/Frameworks/Ruby.framework/Versions/</li>
-<li>ls</li>
-</ul>
-</li>
-<li><p>关闭系统的SIP</p>
-<ul>
-<li>在 OS X El Capitan 中有一个跟安全相关的模式叫 SIP（System Integrity Protection ），它禁止让软件以 root 身份来在 Mac 上运行，在升级到 OS X 10.11 中或许你就会看到部分应用程序被禁用了，这些或许是你通过终端或者第三方软件源安装。对于大多数用户来说，这种安全设置很方便，但是也有些开发者或者高级 Mac 用户不需要这样的设置</li>
-<li>电脑重启按住command+R，进入恢复模式</li>
-<li>打开终端，输入csrutil disable，重启</li>
-<li>如果想打开SIP，重复上两步，命令改为csrutil enable</li>
-</ul>
-</li>
-<li><p>直接复制一份，改为2.0即可</p>
-<ul>
-<li><p><code>sudo mkdir -p /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/</code></p>
-</li>
-<li><p><code>sudo ln -s /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/libruby.2.0.0.dylib</code></p>
-</li>
-<li><p>根据每个人ruby版本不同，将上面第二条命令的/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib中的2.3改成本机的ruby版本。<br>这里不是降级ruby，只是复制一份2.0的ruby的dylib，让cycript运行起来</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>4.cycript部分常用命令</p>
-<ul>
-<li>获取项目单例： UIApp或者[uiapplication sharedApplication]</li>
-<li>格式化： .toString()</li>
-<li>根据地址获取对象： #内存地址</li>
-<li>打印当前页面view层级： UIApp.keyWindow.recursiveDescription().toString()</li>
-<li>获取下一个响应者： [#内存地址 nextResponder]</li>
-<li>查找指定类型: choose(UILabel)</li>
-<li>获取指定对象的所有属性： [#内存地址 _ivarDescription].toString()</li>
-<li>查看安装的进程： ps -e |grep  /var/mobile*</li>
-<li>查看架构层级： [[UIApp keyWindow] _autolayoutTrace].toString()</li>
-</ul>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby，Cycript/">Ruby，Cycript</a></li></ul>
 	</div>
 
       
