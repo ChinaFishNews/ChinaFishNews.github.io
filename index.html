@@ -438,7 +438,7 @@ int main(int argc, char * argv[]) {
 <p>优化后</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_10.png" alt=""></p>
 <h3 id="u5BC4_u5B58_u5668_u4E0E_u591A_u7EBF_u7A0B"><a href="#u5BC4_u5B58_u5668_u4E0E_u591A_u7EBF_u7A0B" class="headerlink" title="寄存器与多线程"></a>寄存器与多线程</h3><p>注意，寄存器的读写其实是线程不安全的，但是，我们的操作系统在切换线程的时候，对当前线程在使用的寄存器进行了一层保护，操作系统内部有一个结构体，记录在使用的寄存器状态，当再次线程切换回来的时候会去获取使用到的寄存器的值。而这一切操作系统已经帮我们搞定了，不需要人为干预</p>
-<h3 id="u6307_u9488"><a href="#u6307_u9488" class="headerlink" title="指针"></a>指针</h3><blockquote>
+<h3 id="u6307_u9488_u76F8_u5173"><a href="#u6307_u9488_u76F8_u5173" class="headerlink" title="指针相关"></a>指针相关</h3><blockquote>
 <p>编译器决定了指针不能做乘法和除法。指针加减的结果，其实就是由针指向的数据类型<strong>宽度</strong>决定的，它的运算单位是数据类型的宽度</p>
 </blockquote>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_12.png" alt=""></p>
@@ -450,6 +450,14 @@ int main(int argc, char * argv[]) {
     }
 }
 </code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_15.png" alt=""></p>
+<pre><code>int main(int argc, char * argv[]) {
+    char *a;
+    char b = *a;
+    return 1;
+}
+</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_16.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_18.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_19.png" alt=""></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
