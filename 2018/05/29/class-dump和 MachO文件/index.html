@@ -42,7 +42,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_22.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_23.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_24.png">
-<meta property="og:updated_time" content="2018-05-29T16:09:38.747Z">
+<meta property="og:updated_time" content="2018-05-29T16:17:59.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="class-dump和 MachO文件">
 <meta name="twitter:description" content="class-dump是用来dump目标文件的类信息的工具。它利用Objective-C语言的runtime特性，将存储在mach-O文件中的@interface和@protocol信息提取出来，并生成对应的.h文件
@@ -359,9 +359,9 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_13.png" alt=""></p>
 <p><strong>dSYM</strong></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_18.png" alt=""></p>
-<p>** 动态链接器</p>
+<p><strong>动态链接器</strong></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_14.png" alt=""></p>
-<h3 id="u901A_u7528_u4E8C_u8FDB_u5236_u6587_u4EF6"><a href="#u901A_u7528_u4E8C_u8FDB_u5236_u6587_u4EF6" class="headerlink" title="通用二进制文件"></a>通用二进制文件</h3><p>通用二进制文件，也叫做胖MachO文件。MachO文件是包含一种架构（i386、x86_64、arm64等)的对象文件，而胖文件可能包含若干包含不同架构（i386、x86_64、arm、arm64 等)的对象文件。</p>
+<h3 id="u901A_u7528_u4E8C_u8FDB_u5236_u6587_u4EF6"><a href="#u901A_u7528_u4E8C_u8FDB_u5236_u6587_u4EF6" class="headerlink" title="通用二进制文件"></a>通用二进制文件</h3><p>通用二进制文件，也叫做胖MachO文件。MachO文件是包含一种架构（i386、x86_64、arm64等)的对象文件，而胖文件可能包含若干不同架构（i386、x86_64、arm、arm64 等)的对象文件。</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_16.png" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_17.png" alt=""></p>
 <p>通过<code>ida</code>可打开指定架构的可执行文件</p>
@@ -384,15 +384,15 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_23.png" alt=""></p>
 <p>通过上图可以看到，<code>MachO</code>文件具体可以分为几个部分</p>
 <ul>
-<li>文件头 mach64 Header</li>
-<li>加载命令 Load Commands</li>
-<li>代码段 __TEXT</li>
-<li>数据段 __DATA</li>
-<li>动态库加载信息 Dynamic Loader Info</li>
-<li>入口函数 Function Starts</li>
-<li>符号表 Symbol Table</li>
-<li>动态库符号表 Dynamic Symbol Table</li>
-<li>字符串表 String Table</li>
+<li>文件头 <code>Mach64 Header</code></li>
+<li>加载命令 <code>Load Commands</code></li>
+<li>代码段 <code>__TEXT</code></li>
+<li>数据段 <code>__DATA</code></li>
+<li>动态库加载信息 <code>Dynamic Loader Info</code></li>
+<li>入口函数 <code>Function Starts</code></li>
+<li>符号表 <code>Symbol Table</code></li>
+<li>动态库符号表 <code>Dynamic Symbol Table</code></li>
+<li>字符串表 <code>String Table</code></li>
 </ul>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_24.png" alt=""></p>
 <p>Mach64 Header文件中，各字段含义</p>
