@@ -320,6 +320,9 @@ target stop-hook add -o &quot;指令&quot;
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_06_15.png" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_06_16.png" alt=""></p>
 <h3 id="image_u6307_u4EE4"><a href="#image_u6307_u4EE4" class="headerlink" title="image指令"></a><code>image</code>指令</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_06_18.png" alt=""></p>
+<p><code>ASLR</code> (<code>Address Space Layout Randomization</code>)，即地址空间随机布局,动态分配,程序运行才有,是一种针对缓冲区溢出的安全保护技术，通过对堆、栈、共享库映射等线性区布局的随机化，通过增加攻击者预测目的地址的难度，防止攻击者直接定位攻击代码位置，达到阻止溢出攻击的目的的一种技术</p>
+<p><code>Mach-O</code>文件的文件头会记录二进制的属性标识，有个<code>flag</code>叫做<code>PIE</code> (<code>Position Independent Enable</code>),开启了<code>PIE</code>的二进制文件，在执行时会产生<code>ASLR</code></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_07_03.png" alt=""></p>
 <pre><code>通过内存地址查看代码崩溃处
 image lookup -a 内存地址
 </code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_06_17.png" alt=""></p>
@@ -537,6 +540,9 @@ image lookup -t 类名
 </tr>
 </tbody>
 </table>
+<p><code>ida</code>工具获取到的方法地址，其实是通过<code>MachOView</code>分析<code>macho</code>文件得到的</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_07_01.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_07_02.png" alt=""></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
