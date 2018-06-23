@@ -52,7 +52,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-20.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_22.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_23.png">
-<meta property="og:updated_time" content="2018-06-23T11:08:23.663Z">
+<meta property="og:updated_time" content="2018-06-23T12:29:39.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ipa包重签名探究">
 <meta name="twitter:description" content="为什么要对ipa包重签名？如果是非越狱手机，你会发现从第三方商店下载的非企业证书分发的ipa包无法安装到手机上，也就无法实现动态调试。这时候我们可以对ipa包重签名，用来运行在自己的手机上，在进行重签名之前，首先要了解🍎是如何签名的
@@ -382,6 +382,17 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_22.png" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_23.png" alt=""></p>
 <p>注意，<code>ipa</code>包重签是一个和🍎博弈的过程，有些<code>ipa</code>可能用此方法并不能重签成功</p>
+<p>上面用到了几个常用命令</p>
+<p> 查看描述文件信息:</p>
+<p><code>security cms -D -i 描述文件路径</code></p>
+<p> 查看<code>app</code>的签名信息</p>
+<p><code>codesign -vv -d app路径</code></p>
+<p>查看本机所有可用证书</p>
+<p><code>security find-identity -v -p codesigning</code></p>
+<p>查看可执行文件的加密信息</p>
+<p><code>otool -l 可执行文件路径 | grep crypt</code></p>
+<p>对<code>Framework</code>重签</p>
+<p><code>codesign -fs &quot;证书&quot; 需要签名的文件路径</code></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
