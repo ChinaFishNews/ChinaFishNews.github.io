@@ -33,7 +33,26 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_01.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_20_04.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_20_05.png">
-<meta property="og:updated_time" content="2018-06-23T11:06:06.906Z">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_02.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_03.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_04.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_05.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_08.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_09.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_07.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-10.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-11.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_12.gif">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_13.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_14.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_17.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_16.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-18.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_19.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-20.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_22.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_23.png">
+<meta property="og:updated_time" content="2018-06-23T11:08:23.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ipa包重签名探究">
 <meta name="twitter:description" content="为什么要对ipa包重签名？如果是非越狱手机，你会发现从第三方商店下载的非企业证书分发的ipa包无法安装到手机上，也就无法实现动态调试。这时候我们可以对ipa包重签名，用来运行在自己的手机上，在进行重签名之前，首先要了解🍎是如何签名的
@@ -304,6 +323,65 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_20_05.png" alt=""></p>
 <p>上述流程其实还存在问题，如果申请了一个证书，那就可以安装所有的<code>app</code>,导致应用的滥用安装。🍎又通过了描述文件（mobileprovision),描述文件也是向🍎请求所得，文件中包含了设备唯一标示、项目的Bundle iD、权限文件等，打包时会一并打包进去，这时候经常会出现问题，如设备ID没有注册、项目Bundle Id不对等。手机安装前会判断当前设备iD是否已注册，Bundle Id是否正确等。<code>Mac</code>电脑中可以通过<code>Security</code>命令查看描述文件内容，<code>Security</code>是<code>Mac</code>系统中钥匙串和安全模块的命令行管理工具，（图形化工具为<code>Keychain Access.app</code>）。钥匙串（<code>Keychain</code>）实质上就是一个用于存放证书、密钥等安全认证实体的仓库，使用时不需要写路径，直接用文件名即可，<code>Security</code>工具会自动搜索。由上图可见，描述文件其实是一个<code>XML</code>文件，拷贝放到<code>Xcode</code>,新建一个<code>Plist</code>文件打开，可以很清楚的看到，文件中包含创常见时间、失效时间、注册的设备数、每台设备的设备Id、团队名称等。在<code>ipa</code>包中可以看到这个描述文件(<code>embedded.mobileprovision</code>)</p>
 <p>上述则是🍎整个签名流程。如果我们获取到<code>ipa</code>包想安装到自己的手机上进行动态调试，就需要我们自己给这个包进行重签名，下面粗略介绍三种签名方法，其实是一种签名方法的三种形式。之前提到过，也可以直接使用<code>Monkey Dev</code>就可以完成整个过程,省去我们繁琐的重签名，但毕竟<code>Monkey Dev</code>属于第三方工具，我们有必要去了解实践整个重签流程。以前使用iOS App Signer工具也可以重签，现在也已经签不成功</p>
+<h3 id="u624B_u52A8_u91CD_u7B7E"><a href="#u624B_u52A8_u91CD_u7B7E" class="headerlink" title="手动重签"></a>手动重签</h3><p>通过PP助手首先下载一个<code>ipa</code>包，相当于一个<code>zip</code>包，解压出来, 使用<code>codesign</code>命令可以查看这个<code>ipa</code>包的签名信息</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_02.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_03.png" alt=""></p>
+<p>也可以通过<code>otool</code>命令查看可执行文件的加密信息</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_04.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_05.png" alt=""></p>
+<ul>
+<li>1 这里以微信为例，删除插件<code>Plugins</code>文件夹里面的内容，个人证书无法对插件重签</li>
+</ul>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_08.png" alt=""></p>
+<ul>
+<li>2 直接删除<code>Watch</code>文件夹</li>
+</ul>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_09.png" alt=""></p>
+<ul>
+<li>3 对 <code>Frameworks</code> 进行签名，要使用<code>Xcode</code>正在使用的证书进行重签</li>
+</ul>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_07.png" alt=""></p>
+<p>查看本地所有可用证书</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-10.png" alt=""></p>
+<p>对<code>Framework</code>进行重签</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-11.png" alt=""></p>
+<ul>
+<li><p>4 给可执行文件添加执行权限</p>
+<p>  chmod +x 可执行文件名</p>
+</li>
+<li><p>5 将当前工程的描述文件拷贝到目标文件中</p>
+</li>
+</ul>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_12.gif" alt=""></p>
+<ul>
+<li>6 修改<code>info.plist</code> 的Bundle Id</li>
+</ul>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_13.png" alt=""></p>
+<ul>
+<li>7 生成<code>plist</code>的权限文件</li>
+</ul>
+<p>查看第五步中的描述文件</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_14.png" alt=""></p>
+<p>将其中的权限文件部分复制出来，即下图圈起来的部分，通过<code>Xcode</code>创建空的<code>plist</code>文件，将权限文件转成<code>plist</code>文件</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_17.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_16.png" alt=""></p>
+<p>然后将这个权限文件放到<code>WeChat.app</code>同级目录下</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-18.png" alt=""></p>
+<ul>
+<li>8 签名整个<code>App</code> </li>
+</ul>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_19.png" alt=""></p>
+<ul>
+<li>9 生成<code>ipa</code>文件</li>
+</ul>
+<p>将<code>WeChat.app</code>替换掉<code>Payload</code>中的<code>WeChat.app</code>文件，压缩成<code>ipa</code>文件</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-20.png" alt=""></p>
+<ul>
+<li>10 安装到手机</li>
+</ul>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_22.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_23.png" alt=""></p>
+<p>注意，<code>ipa</code>包重签是一个和🍎博弈的过程，有些<code>ipa</code>可能用此方法并不能重签成功</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
