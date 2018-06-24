@@ -6,28 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>密码学探究 | 含笑饮砒霜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！
-Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！
-刚刚在线工作室，欢迎关注或提出建设性意见！
-刚刚在线论坛, 欢迎踊跃提问或解答！
-如有转载，请注明出处，谢谢！">
+  <meta name="description" content="密码学是研究编制密码和破译密码的技术科学。密码是通信双方按约定的法则进行信息特殊变换的一种重要保密手段。依照这些法则，变明文为密文，称为加密变换；变密文为明文，称为脱密变换。密码在早期仅对文字或数码进行加、脱密变换，随着通信技术的发展，对语音、图像、数据等都可实施加、脱密变换
+在iOS环境中，粗略介绍几种编码格式、摘要算法和加密规则
+一.base64编码(可解码)base64可以反编译，一般需要加">
 <meta property="og:type" content="article">
 <meta property="og:title" content="密码学探究">
 <meta property="og:url" content="http://chinafish.news/2018/06/17/密码学探究/index.html">
 <meta property="og:site_name" content="含笑饮砒霜">
-<meta property="og:description" content="如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！
-Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！
-刚刚在线工作室，欢迎关注或提出建设性意见！
-刚刚在线论坛, 欢迎踊跃提问或解答！
-如有转载，请注明出处，谢谢！">
-<meta property="og:updated_time" content="2018-06-23T15:13:16.153Z">
+<meta property="og:description" content="密码学是研究编制密码和破译密码的技术科学。密码是通信双方按约定的法则进行信息特殊变换的一种重要保密手段。依照这些法则，变明文为密文，称为加密变换；变密文为明文，称为脱密变换。密码在早期仅对文字或数码进行加、脱密变换，随着通信技术的发展，对语音、图像、数据等都可实施加、脱密变换
+在iOS环境中，粗略介绍几种编码格式、摘要算法和加密规则
+一.base64编码(可解码)base64可以反编译，一般需要加">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_02.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_01.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_03.png">
+<meta property="og:updated_time" content="2018-06-24T14:55:43.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="密码学探究">
-<meta name="twitter:description" content="如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！
-Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！
-刚刚在线工作室，欢迎关注或提出建设性意见！
-刚刚在线论坛, 欢迎踊跃提问或解答！
-如有转载，请注明出处，谢谢！">
+<meta name="twitter:description" content="密码学是研究编制密码和破译密码的技术科学。密码是通信双方按约定的法则进行信息特殊变换的一种重要保密手段。依照这些法则，变明文为密文，称为加密变换；变密文为明文，称为脱密变换。密码在早期仅对文字或数码进行加、脱密变换，随着通信技术的发展，对语音、图像、数据等都可实施加、脱密变换
+在iOS环境中，粗略介绍几种编码格式、摘要算法和加密规则
+一.base64编码(可解码)base64可以反编译，一般需要加">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜" type="application/atom+xml">
   
@@ -276,10 +273,49 @@ Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限
         <p><br></p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28577372&auto=0&height=66"></iframe>
 
-
-
-
-
+<p>密码学是研究编制密码和破译密码的技术科学。密码是通信双方按约定的法则进行信息特殊变换的一种重要保密手段。依照这些法则，变明文为密文，称为加密变换；变密文为明文，称为脱密变换。密码在早期仅对文字或数码进行加、脱密变换，随着通信技术的发展，对语音、图像、数据等都可实施加、脱密变换</p>
+<p>在iOS环境中，粗略介绍几种编码格式、摘要算法和加密规则</p>
+<h3 id="u4E00-base64_u7F16_u7801_28_u53EF_u89E3_u7801_29"><a href="#u4E00-base64_u7F16_u7801_28_u53EF_u89E3_u7801_29" class="headerlink" title="一.base64编码(可解码)"></a>一.base64编码(可解码)</h3><p><code>base64</code>可以反编译，一般需要加密的信息不会使用<code>base64</code>编码,因为编码算法完全公开，很容易就会被破解。到是一些诸如用户名这种不需要加密但是可能也并不想被一眼看出来的信息，可以使用<code>base64</code>进行编码 </p>
+<p><code>base64</code> 要求把每三个8Bit 的字节转换为四个6Bit 的字节，然后6Bit的两个高位置0 ，组成四个8Bit 的字节，转换后的字符串理论上将要比原来的长1/3 </p>
+<p>编码后的数据是一个字符串，其中包含的字符为：A-Z、a-z、0-9、+、/, 共64个字符：26 + 26 + 10 + 1 + 1 = 64</p>
+<blockquote>
+<p>其实是65个字符，“=”是填充字符，用来表示添加的零值字节数，因为如果数据的字节数不是3的倍数，则其位数就不是6的倍数，那么就不能精确地划分成6位的块，此时，需在原数据后面添加1个或2个零值字节，使其字节数是3的倍数</p>
+</blockquote>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_02.png" alt=""></p>
+<h3 id="u4E8C-__u54C8_u5E0C_28_u6563_u5217_u51FD_u6570_29_28_u4E0D_u53EF_u53CD_u7B97_29"><a href="#u4E8C-__u54C8_u5E0C_28_u6563_u5217_u51FD_u6570_29_28_u4E0D_u53EF_u53CD_u7B97_29" class="headerlink" title="二. 哈希(散列函数)(不可反算)"></a>二. 哈希(散列函数)(不可反算)</h3><ul>
+<li><p><code>MD5</code></p>
+</li>
+<li><p><code>SHA1</code>、<code>HMAC_SHA1</code></p>
+</li>
+<li><p><code>SHA256(512)</code>、<code>HMAC_SHA256(512)</code></p>
+</li>
+</ul>
+<p>散列函数其实是一种信息摘要算法，并还是加密算法。它有一些独特的特性</p>
+<p><code>MD5</code>特点:</p>
+<ul>
+<li>压缩性 : 任意长度的数据,算出的<code>MD5</code>值长度都是固定的(32位)</li>
+<li>容易计算 : 从原数据计算出<code>MD5</code>值很容易</li>
+<li>抗修改性 : 对原数据进行任何改动，哪怕只修改一个字节，所得到的<code>MD5</code>值都有很大区别(信息摘要)</li>
+<li>强抗碰撞 : 想找到两个不同数据，使他们具有相同的<code>MD5</code>值(即伪造数据)，是非常困难的</li>
+</ul>
+<p>但是正是因为同一条数据算出的<code>MD5</code>的值是固定的，所以如果把已知的词条和对应词条的<code>HASH</code>值收集起来，从而就可以进行查询得到。网上有一套数据库<a href="http://cmd5.com" target="_blank" rel="external">http://cmd5.com</a>可以根据密文查到许多<code>MD5</code>的词条</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_01.png" alt=""></p>
+<p>正因为直接一个字符串进行MD5很容易被破解，所以有了一个改进方法：加盐</p>
+<p>加盐（<code>Salt</code>）：这个盐是一个写在本地的固定字符串，拼接在明文的固定位置，然后再对拼接后的字符串进行<code>MD5</code>,这样就极增加破解的难度，即便被破解了，得到的字符串也是加盐后的字符串，无法拿到原始数据。但是，现在<a href="http://cmd5.com" target="_blank" rel="external">http://cmd5.com</a>这个网站针对MD5做了各种各样的破解，各种加盐、对盐做MD5等等。再加上这个盐是写在本地的，一旦被泄露就不得不更换，而更换后就会对老版本产生影响，所以加盐这种做饭现在也并不常用</p>
+<p>另一个加密算法<code>HMAC</code>现在被广泛使用，<code>HMAC</code>运算利用哈希算法，以一个密钥和一个消息为输入，生成一个消息摘要作为输出,有<code>HMAC_SHA1</code>、<code>HMAC_SHA256</code>、<code>HMAC_SHA512</code>等算法，与<code>SHA1</code>、<code>SHA256</code>、<code>SHA512</code>等算法相比，<code>HMAC</code>需要一个密钥,二非<code>HMAC</code>不需要</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_03.png" alt=""></p>
+<h3 id="u4E09-_u5BF9_u79F0_u52A0_u5BC6_u7B97_u6CD5"><a href="#u4E09-_u5BF9_u79F0_u52A0_u5BC6_u7B97_u6CD5" class="headerlink" title="三.对称加密算法"></a>三.对称加密算法</h3><ul>
+<li><p>DES</p>
+</li>
+<li><p>3DES</p>
+</li>
+<li><p>AES(高级密码标准，美国国家安全局使用)</p>
+</li>
+</ul>
+<h3 id="u56DB-_u975E_u5BF9_u79F0_u52A0_u5BC6_u7B97_u6CD5"><a href="#u56DB-_u975E_u5BF9_u79F0_u52A0_u5BC6_u7B97_u6CD5" class="headerlink" title="四.非对称加密算法"></a>四.非对称加密算法</h3><ul>
+<li>RSA(三个人名首字母)</li>
+</ul>
+<p>未完待续……</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
