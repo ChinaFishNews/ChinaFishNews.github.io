@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_02.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_01.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_03.png">
-<meta property="og:updated_time" content="2018-06-24T15:06:28.610Z">
+<meta property="og:updated_time" content="2018-06-27T15:29:07.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="密码学探究">
 <meta name="twitter:description" content="密码学是研究编制密码和破译密码的技术科学。密码是通信双方按约定的法则进行信息特殊变换的一种重要保密手段。依照这些法则，变明文为密文，称为加密变换；变密文为明文，称为脱密变换。密码在早期仅对文字或数码进行加、脱密变换，随着通信技术的发展，对语音、图像、数据等都可实施加、脱密变换
@@ -302,8 +302,13 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_01.png" alt=""></p>
 <p>正因为直接一个字符串进行MD5很容易被破解，所以有了一个改进方法：加盐</p>
 <p>加盐（<code>Salt</code>）：这个盐是一个写在本地的固定字符串，拼接在明文的固定位置，然后再对拼接后的字符串进行<code>MD5</code>,这样就极大增加了破解的难度，即便被破解了，得到的字符串也是加盐后的字符串，无法拿到原始数据。但是，现在<a href="http://cmd5.com" target="_blank" rel="external">http://cmd5.com</a>这个网站针对MD5做了各种各样的破解，各种加盐、对盐做MD5等等。再加上这个盐是写在本地的，一旦被泄露就不得不更换，而更换后就会对老版本产生影响，所以加盐这种做法现在也并不常用</p>
-<p>另一个加密算法<code>HMAC</code>现在被广泛使用，<code>HMAC</code>运算利用哈希算法，以一个密钥和一个消息为输入，生成一个消息摘要作为输出,有<code>HMAC_SHA1</code>、<code>HMAC_SHA256</code>、<code>HMAC_SHA512</code>等算法，与<code>SHA1</code>、<code>SHA256</code>、<code>SHA512</code>等算法相比，<code>HMAC</code>需要一个密钥,而非<code>HMAC</code>不需要</p>
+<p><code>HMAC</code> : 另一个加密算法<code>HMAC</code>现在被广泛使用，<code>HMAC</code>运算利用哈希算法，以一个密钥和一个消息为输入，生成一个消息摘要作为输出,有<code>HMAC_SHA1</code>、<code>HMAC_SHA256</code>、<code>HMAC_SHA512</code>等算法，与<code>SHA1</code>、<code>SHA256</code>、<code>SHA512</code>等算法相比，<code>HMAC</code>需要一个密钥,而非<code>HMAC</code>不需要</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_03.png" alt=""></p>
+<p><code>HMAC</code>是使用一个密钥加密，做两次散列，而这个密钥从服务器获取。 诸如在做登录操作前，注册账号的的时候，服务器会根据账号随机生成一个密钥，和账号对应，并把密钥返还给客户端，客户端把密钥保存在本地(<code>KeyChain</code>)。而在输入密码后则对密码使用密钥做了一次<code>HMAC</code>的加密传给服务器，服务器则保存的是一个加密后的字符串</p>
+<p>如果，换了一台设备，本地自然没有密钥，这样在登录的时候需要先返回这个账号对应的密钥，然后用密钥对账号做<code>HMAC</code>的加密传给服务器,这中间多了一部向服务器获取密钥的过程，有些<code>APP</code>换了设备第一次登录的时候有些慢，原因正是如此</p>
+<p>如果随便换一台设备就可以根据账号向服务器获取密钥，那在知道账号的情况下，就可以获取到相应的密钥了，这并不安全，于是就有了设备锁。当换了一台设备的时候，服务器并不会马上返回密钥，而是会询问之前的设备，是否同意返回密钥，同意之后才会返回，<code>QQ</code>设备锁逻辑正是如此</p>
+<p>还有一种危险的情况，黑客可能不需要知道你的密钥和密码，她只需要知道你的账号，并且截取你的密码加密后传输的字符串，就可以模拟你的登陆过程。之前是使用(密码.<code>HMAC</code>).<code>md5</code>这种方式，为了更安全起见，这时候需要加一个时间标识，这个时间标识可以从服务器获取，注意，这不是时间戳，只具体到分钟，比如20180623，现在就变成了(密码.<code>HMAC</code>+时间标识).<code>md5</code>，将这个字符串传给服务器，服务器会根据当前时间以同样的算法进行比对，因为可能时间分钟之间出现临界点或者超时之类的，在根据当前时间比对不成功时会以前一分钟为时间标识再比对一次，如果成功则算登陆成功，如果还不成功则登录失败，这给请求添加了时效性。理论上即便如此黑客也依然可以模拟登陆过程，这只是加大了破解的难度，归根结底，这也是一个双方博弈的过程</p>
+<p>除此之外，使用哈希算法，也还有其他用途</p>
 <h3 id="u4E09-_u5BF9_u79F0_u52A0_u5BC6_u7B97_u6CD5"><a href="#u4E09-_u5BF9_u79F0_u52A0_u5BC6_u7B97_u6CD5" class="headerlink" title="三.对称加密算法"></a>三.对称加密算法</h3><ul>
 <li><p>DES</p>
 </li>
