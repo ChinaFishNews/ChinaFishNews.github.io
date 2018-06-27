@@ -552,12 +552,16 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_02.png" alt=""></p>
 <p>可以发现，截屏后的<code>md5</code>值完全不一样，即便改成相同的名称也完全不一样。事实上是对二进制数据进行<code>md5</code>值，截屏后已经是完全不同的二进制文件,自然如果压缩了该文件，<code>md5</code>值自然也会随之改变。值得注意的是，直接复制其实就是复制二进制文件，<code>md5</code>值不会改变，单纯改变文件格式<code>md5</code>值也依然不会改变</p>
 <h6 id="u4E91_u76D8_u6587_u4EF6_u4E0A_u4F20"><a href="#u4E91_u76D8_u6587_u4EF6_u4E0A_u4F20" class="headerlink" title="云盘文件上传"></a>云盘文件上传</h6><p>文件上传时可以注意到，如果云盘上已经有了该文件，你会发现文件秒传成功。原因是什么呢？ 是因为服务器上查询到有相同的<code>md5</code>值与该文件的<code>md5</code>值相同，则默认云盘上已经有了该文件</p>
-<p>还有，云盘上经常会封杀一些小视频(少儿不宜)，是根据什么来和谐的呢？自然也是根绝<code>md5</code>的值来判断。会有专门的鉴别人员，对一些视频做出鉴别后确认这些视频需要和谐掉，并且记录这些视频的<code>md5</code>的值，那么云盘上但凡<code>md5</code>值相同的都会被和谐掉<br><br></p>
+<p>还有，云盘上经常会封杀一些小视频(少儿不宜)，是根据什么来和谐的呢？自然也是根绝<code>md5</code>的值来判断。会有专门的鉴别人员，对一些视频做出鉴别后确认这些视频需要和谐掉，并且记录这些视频的<code>md5</code>的值，那么云盘上但凡<code>md5</code>值相同的都会被和谐掉</p>
+<p><br></p>
 <font color="red" size="5">最重要的来了，如何逃避封杀呢</font>
 
 <p><br></p>
-<p><font color="blue"> 上面提到修改文件格式并不会改变<code>md5</code>值,但是压缩可以，所以可以把视频压缩后再上传</font></p>
-<p>还可以，将视频进行base64编码后再上传，因为可以解码，所以下载下来再进行解码即可恢复文件<br><br><br><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_05.png" alt=""></p>
+<font color="blue"> 上面提到修改文件格式并不会改变<code>md5</code>值,但是压缩可以，所以可以把视频压缩后再上传</font>
+
+<font color="blue">还可以，将视频进行base64编码后再上传，因为可以解码，所以下载下来再进行解码即可恢复文件</font>
+
+<p><br><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_05.png" alt=""></p>
 <h3 id="u4E09-_u5BF9_u79F0_u52A0_u5BC6_u7B97_u6CD5"><a href="#u4E09-_u5BF9_u79F0_u52A0_u5BC6_u7B97_u6CD5" class="headerlink" title="三.对称加密算法"></a>三.对称加密算法</h3><ul>
 <li><p>DES</p>
 </li>
