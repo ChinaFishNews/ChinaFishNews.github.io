@@ -441,6 +441,7 @@
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_23_02.png" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_23_03.png" alt=""></p>
 <p>脚本内容如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">TEMP_PATH=<span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>/Temp"</span></span><br><span class="line">ASSETS_PATH=<span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>/APP"</span></span><br><span class="line">TARGET_IPA_PATH=<span class="string">"<span class="variable">$&#123;ASSETS_PATH&#125;</span>/*.ipa"</span></span><br><span class="line">rm -rf <span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>/Temp"</span></span><br><span class="line">mkdir -p <span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>/Temp"</span></span><br><span class="line"></span><br><span class="line">unzip -oqq <span class="string">"<span class="variable">$TARGET_IPA_PATH</span>"</span> <span class="operator">-d</span> <span class="string">"<span class="variable">$TEMP_PATH</span>"</span></span><br><span class="line">TEMP_APP_PATH=$(<span class="built_in">set</span> -- <span class="string">"<span class="variable">$TEMP_PATH</span>/Payload/"</span>*.app;<span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span>"</span>)</span><br><span class="line"></span><br><span class="line">TARGET_APP_PATH=<span class="string">"<span class="variable">$BUILT_PRODUCTS_DIR</span>/<span class="variable">$TARGET_NAME</span>.app"</span></span><br><span class="line"></span><br><span class="line">rm -rf <span class="string">"<span class="variable">$TARGET_APP_PATH</span>"</span></span><br><span class="line">mkdir -p <span class="string">"<span class="variable">$TARGET_APP_PATH</span>"</span></span><br><span class="line">cp -rf <span class="string">"<span class="variable">$TEMP_APP_PATH</span>/"</span> <span class="string">"<span class="variable">$TARGET_APP_PATH</span>"</span></span><br><span class="line"></span><br><span class="line">rm -rf <span class="string">"<span class="variable">$TARGET_APP_PATH</span>/PlugIns"</span></span><br><span class="line">rm -rf <span class="string">"<span class="variable">$TARGET_APP_PATH</span>/Watch"</span></span><br><span class="line"></span><br><span class="line">/usr/libexec/PlistBuddy -c <span class="string">"Set :CFBundleIdentifier <span class="variable">$PRODUCT_BUNDLE_IDENTIFIER</span>"</span> <span class="string">"<span class="variable">$TARGET_APP_PATH</span>/Info.plist"</span></span><br><span class="line"></span><br><span class="line">APP_BINARY=`plutil -convert xml1 -o - <span class="variable">$TARGET_APP_PATH</span>/Info.plist|grep -A1 Exec|tail -n1|cut <span class="operator">-f</span>2 <span class="operator">-d</span>\&gt;|cut <span class="operator">-f</span>1 <span class="operator">-d</span>\&lt;`</span><br><span class="line">chmod +x <span class="string">"<span class="variable">$TARGET_APP_PATH</span>/<span class="variable">$APP_BINARY</span>"</span></span><br><span class="line"></span><br><span class="line">TARGET_APP_FRAMEWORKS_PATH=<span class="string">"<span class="variable">$TARGET_APP_PATH</span>/Frameworks"</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="operator">-d</span> <span class="string">"<span class="variable">$TARGET_APP_FRAMEWORKS_PATH</span>"</span>];</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line"><span class="keyword">for</span> FRAMEWORK <span class="keyword">in</span> <span class="string">"<span class="variable">$TARGET_APP_FRAMEWORKS_PATH</span>/"</span>*</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"></span><br><span class="line">/usr/bin/codesign --force --sign <span class="string">"<span class="variable">$EXPANDED_CODE_SIGN_IDENTITY</span>"</span> <span class="string">"<span class="variable">$FRAMEWORK</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/ChinaFishNews/AutoResign.git" target="_blank" rel="external">AutoReSign</a></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -545,7 +546,27 @@
 <p>如果，换了一台设备，本地自然没有密钥，这样在登录的时候需要先返回这个账号对应的密钥，然后用密钥对账号做<code>HMAC</code>的加密传给服务器,这中间多了一部向服务器获取密钥的过程，有些<code>APP</code>换了设备第一次登录的时候有些慢，原因正是如此</p>
 <p>如果随便换一台设备就可以根据账号向服务器获取密钥，那在知道账号的情况下，就可以获取到相应的密钥了，这并不安全，于是就有了设备锁。当换了一台设备的时候，服务器并不会马上返回密钥，而是会询问之前的设备，是否同意返回密钥，同意之后才会返回，<code>QQ</code>设备锁逻辑正是如此</p>
 <p>还有一种危险的情况，黑客可能不需要知道你的密钥和密码，她只需要知道你的账号，并且截取你的密码加密后传输的字符串，就可以模拟你的登陆过程。之前是使用(密码.<code>HMAC</code>).<code>md5</code>这种方式，为了更安全起见，这时候需要加一个时间标识，这个时间标识可以从服务器获取，注意，这不是时间戳，只具体到分钟，比如20180623，现在就变成了(密码.<code>HMAC</code>+时间标识).<code>md5</code>，将这个字符串传给服务器，服务器会根据当前时间以同样的算法进行比对，因为可能时间分钟之间出现临界点或者超时之类的，在根据当前时间比对不成功时会以前一分钟为时间标识再比对一次，如果成功则算登陆成功，如果还不成功则登录失败，这给请求添加了时效性。理论上即便如此黑客也依然可以模拟登陆过程，这只是加大了破解的难度，归根结底，这也是一个双方博弈的过程</p>
-<p>除此之外，使用哈希算法，也还有其他用途</p>
+<p>iPhone5S开始推出了指纹识别，iOS8.0之后🍎允许<code>App</code>使用<code>Touch ID</code>进行验证, 但是部分场景必须进行密码校验</p>
+<ul>
+<li><p>开机/重启</p>
+</li>
+<li><p>超过 48 小时未解锁设备</p>
+</li>
+<li><p>设备收到了远程锁定命令</p>
+</li>
+<li><p>五次未能成功匹配指纹</p>
+</li>
+<li><p>进入<code>Touch ID</code>设置模块或更新指纹</p>
+</li>
+</ul>
+<p>那指纹识别能够代替密码吗？</p>
+<font color="blue"> 必然不行，因为密码和指纹验证本身代表的意义就不同</font>
+
+<font color="blue"> 密码正确，用来证明是这个账号的主人</font>
+
+<font color="blue">指纹正确，用来证明是这个手机的主人</font>
+
+<p><br><br>除此之外，使用哈希算法，也还有其他用途</p>
 <h6 id="u7248_u6743_u7EF4_u62A4"><a href="#u7248_u6743_u7EF4_u62A4" class="headerlink" title="版权维护"></a>版权维护</h6><p>比如有张原创作品（origin.png）</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_01.png" alt=""></p>
 <p>打开后我重新截图（pirate），外观上没有任何变化，观察他们的<code>md5</code>值</p>

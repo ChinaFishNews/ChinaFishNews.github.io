@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_01.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_02.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_05.png">
-<meta property="og:updated_time" content="2018-06-27T17:04:58.558Z">
+<meta property="og:updated_time" content="2018-06-29T16:10:44.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="密码学探究">
 <meta name="twitter:description" content="密码学是研究编制密码和破译密码的技术科学。密码是通信双方按约定的法则进行信息特殊变换的一种重要保密手段。依照这些法则，变明文为密文，称为加密变换；变密文为明文，称为脱密变换。密码在早期仅对文字或数码进行加、脱密变换，随着通信技术的发展，对语音、图像、数据等都可实施加、脱密变换
@@ -311,7 +311,27 @@
 <p>如果，换了一台设备，本地自然没有密钥，这样在登录的时候需要先返回这个账号对应的密钥，然后用密钥对账号做<code>HMAC</code>的加密传给服务器,这中间多了一部向服务器获取密钥的过程，有些<code>APP</code>换了设备第一次登录的时候有些慢，原因正是如此</p>
 <p>如果随便换一台设备就可以根据账号向服务器获取密钥，那在知道账号的情况下，就可以获取到相应的密钥了，这并不安全，于是就有了设备锁。当换了一台设备的时候，服务器并不会马上返回密钥，而是会询问之前的设备，是否同意返回密钥，同意之后才会返回，<code>QQ</code>设备锁逻辑正是如此</p>
 <p>还有一种危险的情况，黑客可能不需要知道你的密钥和密码，她只需要知道你的账号，并且截取你的密码加密后传输的字符串，就可以模拟你的登陆过程。之前是使用(密码.<code>HMAC</code>).<code>md5</code>这种方式，为了更安全起见，这时候需要加一个时间标识，这个时间标识可以从服务器获取，注意，这不是时间戳，只具体到分钟，比如20180623，现在就变成了(密码.<code>HMAC</code>+时间标识).<code>md5</code>，将这个字符串传给服务器，服务器会根据当前时间以同样的算法进行比对，因为可能时间分钟之间出现临界点或者超时之类的，在根据当前时间比对不成功时会以前一分钟为时间标识再比对一次，如果成功则算登陆成功，如果还不成功则登录失败，这给请求添加了时效性。理论上即便如此黑客也依然可以模拟登陆过程，这只是加大了破解的难度，归根结底，这也是一个双方博弈的过程</p>
-<p>除此之外，使用哈希算法，也还有其他用途</p>
+<p>iPhone5S开始推出了指纹识别，iOS8.0之后🍎允许<code>App</code>使用<code>Touch ID</code>进行验证, 但是部分场景必须进行密码校验</p>
+<ul>
+<li><p>开机/重启</p>
+</li>
+<li><p>超过 48 小时未解锁设备</p>
+</li>
+<li><p>设备收到了远程锁定命令</p>
+</li>
+<li><p>五次未能成功匹配指纹</p>
+</li>
+<li><p>进入<code>Touch ID</code>设置模块或更新指纹</p>
+</li>
+</ul>
+<p>那指纹识别能够代替密码吗？</p>
+<font color="blue"> 必然不行，因为密码和指纹验证本身代表的意义就不同</font>
+
+<font color="blue"> 密码正确，用来证明是这个账号的主人</font>
+
+<font color="blue">指纹正确，用来证明是这个手机的主人</font>
+
+<p><br><br>除此之外，使用哈希算法，也还有其他用途</p>
 <h6 id="u7248_u6743_u7EF4_u62A4"><a href="#u7248_u6743_u7EF4_u62A4" class="headerlink" title="版权维护"></a>版权维护</h6><p>比如有张原创作品（origin.png）</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_01.png" alt=""></p>
 <p>打开后我重新截图（pirate），外观上没有任何变化，观察他们的<code>md5</code>值</p>
