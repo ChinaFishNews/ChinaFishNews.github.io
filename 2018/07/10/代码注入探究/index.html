@@ -6,21 +6,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>代码注入探究 | 含笑饮砒霜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行
-这里使用的是动态库(.framework、.dylib)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以.framework和.dylib后缀结尾，通常把它们叫做Framework和Shared Library。Framework本质上是由Shared Library加上头文件header和">
+  <meta name="description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行的过程
+这里使用的是动态库(.framework、.dylib)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以.framework和.dylib后缀结尾，通常把它们叫做Framework和Shared Library。Framework本质上是由Shared Library加上头文件head">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码注入探究">
 <meta property="og:url" content="http://chinafish.news/2018/07/10/代码注入探究/index.html">
 <meta property="og:site_name" content="含笑饮砒霜">
-<meta property="og:description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行
-这里使用的是动态库(.framework、.dylib)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以.framework和.dylib后缀结尾，通常把它们叫做Framework和Shared Library。Framework本质上是由Shared Library加上头文件header和">
+<meta property="og:description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行的过程
+这里使用的是动态库(.framework、.dylib)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以.framework和.dylib后缀结尾，通常把它们叫做Framework和Shared Library。Framework本质上是由Shared Library加上头文件head">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_02.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_03.png">
-<meta property="og:updated_time" content="2018-07-11T15:52:39.734Z">
+<meta property="og:updated_time" content="2018-07-11T16:00:16.672Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码注入探究">
-<meta name="twitter:description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行
-这里使用的是动态库(.framework、.dylib)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以.framework和.dylib后缀结尾，通常把它们叫做Framework和Shared Library。Framework本质上是由Shared Library加上头文件header和">
+<meta name="twitter:description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行的过程
+这里使用的是动态库(.framework、.dylib)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以.framework和.dylib后缀结尾，通常把它们叫做Framework和Shared Library。Framework本质上是由Shared Library加上头文件head">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜" type="application/atom+xml">
   
@@ -269,7 +269,7 @@
         <p><br></p>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28577372&auto=0&height=66"></iframe>
 
-<p><code>iOS</code>中对<code>ipa</code>包进行代码注入，就是将外部代码注入现有<code>ipa</code>包中，进而进行打包并最终被执行</p>
+<p><code>iOS</code>中对<code>ipa</code>包进行代码注入，就是将外部代码注入现有<code>ipa</code>包中，进而进行打包并最终被执行的过程</p>
 <p>这里使用的是动态库(<code>.framework</code>、<code>.dylib</code>)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以<code>.framework</code>和<code>.dylib</code>后缀结尾，通常把它们叫做<code>Framework</code>和<code>Shared Library</code>。<code>Framework</code>本质上是由<code>Shared Library</code>加上头文件<code>header</code>和其他资源文件打包得到。说到动态库，就不得不说静态库(<code>.a</code>)，静态库可以看做是一个具有特定功能的代码块，如果项目中引用了静态库，则编译时会将静态库直接复制到可执行文件(<code>MachO</code>)中,进而会导致<code>MachO</code>文件变大，而<code>MachO</code>文件的大小直接影响项目的启动时间和占用内存的大小</p>
 <p>而项目中引用动态库时，动态库不会复制到<code>MachO</code>文件中，只有当动态库真正被用到时才会去加载。如果<code>App</code>将动态库作为它的依赖库，则在<code>MachO</code>文件中会添加这个动态库的引用，如果<code>App</code>在运行时动态加载动态库，则在<code>MachO</code>文件中不会添加动态库的引用。在使用<code>App</code>时，静态库和动态库都会被加载到内存中。当多个<code>app</code>使用同一个库时，如果这个库是动态库，由于动态库是可以被多个app的进程共用的，所以在内存中只会存在一份,而且使用这个动态库时，可能这个动态库已经存在于内存中了，因为其他启动的<code>app</code>也许也依赖了这个库。如果是静态库，由于每个<code>app</code>的<code>MachO</code>文件中都会存在一份，则内存中可能会存在多份。相对静态库，使用动态库可以减少<code>app</code>占用的内存大小和启动时间</p>
 <p>使用静态库的<code>App</code></p>
