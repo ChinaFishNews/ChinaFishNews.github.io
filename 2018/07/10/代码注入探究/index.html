@@ -4,48 +4,23 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>5.19 | 含笑饮砒霜</title>
+  <title>代码注入探究 | 含笑饮砒霜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="求婚视频点这里
-感谢所有参与的朋友
-没参与的也依然感谢
-见证了我们这些年的风雨历程
-因视频大小衔接顺畅等考虑，个别录屏没有纳入，跪求理解
-凡事总有非异，尽管这更多只是一种仪式
-人生也许本来就没有意义
-但正是因为有了仪式
-它能给一个普通的日子、无意义的动作、不起眼的一件小事赋予深刻的内涵
-在逝去的无数日夜里，所做的那些充满仪式感的事，就已为我们标定了生活的意义
-也许这种形式并不那么好，但总比懒得走过">
+  <meta name="description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行
+这里使用的是动态库(.framework、.dylib)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以.framework和.dylib后缀结尾，通常把它们叫做Framework和Shared Library。Framework本质上是由Shared Library加上头文件header和">
 <meta property="og:type" content="article">
-<meta property="og:title" content="5.19">
-<meta property="og:url" content="http://chinafish.news/2018/06/23/5.19/index.html">
+<meta property="og:title" content="代码注入探究">
+<meta property="og:url" content="http://chinafish.news/2018/07/10/代码注入探究/index.html">
 <meta property="og:site_name" content="含笑饮砒霜">
-<meta property="og:description" content="求婚视频点这里
-感谢所有参与的朋友
-没参与的也依然感谢
-见证了我们这些年的风雨历程
-因视频大小衔接顺畅等考虑，个别录屏没有纳入，跪求理解
-凡事总有非异，尽管这更多只是一种仪式
-人生也许本来就没有意义
-但正是因为有了仪式
-它能给一个普通的日子、无意义的动作、不起眼的一件小事赋予深刻的内涵
-在逝去的无数日夜里，所做的那些充满仪式感的事，就已为我们标定了生活的意义
-也许这种形式并不那么好，但总比懒得走过">
-<meta property="og:updated_time" content="2018-06-23T10:54:06.967Z">
+<meta property="og:description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行
+这里使用的是动态库(.framework、.dylib)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以.framework和.dylib后缀结尾，通常把它们叫做Framework和Shared Library。Framework本质上是由Shared Library加上头文件header和">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_02.png">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_03.png">
+<meta property="og:updated_time" content="2018-07-11T15:52:39.734Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="5.19">
-<meta name="twitter:description" content="求婚视频点这里
-感谢所有参与的朋友
-没参与的也依然感谢
-见证了我们这些年的风雨历程
-因视频大小衔接顺畅等考虑，个别录屏没有纳入，跪求理解
-凡事总有非异，尽管这更多只是一种仪式
-人生也许本来就没有意义
-但正是因为有了仪式
-它能给一个普通的日子、无意义的动作、不起眼的一件小事赋予深刻的内涵
-在逝去的无数日夜里，所做的那些充满仪式感的事，就已为我们标定了生活的意义
-也许这种形式并不那么好，但总比懒得走过">
+<meta name="twitter:title" content="代码注入探究">
+<meta name="twitter:description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行
+这里使用的是动态库(.framework、.dylib)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以.framework和.dylib后缀结尾，通常把它们叫做Framework和Shared Library。Framework本质上是由Shared Library加上头文件header和">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜" type="application/atom+xml">
   
@@ -158,7 +133,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/AVPlayer、MoviePlayer/" style="font-size: 10px;">AVPlayer、MoviePlayer</a> <a href="/tags/Alfred，goshell，iterm2，Oh-My-Zsh，pp助手/" style="font-size: 10px;">Alfred，goshell，iterm2，Oh My Zsh，pp助手</a> <a href="/tags/Asstrill-Shadowsocks-云梯，壁虎漫步-Lattern-Firefly/" style="font-size: 10px;">Asstrill,Shadowsocks,云梯，壁虎漫步,Lattern,Firefly</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/BugHD/" style="font-size: 10px;">BugHD</a> <a href="/tags/Cocoapods/" style="font-size: 10px;">Cocoapods</a> <a href="/tags/Coding-net/" style="font-size: 10px;">Coding.net</a> <a href="/tags/Core-Graphics/" style="font-size: 10px;">Core Graphics</a> <a href="/tags/Core-ML-Siri-AVFoundation/" style="font-size: 10px;">Core ML, Siri, AVFoundation</a> <a href="/tags/Core-ML-Vision-人脸识别/" style="font-size: 10px;">Core ML, Vision,人脸识别</a> <a href="/tags/Cycript/" style="font-size: 10px;">Cycript</a> <a href="/tags/Fabric/" style="font-size: 15px;">Fabric</a> <a href="/tags/Git，GitHub-回滚，仓库/" style="font-size: 10px;">Git，GitHub,回滚，仓库</a> <a href="/tags/LLDB-逆向-安全攻防/" style="font-size: 10px;">LLDB,逆向,安全攻防</a> <a href="/tags/Leaks，Allocations-Time-Profiler/" style="font-size: 10px;">Leaks，Allocations,Time Profiler</a> <a href="/tags/MD5-SHA256-AES-RSA/" style="font-size: 10px;">MD5,SHA256,AES,RSA</a> <a href="/tags/MMPDeepSleepPreventer-后台无限运行/" style="font-size: 10px;">MMPDeepSleepPreventer,后台无限运行</a> <a href="/tags/MarkDown、Mou、Macdown/" style="font-size: 10px;">MarkDown、Mou、Macdown</a> <a href="/tags/Openfire-Spark/" style="font-size: 10px;">Openfire,Spark</a> <a href="/tags/ReactiveCocoa-block/" style="font-size: 10px;">ReactiveCocoa,block</a> <a href="/tags/Reveal/" style="font-size: 10px;">Reveal</a> <a href="/tags/Ruby，Cycript/" style="font-size: 10px;">Ruby，Cycript</a> <a href="/tags/RunLoop-CFRunLoopRef/" style="font-size: 10px;">RunLoop,CFRunLoopRef</a> <a href="/tags/RunTime/" style="font-size: 10px;">RunTime</a> <a href="/tags/UITableView-ResponderChain/" style="font-size: 10px;">UITableView,ResponderChain</a> <a href="/tags/Vision-文字检测，VNDetectTextRectanglesRequest/" style="font-size: 10px;">Vision,文字检测，VNDetectTextRectanglesRequest</a> <a href="/tags/Vision-目标跟踪，VNDetectedObjectObservation-VNSequenceRequestHandler/" style="font-size: 10px;">Vision,目标跟踪，VNDetectedObjectObservation,VNSequenceRequestHandler</a> <a href="/tags/YYKit/" style="font-size: 10px;">YYKit</a> <a href="/tags/class-dump-MachO/" style="font-size: 10px;">class-dump,MachO</a> <a href="/tags/coremlTools-scikitLearn-Python-Anaconda/" style="font-size: 15px;">coremlTools,scikitLearn,Python,Anaconda</a> <a href="/tags/人工智能，机器学习，CoreML-Vision/" style="font-size: 10px;">人工智能，机器学习，CoreML, Vision</a> <a href="/tags/免证书，免数据线/" style="font-size: 10px;">免证书，免数据线</a> <a href="/tags/奇巧淫技/" style="font-size: 10px;">奇巧淫技</a> <a href="/tags/奇技淫巧/" style="font-size: 10px;">奇技淫巧</a> <a href="/tags/拖延症/" style="font-size: 10px;">拖延症</a> <a href="/tags/支付宝SDK/" style="font-size: 10px;">支付宝SDK</a> <a href="/tags/机器学习，人工智能，CoreML-Vision-ARKit/" style="font-size: 10px;">机器学习，人工智能，CoreML, Vision, ARKit</a> <a href="/tags/求婚视频/" style="font-size: 10px;">求婚视频</a> <a href="/tags/汇编，寄存器/" style="font-size: 15px;">汇编，寄存器</a> <a href="/tags/环信SDK/" style="font-size: 10px;">环信SDK</a> <a href="/tags/装逼，特技/" style="font-size: 10px;">装逼，特技</a> <a href="/tags/证书，Application-Loader/" style="font-size: 10px;">证书，Application Loader</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/逆向-安全攻防/" style="font-size: 10px;">逆向,安全攻防</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/AVPlayer、MoviePlayer/" style="font-size: 10px;">AVPlayer、MoviePlayer</a> <a href="/tags/Alfred，goshell，iterm2，Oh-My-Zsh，pp助手/" style="font-size: 10px;">Alfred，goshell，iterm2，Oh My Zsh，pp助手</a> <a href="/tags/Asstrill-Shadowsocks-云梯，壁虎漫步-Lattern-Firefly/" style="font-size: 10px;">Asstrill,Shadowsocks,云梯，壁虎漫步,Lattern,Firefly</a> <a href="/tags/Autolayout/" style="font-size: 10px;">Autolayout</a> <a href="/tags/BugHD/" style="font-size: 10px;">BugHD</a> <a href="/tags/Cocoapods/" style="font-size: 10px;">Cocoapods</a> <a href="/tags/Coding-net/" style="font-size: 10px;">Coding.net</a> <a href="/tags/Core-Graphics/" style="font-size: 10px;">Core Graphics</a> <a href="/tags/Core-ML-Siri-AVFoundation/" style="font-size: 10px;">Core ML, Siri, AVFoundation</a> <a href="/tags/Core-ML-Vision-人脸识别/" style="font-size: 10px;">Core ML, Vision,人脸识别</a> <a href="/tags/Cycript/" style="font-size: 10px;">Cycript</a> <a href="/tags/Fabric/" style="font-size: 15px;">Fabric</a> <a href="/tags/Git，GitHub-回滚，仓库/" style="font-size: 10px;">Git，GitHub,回滚，仓库</a> <a href="/tags/LLDB-逆向-安全攻防/" style="font-size: 10px;">LLDB,逆向,安全攻防</a> <a href="/tags/Leaks，Allocations-Time-Profiler/" style="font-size: 10px;">Leaks，Allocations,Time Profiler</a> <a href="/tags/MD5-SHA256-AES-RSA/" style="font-size: 10px;">MD5,SHA256,AES,RSA</a> <a href="/tags/MMPDeepSleepPreventer-后台无限运行/" style="font-size: 10px;">MMPDeepSleepPreventer,后台无限运行</a> <a href="/tags/MarkDown、Mou、Macdown/" style="font-size: 10px;">MarkDown、Mou、Macdown</a> <a href="/tags/Openfire-Spark/" style="font-size: 10px;">Openfire,Spark</a> <a href="/tags/ReactiveCocoa-block/" style="font-size: 10px;">ReactiveCocoa,block</a> <a href="/tags/Reveal/" style="font-size: 10px;">Reveal</a> <a href="/tags/Ruby，Cycript/" style="font-size: 10px;">Ruby，Cycript</a> <a href="/tags/RunLoop-CFRunLoopRef/" style="font-size: 10px;">RunLoop,CFRunLoopRef</a> <a href="/tags/RunTime/" style="font-size: 10px;">RunTime</a> <a href="/tags/UITableView-ResponderChain/" style="font-size: 10px;">UITableView,ResponderChain</a> <a href="/tags/Vision-文字检测，VNDetectTextRectanglesRequest/" style="font-size: 10px;">Vision,文字检测，VNDetectTextRectanglesRequest</a> <a href="/tags/Vision-目标跟踪，VNDetectedObjectObservation-VNSequenceRequestHandler/" style="font-size: 10px;">Vision,目标跟踪，VNDetectedObjectObservation,VNSequenceRequestHandler</a> <a href="/tags/YYKit/" style="font-size: 10px;">YYKit</a> <a href="/tags/class-dump-MachO/" style="font-size: 10px;">class-dump,MachO</a> <a href="/tags/coremlTools-scikitLearn-Python-Anaconda/" style="font-size: 15px;">coremlTools,scikitLearn,Python,Anaconda</a> <a href="/tags/人工智能，机器学习，CoreML-Vision/" style="font-size: 10px;">人工智能，机器学习，CoreML, Vision</a> <a href="/tags/免证书，免数据线/" style="font-size: 10px;">免证书，免数据线</a> <a href="/tags/动态注入/" style="font-size: 10px;">动态注入</a> <a href="/tags/奇巧淫技/" style="font-size: 10px;">奇巧淫技</a> <a href="/tags/奇技淫巧/" style="font-size: 10px;">奇技淫巧</a> <a href="/tags/拖延症/" style="font-size: 10px;">拖延症</a> <a href="/tags/支付宝SDK/" style="font-size: 10px;">支付宝SDK</a> <a href="/tags/机器学习，人工智能，CoreML-Vision-ARKit/" style="font-size: 10px;">机器学习，人工智能，CoreML, Vision, ARKit</a> <a href="/tags/求婚视频/" style="font-size: 10px;">求婚视频</a> <a href="/tags/汇编，寄存器/" style="font-size: 15px;">汇编，寄存器</a> <a href="/tags/环信SDK/" style="font-size: 10px;">环信SDK</a> <a href="/tags/装逼，特技/" style="font-size: 10px;">装逼，特技</a> <a href="/tags/证书，Application-Loader/" style="font-size: 10px;">证书，Application Loader</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/逆向-安全攻防/" style="font-size: 10px;">逆向,安全攻防</a> <a href="/tags/逆向工程/" style="font-size: 10px;">逆向工程</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -250,11 +225,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-5.19" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-代码注入探究" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/06/23/5.19/" class="article-date">
-  	<time datetime="2018-06-22T16:00:00.000Z" itemprop="datePublished">2018-06-23</time>
+      <a href="/2018/07/10/代码注入探究/" class="article-date">
+  	<time datetime="2018-07-09T16:00:00.000Z" itemprop="datePublished">2018-07-10</time>
 </a>
     </div>
   
@@ -267,7 +242,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      5.19
+      代码注入探究
     </h1>
   
 
@@ -276,12 +251,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/求婚视频/">求婚视频</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态注入/">动态注入</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/随笔/">随笔</a>
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
 	</div>
 
 
@@ -291,20 +266,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://pan.baidu.com/s/1PH_VG-_EW-mSssov4SDqPQ" target="_blank" rel="external">求婚视频点这里</a></p>
-<p>感谢所有参与的朋友</p>
-<p>没参与的也依然感谢</p>
-<p>见证了我们这些年的风雨历程</p>
-<p>因视频大小衔接顺畅等考虑，个别录屏没有纳入，跪求理解</p>
-<p>凡事总有非异，尽管这更多只是一种仪式</p>
-<p>人生也许本来就没有意义</p>
-<p>但正是因为有了仪式</p>
-<p>它能给一个普通的日子、无意义的动作、不起眼的一件小事赋予深刻的内涵</p>
-<p>在逝去的无数日夜里，所做的那些充满仪式感的事，就已为我们标定了生活的意义</p>
-<p>也许这种形式并不那么好，但总比懒得走过场要好的多</p>
-<p>生活也许很操蛋，但姿势一定要好看</p>
-<p>非常感谢🍻🍻🍻</p>
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28577372&auto=0&height=66"></iframe>
+
+<p><code>iOS</code>中对<code>ipa</code>包进行代码注入，就是将外部代码注入现有<code>ipa</code>包中，进而进行打包并最终被执行</p>
+<p>这里使用的是动态库(<code>.framework</code>、<code>.dylib</code>)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以<code>.framework</code>和<code>.dylib</code>后缀结尾，通常把它们叫做<code>Framework</code>和<code>Shared Library</code>。<code>Framework</code>本质上是由<code>Shared Library</code>加上头文件<code>header</code>和其他资源文件打包得到。说到动态库，就不得不说静态库(<code>.a</code>)，静态库可以看做是一个具有特定功能的代码块，如果项目中引用了静态库，则编译时会将静态库直接复制到可执行文件(<code>MachO</code>)中,进而会导致<code>MachO</code>文件变大，而<code>MachO</code>文件的大小直接影响项目的启动时间和占用内存的大小</p>
+<p>而项目中引用动态库时，动态库不会复制到<code>MachO</code>文件中，只有当动态库真正被用到时才会去加载。如果<code>App</code>将动态库作为它的依赖库，则在<code>MachO</code>文件中会添加这个动态库的引用，如果<code>App</code>在运行时动态加载动态库，则在<code>MachO</code>文件中不会添加动态库的引用。在使用<code>App</code>时，静态库和动态库都会被加载到内存中。当多个<code>app</code>使用同一个库时，如果这个库是动态库，由于动态库是可以被多个app的进程共用的，所以在内存中只会存在一份,而且使用这个动态库时，可能这个动态库已经存在于内存中了，因为其他启动的<code>app</code>也许也依赖了这个库。如果是静态库，由于每个<code>app</code>的<code>MachO</code>文件中都会存在一份，则内存中可能会存在多份。相对静态库，使用动态库可以减少<code>app</code>占用的内存大小和启动时间</p>
+<p>使用静态库的<code>App</code></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_02.png" alt=""></p>
+<p>使用动态库的<code>App</code></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_03.png" alt=""></p>
+<p>使用动态库有两种方式，一种是将动态库添加为依赖库，这样会在工程启动时加载动态库，一种是使用<code>dlopen</code>在运行时加载动态库，这两种方式的区别在于加载动态库的时机。在<code>iOS</code>中一般使用第一种方法，第二种如果在<code>iOS</code>中使用了这种方式，一般是不能上架到<code>App Store</code>的</p>
+<h5 id="Framework_u6CE8_u5165"><a href="#Framework_u6CE8_u5165" class="headerlink" title="Framework注入"></a>Framework注入</h5><h5 id="Dylib_u6CE8_u5165"><a href="#Dylib_u6CE8_u5165" class="headerlink" title="Dylib注入"></a>Dylib注入</h5><p>未完待续…</p>
 <hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
 
       
     </div>
@@ -313,6 +292,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2018/07/11/5.19/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          5.19
+        
+      </div>
+    </a>
   
   
     <a href="/2018/06/20/ipa包重签名探究/" id="article-nav-older" class="article-nav-link-wrap">
@@ -362,7 +350,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="5.19" data-title="5.19" data-url="http://chinafish.news/2018/06/23/5.19/"></div>
+	<div class="ds-thread" data-thread-key="代码注入探究" data-title="代码注入探究" data-url="http://chinafish.news/2018/07/10/代码注入探究/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
