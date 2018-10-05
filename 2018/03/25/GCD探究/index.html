@@ -4,17 +4,45 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: 随笔 | 含笑饮砒霜</title>
+  <title>GCD探究 | 含笑饮砒霜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="含笑饮砒霜">
-<meta property="og:url" content="http://chinafish.news/tags/随笔/index.html">
+  <meta name="description" content="要了解GCD(Grand Central Dispatch)，先从最基本的一些概念作为切入点
+1.概念理解
+进程
+只指在系统中正在运行的一个应用程序，比如同时打开了Xcode和Sourcetree, 系统会分别启动两个进程，Mac上有个活动监视器，可以查看已打开的进程并可以杀死进程。每个进程之间是独立的，均运行在其专用且受保护的内存空间内
+
+
+
+线程
+进程想要执行任务，必须得有线程，每个进程至少要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCD探究">
+<meta property="og:url" content="http://chinafish.news/2018/03/25/GCD探究/index.html">
 <meta property="og:site_name" content="含笑饮砒霜">
-<meta property="og:description">
+<meta property="og:description" content="要了解GCD(Grand Central Dispatch)，先从最基本的一些概念作为切入点
+1.概念理解
+进程
+只指在系统中正在运行的一个应用程序，比如同时打开了Xcode和Sourcetree, 系统会分别启动两个进程，Mac上有个活动监视器，可以查看已打开的进程并可以杀死进程。每个进程之间是独立的，均运行在其专用且受保护的内存空间内
+
+
+
+线程
+进程想要执行任务，必须得有线程，每个进程至少要">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_01.gif">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_02.gif">
+<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_03.png">
+<meta property="og:updated_time" content="2018-09-16T08:56:48.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="含笑饮砒霜">
-<meta name="twitter:description">
+<meta name="twitter:title" content="GCD探究">
+<meta name="twitter:description" content="要了解GCD(Grand Central Dispatch)，先从最基本的一些概念作为切入点
+1.概念理解
+进程
+只指在系统中正在运行的一个应用程序，比如同时打开了Xcode和Sourcetree, 系统会分别启动两个进程，Mac上有个活动监视器，可以查看已打开的进程并可以杀死进程。每个进程之间是独立的，均运行在其专用且受保护的内存空间内
+
+
+
+线程
+进程想要执行任务，必须得有线程，每个进程至少要">
   
     <link rel="alternative" href="/atom.xml" title="含笑饮砒霜" type="application/atom+xml">
   
@@ -219,57 +247,223 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-GCD探究" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/07/24/控雨片段/" class="archive-article-date">
-  	<time datetime="2016-07-23T16:00:00.000Z" itemprop="datePublished">Jul 24</time>
+    <div class="article-meta">
+      <a href="/2018/03/25/GCD探究/" class="article-date">
+  	<time datetime="2018-03-24T16:00:00.000Z" itemprop="datePublished">2018-03-25</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/24/控雨片段/">控雨片段</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      GCD探究
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NSThread-NSOperation-GCD/">NSThread,NSOperation,GCD</a></li></ul>
 	</div>
 
-          
+        
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/随笔/">随笔</a>
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
 	</div>
 
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1294924781&auto=1&height=66"></iframe>
+
+
+<p>要了解<code>GCD</code>(Grand Central Dispatch)，先从最基本的一些概念作为切入点</p>
+<h4 id="1-_u6982_u5FF5_u7406_u89E3"><a href="#1-_u6982_u5FF5_u7406_u89E3" class="headerlink" title="1.概念理解"></a>1.概念理解</h4><blockquote>
+<p><strong>进程</strong></p>
+<p>只指在系统中正在运行的一个应用程序，比如同时打开了Xcode和Sourcetree, 系统会分别启动两个进程，Mac上有个活动监视器，可以查看已打开的进程并可以杀死进程。每个进程之间是独立的，均运行在其专用且受保护的内存空间内</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p><strong>线程</strong></p>
+<p>进程想要执行任务，必须得有线程，每个进程至少要有一条线程，一个进程所有的任务都在线程间执行</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p><strong>线程的串行</strong></p>
+<p>一个线程中任务的执行是串行的，如果要在一个线程中执行多个任务，那么只能一个一个的按顺序执行这些任务，也就是说，在同一时间内，一个线程只能执行一个任务</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p><strong>多线程</strong></p>
+<p>一个进程中可以开启多条线程，每条线程可以并行(<strong>同时</strong>)执行不同的任务，多线程可以提升程序的工作效率。其实，在同一时间，CPU只能处理一条线程，只有一条线程在工作，多线程并发，只是CPU在快速的在多条线程之间调度。如果同时执行的线程过多，反而会拖慢程序的执行效率，因为切换线程也同样需要消耗资源，每条线程被调度的频次也会降低，所以多线程也并非是越多越好</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>多线程的优缺点</p>
+<p> 可以适当提高程序的执行效率和资源利用率。但是创建线程也是有开销的，以iOS为例，成本主要包括：内核数据结构(大约1kb)，栈空间(子线程512KB，主线程1MB，也可以通过setStackSize设置，但必须是4K的倍数，而且最小是16K)，创建线程大约需要90毫秒的时间。如果开启大量线程，会降低程序性能，线程越多，CPU在地调度线程上的开销就越大，也有可能会导致程序设计更加复杂，比如线程之间通信、数据共享等</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>主线程</p>
+<p>iOS程序运行后，默认会开启一条线程，称为主线程或UI线程，用来显示刷新UI界面，处理一些点击、滚动或拖拽等UI事件，但是尽量不要将比较耗时的操作放到主线程，否则会卡主主线程，影响UI流畅度</p>
+</blockquote>
+<h4 id="2-_u591A_u7EBF_u7A0B_u5B9E_u73B0"><a href="#2-_u591A_u7EBF_u7A0B_u5B9E_u73B0" class="headerlink" title="2.多线程实现"></a>2.多线程实现</h4><table>
+<thead>
+<tr>
+<th>技术方案</th>
+<th>简介</th>
+<th>语言</th>
+<th>线程声明周期</th>
+<th>使用频率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pthread</td>
+<td>1.一套通用的多线程API<br>2.适用于Unix\Linux\Windows等系统<br> 3.跨平台\可移植</td>
+<td>C</td>
+<td>程序员管理</td>
+<td>几乎不用</td>
+</tr>
+<tr>
+<td>NSThread</td>
+<td>1.使用更加面向对象<br> 2.简单易用，可直接操作县城对象</td>
+<td>OC</td>
+<td>程序员负责创建</td>
+<td>偶尔使用</td>
+</tr>
+<tr>
+<td>GCD</td>
+<td>1.旨在替代NSThread等等多核技术<br> 2.充分利用设备的多核</td>
+<td>C</td>
+<td>自动管理</td>
+<td>经常使用</td>
+</tr>
+<tr>
+<td>NSOperation</td>
+<td>1.基于GCD<br>2.比GCD多了一些更简单的实用功能<br>3.使用更加面向对象</td>
+<td>OC</td>
+<td>自动管理</td>
+<td>经常使用</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>pthread</li>
+</ul>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_01.gif" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_02.gif" alt=""></p>
+<p>在查看CPU的使用上也是可以直观看到是有多条线程在同时执行</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_03.png" alt=""></p>
+<ul>
+<li>NSThread</li>
+</ul>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/29/RunLoop探究/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          RunLoop探究
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/02/复杂UITableView的相关优化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">复杂UITableView的相关优化</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+<div class="share_addthis">
+  <div class="sharing addthis_toolbox share">
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="GCD探究" data-title="GCD探究" data-url="http://chinafish.news/2018/03/25/GCD探究/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -304,9 +498,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
