@@ -40,7 +40,7 @@
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_07.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png">
 <meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png">
-<meta property="og:updated_time" content="2018-10-07T06:44:48.551Z">
+<meta property="og:updated_time" content="2018-10-07T06:53:12.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCD探究">
 <meta name="twitter:description" content="要了解GCD(Grand Central Dispatch)，先从最基本的一些概念作为切入点
@@ -524,8 +524,38 @@
 <pre><code>static dispatch_once_t onceToken;
 dispatch_once(&amp;onceToken, ^{
 });
-</code></pre><p>一次性代码，该函数能保证某段代码在程序运行过程中只被执行一次，常用于单例模式，可以保证在程序运行过程中，一个类只有一个实例，而且该实例易于供外界访问，从而方便控制了实例个数又节约系统资源</p>
-<pre><code>dispatch_apply(&lt;#size_t iterations#&gt;, &lt;#dispatch_queue_t  _Nonnull queue#&gt;, &lt;#^(size_t)block#&gt;)
+</code></pre><p>一次性代码，该函数能保证某段代码在程序运行过程中只被执行一次</p>
+<pre><code>// .h
+#define FNSingletonH + (instancetype)sharedInstance;
+
+// .m
+#define FNSingletonM \
+static id _instace; \
+ \
++ (instancetype)allocWithZone:(struct _NSZone *)zone \
+{ \
+    static dispatch_once_t onceToken; \
+    dispatch_once(&amp;onceToken, ^{ \
+        _instace = [super allocWithZone:zone]; \
+    }); \
+    return _instace; \
+} \
+ \
++ (instancetype)sharedInstance \
+{ \
+    static dispatch_once_t onceToken; \
+    dispatch_once(&amp;onceToken, ^{ \
+        _instace = [[self alloc] init]; \
+    }); \
+    return _instace; \
+} \
+ \
+- (id)copyWithZone:(NSZone *)zone \
+{ \
+    return _instace; \
+}
+</code></pre><p>常用于单例模式，可以保证在程序运行过程中，一个类只有一个实例，而且该实例易于供外界访问，从而方便控制了实例个数又节约系统资源</p>
+<pre><code>dispatch_apply(&lt;#size_t iterations#&gt;, &lt;#dispatch_queue_t      _Nonnull queue#&gt;, &lt;#^(size_t)block#&gt;)
 </code></pre><p>快速迭代遍历</p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png" alt=""></p>
 <pre><code> dispatch_group_t group = dispatch_group_create(); 
