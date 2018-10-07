@@ -969,6 +969,164 @@ _thread = thread;
 <ul>
 <li>NSThread</li>
 </ul>
+<p>一个<code>NSThread</code>对象就代表一条线程，线程一旦死亡不能再开启任务</p>
+<p>线程状态</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_01.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_02.png" alt=""></p>
+<p>多线程的安全隐患</p>
+<p>多个线程访问同一块资源可能发生安全隐患</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_03.png" alt=""></p>
+<p>这个时候就需要加锁，即互斥锁</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_04.png" alt=""></p>
+<p>锁定一段代码只能使用一把锁，使用多把锁匙无效的，互斥锁能有效防止因多线程抢夺同一块资源而造成的数据安全问题，但是却需要消耗大量的CPU资源，注意，在主线程加锁是没有意义的</p>
+<p>OC在定义属性的时候有<code>nonatomic</code>和 <code>atomic</code>，即非原子属性和原子属性，默认是原子属性。原子属性，为<code>setter</code>方法加锁，非原子属性则不会加锁 。但是虽然<code>atomic</code>线程安全，却需要消耗大量的资源。<code>nonatomatic</code>非线程安全，适合内存小的移动设备。所以我们<code>iOS</code>开发，建议所有属性都声明为<code>nonatomatic</code>，在需要线程安全的地方再手动加锁</p>
+<p>在一个进程中中，线程往往不是孤立存在的，多个线程之间经常需要通信，经典的图片下载显示就需要线程间的通信，线程间通信通常可以使用<code>performSelector</code>，还可以使用<code>NSPort</code>、<code>NSMessagePort</code>、<code>NSMachPort</code>等端口，不过使用不多</p>
+<ul>
+<li><code>GCD</code></li>
+</ul>
+<p><code>Grand Central Dispatch</code>,很⑥的中枢调度器，纯C语言，提供了很多非常强大的函数</p>
+<p>  <code>GCD</code>的优势</p>
+<ul>
+<li><p><code>GCD</code>是🍎公司为多核的并行运算提出的解决方案</p>
+</li>
+<li><p><code>GCD</code>会自动利用更多的<code>CPU</code>内核（双核、四核）</p>
+</li>
+<li><p><code>GCD</code>会自动管理线程的生命周期（创建线程、调度任务、销毁线程）</p>
+</li>
+<li><p>攻城狮只需要告诉<code>GCD</code>要执行什么任务，不需要编写任何线程管理代码</p>
+</li>
+</ul>
+<p><code>GCD</code>的两个核心概念</p>
+<ul>
+<li><p>任务： 执行什么操作</p>
+</li>
+<li><p>队列： 用来存放任务</p>
+</li>
+</ul>
+<p><code>GCD</code>的使用</p>
+<ul>
+<li><p>定制任务</p>
+<ul>
+<li>确定想做的事情</li>
+</ul>
+</li>
+<li><p>将任务添加到队列中</p>
+<ul>
+<li><p><code>GCD</code>会自动将队列中的任务取出，放到对应的线程中执行</p>
+</li>
+<li><p>任务的取出遵循队列的<code>FIFO</code>原则：先进先出，后进后出</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>GCD</code>中有两个用来执行任务的常用函数</p>
+<ul>
+<li><p>同步 <code>diapatch_sync(dispatch_queue_t queue, dispatch_block_t block)</code></p>
+<ul>
+<li><p><code>queue</code>: 队列</p>
+</li>
+<li><p><code>block</code>: 任务</p>
+</li>
+</ul>
+</li>
+<li><p>异步 <code>dispatch_async(dispatch_queue_t queue,dispatch_block_t block)</code></p>
+</li>
+</ul>
+<p><b>注意，同步只能在当前线程中执行任务，不具备开启新线程的能力<br>异步可以在新的线程中执行任务，具备开启新线程的能力<b></b></b></p>
+<p><code>GCD</code>的队列类型</p>
+<ul>
+<li><p>并发队列（<code>Concurrent Dispatch Queue</code>）</p>
+<ul>
+<li><p>可以让多个任务并发（同时）执行(自动开启多个线程同时执行任务)</p>
+</li>
+<li><p>并发功能只有在异步（<code>dispatch_async</code>）函数下才有效</p>
+</li>
+</ul>
+</li>
+<li><p>串行队列</p>
+<ul>
+<li>让任务一个接着一个的执行（一个任务执行完毕后，再执行下一个任务）</li>
+</ul>
+</li>
+</ul>
+<p>上面提到的几个术语容易混淆：同步、异步、并发、串行</p>
+<ul>
+<li><p>同步和异步主要影响：能不能开启新的线程<br>  同步： 只是在当前线程中执行任务，不具备开启新线程的能力</p>
+<p>  异步： 可以在新的线程中执行任务，具备开启新线程的能力</p>
+</li>
+</ul>
+<ul>
+<li><p>并发和串行的主要影响： 任务的执行方式</p>
+<ul>
+<li><p>并发：多个任务并发（同时）执行</p>
+</li>
+<li><p>串行：一个任务执行完毕后，再执行下一个任务</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>GCD</code>的各种队列</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_05.png" alt=""></p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_06.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>并发队列</th>
+<th>手动创建的串行队列</th>
+<th>主队列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同步（sync）</td>
+<td>没有开启新线程<br>串行执行任务</td>
+<td>同左</td>
+<td>同左</td>
+<td></td>
+</tr>
+<tr>
+<td>异步 （async）</td>
+<td>有开启新线程<br>并发执行任务</td>
+<td>有开启新线程<br>串行执行任务</td>
+<td>没有开启新线程<br>串行执行任务</td>
+</tr>
+</tbody>
+</table>
+<p><b>注意，使用sync函数往当前串行队列中添加任务，会卡住当前串行队列<b></b></b></p>
+<p>线程间通信</p>
+<pre><code>        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEF    AULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+        });
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//        });
+        NSLog(@&quot;&quot;);
+    });
+</code></pre><p><code>GCD</code>中常用函数 </p>
+<pre><code>dispatch_barrier_async(dispatch_queue_t queue,dispatch_block_t block)
+</code></pre><p>   在前面任务结束后他才执行，而且它后面的任务等它执行完成后才会执行, 这个queue不能是全局的并发地列，需手动创建</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_07.png" alt=""></p>
+<pre><code>dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(&lt;#delayInSeconds#&gt; * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ })
+</code></pre><p>延迟执行, 不一定非要放到主线程</p>
+<pre><code>static dispatch_once_t onceToken;
+dispatch_once(&amp;onceToken, ^{
+});
+</code></pre><p>一次性代码，该函数能保证某段代码在程序运行过程中只被执行一次，常用于单例模式，可以保证在程序运行过程中，一个类只有一个实例，而且该实例易于供外界访问，从而方便控制了实例个数又节约系统资源</p>
+<pre><code>dispatch_apply(&lt;#size_t iterations#&gt;, &lt;#dispatch_queue_t  _Nonnull queue#&gt;, &lt;#^(size_t)block#&gt;)
+</code></pre><p>快速迭代遍历</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png" alt=""></p>
+<pre><code> dispatch_group_t group = dispatch_group_create(); 
+ dispatch_queue_t queue =     dispatch_queue_create(&quot;concurrentQueue&quot;, DISPATCH_QUEUE_CONCURRENT);
+
+dispatch_group_async(group, queue, ^{
+   });
+   dispatch_group_async(group, queue, ^{
+ });
+dispatch_group_notify(group, queue, ^{
+   });
+</code></pre><p>队列组，等二个异步操作都执行完毕后，再回到指定线程操作</p>
+<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png" alt=""></p>
+<p><br><br>未完待续…</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
