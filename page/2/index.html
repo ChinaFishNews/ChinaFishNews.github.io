@@ -221,10 +221,10 @@
 
       <div class="body-wrap">
   
-    <article id="post-使用Cycript修改微信红包数额" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-配置Cycript环境前常用工具的安装配置" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/04/22/使用Cycript修改微信红包数额/" class="article-date">
+      <a href="/2018/04/22/配置Cycript环境前常用工具的安装配置/" class="article-date">
   	<time datetime="2018-04-21T16:00:00.000Z" itemprop="datePublished">2018-04-22</time>
 </a>
     </div>
@@ -238,7 +238,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/22/使用Cycript修改微信红包数额/">使用Cycript修改微信红包数额</a>
+      <a class="article-title" href="/2018/04/22/配置Cycript环境前常用工具的安装配置/">配置Cycript环境前常用工具的安装配置</a>
     </h1>
   
 
@@ -248,56 +248,158 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=125446&auto=0&height=66"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=508481849&auto=0&height=66"></iframe>
 
 
-<p>这里使用的是非越狱手机、pp助手(<a href="https://pan.baidu.com/s/1cxgFdn7RNXC2IwnEitk9RA" target="_blank" rel="external">https://pan.baidu.com/s/1cxgFdn7RNXC2IwnEitk9RA</a>, 密码:nbva)用来下载越狱包、及安装MonkeyDev</p>
-<p>由于是非越狱手机，所以需要借助pp助手下载一个微信越狱包，那为什么要安装MonkeyDev呢？</p>
-<p>MonkeyDev是一个非越狱开发集成神器</p>
+<p>首先，这些安装工具并非必须的，仅为提升效率使用,以简洁为主</p>
+<p><a href="https://pan.baidu.com/s/1zsMHmLO6-kp0Z4Jh7wI7kw" target="_blank" rel="external">Alfred</a>, 密码:fnsh</p>
+<p><a href="https://pan.baidu.com/s/1cxgFdn7RNXC2IwnEitk9RA" target="_blank" rel="external">pp_mac</a>, 密码:nbva</p>
+<p><a href="https://pan.baidu.com/s/1i1evnk-mKgNFzXg--Yriqg" target="_blank" rel="external">go2Shell</a>, 密码:v31a</p>
+<h5 id="Alfred_u5B89_u88C5"><a href="#Alfred_u5B89_u88C5" class="headerlink" title="Alfred安装"></a>Alfred安装</h5><p>打开安装包，将Alfred 3拖入程序，打开Alfred 3 KG，点击PATCH弹窗对话框，选择Alfred 3，如果弹出需安装Xcode_select,需要安装，然后点击save,会提示saved successfully,即破解版安装成功</p>
+<p><img src="http://fishnews.cn/2018_04_22_01.png" alt=""></p>
+<p>然而，安装成功后打开会提示文件损坏，是因为这并非使用的App Store下载的，需打开系统偏好设设置-&gt;安全性与隐私-&gt;选择任何来源即可。如果没有任何来源选项，需设置<code>sudo spctl --master-disable</code></p>
+<p><img src="http://fishnews.cn/2018_04_23_12.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_13.png" alt=""></p>
+<p>默认使用option+space会唤起Alfred，打开偏好设置，点击Web Search, 可以配置常用app的唤起方式，默认都是一些国外的网站。如果Alfred没有购买或者破解，这个设置是无效的。</p>
+<p><img src="http://fishnews.cn/2018_04_22_02.png" alt=""></p>
+<p>可以点击Add Custom Search自己添加一些自定义的搜索设置</p>
+<p><img src="http://fishnews.cn/2018_04_22_03.png" alt=""></p>
+<p>只需要在对应的网站上搜索，记下网址，并把具体的搜索内容改为{query}就可以找到我们自定义搜索设置中所需要的Search URL信息了。可以加一些常用的网站设置</p>
 <ul>
-<li>可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进</li>
-<li>只需拖入一个砸壳应用，自动集成class-dump、restore-symbol、Reveal、Cycript和注入的动态库并重签名安装到非越狱机器</li>
-<li>支持调试自己编写的动态库和第三方App</li>
-<li>支持通过CocoaPods第三方应用集成SDK以及非越狱插件，简单来说就是通过CocoaPods搭建了一个非越狱插件商店</li>
+<li><p>百度：<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;wd={query}" target="_blank" rel="external">https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;wd={query}</a></p>
+</li>
+<li><p>简书：<a href="http://www.jianshu.com/search?utf8=%E2%9C%93&amp;q={query}" target="_blank" rel="external">http://www.jianshu.com/search?utf8=%E2%9C%93&amp;q={query}</a></p>
+</li>
+<li><p>微信文章：<a href="http://weixin.sogou.com/weixin?type=2&amp;query={query}" target="_blank" rel="external">http://weixin.sogou.com/weixin?type=2&amp;query={query}</a></p>
+</li>
+<li><p>stackoverflow：<a href="http://www.stackoverflow.com/search?q={query}" target="_blank" rel="external">http://www.stackoverflow.com/search?q={query}</a></p>
+</li>
+<li><p>github：<a href="https://github.com/search?utf8=%E2%9C%93&amp;q={query}" target="_blank" rel="external">https://github.com/search?utf8=%E2%9C%93&amp;q={query}</a></p>
+</li>
 </ul>
-<p>安装：</p>
-<p>1.安装最新的theos</p>
-<pre><code>sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
-</code></pre><p>2.安装ldid</p>
-<pre><code>brew install ldid
-</code></pre><p>3.选择指定Xcode进行安装</p>
-<pre><code>sudo xcode-select -s /Applications/Xcode-beta.app
-
-sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&quot;
-</code></pre><ul>
-<li>默认安装的xcode为xcode-select -p</li>
-</ul>
-<p>4.卸载</p>
-<pre><code>sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-uninstall)&quot;
-</code></pre><p>使用：</p>
-<p>1.新建一个monkeyDev工程</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23-25.png" alt=""></p>
-<p>2.将微信越狱包拖到此文件下然后真机运行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_26.png" alt=""></p>
-<p>3.启动成功后进入Cycript环境并修改</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_27.png" alt=""></p>
-<p>使用cycript -r 网络IP地址：端口号 进行cycript环境，手机需和Mac处于同一网络下，端口号可以自行修改</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_35.png" alt=""></p>
-<p>这个命令可以写成一个脚本，将这个脚本放在指定目录，并且在.bash_profile中做好配置,以后就不用每次输入</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_42.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_43.png" alt=""></p>
-<h5 id="u9690_u85CF_u72B6_u6001_u680F"><a href="#u9690_u85CF_u72B6_u6001_u680F" class="headerlink" title="隐藏状态栏"></a>隐藏状态栏</h5><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_28.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_32.png" alt=""></p>
-<h5 id="u81EA_u5B9A_u4E49_u5F39_u6846"><a href="#u81EA_u5B9A_u4E49_u5F39_u6846" class="headerlink" title="自定义弹框"></a>自定义弹框</h5><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_29.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_33.png" alt=""></p>
-<h5 id="u8BBE_u7F6E_u63A8_u9001_u901A_u77E5_u4E2A_u6570"><a href="#u8BBE_u7F6E_u63A8_u9001_u901A_u77E5_u4E2A_u6570" class="headerlink" title="设置推送通知个数"></a>设置推送通知个数</h5><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_30.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_34.png" alt=""></p>
-<h5 id="u67E5_u770B_u5F53_u524D_u7A0B_u5E8F_u6240_u6709_u7684UILabel"><a href="#u67E5_u770B_u5F53_u524D_u7A0B_u5E8F_u6240_u6709_u7684UILabel" class="headerlink" title="查看当前程序所有的UILabel"></a>查看当前程序所有的UILabel</h5><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_37.png" alt=""></p>
-<h5 id="u4FEE_u6539_u7EA2_u5305_u6570_u989D"><a href="#u4FEE_u6539_u7EA2_u5305_u6570_u989D" class="headerlink" title="修改红包数额"></a>修改红包数额</h5><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_38.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_39.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_40.png" alt=""></p>
-<p>如果想修改某个控件的值，可以使用choose方法，也可以直接通过Xcode查看层次结构找到该控件的地址，然后再做修改</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_41.png" alt=""></p>
+<p>另外，Alfred如果需要支持iTerm2需要做额外的设置</p>
+<p><img src="http://fishnews.cn/2018_04_22_04.png" alt=""></p>
+<p>添加的脚本内容是</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">on</span> alfred_script(q)  </span><br><span class="line">    <span class="keyword">if</span> application <span class="string">"iTerm2"</span> is running or application <span class="string">"iTerm"</span> is running then  </span><br><span class="line">        <span class="keyword">run</span> script "  </span><br><span class="line">            <span class="keyword">on</span> <span class="keyword">run</span> &#123;q&#125;  </span><br><span class="line">                tell application \<span class="string">":Applications:iTerm.app\"</span>  </span><br><span class="line">                    activate  </span><br><span class="line">                    try  </span><br><span class="line">                        select first <span class="keyword">window</span>  </span><br><span class="line">                        <span class="keyword">set</span> onlywindow to false  </span><br><span class="line">                    <span class="keyword">on</span> <span class="keyword">error</span>  </span><br><span class="line">                        create <span class="keyword">window</span> with default profile  </span><br><span class="line">                        select first <span class="keyword">window</span>  </span><br><span class="line">                        <span class="keyword">set</span> onlywindow to true  </span><br><span class="line">                    end try  </span><br><span class="line">                    tell current session of the first <span class="keyword">window</span>  </span><br><span class="line">                        <span class="keyword">if</span> onlywindow is false then  </span><br><span class="line">                            tell <span class="keyword">split</span> vertically with default profile  </span><br><span class="line">                                write text q  </span><br><span class="line">                            end tell  </span><br><span class="line">                        end <span class="keyword">if</span>  </span><br><span class="line">                    end tell  </span><br><span class="line">                end tell  </span><br><span class="line">            end <span class="keyword">run</span>  </span><br><span class="line">        " with parameters &#123;q&#125;  </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">        <span class="keyword">run</span> script "  </span><br><span class="line">            <span class="keyword">on</span> <span class="keyword">run</span> &#123;q&#125;  </span><br><span class="line">                tell application \<span class="string">":Applications:iTerm.app\"</span>  </span><br><span class="line">                    activate  </span><br><span class="line">                    try  </span><br><span class="line">                        select first <span class="keyword">window</span>  </span><br><span class="line">                    <span class="keyword">on</span> <span class="keyword">error</span>  </span><br><span class="line">                        create <span class="keyword">window</span> with default profile  </span><br><span class="line">                        select first <span class="keyword">window</span>  </span><br><span class="line">                    end try  </span><br><span class="line">                    tell the first <span class="keyword">window</span>  </span><br><span class="line">                        tell current session to write text q  </span><br><span class="line">                    end tell  </span><br><span class="line">                end tell  </span><br><span class="line">            end <span class="keyword">run</span>  </span><br><span class="line">        " with parameters &#123;q&#125;  </span><br><span class="line">    end <span class="keyword">if</span>  </span><br><span class="line">end alfred_script</span><br></pre></td></tr></table></figure>
+<h5 id="iTerm2_u5B89_u88C5"><a href="#iTerm2_u5B89_u88C5" class="headerlink" title="iTerm2安装"></a>iTerm2安装</h5><p><a href="https://www.iterm2.com/downloads.html" target="_blank" rel="external">下载地址</a></p>
+<p>下载的是压缩文件，解压后是执行程序文件，你可以直接双击，或者直接将它拖到 Applications 目录下</p>
+<p>者你可以直接使用 Homebrew 进行安装：</p>
+<pre><code>brew cask install iterm2
+</code></pre><p>iTerm2 最常用的主题是 <code>Solarized Dark theme</code>，<a href="http://ethanschoonover.com/solarized" target="_blank" rel="external">下载地址</a></p>
+<p>下载的是压缩文件，解压一下，然后打开 iTerm2偏好设置界面，然后<code>Profiles -&gt; Colors -&gt; Color Presets -&gt; Import</code>，选择刚才解压的<code>solarized-&gt;iterm2-colors-solarized-&gt;Solarized Dark.itermcolors</code>文件，导入成功，最后选择<code>Solarized Dark</code> 主题，就可以了</p>
+<h5 id="u914D_u7F6E_Oh_My_Zsh"><a href="#u914D_u7F6E_Oh_My_Zsh" class="headerlink" title="配置 Oh My Zsh"></a>配置 Oh My Zsh</h5><p>Oh My Zsh 是对主题的进一步扩展,一键安装:</p>
+<pre><code>sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+</code></pre><p>安装好之后，需要把 Zsh 设置为当前用户的默认 Shell,这样新建标签的时候才会使用 Zsh，Mac默认使用的是bash</p>
+<p>chsh -s /bin/zsh</p>
+<p>注意，bash默认加载的文件是.bash_profile,而zsh默认.zshrc,相关配置也是在这两个文件中</p>
+<p><img src="http://fishnews.cn/2018_04_23_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_06.png" alt=""></p>
+<p>这两个都是隐藏文件，Mac上显示隐藏文件的快捷键是shift+commond+. ,不显示隐藏文件再敲一次快捷键即可</p>
+<p>然后编辑<code>vim ~/.zshrc</code>,将主题设置为<code>ZSH_THEME=&quot;agnoster&quot;</code></p>
+<p><img src="http://fishnews.cn/2018_04_23_14.png" alt=""></p>
+<p><code>agnoster</code>是比较常用的 zsh 主题之一，你可以挑选你喜欢的主题，<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="external">zsh 主题列表下载</a></p>
+<p>使用上面的主题，需要 <code>Meslo</code> 字体支持，要不然会出现乱码的情况，<a href="/Meslo LG M Regular for Powerline.ttf">字体下载地址</a></p>
+<p>下载好之后，直接在 Mac OS 中安装即可。</p>
+<p>然后打开 iTerm2偏好设置，然后Profiles -&gt; Text -&gt; Font -&gt; Chanage Font，选择 Meslo LG M Regular for Powerline 字体</p>
+<p><img src="http://fishnews.cn/2018_04_23_09.png" alt=""></p>
+<p>选择什么样的字体和大小可以随意设置</p>
+<p>下面设置声明高亮</p>
+<p>使用Homebrew安装</p>
+<pre><code>brew install zsh-syntax-highlighting
+</code></pre><p>安装成功之后，编辑<code>vim ~/.zshrc</code>文件，在最后一行增加下面配置：</p>
+<pre><code>source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+</code></pre><p>再之后可以添加自动建议填充功能，这个功能比较实用，可以快读的敲出命令</p>
+<p>配置步骤，先克隆<code>zsh-autosuggestions</code>项目，到指定目录：</p>
+<pre><code>git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+</code></pre><p>然后编辑<code>vim ~/.zshrc</code>文件，找到plugins配置，增加<code>zsh-autosuggestions</code>插件。</p>
+<p><img src="http://fishnews.cn/2018_04_23_15.png" alt=""></p>
+<p>iTerm还可以额外设置很多很多功能，可自行百度</p>
+<p>下面列举一些iTerm2的快捷命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command + t</td>
+<td>新建标签</td>
+</tr>
+<tr>
+<td>command + w</td>
+<td>关闭标签</td>
+</tr>
+<tr>
+<td>command + 数字 command + 左右方向键</td>
+<td>切换标签</td>
+</tr>
+<tr>
+<td>command + enter</td>
+<td>切换全屏</td>
+</tr>
+<tr>
+<td>command + f</td>
+<td>查找</td>
+</tr>
+<tr>
+<td>command + d</td>
+<td>垂直分屏</td>
+</tr>
+<tr>
+<td>command + shift + d</td>
+<td>水平分屏</td>
+</tr>
+<tr>
+<td>command + option + 方向键 command + [ 或 command + ]</td>
+<td>切换屏幕</td>
+</tr>
+<tr>
+<td>command + ;</td>
+<td>查看历史命令</td>
+</tr>
+<tr>
+<td>command + shift + h</td>
+<td>查看剪贴板历史</td>
+</tr>
+<tr>
+<td>ctrl + u</td>
+<td>清除当前行</td>
+</tr>
+<tr>
+<td>ctrl + l</td>
+<td>清屏</td>
+</tr>
+<tr>
+<td>ctrl + a</td>
+<td>到行首</td>
+</tr>
+<tr>
+<td>ctrl + e</td>
+<td>到行尾</td>
+</tr>
+<tr>
+<td>ctrl + f/b</td>
+<td>前进后退</td>
+</tr>
+<tr>
+<td>ctrl + p</td>
+<td>上一条命令</td>
+</tr>
+<tr>
+<td>ctrl + r</td>
+<td>搜索命令历史</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意，如果使用zsh想完全兼容bash，可以在.zshrc文件最后加上一句<code>source ~/.bash_profile</code>即可</p>
+</blockquote>
+<h5 id="goshell_u5B89_u88C5"><a href="#goshell_u5B89_u88C5" class="headerlink" title="goshell安装"></a>goshell安装</h5><p>打开安装包，要按住commond再拖动go2shell到finder中去，Mac10.10之后需要按住commond键</p>
+<p>安装完打开选择iTerm2</p>
+<p><img src="http://fishnews.cn/2018_04_23_11.png" alt=""></p>
+<p>安装goshell可能会遇到一些问题，比如文件夹右上角显示问好之类的，这时候要点击uninstall然后再重新install</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -312,7 +414,7 @@ sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cycript/">Cycript</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Alfred，goshell，iterm2，Oh-My-Zsh，pp助手/">Alfred，goshell，iterm2，Oh My Zsh，pp助手</a></li></ul>
 	</div>
 
       
@@ -370,7 +472,7 @@ sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey
 <p><code>RunTime</code>,即运行时，是基于<code>C</code>语言的一套<code>API</code>, 也被称为<code>iOS</code>系统的黑魔法，在开发中占据举足轻重的作用</p>
 <p>这里以<code>objc_msgSend</code>即消息发送，作为切入点</p>
 <p>新建一个项目</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_07_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_07_01.png" alt=""></p>
 <p>控制器中调用<code>Person</code>方法</p>
 <pre><code>Person * p = [[Person alloc] init];
 [p eat];
@@ -380,7 +482,7 @@ p = [p init];
 [p performSelector:@selector(eat)];
 </code></pre><p><code>OC</code>中调用方法，其实就是向调用对象发送消息，即<code>iOS</code>的消息机制，每个对象中其实都有一张映射表，这里的<code>@selector</code>其实是方法标识<code>SEL</code>，根据这个方法标识会找到方法实现的指针，即<code>IMP</code>,再根据<code>IMP</code>地址值找到具体的代码实现，<code>SEL</code>和<code>IMP</code>是一一对应的，上面代码如果使用<code>RunTime</code>应该怎么写？</p>
 <p>要先导入头文件<code>#import &lt;objc/message.h&gt;</code>,并且在<code>Build Settings</code>中设置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_07_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_07_03.png" alt=""></p>
 <p>这是因为自<code>Xcode</code>5之后，🍎不建议使用底层函数，需要手动开启</p>
 <pre><code>Person *p = objc_msgSend(Person.class, @selector(alloc));
 p = objc_msgSend(p, @selector(init));
@@ -392,7 +494,7 @@ objc_msgSend(p, sel_registerName(&quot;eat&quot;));
 </code></pre><p><code>objc_getClass</code>其实就相当于<code>OC</code>中的<code>NSClassFromString</code>，<code>sel_registerName</code>相当于<code>OC</code>中的<code>NSSelectorFromString</code></p>
 <p>其实也可以借助我们的<code>Clang</code>编译器查看我们底层代码的实现</p>
 <p>可以新建一个<code>macOS</code>的命令行项目,在<code>main.m</code>文件中依然调用上面代码，使用<code>clang -rewrite-objc main.m</code>会生成一个<code>main.cpp</code>文件，这个文件下会找到最终的实现代码</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_07_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_07_02.png" alt=""></p>
 <p>我们在<code>objc/message.h</code>和<code>objc/runtime</code>文件中可以看到，系统给我们提供了众多接口，下面列举部分，仅做记录使用</p>
 <pre><code>// 获取实例对象的所属的类
 Class object_getClass(id obj);
@@ -627,9 +729,9 @@ void objc_removeAssociatedObjects(id object);
 <p>RunLoop,即运行循环，你非要叫它跑圈，也不是不可以</p>
 <p>这哥们到底是什么？</p>
 <p>我们知道，一个程序的入口函数，也就是在main.m文件中</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_01.png" alt=""></p>
 <p>程序启动首先就会走到这里，这里有个自动释放池，一般在创建大量临时变量的时候会手动创建释放池，这里将整个程序运行期间都置于这个释放池内，程序运行结束之时，自动释放池结束，内存回收。这个自动释放池内，就一句代码，这是什么意思？进入<code>UIApplicationMain</code>函数内可以发现，这个函数返回值是<code>int</code>型。那我们换种写法</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_02.png" alt=""></p>
 <p>运行起来，会发现第十六行并不会执行，代码停留在了第十五行，不会再继续往下执行，也就是说<code>UIApplicationMain</code>函数一直没有返回。我们的程序一直是在主线程上执行的，我们打印下看看</p>
 <pre><code>NSLog(@&quot;thread=%@&quot;,[NSThread currentThread]);
 
@@ -655,7 +757,7 @@ void objc_removeAssociatedObjects(id object);
 </code></pre><p>一个很简单的时钟事件，这个时候你会发现方法并没有走。上面已经提到，<code>RunLoop</code>用来监听事件，需要将<code>timer</code>加到<code>RunLoop</code>中去</p>
 <pre><code>[[NSRunLoop currentRunLoop] addTimer:timer     forMode:NSDefaultRunLoopMode];
 </code></pre><p>注意RunLoop无法手动创建，只能获取，不过其实第一次获取就是创建。这里面有个<code>mode</code>属性，暂时写默认，这时候运行程序，正常运行。这时候我们往控制器上拖个textView, 运行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_03.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_03.gif" alt=""></p>
 <p>问题出来了，启动后时钟事件正常运行，但是一旦拖动textView,时钟事件就停止打印，不拖动textView,时钟事件又正常运行。这是什么情况？</p>
 <p>上面我们将<code>timer</code>丢给<code>RunLoop</code>的时候，使用的模式<code>mode</code>是<code>NSDefaultRunLoopMode</code>默认模式。</p>
 <p>iOS中有两套API来访问和使用RunLoop对象，分别是OC语言中的<code>Foundation</code>框架(<code>NSRunLoop</code>)和C语言中的<code>Core Foundation</code>框架(<code>CFRunLoopRef</code>),<code>NSRunLoop</code>是基于<code>CFRunLoopRef</code>的一层<code>OC</code>包装</p>
@@ -669,7 +771,7 @@ void objc_removeAssociatedObjects(id object);
 <li><code>NSConnectionReplyMode</code></li>
 <li><code>NSModalPanelRunLoopMode</code></li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_01.png" alt=""></p>
 <p><code>NSDefaultRunLoopMode</code>模式就是<code>RunLoop</code>的默认模式，而<code>UITrackingRunLoopMode</code>模式则是<code>UI</code>模式，<code>UI</code>模式只能被触摸事件唤醒，所以优先级最高。这里第三种模式<code>NSRunLoopCommonModes</code>严格来说不是一种模式，而是一种占位模式，既能起到默认模式的效果又能起到<code>UI</code>模式的效果。第四种和第五种模式分别是在刚启动进入<code>App</code>时进入的第一个<code>Mode</code>，启动后就不再使用，和接受系统时间的内部<code>Mode</code>,作为开发者这两种模式基本不会使用到，</p>
 <p><code>Core Foundation</code>中关于<code>RunLoop</code>有五个类</p>
 <ul>
@@ -692,21 +794,21 @@ void objc_removeAssociatedObjects(id object);
 <p>上面我们是把时钟加到默认模式下，现在我们加在<code>UI</code>模式看下效果</p>
 <pre><code>[[NSRunLoop currentRunLoop] addTimer:timer     forMode:UITrackingRunLoopMode];
 </code></pre><p>再次运行程序</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_04.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_04.gif" alt=""></p>
 <p>问题又出来了，当我们拖到<code>textView</code>时，时钟事件可以正常打印，但是一旦停止就不再打印了。这是因为，时钟是加到<code>RunLoop</code>的<code>UI</code>模式下的，而<code>UI</code>模式只有在触摸屏幕的时候才会唤醒，而没有触摸屏幕的时候<code>RunLoop</code>则处于休眠状态，所以才会出现此问题。怎么才能解决这个问题呢？将这个时钟既加到默认模式下，又加到<code>UI</code>模式下</p>
 <pre><code> [[NSRunLoop currentRunLoop] addTimer:timer     forMode:NSDefaultRunLoopMode];
 [[NSRunLoop currentRunLoop] addTimer:timer     forMode:UITrackingRunLoopMode];
 </code></pre><p>这要添加两次，而🍎肯定考虑到了这点，所以有了<code>NSRunLoopCommonModes</code>这种占位模式</p>
 <p>[[NSRunLoop currentRunLoop] addTimer:timer     forMode:NSRunLoopCommonModes];</p>
 <p>再次运行，会发现上述问题都得到了解决，拖拽不再影响时钟方法的执行了。简单画个图</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_06.png" alt=""></p>
 <p>这是🍎官网的图</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_02.png" alt=""></p>
 <p>上面提到，<code>RunLoop</code>的作用之一就是监听事件并执行，事件可以有很多种，比如时钟事件、监听事件、网络事件等等。<code>UI</code>模式下的这些事件必须通过触摸才能唤醒<code>RunLoop</code>去执行，执行完之后RunLoop就处于休眠状态，循环往复。而默认模式下，只要有这些事件，就会及时通知<code>RunLoop</code>去执行。</p>
 <p>继续深究，如果这个事件是个耗时操作会怎样？我们在<code>timerMethod</code>这个时间下模拟一下</p>
 <pre><code>[NSThread sleepForTimeInterval:1.0];
 </code></pre><p>我让它每次睡个2秒钟再执行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_07.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_07.gif" alt=""></p>
 <p>问题又出来了，你会发现<code>UI</code>被卡住了，因为当前是在主线程上执行，每次都强迫它睡2秒，这绝壁会卡住。既然这样，那就让这个耗时操作放在子线程去执行</p>
 <pre><code>- (void)viewDidLoad {
     [super viewDidLoad];
@@ -746,7 +848,7 @@ _thread = thread;
     [_thread start];
 }
 </code></pre><p>运行，触摸屏幕的时候再次开启这个线程，开启前打印一下</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_02.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_01_02.gif" alt=""></p>
 <p>这个线程对象还在，但是开启会崩</p>
 <p>这是因为，这个线程已经挂了，已经被释放了，肯定无法被开启，但是这个<code>OC</code>对象<code>thread</code>还在，因为被我们强引用了。强引用线程对象，并不会阻止线程的释放。所以会出现上述情况。事实上，子线程<code>block</code>内的代码执行完线程就会被释放，要想线程不被释放。就必须让线程有执行不完的任务。那我们可以手动让线程一直在执行,在<code>block</code>内加如下代码</p>
 <pre><code>while (true) {     }
@@ -760,7 +862,7 @@ _thread = thread;
 <p>这里就让线程存活指定时间感受一下</p>
 <pre><code>[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
 </code></pre><p>再次运行,一切都很明了了</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_03.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_01_03.gif" alt=""></p>
 <p>这里如果想强制退出子线程，使用<code>[NSThead exit]</code>,不过并不建议这么做</p>
 <p>有必要强调一下，如果在主线程调用<code>[NSThead exit]</code>会怎样？</p>
 <p>你会发现程序并不会挂掉，但是主线程卡死了，子线程仍然在继续。其实在<code>CPU</code>眼里，主线程和其他子线程一样，一样可以强退</p>
@@ -807,14 +909,14 @@ _thread = thread;
     CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer,     kCFRunLoopDefaultMode);
     CFRelease(observer);
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_04.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_04_06_04.png" alt=""></p>
 <p>可以看到<code>RunLoop</code>的运行逻辑，每次都是从睡眠中唤醒，处理一些事件，最后处于休眠状态。监听状态变化的<code>block</code>中可以根据自己需求定义一些处理事件</p>
 <p>在项目中经常会遇到加载图片的需求，现在一般都使用<code>SDWebImage</code>库，如果不使用这个库怎么处理？</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_06.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_05.png" alt=""></p>
 <p>主要逻辑就是将一个个图片下载任务放入队列，下载成功存入内存缓存，然后写入沙盒，下次再次显示时先从内存缓存里获取，获取不到则从沙盒获取，依然获取不到则进行下载任务。其实使用<code>SDWebImage</code>库也依然会进行这些操作。</p>
 <p>如果，这些下载的图片非常的大，分辨率比较高，你会发现这时候滑动的时候会有明显卡顿，是因为即便下载是在子线程，但是在渲染的时候图片会解压缩，这是在主线程进行的，是个耗时的操作，图片分辨率高的情况下卡顿尤其明显。这些下载下来的图片是在一次<code>RunLoop</code>循环的时候渲染显示，如果一次<code>RunLooop</code>循环只处理一张图片，卡顿就会得到有效解决，这需要用到<code>Observer</code>来监听<code>RunLoop</code>的状态，<code>RunLoop</code>在处理完事件会进入休眠状态，那就每次监听在<code>RunLoop</code>进入休眠状态前处理这些图片，直到没有图片处理然后进入休眠状态</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_08.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_08.png" alt=""></p>
 <p><a href="https://github.com/ChinaFishNews/RunLoopDemo" target="_blank" rel="external">RunLoopDemo</a></p>
 <p><a href="https://github.com/ChinaFishNews/LoadManyPictures" target="_blank" rel="external">LoadManyPictures</a></p>
 <p><a href="https://github.com/ChinaFishNews/LoadBigImage" target="_blank" rel="external">LoadBigImage</a></p>
@@ -962,22 +1064,22 @@ _thread = thread;
 <ul>
 <li>pthread</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_01.gif" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_02.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_09_16_01.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_09_16_02.gif" alt=""></p>
 <p>在查看CPU的使用上也是可以直观看到是有多条线程在同时执行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_09_16_03.png" alt=""></p>
 <ul>
 <li>NSThread</li>
 </ul>
 <p>一个<code>NSThread</code>对象就代表一条线程，线程一旦死亡不能再开启任务</p>
 <p>线程状态</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_01.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_02.png" alt=""></p>
 <p>多线程的安全隐患</p>
 <p>多个线程访问同一块资源可能发生安全隐患</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_03.png" alt=""></p>
 <p>这个时候就需要加锁，即互斥锁</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_04.png" alt=""></p>
 <p>锁定一段代码只能使用一把锁，使用多把锁匙无效的，互斥锁能有效防止因多线程抢夺同一块资源而造成的数据安全问题，但是却需要消耗大量的CPU资源，注意，在主线程加锁是没有意义的</p>
 <p>OC在定义属性的时候有<code>nonatomic</code>和 <code>atomic</code>，即非原子属性和原子属性，默认是原子属性。原子属性，为<code>setter</code>方法加锁，非原子属性则不会加锁 。但是虽然<code>atomic</code>线程安全，却需要消耗大量的资源。<code>nonatomatic</code>非线程安全，适合内存小的移动设备。所以我们<code>iOS</code>开发，建议所有属性都声明为<code>nonatomatic</code>，在需要线程安全的地方再手动加锁</p>
 <p>在一个进程中中，线程往往不是孤立存在的，多个线程之间经常需要通信，经典的图片下载显示就需要线程间的通信，线程间通信通常可以使用<code>performSelector</code>，还可以使用<code>NSPort</code>、<code>NSMessagePort</code>、<code>NSMachPort</code>等端口，不过使用不多</p>
@@ -1066,8 +1168,8 @@ _thread = thread;
 </li>
 </ul>
 <p><code>GCD</code>的各种队列</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_05.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_06.png" alt=""></p>
 <table>
 <thead>
 <tr>
@@ -1105,7 +1207,7 @@ _thread = thread;
 </code></pre><p><code>GCD</code>中常用函数 </p>
 <pre><code>dispatch_barrier_async(dispatch_queue_t queue,dispatch_block_t block)
 </code></pre><p>   在前面任务结束后他才执行，而且它后面的任务等它执行完成后才会执行, 这个queue不能是全局的并发地列，需手动创建</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_07.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_07.png" alt=""></p>
 <pre><code>dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(&lt;#delayInSeconds#&gt; * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ })
 </code></pre><p>延迟执行, 不一定非要放到主线程</p>
 <pre><code>static dispatch_once_t onceToken;
@@ -1144,7 +1246,7 @@ static id _instace; \
 </code></pre><p>常用于单例模式，可以保证在程序运行过程中，一个类只有一个实例，而且该实例易于供外界访问，从而方便控制了实例个数又节约系统资源</p>
 <pre><code>dispatch_apply(&lt;#size_t iterations#&gt;, &lt;#dispatch_queue_t      _Nonnull queue#&gt;, &lt;#^(size_t)block#&gt;)
 </code></pre><p>快速迭代遍历</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_08.png" alt=""></p>
 <pre><code> dispatch_group_t group = dispatch_group_create(); 
  dispatch_queue_t queue =     dispatch_queue_create(&quot;concurrentQueue&quot;, DISPATCH_QUEUE_CONCURRENT);
 
@@ -1155,7 +1257,7 @@ dispatch_group_async(group, queue, ^{
 dispatch_group_notify(group, queue, ^{
    });
 </code></pre><p>队列组，等二个异步操作都执行完毕后，再回到指定线程操作</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_08.png" alt=""></p>
 <p><br><br>未完待续…</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
@@ -1232,24 +1334,24 @@ dispatch_group_notify(group, queue, ^{
 <h3 id="UITableVIewCell_u7684_u521B_u5EFA"><a href="#UITableVIewCell_u7684_u521B_u5EFA" class="headerlink" title="UITableVIewCell的创建"></a><code>UITableVIewCell</code>的创建</h3><ol>
 <li>每个cell对应一个viewModel</li>
 </ol>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_11.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_35.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_10.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_11.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_35.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_10.png" alt=""></p>
 <p>2.每个section对应一个viewModel</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_12.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_13.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_14.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_15.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_16.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_17.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_12.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_13.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_14.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_15.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_16.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_17.png" alt=""></p>
 <h4 id="UITableViewCell_u4E0A_u7684UITextField"><a href="#UITableViewCell_u4E0A_u7684UITextField" class="headerlink" title="UITableViewCell上的UITextField"></a><code>UITableViewCell</code>上的<code>UITextField</code></h4><ol>
 <li>提前创建<code>cell</code>,为当前<code>cell</code>上的<code>textField</code>指定好下一个响应者</li>
 </ol>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_18.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_19.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_20.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_18.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_19.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_20.png" alt=""></p>
 <p>2.遍历获取所有可响应键盘的<code>textField</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_22.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_22.png" alt=""></p>
 <pre><code>    #import &quot;UIView+NextKeyBoard.h&quot;
 
 @implementation UIView (NextKeyBoard)
@@ -1363,20 +1465,20 @@ dispatch_group_notify(group, queue, ^{
 <h3 id="UITableviewCell_u5E03_u5C40"><a href="#UITableviewCell_u5E03_u5C40" class="headerlink" title="UITableviewCell布局"></a><code>UITableviewCell</code>布局</h3><ol>
 <li>每个<code>section</code>对应一个<code>viewModel</code>情况</li>
 </ol>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_23.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_24.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_23.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_24.png" alt=""></p>
 <p>2.每个<code>cell</code>对应一个<code>model</code>对象</p>
 <h3 id="UITableviewCell_u4E0A_u4E8B_u4EF6_u54CD_u5E94"><a href="#UITableviewCell_u4E0A_u4E8B_u4EF6_u54CD_u5E94" class="headerlink" title="UITableviewCell上事件响应"></a><code>UITableviewCell</code>上事件响应</h3><p>1.<code>delegate</code>,<code>block</code>,<code>RacSubject</code></p>
 <p>2.使用响应者链<code>ResponderChain</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_26.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_27.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_28.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_29.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_30.png" alt=""></p>
-<h3 id="u5185_u5B58_u95EE_u9898"><a href="#u5185_u5B58_u95EE_u9898" class="headerlink" title="内存问题"></a>内存问题</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_31.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_32.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_33.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_34.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_26.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_27.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_28.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_29.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_30.png" alt=""></p>
+<h3 id="u5185_u5B58_u95EE_u9898"><a href="#u5185_u5B58_u95EE_u9898" class="headerlink" title="内存问题"></a>内存问题</h3><p><img src="http://fishnews.cn/2018_04_06_31.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_32.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_33.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_34.png" alt=""></p>
 <p>以上</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
@@ -1451,22 +1553,22 @@ dispatch_group_notify(group, queue, ^{
 <p>有人问我，2017年你过得还好吗</p>
 <p>什么叫好，什么叫不好？这要看怎么比了，如果跟过去的16年15年比，我敢说不好吗</p>
 <p>不好意思，我敢！确实不好</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_09.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_09.jpg" alt=""></p>
 <p>早上闹钟准时响起，忘了关了，反手一个动作，熟练干脆，再醒时已快中午了</p>
 <p>打开微信，打开QQ（原谅我还在使用QQ，在下是个念旧的人）, 都在狂晒十八岁的照片，晒之前可能还要思考哪张照片看起来没那么傻，哪张看起来更青春，晒个照片徒增不少烦恼</p>
 <p>我就好了，毕竟还得两年才能到十八岁，嘴角不经意上扬了一下，不知道有没有四十五度</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_01.jpg" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_02.jpg" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_03.jpg" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_04.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_01.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_02.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_03.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_04.jpg" alt=""></p>
 <p>挺好的，虽然一个个都像是在给葬爱家族开年会，稚嫩青涩但又不失朝气，像是刚出炉的蛋糕，即使不小心被人用指头摁下去，也会很快恢复到之前光滑无痕的模样</p>
 <p>这盛世美颜，难以置信</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_10.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_10.gif" alt=""></p>
 <p>时至年末，又到了坐下来清算flag的时候了</p>
 <p>尽管，我们总是身体力行，坚定且执着的反复验证着同一个真理：当初立下的flag，只是用来方便日后推倒的</p>
 <p>想起曾经斗志满满、正气凛然的在朋友圈立下的那些flag，有没有觉得现在脸上有些疼</p>
 <p>没错，就是这个感觉。立flag的时候总是有种舍我其谁的兴奋感油然而生，立的好的话可能感觉还有点秒不而言，与我而言，通常帅不过三秒</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_07" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_07" alt=""></p>
 <p>其实在朋友圈<del>打嘴炮</del>立flag这事儿，不必太在意，毕竟生活里总是需要大大小小的仪式感和目标来约束放纵的自己</p>
 <p>年轻时我立下了无数flag，就如同我说过想戒熬夜一样多，正是这些flag的存在才让我成为<del>更好</del>现在的自己</p>
 <p>“这次考试怎么也要拿个第一名，再不济也要前三”</p>
@@ -1484,16 +1586,16 @@ dispatch_group_notify(group, queue, ^{
 <p>….</p>
 <p>这哪是立flag啊，有些就是在白日做梦</p>
 <p>鲁迅说过：“一千个人有一千个flag,倒或者不倒，它都在那里，见证你的酸甜苦辣”</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_06" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_06" alt=""></p>
 <p>不管曾经立下的flag，是依然屹立在风中，还是已经飘然倒下，但不可否认的是一直在进步，只是离预期目标还有点远而已</p>
 <p>既然有些东西必须要经历，又何必畏手畏脚？都是有故事的人，谁能输给谁</p>
 <p>想我17年立的几个flag，简单、易实现、没难度。预计存款一万，结果负债九万, 还差十万就达标了，差距不是很大</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_12" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_12" alt=""></p>
 <p>讲道理，不必在意那些打脸的flag，毕竟真正的勇士，敢于直面打脸的flag，履立屡破，屡破屡立</p>
 <p>新的一年，我的flag很简单</p>
 <p>过得比17年好就行</p>
 <p>如果没做到，明年我还得这么立</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_14" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_14" alt=""></p>
 <p>看起来都一片歌舞升平，腾讯新闻很合时机的推送了三分钟的2017大事件</p>
 <p>既有”中国首艘国产航母下水”、”国产大飞机C919成功首飞”等振奋国人的成就，又有”杭州保姆纵火案”、”江哥案”等让人扼腕叹息的悲剧</p>
 <p>每年的这个时候，我觉得有篇文章都值得我们反复诵读，永远致敬</p>
@@ -1502,7 +1604,7 @@ dispatch_group_notify(group, queue, ^{
 <p>没有谁能留住时间，唯有努力才不会让光阴虚度</p>
 <p>再见2017</p>
 <p>您好2018</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_30_11" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_30_11" alt=""></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -1571,8 +1673,8 @@ dispatch_group_notify(group, queue, ^{
 <p>谈到ReactiveCocoa(RAC),说它比较火似乎也没有那么火，一些大厂用的也并不多，说它不火貌似又经常看到或听到一些鼓吹RAC的文章和言论。尽管它很强大，但是也并没有很普及，即便它很强大！</p>
 <p>在了解ReactiveCocoa前，先简单粗略回顾一下block的几种常用用法及几种常见的编程思想。</p>
 <h3 id="block_u5E38_u7528_u7528_u6CD5"><a href="#block_u5E38_u7528_u7528_u6CD5" class="headerlink" title="block常用用法"></a>block常用用法</h3><h4 id="1-_block_u4F5C_u4E3A_u5BF9_u8C61_u7684_u5C5E_u6027"><a href="#1-_block_u4F5C_u4E3A_u5BF9_u8C61_u7684_u5C5E_u6027" class="headerlink" title="1. block作为对象的属性"></a>1. block作为对象的属性</h4><p>新建一个Single工程，创建一个Person类，在Person类中声明一个block。系统有个内置的block代码块</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_01.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_26_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_26_02.png" alt=""></p>
 <blockquote>
 <p>注意，在非ARC环境下block需要使用copy声明，使用copy的原因,是把block从栈区拷贝到堆区,因为栈区中的变量出了作用域之后就会被销毁,无法在全局使用,所以应该把栈区的属性拷贝到堆区中全局共享,这样就不会被销毁了,在MRC手动管理的就是堆区,不需要系统管理,MRC环境必须使用copy把变量拷贝到全局的堆区。而如果在ARC环境下就可以不使用copy修饰,因为ARC下的属性本来就在堆区。所以现在在默认是ARC环境下依然沿袭了之前的使用方式copy，使用strong也没有问题。</p>
 </blockquote>
@@ -1680,7 +1782,7 @@ redView.backgroundColor = [UIColor redColor];
     return [self addConstraintWithLayoutAttribute:NSLayoutAttributeLeft];
 }
 </code></pre><p>这是一个get方法，上文有提到OC中只有形如get方法才可以使用点语法点出来。而这个get方法返回的是一个<code>MASConstraint</code>，你会发现<code>MASConstraint</code>类中这些全是get方法，而返回值全是调用者本身<code>MASConstraint</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_26_03.png" alt=""></p>
 <p>随便点进去一个get方法</p>
 <pre><code>- (MASConstraint *)addConstraintWithLayoutAttribute:    (NSLayoutAttribute)layoutAttribute {
     NSAssert(!self.hasLayoutRelation, @&quot;Attributes should be     chained before defining the constraint relation&quot;);
@@ -1798,10 +1900,10 @@ double result = manger.add(3).minus(3).result;
    NSLog(@&quot;%f&quot;,h_Result);
 </code></pre><h4 id="u54CD_u5E94_u5F0F_u7F16_u7A0B_u601D_u60F3_28RP_29"><a href="#u54CD_u5E94_u5F0F_u7F16_u7A0B_u601D_u60F3_28RP_29" class="headerlink" title="响应式编程思想(RP)"></a>响应式编程思想(RP)</h4><p>响应式编程不需要考虑调用顺序，只需要考虑结果。 iOS中最具代表性的就是<code>KVO</code>的使用。看一下简单实用。</p>
 <p>先创建一个<code>Person</code>类，声明一个<code>name</code>属性，监听<code>Person</code>的<code>name</code>属性</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_01_01.png" alt=""></p>
 <p>你会发现没什么毛病。如果这时候，我们把<code>name</code>属性变成一个成员变量，再去使用箭头函数方式去修改<code>name</code>的值</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_01_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_01_03.png" alt=""></p>
 <p>这个时候你会发现并没有走进监听函数。这和上面正常使用的时候有什么区别呢？那就是修改<code>name</code>属性的时候，成员变量不会调用<code>set</code>方法, 而使用点语法总是会调用<code>set</code>函数。有理由相信，使用<code>KVO</code>的时候重写了属性的<code>set</code>方法。</p>
 <blockquote>
 <h3 id="u600E_u4E48_u53EF_u4EE5_u91CD_u5199set_u65B9_u6CD5_uFF1F"><a href="#u600E_u4E48_u53EF_u4EE5_u91CD_u5199set_u65B9_u6CD5_uFF1F" class="headerlink" title="怎么可以重写set方法？"></a>怎么可以重写<code>set</code>方法？</h3><ol>
@@ -1821,15 +1923,15 @@ double result = manger.add(3).minus(3).result;
 <p> iOS中有个<code>isa</code>指针, 修改当前对象的isa指针,指向自定义的子类!</p>
 </blockquote>
 <p>验证一下猜测，查看一下在走进监听方法后对象的<code>isa</code>指针指向。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_04.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_01_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_01_05.png" alt=""></p>
 <p>知道了<code>KVO</code>的内部机制，那我们自己就可以写一个简单的<code>KVO</code>。</p>
 <p>以上面为例，监听Person类的name属性，创建一个NSObject的分类，添加监听方法并实现,最后再使用添加的这个方法监听即可。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_03.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_24_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_24_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_24_04.png" alt=""></p>
 <p>注意在使用<code>objc_msgSend</code>时需要在Build Setting中将<code>Enable Strict Checking of objc_msgSend Calls</code>设置为<code>NO</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_24_01.png" alt=""></p>
 <p><a href="https://github.com/ChinaFishNews/ReactProgrammingDemo" target="_blank" rel="external">Demo下载</a></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
@@ -1974,14 +2076,14 @@ double result = manger.add(3).minus(3).result;
 <ol>
 <li>前期UI准备</li>
 </ol>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_12_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_12_03.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_12_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_12_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_12_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_12_04.png" alt=""></p>
 <p>2  捕获对象，设置精准追踪</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_12_05.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_12_06.png" alt=""></p>
-<p>3.效果演示<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_10.gif" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_12_01.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_12_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_12_06.png" alt=""></p>
+<p>3.效果演示<br><img src="http://fishnews.cn/2017_11_07_10.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_12_01.gif" alt=""></p>
 <p><br><br><a href="https://github.com/ChinaFishNews/ObjectsTracking" target="_blank" rel="external">Demo下载</a></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
@@ -2056,8 +2158,8 @@ double result = manger.add(3).minus(3).result;
 <ol>
 <li>搭建基本UI</li>
 </ol>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_03.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_04.png" alt=""></p>
 <ol>
 <li>识别面部轮廓</li>
 </ol>
@@ -2067,9 +2169,9 @@ double result = manger.add(3).minus(3).result;
 <ul>
 <li>相当于在人脸上画了一个轮廓视图添加上去。boundingBox是CGRect类型，但是boundingBox返回的是x,y,w,h的比例(value:0~1)，需要进行转换。原始坐标系的原点是左上角，而这里是左下角，并且y轴的方向和原始坐标系相反。</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_05.png" alt=""></p>
 <p>3.面部轮廓展示</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_06.png" alt=""></p>
 <p>4.识别面部特征<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">processImage</span><span class="params">(image:UIImage)</span></span> &#123;</span><br><span class="line">       <span class="keyword">self</span>.resultLabel.text = <span class="string">"processing..."</span></span><br><span class="line">       <span class="keyword">let</span> handler = <span class="type">VNImageRequestHandler</span>.<span class="keyword">init</span>(cgImage: image.cgImage!)</span><br><span class="line">       <span class="keyword">let</span> request = <span class="type">VNDetectFaceLandmarksRequest</span>.<span class="keyword">init</span>(completionHandler: handleFaceDetect)</span><br><span class="line">       <span class="keyword">try</span>? handler.perform([request])</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">handleFaceDetect</span><span class="params">(request:VNRequest,error:Error?)</span></span> &#123;</span><br><span class="line">       <span class="keyword">guard</span> <span class="keyword">let</span> obversations = request.results <span class="keyword">as</span>? [<span class="type">VNFaceObservation</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">fatalError</span>(<span class="string">"no face"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">self</span>.resultLabel.text = <span class="string">"<span class="subst">\(obversations.<span class="built_in">count</span>)</span> face"</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> landmarkRegions : [<span class="type">VNFaceLandmarkRegion2D</span>] = []</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">for</span> faceObversion <span class="keyword">in</span> obversations &#123;</span><br><span class="line">           landmarkRegions += <span class="keyword">self</span>.showFaceFeature(faceObversion: faceObversion, toView: <span class="keyword">self</span>.btnImageView)</span><br><span class="line">           resultImage =  <span class="keyword">self</span>.drawOnImage(source: <span class="keyword">self</span>.resultImage,</span><br><span class="line">                                             boundingRect: faceObversion.boundingBox,</span><br><span class="line">                                             faceLandmarkRegions: landmarkRegions)</span><br><span class="line">       &#125;</span><br><span class="line"><span class="keyword">self</span>.btnImageView.setBackgroundImage(resultImage, <span class="keyword">for</span>: .normal)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>获取特征点<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">showFaceFeature</span><span class="params">(faceObversion face: VNFaceObservation, toView view: UIView)</span></span> -&gt;[<span class="type">VNFaceLandmarkRegion2D</span>] &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> landmarks = face.landmarks <span class="keyword">else</span> &#123; <span class="keyword">return</span> [] &#125;</span><br><span class="line">        <span class="keyword">var</span> landmarkRegions: [<span class="type">VNFaceLandmarkRegion2D</span>] = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> rightEye = landmarks.rightEye &#123;</span><br><span class="line">            landmarkRegions.append(rightEye)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> nose = landmarks.nose &#123;</span><br><span class="line">            landmarkRegions.append(nose)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> landmarkRegions</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
@@ -2085,8 +2187,8 @@ double result = manger.add(3).minus(3).result;
 <li>leftPupil、rightPupil： 左瞳、右瞳</li>
 </ul>
 <p>5.面部特征点展示</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_07.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_08.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_07.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_08.png" alt=""></p>
 <p><br><br><a href="https://github.com/ChinaFishNews/HumanFaceRecognize.git" target="_blank" rel="external">Demo下载</a></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>

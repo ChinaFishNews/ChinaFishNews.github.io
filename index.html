@@ -221,6 +221,123 @@
 
       <div class="body-wrap">
   
+    <article id="post-使用Cycript修改微信红包数额" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/10/13/使用Cycript修改微信红包数额/" class="article-date">
+  	<time datetime="2018-10-13T09:27:51.334Z" itemprop="datePublished">2018-10-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/13/使用Cycript修改微信红包数额/">使用Cycript修改微信红包数额</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=125446&auto=0&height=66"></iframe>
+
+
+<p>这里使用的是非越狱手机、pp助手(<a href="https://pan.baidu.com/s/1cxgFdn7RNXC2IwnEitk9RA" target="_blank" rel="external">https://pan.baidu.com/s/1cxgFdn7RNXC2IwnEitk9RA</a>, 密码:nbva)用来下载越狱包、及安装MonkeyDev</p>
+<p>由于是非越狱手机，所以需要借助pp助手下载一个微信越狱包，那为什么要安装MonkeyDev呢？</p>
+<p>MonkeyDev是一个非越狱开发集成神器</p>
+<ul>
+<li>可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进</li>
+<li>只需拖入一个砸壳应用，自动集成class-dump、restore-symbol、Reveal、Cycript和注入的动态库并重签名安装到非越狱机器</li>
+<li>支持调试自己编写的动态库和第三方App</li>
+<li>支持通过CocoaPods第三方应用集成SDK以及非越狱插件，简单来说就是通过CocoaPods搭建了一个非越狱插件商店</li>
+</ul>
+<p>安装：</p>
+<p>1.安装最新的theos</p>
+<pre><code>sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
+</code></pre><p>2.安装ldid</p>
+<pre><code>brew install ldid
+</code></pre><p>3.选择指定Xcode进行安装</p>
+<pre><code>sudo xcode-select -s /Applications/Xcode-beta.app
+
+sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&quot;
+</code></pre><ul>
+<li>默认安装的xcode为xcode-select -p</li>
+</ul>
+<p>4.卸载</p>
+<pre><code>sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-uninstall)&quot;
+</code></pre><p>使用：</p>
+<p>1.新建一个monkeyDev工程</p>
+<p><img src="http://fishnews.cn/2018_04_23-25.png" alt=""></p>
+<p>2.将微信越狱包拖到此文件下然后真机运行</p>
+<p><img src="http://fishnews.cn/2018_04_23_26.png" alt=""></p>
+<p>3.启动成功后进入Cycript环境并修改</p>
+<p><img src="http://fishnews.cn/2018_04_23_27.png" alt=""></p>
+<p>使用cycript -r 网络IP地址：端口号 进行cycript环境，手机需和Mac处于同一网络下，端口号可以自行修改</p>
+<p><img src="http://fishnews.cn/2018_04_23_35.png" alt=""></p>
+<p>这个命令可以写成一个脚本，将这个脚本放在指定目录，并且在.bash_profile中做好配置,以后就不用每次输入</p>
+<p><img src="http://fishnews.cn/2018_04_23_42.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_43.png" alt=""></p>
+<h5 id="u9690_u85CF_u72B6_u6001_u680F"><a href="#u9690_u85CF_u72B6_u6001_u680F" class="headerlink" title="隐藏状态栏"></a>隐藏状态栏</h5><p><img src="http://fishnews.cn/2018_04_23_28.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_32.png" alt=""></p>
+<h5 id="u81EA_u5B9A_u4E49_u5F39_u6846"><a href="#u81EA_u5B9A_u4E49_u5F39_u6846" class="headerlink" title="自定义弹框"></a>自定义弹框</h5><p><img src="http://fishnews.cn/2018_04_23_29.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_33.png" alt=""></p>
+<h5 id="u8BBE_u7F6E_u63A8_u9001_u901A_u77E5_u4E2A_u6570"><a href="#u8BBE_u7F6E_u63A8_u9001_u901A_u77E5_u4E2A_u6570" class="headerlink" title="设置推送通知个数"></a>设置推送通知个数</h5><p><img src="http://fishnews.cn/2018_04_23_30.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_34.png" alt=""></p>
+<h5 id="u67E5_u770B_u5F53_u524D_u7A0B_u5E8F_u6240_u6709_u7684UILabel"><a href="#u67E5_u770B_u5F53_u524D_u7A0B_u5E8F_u6240_u6709_u7684UILabel" class="headerlink" title="查看当前程序所有的UILabel"></a>查看当前程序所有的UILabel</h5><p><img src="http://fishnews.cn/2018_04_23_37.png" alt=""></p>
+<h5 id="u4FEE_u6539_u7EA2_u5305_u6570_u989D"><a href="#u4FEE_u6539_u7EA2_u5305_u6570_u989D" class="headerlink" title="修改红包数额"></a>修改红包数额</h5><p><img src="http://fishnews.cn/2018_04_23_38.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_39.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_40.png" alt=""></p>
+<p>如果想修改某个控件的值，可以使用choose方法，也可以直接通过Xcode查看层次结构找到该控件的地址，然后再做修改</p>
+<p><img src="http://fishnews.cn/2018_04_23_41.png" alt=""></p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cycript/">Cycript</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-5.19" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -328,39 +445,39 @@
 <p>这里使用的是动态库(<code>.framework</code>、<code>.dylib</code>)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以<code>.framework</code>和<code>.dylib</code>后缀结尾，通常把它们叫做<code>Framework</code>和<code>Shared Library</code>。<code>Framework</code>本质上是由<code>Shared Library</code>加上头文件<code>header</code>和其他资源文件打包得到。说到动态库，就不得不说静态库(<code>.a</code>)，静态库可以看做是一个具有特定功能的代码块，如果项目中引用了静态库，则编译时会将静态库直接复制到可执行文件(<code>MachO</code>)中,进而会导致<code>MachO</code>文件变大，而<code>MachO</code>文件的大小直接影响项目的启动时间和占用内存的大小</p>
 <p>而项目中引用动态库时，动态库不会复制到<code>MachO</code>文件中，只有当动态库真正被用到时才会去加载。如果<code>App</code>将动态库作为它的依赖库，则在<code>MachO</code>文件中会添加这个动态库的引用，如果<code>App</code>在运行时动态加载动态库，则在<code>MachO</code>文件中不会添加动态库的引用。在使用<code>App</code>时，静态库和动态库都会被加载到内存中。当多个<code>app</code>使用同一个库时，如果这个库是动态库，由于动态库是可以被多个app的进程共用的，所以在内存中只会存在一份,而且使用这个动态库时，可能这个动态库已经存在于内存中了，因为其他启动的<code>app</code>也许也依赖了这个库。如果是静态库，由于每个<code>app</code>的<code>MachO</code>文件中都会存在一份，则内存中可能会存在多份。相对静态库，使用动态库可以减少<code>app</code>占用的内存大小和启动时间</p>
 <p>使用动态库的<code>App</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_11_02.png" alt=""></p>
 <p>使用静态库的<code>App</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_11_03.png" alt=""></p>
 <p>使用动态库有两种方式，一种是将动态库添加为依赖库，这样会在工程启动时加载动态库，一种是使用<code>dlopen</code>在运行时加载动态库，这两种方式的区别在于加载动态库的时机。在<code>iOS</code>中一般使用第一种方法，第二种如果在<code>iOS</code>中使用了这种方式，一般是不能上架到<code>App Store</code>的</p>
 <h5 id="Framework_u6CE8_u5165"><a href="#Framework_u6CE8_u5165" class="headerlink" title="Framework注入"></a>Framework注入</h5><p>以下均使用真机运行。这里以微信为例，打开<code>ipa</code>包，查看<code>Framework</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_14_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_14_04.png" alt=""></p>
 <p>再使用MachOView打开微信的可执行文件(这次比较意外竟然闪退，github从新下载源码编译即可，记得把BaseSDK改成Mac系统的版本号),可见<code>Load Commonds</code>是根据动态库指定的路径去加载的</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_14_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_14_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_14_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_14_03.png" alt=""></p>
 <p>那我们可以自己创建一个动态库去注入到微信的可执行文件中</p>
 <p>首先创建一个动态库，然后编译运行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_01.png" alt=""></p>
 <p>可以看到安装包中<code>Frameworks</code>目录下已经有了我们创建的动态库</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_02.png" alt=""></p>
 <p>但是此时<code>MachO</code>文件内并没有这个库，也就是说运行后这个库的代码并不会被执行，也就是这个库并没有被链接到可执行文件中</p>
 <p>使用<code>yololib</code>工具可以修改<code>MachO</code>文件，将动态库写入<code>MachO</code>文件中。注意要将<code>yololib</code>复制到<code>/usr/local/bin</code>或<code>$PATH</code>中的其他路径，这样就可以在终端使用这个命令</p>
 <p><code>yololib</code>需要两个参数，第一个参数指定被修改的<code>MachO</code>文件的路径，第二个参数指定动态库的路径，也可以将此命令写入脚本和<code>ipa</code>包重签一并执行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_03.png" alt=""></p>
 <p>在使用<code>yololib</code>去添加动态库依赖时，会修改<code>MachO</code>文件的两个地方,修改<code>MachO</code>文件的头文件和添加一个<code>dylib_command</code>结构体,由于增加了一条<code>Load Commands</code>，所以需要修改的是<code>ncmds</code>和<code>sizeofcmds</code>这两个字段，它们分别表示<code>Load Commands</code>的总数目和总大小。再次编译后，通过<code>MachOView</code>查看可执行文件</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_06.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_04.png" alt=""></p>
 <p>这之后再次运行即可看到我们注入的代码了</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_05.png" alt=""></p>
 <h5 id="Dylib_u6CE8_u5165"><a href="#Dylib_u6CE8_u5165" class="headerlink" title="Dylib注入"></a>Dylib注入</h5><p>首先创建一个<code>dylib</code>库,这是个<code>macOS</code>的库</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_20_01.png" alt=""></p>
 <p><code>Embed Frameworks</code>添加依赖</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_20_02.png" alt=""></p>
 <p>将<code>Base SDK</code>改为<code>iphoneos</code>,默认是<code>macos</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_20_03.png" alt=""></p>
 <p><code>Code Signing identity</code> 改为<code>iphone developer</code>, 默认是<code>Mac developer</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_20_04.png" alt=""></p>
 <p>这时候编译运行，包中已经有了这个<code>dylib</code>库</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_20_05.png" alt=""></p>
 <p>再使用<code>yololib</code>将这个库写入<code>MachO</code>文件中运行即可</p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#INJECT_DYLIB_RELATIVE_PATH=<span class="string">"Frameworks/libfishInject.dylib"</span></span></span><br><span class="line"><span class="preprocessor">#yololib <span class="string">"$TARGET_APP_PATH/$APP_BINARY"</span> <span class="string">"$IINJECT_DYLIB_RELATIVE_PATH"</span></span></span><br></pre></td></tr></table></figure>
 <p><a href="https://github.com/ChinaFishNews/InjectCode.git" target="_blank" rel="external">InjectCode</a></p>
@@ -434,39 +551,39 @@
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=27556170&auto=0&height=66"></iframe>
 
 <p>为什么要对ipa包重签名？如果是非越狱手机，你会发现从第三方商店下载的非企业证书分发的ipa包无法安装到手机上，也就无法实现动态调试。这时候我们可以对ipa包重签名，用来运行在自己的手机上，在进行重签名之前，首先要了解🍎是如何签名的</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_20_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_20_06.png" alt=""></p>
 <p>上图即是整个苹果对项目安装到手机上的加密流程。在这整个流程中，用到了两对公/私钥，图中的私钥2是存在于苹果服务器，公钥2则内置在每一台手机中</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_20_01.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_20_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_20_03.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_20_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_20_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_20_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_01.png" alt=""></p>
 <p>公钥1其实就是证书请求文件(csr文件)，公钥1是通过私钥1产生的，通过<code>openssl</code>命令可以查看这个证书请求文件，可见使用的是<code>RSA</code>加密算法，并对这个公钥做了<code>sha256</code>信息摘要。在开发者网站上，我们通过<code>CSR</code>文件向🍎请求证书，🍎则通过私钥2对这个文件进行加密生成了证书。证书中包含了公钥1和对应的hash值。下载下来证书后双击安装，Mac电脑中的私钥会和下载下来的证书相关联，这时候会在钥匙串中看到对应的私钥。然后在通过<code>Xcode</code>打包的时候，使用私钥1对这个二进制文件进行加密，同时使用到的证书也被打包到<code>ipa</code>文件中。在手机进行安装前，会首先用公钥2对证书进行解密，通过解密拿到证书中的公钥1，由于需要安装的二进制文件是通过私钥1加密的，所以使用公钥1进行解密，这个流程可以确保手机安装的app都是通过苹果授权允许的，从而确保了安全性</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_20_04.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_20_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_20_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_20_05.png" alt=""></p>
 <p>上述流程其实还存在问题，如果申请了一个证书，那就可以安装所有的<code>app</code>,导致应用的滥用安装。🍎又通过了描述文件（mobileprovision),描述文件也是向🍎请求所得，文件中包含了设备唯一标示、项目的Bundle iD、权限文件等，打包时会一并打包进去，这时候经常会出现问题，如设备ID没有注册、项目Bundle Id不对等。手机安装前会判断当前设备iD是否已注册，Bundle Id是否正确等。<code>Mac</code>电脑中可以通过<code>Security</code>命令查看描述文件内容，<code>Security</code>是<code>Mac</code>系统中钥匙串和安全模块的命令行管理工具，（图形化工具为<code>Keychain Access.app</code>）。钥匙串（<code>Keychain</code>）实质上就是一个用于存放证书、密钥等安全认证实体的仓库，使用时不需要写路径，直接用文件名即可，<code>Security</code>工具会自动搜索。由上图可见，描述文件其实是一个<code>XML</code>文件，拷贝放到<code>Xcode</code>,新建一个<code>Plist</code>文件打开，可以很清楚的看到，文件中包含创常见时间、失效时间、注册的设备数、每台设备的设备Id、团队名称等。在<code>ipa</code>包中可以看到这个描述文件(<code>embedded.mobileprovision</code>)</p>
 <p>上述则是🍎整个签名流程。如果我们获取到<code>ipa</code>包想安装到自己的手机上进行动态调试，就需要我们自己给这个包进行重签名，下面粗略介绍三种签名方法，其实是一种签名方法的三种形式。之前提到过，也可以直接使用<code>Monkey Dev</code>就可以完成整个过程,省去我们繁琐的重签名，但毕竟<code>Monkey Dev</code>属于第三方工具，我们有必要去了解实践整个重签流程。以前使用iOS App Signer工具也可以重签，现在也已经签不成功</p>
 <h3 id="u4E00-_u624B_u52A8_u91CD_u7B7E"><a href="#u4E00-_u624B_u52A8_u91CD_u7B7E" class="headerlink" title="一.手动重签"></a>一.手动重签</h3><p>通过PP助手首先下载一个<code>ipa</code>包，相当于一个<code>zip</code>包，解压出来, 使用<code>codesign</code>命令可以查看这个<code>ipa</code>包的签名信息</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_03.png" alt=""></p>
 <p>也可以通过<code>otool</code>命令查看可执行文件的加密信息</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_04.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_05.png" alt=""></p>
 <ul>
 <li>1 这里以微信为例，删除插件<code>Plugins</code>文件夹里面的内容，个人证书无法对插件重签</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_08.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_08.png" alt=""></p>
 <ul>
 <li>2 直接删除<code>Watch</code>文件夹</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_09.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_09.png" alt=""></p>
 <ul>
 <li>3 对 <code>Frameworks</code> 进行签名，要使用<code>Xcode</code>正在使用的证书进行重签</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_07.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_07.png" alt=""></p>
 <p>查看本地所有可用证书</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-10.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21-10.png" alt=""></p>
 <p>对<code>Framework</code>进行重签</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-11.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21-11.png" alt=""></p>
 <ul>
 <li><p>4 给可执行文件添加执行权限</p>
 <p>  chmod +x 可执行文件名</p>
@@ -474,35 +591,35 @@
 <li><p>5 将当前工程的描述文件拷贝到目标文件中</p>
 </li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_12.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_12.gif" alt=""></p>
 <ul>
 <li>6 修改<code>info.plist</code> 的Bundle Id</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_13.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_13.png" alt=""></p>
 <ul>
 <li>7 生成<code>plist</code>的权限文件</li>
 </ul>
 <p>查看第五步中的描述文件</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_14.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_14.png" alt=""></p>
 <p>将其中的权限文件部分复制出来，即下图圈起来的部分，通过<code>Xcode</code>创建空的<code>plist</code>文件，将权限文件转成<code>plist</code>文件</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_17.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_16.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_17.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_16.png" alt=""></p>
 <p>然后将这个权限文件放到<code>WeChat.app</code>同级目录下</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-18.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21-18.png" alt=""></p>
 <ul>
 <li>8 签名整个<code>App</code> </li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_19.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_19.png" alt=""></p>
 <ul>
 <li>9 生成<code>ipa</code>文件</li>
 </ul>
 <p>将<code>WeChat.app</code>替换掉<code>Payload</code>中的<code>WeChat.app</code>文件，压缩成<code>ipa</code>文件</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21-20.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21-20.png" alt=""></p>
 <ul>
 <li>10 安装到手机</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_22.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_21_23.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_22.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_21_23.png" alt=""></p>
 <p>注意，<code>ipa</code>包重签是一个和🍎博弈的过程，有些<code>ipa</code>包可能用此方法并不能重签成功</p>
 <p>上面用到了几个常用命令</p>
 <p> 查看描述文件信息:</p>
@@ -518,15 +635,15 @@
 <h3 id="u4E8C-_u4F7F_u7528Xcode_u91CD_u7B7E"><a href="#u4E8C-_u4F7F_u7528Xcode_u91CD_u7B7E" class="headerlink" title="二.使用Xcode重签"></a>二.使用Xcode重签</h3><ul>
 <li>1 新建一个空工程，编译，将微信越狱包替换掉编译后的包</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_22_01.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_22_01.gif" alt=""></p>
 <ul>
 <li>2 依然需要对<code>ipa</code>包中的<code>Framrworks</code>进行重签</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_22_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_22_03.png" alt=""></p>
 <ul>
 <li>3 修改<code>info.plist</code>中的<code>Bundle Id</code>为这个空工程的<code>Bundle Id</code></li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_22-02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_22-02.png" alt=""></p>
 <ul>
 <li><p>4 对包中的可执行文件赋予可执行权限</p>
 <p>  chmod +x 可执行文件路径</p>
@@ -536,8 +653,8 @@
 <li><p>6 重新编译工程即可  </p>
 </li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_22_05.gif" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_23_01" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_22_05.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_23_01" alt=""></p>
 <h3 id="u4E09-_u4F7F_u7528_u811A_u672C_u81EA_u52A8_u91CD_u7B7E"><a href="#u4E09-_u4F7F_u7528_u811A_u672C_u81EA_u52A8_u91CD_u7B7E" class="headerlink" title="三.使用脚本自动重签"></a>三.使用脚本自动重签</h3><p>知道了重签的流程，就可以使用脚本来流程化这个操作</p>
 <ul>
 <li><p>1.新建一个空工程，模仿<code>Monkey Dev</code>来操作，先在根目录下建一个文件夹<code>APP</code>来承接要重签名的<code>ipa</code>包</p>
@@ -547,10 +664,10 @@
 <li><p>3.重新运行即可</p>
 </li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_23_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_23_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_23_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_23_03.png" alt=""></p>
 <p>或者直接输入脚本路径</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_11_01.png" alt=""></p>
 <p>脚本内容如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">TEMP_PATH=<span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>/Temp"</span></span><br><span class="line">ASSETS_PATH=<span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>/APP"</span></span><br><span class="line">TARGET_IPA_PATH=<span class="string">"<span class="variable">$&#123;ASSETS_PATH&#125;</span>/*.ipa"</span></span><br><span class="line">rm -rf <span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>/Temp"</span></span><br><span class="line">mkdir -p <span class="string">"<span class="variable">$&#123;SRCROOT&#125;</span>/Temp"</span></span><br><span class="line"></span><br><span class="line">unzip -oqq <span class="string">"<span class="variable">$TARGET_IPA_PATH</span>"</span> <span class="operator">-d</span> <span class="string">"<span class="variable">$TEMP_PATH</span>"</span></span><br><span class="line">TEMP_APP_PATH=$(<span class="built_in">set</span> -- <span class="string">"<span class="variable">$TEMP_PATH</span>/Payload/"</span>*.app;<span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span>"</span>)</span><br><span class="line"></span><br><span class="line">TARGET_APP_PATH=<span class="string">"<span class="variable">$BUILT_PRODUCTS_DIR</span>/<span class="variable">$TARGET_NAME</span>.app"</span></span><br><span class="line"></span><br><span class="line">rm -rf <span class="string">"<span class="variable">$TARGET_APP_PATH</span>"</span></span><br><span class="line">mkdir -p <span class="string">"<span class="variable">$TARGET_APP_PATH</span>"</span></span><br><span class="line">cp -rf <span class="string">"<span class="variable">$TEMP_APP_PATH</span>/"</span> <span class="string">"<span class="variable">$TARGET_APP_PATH</span>"</span></span><br><span class="line"></span><br><span class="line">rm -rf <span class="string">"<span class="variable">$TARGET_APP_PATH</span>/PlugIns"</span></span><br><span class="line">rm -rf <span class="string">"<span class="variable">$TARGET_APP_PATH</span>/Watch"</span></span><br><span class="line"></span><br><span class="line">/usr/libexec/PlistBuddy -c <span class="string">"Set :CFBundleIdentifier <span class="variable">$PRODUCT_BUNDLE_IDENTIFIER</span>"</span> <span class="string">"<span class="variable">$TARGET_APP_PATH</span>/Info.plist"</span></span><br><span class="line"></span><br><span class="line">APP_BINARY=`plutil -convert xml1 -o - <span class="variable">$TARGET_APP_PATH</span>/Info.plist|grep -A1 Exec|tail -n1|cut <span class="operator">-f</span>2 <span class="operator">-d</span>\&gt;|cut <span class="operator">-f</span>1 <span class="operator">-d</span>\&lt;`</span><br><span class="line">chmod +x <span class="string">"<span class="variable">$TARGET_APP_PATH</span>/<span class="variable">$APP_BINARY</span>"</span></span><br><span class="line"></span><br><span class="line">TARGET_APP_FRAMEWORKS_PATH=<span class="string">"<span class="variable">$TARGET_APP_PATH</span>/Frameworks"</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="operator">-d</span> <span class="string">"<span class="variable">$TARGET_APP_FRAMEWORKS_PATH</span>"</span> ];</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line"><span class="keyword">for</span> FRAMEWORK <span class="keyword">in</span> <span class="string">"<span class="variable">$TARGET_APP_FRAMEWORKS_PATH</span>/"</span>*</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"></span><br><span class="line">/usr/bin/codesign --force --sign <span class="string">"<span class="variable">$EXPANDED_CODE_SIGN_IDENTITY</span>"</span> <span class="string">"<span class="variable">$FRAMEWORK</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
 <p><a href="https://github.com/ChinaFishNews/AutoSignature" target="_blank" rel="external">AutoSignature</a></p>
 <hr>
@@ -630,7 +747,7 @@
 <blockquote>
 <p>其实是65个字符，“=”是填充字符，用来表示添加的零值字节数，因为如果数据的字节数不是3的倍数，则其位数就不是6的倍数，那么就不能精确地划分成6位的块，此时，需在原数据后面添加1个或2个零值字节，使其字节数是3的倍数</p>
 </blockquote>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_24_02.png" alt=""></p>
 <h3 id="u4E8C-__u54C8_u5E0C_28_u6563_u5217_u51FD_u6570_29_28_u4E0D_u53EF_u53CD_u7B97_29"><a href="#u4E8C-__u54C8_u5E0C_28_u6563_u5217_u51FD_u6570_29_28_u4E0D_u53EF_u53CD_u7B97_29" class="headerlink" title="二. 哈希(散列函数)(不可反算)"></a>二. 哈希(散列函数)(不可反算)</h3><ul>
 <li><p><code>MD5</code></p>
 </li>
@@ -648,11 +765,11 @@
 <li>强抗碰撞 : 想找到两个不同数据，使他们具有相同的<code>MD5</code>值(即伪造数据)，是非常困难的</li>
 </ul>
 <p>但是正是因为同一条数据算出的<code>MD5</code>的值是固定的，所以如果把已知的词条和对应词条的<code>HASH</code>值收集起来，从而就可以进行查询得到。网上有一套数据库<a href="http://cmd5.com" target="_blank" rel="external">http://cmd5.com</a>可以根据密文查到许多<code>MD5</code>的词条</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_24_01.png" alt=""></p>
 <p>正因为直接一个字符串进行MD5很容易被破解，所以有了一个改进方法：加盐</p>
 <p>加盐（<code>Salt</code>）：这个盐是一个写在本地的固定字符串，拼接在明文的固定位置，然后再对拼接后的字符串进行<code>MD5</code>,这样就极大增加了破解的难度，即便被破解了，得到的字符串也是加盐后的字符串，无法拿到原始数据。但是，现在<a href="http://cmd5.com" target="_blank" rel="external">http://cmd5.com</a>这个网站针对MD5做了各种各样的破解，各种加盐、对盐做MD5等等。再加上这个盐是写在本地的，一旦被泄露就不得不更换，而更换后就会对老版本产生影响，所以加盐这种做法现在也并不常用</p>
 <p><code>HMAC</code> : 另一个加密算法<code>HMAC</code>现在被广泛使用，<code>HMAC</code>运算利用哈希算法，以一个密钥和一个消息为输入，生成一个消息摘要作为输出,有<code>HMAC_SHA1</code>、<code>HMAC_SHA256</code>、<code>HMAC_SHA512</code>等算法，与<code>SHA1</code>、<code>SHA256</code>、<code>SHA512</code>等算法相比，<code>HMAC</code>需要一个密钥,而非<code>HMAC</code>不需要</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_24_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_24_03.png" alt=""></p>
 <p><code>HMAC</code>是使用一个密钥加密，做两次散列，而这个密钥从服务器获取。 诸如在做登录操作前，注册账号的的时候，服务器会根据账号随机生成一个密钥，和账号对应，并把密钥返还给客户端，客户端把密钥保存在本地(<code>KeyChain</code>)。而在输入密码后则对密码使用密钥做了一次<code>HMAC</code>的加密传给服务器，服务器则保存的是一个加密后的字符串。如果选择记住密码重新登录你会发现密码长度可能和真实密码长度并不一致，其实这只是个占位符而已</p>
 <p>如果，换了一台设备，本地自然没有密钥，这样在登录的时候需要先返回这个账号对应的密钥，然后用密钥对账号做<code>HMAC</code>的加密传给服务器,这中间多了一部向服务器获取密钥的过程，有些<code>APP</code>换了设备第一次登录的时候有些慢，原因正是如此</p>
 <p>如果随便换一台设备就可以根据账号向服务器获取密钥，那在知道账号的情况下，就可以获取到相应的密钥了，这并不安全，于是就有了设备锁。当换了一台设备的时候，服务器并不会马上返回密钥，而是会询问之前的设备，是否同意返回密钥，同意之后才会返回，<code>QQ</code>设备锁逻辑正是如此</p>
@@ -682,9 +799,9 @@
 
 <p><br><br>除此之外，使用哈希算法，也还有其他用途</p>
 <h6 id="u7248_u6743_u7EF4_u62A4"><a href="#u7248_u6743_u7EF4_u62A4" class="headerlink" title="版权维护"></a>版权维护</h6><p>比如有张原创作品（origin.png）</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_28_01.png" alt=""></p>
 <p>打开后我重新截图（pirate），外观上没有任何变化，观察他们的<code>md5</code>值</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_28_02.png" alt=""></p>
 <p>可以发现，截屏后的<code>md5</code>值完全不一样，即便改成相同的名称也完全不一样。事实上是对二进制数据进行<code>md5</code>值，截屏后已经是完全不同的二进制文件,自然如果压缩了该文件，<code>md5</code>值自然也会随之改变。值得注意的是，直接复制其实就是复制二进制文件，<code>md5</code>值不会改变，单纯改变文件格式<code>md5</code>值也依然不会改变</p>
 <h6 id="u4E91_u76D8_u6587_u4EF6_u4E0A_u4F20"><a href="#u4E91_u76D8_u6587_u4EF6_u4E0A_u4F20" class="headerlink" title="云盘文件上传"></a>云盘文件上传</h6><p>文件上传时可以注意到，如果云盘上已经有了该文件，你会发现文件秒传成功。原因是什么呢？ 是因为服务器上查询到有相同的<code>md5</code>值与该文件的<code>md5</code>值相同，则默认云盘上已经有了该文件</p>
 <p>还有，云盘上经常会封杀一些小视频(少儿不宜)，是根据什么来和谐的呢？自然也是根绝<code>md5</code>的值来判断。会有专门的鉴别人员，对一些视频做出鉴别后确认这些视频需要和谐掉，并且记录这些视频的<code>md5</code>的值，那么云盘上但凡<code>md5</code>值相同的都会被和谐掉</p>
@@ -696,7 +813,7 @@
 
 <font color="blue">还可以，将视频进行base64编码后再上传，因为可以解码，所以下载下来再进行解码即可恢复文件</font>
 
-<p><br><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_28_05.png" alt=""></p>
+<p><br><br><img src="http://fishnews.cn/2018_06_28_05.png" alt=""></p>
 <h3 id="u4E09-_u5BF9_u79F0_u52A0_u5BC6_u7B97_u6CD5_28_u4F20_u7EDF_u52A0_u5BC6_u7B97_u6CD5_29"><a href="#u4E09-_u5BF9_u79F0_u52A0_u5BC6_u7B97_u6CD5_28_u4F20_u7EDF_u52A0_u5BC6_u7B97_u6CD5_29" class="headerlink" title="三.对称加密算法(传统加密算法)"></a>三.对称加密算法(传统加密算法)</h3><ul>
 <li><p>DES</p>
 </li>
@@ -713,8 +830,8 @@
 <p><code>ECB</code>:把一个数据拆分成若干个数据包，对每一个数据进行独立加密然后再进行拼接</p>
 <p><code>CBC</code>:使用一个密钥和一个初始化向量(IV)对数据进行加密，也是把数据拆分成若干数据块，对每一块数据加密都要依赖上一个数据块，这可以保证数据的完整性</p>
 <p>也就是说如果一块数据只修改了其中的一小部分，如果使用<code>ECB</code>加密，那密文相对于原先的密文就只有修改的这部分会改变，如果使用的<code>CBC</code>加密，则从当前数据块开始之后的所有数据的密文都会改变</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_30_01.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_30_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_30_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_30_02.png" alt=""></p>
 <p>加密解密用的是同一个函数<code>CCCrypt</code>,而这个函数有11个参数 </p>
 <pre><code>/**
   *  @param kCCEncrypt     加密/解密
@@ -747,9 +864,9 @@
 <p><code>RSA</code>加密过程比较缓慢，效率比较低，不宜对大文件进行机加密,一般<code>RSA</code>和<code>AES</code>配合使用,<code>AES</code>对数据本身进行加密解密，<code>RSA</code>对<code>AES</code>的密钥进行加密</p>
 <p>对数字的<code>md5</code>值进行<code>RSA</code>签名就是常说的数字签名，用来验证数字是否被修改</p>
 <p>使用<code>RSA</code>加密需要的是<code>crt</code>和<code>p12</code>文件</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_01_01.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_01_05.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_01_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_01_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_01_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_01_03.png" alt=""></p>
 <p><a href="https://github.com/ChinaFishNews/EncryptionDemo" target="_blank" rel="external">EncryptionDemo</a></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
@@ -821,7 +938,7 @@
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=36198084&auto=0&height=66"></iframe>
 
 <p><code>LLDB</code>是个开源的内置于<code>XCode</code>中的调试器，<code>Xcode5</code>之后，<code>LLDB</code>取代了<code>GDB</code>. 它与<code>LLVM</code>编译器一起，存在于主窗口底部的控制台中，<code>LLDB</code>丰富的流程控制，在调试过程中作用显著</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_30_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_30_04.png" alt=""></p>
 <p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_30_05.png" alt=""></p>
 <h3 id="u65AD_u70B9_u8BBE_u7F6E"><a href="#u65AD_u70B9_u8BBE_u7F6E" class="headerlink" title="断点设置"></a>断点设置</h3><pre><code>设置断点
 breakpoint set -n &quot;xxx&quot;
@@ -971,7 +1088,7 @@ image lookup -t 类名
 
 <p><code>class-dump</code>是用来<code>dump</code>目标文件的类信息的工具。它利用<code>Objective-C</code>语言的<code>runtime</code>特性，将存储在<code>mach-O</code>文件中的<code>@interface</code>和<code>@protocol</code>信息提取出来，并生成对应的.h文件</p>
 <h3 id="u5B89_u88C5class-dump"><a href="#u5B89_u88C5class-dump" class="headerlink" title="安装class-dump"></a>安装class-dump</h3><p><a href="http://stevenygard.com/projects/class-dump/" target="_blank" rel="external">class-dump官网</a></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05-29_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05-29_04.png" alt=""></p>
 <p>下载后将class-dump 复制到/usr/bin/class-dump。如果是OS X 10.11，因为没有/usr/bin文件夹的写权限，所以将class-dump复制到/usr/local/bin/class-dump即可。执行命令赋予其执行权限：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod <span class="number">777</span> <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span><span class="keyword">class</span>-<span class="keyword">dump</span></span><br></pre></td></tr></table></figure>
 <p>放到/usr/bin目录下会发现系统管理员也没有权限进行写操作，是因为由于系统启用了SIP（System Integerity Protection）导致root用户也没有修改权限，如果需要屏蔽掉这个功能，具体做法是：</p>
@@ -993,16 +1110,16 @@ image lookup -t 类名
 <p>超级用户才能使用的与本地机器无关的程序存放在/usr/local/sbin</p>
 </blockquote>
 <p>由于我之前安装了<a href="https://github.com/AloneMonkey/MonkeyDev" target="_blank" rel="external">MonkeyDev</a>，而<code>MonkeyDev</code>内部集成了<code>class-dump</code>，所以可以直接使用，<code>class-dump</code>是放在<code>/opt/MonkeyDev/bin</code>的目录下</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_03.png" alt=""></p>
 <h3 id="u4F7F_u7528class-dump"><a href="#u4F7F_u7528class-dump" class="headerlink" title="使用class-dump"></a>使用class-dump</h3><p>官网上已给出相关用法</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_05.png" alt=""></p>
 <p>以微信和支付宝为例，首先要拿到越狱包，我这里是从<code>pp</code>助手下载，如果是非越狱包要先砸壳再<code>dump</code></p>
 <p>打来越狱包，显示包内容，找到可执行文件</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_08.gif" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_07.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_08.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_07.gif" alt=""></p>
 <p><code>dump</code>出来的头文件大概有一万多个，直接拖到<code>Xcode</code>可能会比较卡，我这里直接拖到<code>Sublime</code>，<br>有时class-dump指令会执行失败，无法得到想要的头文件或者只有<code>CDStructures</code>文件，出现这种情况是因为class-dump的作用对象必须是未经加密的<br>可执行文件，经过签名加密的，这个时候需要先进行砸壳</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_09.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_09.png" alt=""></p>
 <h3 id="MachO_28Mach_Object_29_u6587_u4EF6"><a href="#MachO_28Mach_Object_29_u6587_u4EF6" class="headerlink" title="MachO(Mach Object)文件"></a>MachO(Mach Object)文件</h3><p>上面<code>dump</code>用到的可执行文件就是<code>MachO</code>文件的一种，官方介绍共有11种格式，是<code>Mac OS X\iOS</code> 上用于记录可执行文件、对象代码、共享库、动态加载代码和内存转储的文件格式</p>
 <p>常见格式:</p>
 <ul>
@@ -1020,24 +1137,24 @@ image lookup -t 类名
 <li>4.动态链接器(dynamic linker,专门用来加载动态库)</li>
 <li>5.dSYM (用来保存16进制函数地址映射信息的中转文件)</li>
 </ul>
-<p><strong>.o文件</strong><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_07.png" alt=""></p>
-<p><strong>.a文件</strong><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_08.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_15.png" alt=""></p>
+<p><strong>.o文件</strong><br><img src="http://fishnews.cn/2018_05_29_07.png" alt=""></p>
+<p><strong>.a文件</strong><br><img src="http://fishnews.cn/2018_05_29_08.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_15.png" alt=""></p>
 <p><strong>dylib</strong></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_10.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_11.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_10.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_11.png" alt=""></p>
 <p><strong>framework</strong></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_12.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_13.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_12.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_13.png" alt=""></p>
 <p><strong>dSYM</strong></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_18.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_18.png" alt=""></p>
 <p><strong>动态链接器</strong></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_14.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_14.png" alt=""></p>
 <h3 id="u901A_u7528_u4E8C_u8FDB_u5236_u6587_u4EF6"><a href="#u901A_u7528_u4E8C_u8FDB_u5236_u6587_u4EF6" class="headerlink" title="通用二进制文件"></a>通用二进制文件</h3><p>通用二进制文件，也叫做胖MachO文件。MachO文件是包含一种架构（i386、x86_64、arm64等)的对象文件，而胖文件可能包含若干不同架构（i386、x86_64、arm、arm64 等)的对象文件。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_16.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_17.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_16.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_17.png" alt=""></p>
 <p>通过<code>ida</code>可打开指定架构的可执行文件</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_19.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_19.png" alt=""></p>
 <p><strong>瘦身</strong></p>
 <blockquote>
 <p>lipo 可执行文件  -thin armv7  -output  MachO_armv7</p>
@@ -1049,11 +1166,11 @@ image lookup -t 类名
 </blockquote>
 <h3 id="MachOView"><a href="#MachOView" class="headerlink" title="MachOView"></a>MachOView</h3><p><a href="https://pan.baidu.com/s/1tvIlXXOla7XIkO7qvduMmA" target="_blank" rel="external">下载</a></p>
 <p><code>MachOView</code>可以用来查看MachO的文件格式信息，使用<code>Mac</code>自带的<code>otool</code>其实也可以查看，这里以微信为例</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_20.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_20.png" alt=""></p>
 <p>使用<code>MachOView</code>可以可视化查看<code>MachO</code>文件的内部信息，但是这个软件相当占内存</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_21.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_22.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_23.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_21.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_22.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_23.png" alt=""></p>
 <p>通过上图可以看到，<code>MachO</code>文件具体可以分为几个部分</p>
 <ul>
 <li>文件头 <code>Mach64 Header</code></li>
@@ -1066,7 +1183,7 @@ image lookup -t 类名
 <li>动态库符号表 <code>Dynamic Symbol Table</code></li>
 <li>字符串表 <code>String Table</code></li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_29_24.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_29_24.png" alt=""></p>
 <p>Mach64 Header文件中，各字段含义</p>
 <table>
 <thead>
@@ -1111,8 +1228,8 @@ image lookup -t 类名
 </tbody>
 </table>
 <p><code>ida</code>工具获取到的方法地址，其实是通过<code>MachOView</code>分析<code>macho</code>文件得到的</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_07_01.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_06_07_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_07_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_06_07_02.png" alt=""></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -1185,9 +1302,9 @@ image lookup -t 类名
 
 <h3 id="u5C06_u6C47_u7F16_u4EE3_u7801_u8FD8_u539F_u6210_u9AD8_u7EA7_u4EE3_u7801"><a href="#u5C06_u6C47_u7F16_u4EE3_u7801_u8FD8_u539F_u6210_u9AD8_u7EA7_u4EE3_u7801" class="headerlink" title="将汇编代码还原成高级代码"></a>将汇编代码还原成高级代码</h3><p>使用工具<a href="https://pan.baidu.com/s/1ZIWEL09nwNI7epwUu1VRow" target="_blank" rel="external">ida</a> 或 <a href="https://pan.baidu.com/s/1bkUy-dbj3-MSnsfokUGysQ" target="_blank" rel="external">hopper</a>,我这里使用的是<code>ida</code>,<code>ida</code>有64位和32位两个版本，这里使用64位</p>
 <p>将编译包拖到ida中，按住<code>control</code>+滚动鼠标可控制窗口大小</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_25_05.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_25_05.gif" alt=""></p>
 <p><code>funcAdd</code>函数</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_25_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_25_04.png" alt=""></p>
 <p>一步一步粗略转换成OC语言</p>
 <pre><code>int var4 = wo;
 int var8 = w1;
@@ -1227,26 +1344,26 @@ void function(int a, int b) {
 int main(int argc, char * argv[]) {
     function(10, 20);
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26-01.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_26-01.png" alt=""></p>
 <h3 id="u5FAA_u73AF"><a href="#u5FAA_u73AF" class="headerlink" title="循环"></a>循环</h3><p><code>do while</code>循环</p>
 <pre><code>int sum = 0;
 int i = 0;
 do {
     sum += i;
 } while (i &lt; 100);
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_02.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_26_02.png" alt=""></p>
 <p><code>while</code>循环</p>
 <pre><code>int sum = 0;
 int i = 0;
 while (i &lt; 100) {
 sum += i;
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_03.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_26_03.png" alt=""></p>
 <p><code>for</code>循环</p>
 <pre><code> for (int i = 0; i &lt; 100; i++) {
     printf(&quot;hello world&quot;);
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_04.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_26_04.png" alt=""></p>
 <p><code>switch</code>循环</p>
 <ul>
 <li>在switch语句的分支比较少的时候（少于4的时候没有意义）没有必要使用此结构，相当于if</li>
@@ -1254,7 +1371,7 @@ sum += i;
 <li>在分支比较多的时候：在编译的时候会生成一个表（跳转表每个地址四个字节）</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span> <span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">switch</span> (a) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"this is one"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"this is two"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"this is three"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"this is else"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">	func(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_26_06.png" alt=""></p>
 <pre><code>void func (int a) {
     switch (a) {
         case 1:
@@ -1281,9 +1398,9 @@ sum += i;
 int main(int argc, char * argv[]) {
     func(6);
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_07.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_26_07.png" alt=""></p>
 <h3 id="u7F16_u8BD1_u5668_u4F18_u5316"><a href="#u7F16_u8BD1_u5668_u4F18_u5316" class="headerlink" title="编译器优化"></a>编译器优化</h3><p>上面看到的这些汇编代码，都是在<code>DEBUG</code>调试状态下的代码，可以发现会有很多冗余代码，寄存器和内存的各种读取等，其实在<code>RELEASE</code>模式下🍎对我们的汇编代码做了一层优化，如果想在<code>DEBUG</code>模式下也做一层优化需要额外设置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_11.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_26_11.png" alt=""></p>
 <p>测试代码</p>
 <pre><code>int main(int argc, char * argv[]) {
     int a = 10;
@@ -1296,30 +1413,30 @@ int main(int argc, char * argv[]) {
     }
 }
 </code></pre><p>优化前</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_09.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_26_09.png" alt=""></p>
 <p>优化后</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_10.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_26_10.png" alt=""></p>
 <h3 id="u5BC4_u5B58_u5668_u4E0E_u591A_u7EBF_u7A0B"><a href="#u5BC4_u5B58_u5668_u4E0E_u591A_u7EBF_u7A0B" class="headerlink" title="寄存器与多线程"></a>寄存器与多线程</h3><p>注意，寄存器的读写其实是线程不安全的，但是，我们的操作系统在切换线程的时候，对当前线程在使用的寄存器进行了一层保护，操作系统内部有一个结构体，记录在使用的寄存器状态，当再次线程切换回来的时候会去获取使用到的寄存器的值。而这一切操作系统已经帮我们搞定了，不需要人为干预</p>
 <h3 id="u6307_u9488_u76F8_u5173"><a href="#u6307_u9488_u76F8_u5173" class="headerlink" title="指针相关"></a>指针相关</h3><blockquote>
 <p>编译器决定了指针不能做乘法和除法。指针加减的结果，其实就是由针指向的数据类型<strong>宽度</strong>决定的，它的运算单位是数据类型的宽度</p>
 </blockquote>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_12.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_13.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_26_12.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_26_13.png" alt=""></p>
 <pre><code>int main(int argc, char * argv[]) {
     int *a;
        int b = 6;
     a = &amp;b;
     }
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_15.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_26_15.png" alt=""></p>
 <pre><code>int main(int argc, char * argv[]) {
     char *a;
     char b = *a;
     return 1;
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_16.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_18.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_26_19.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_26_16.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_26_18.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_26_19.png" alt=""></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -1417,7 +1534,7 @@ int main(int argc, char * argv[]) {
 <li>除：A/B        通过编译器            1111 0111 1111 0000</li>
 </ul>
 <p>我们的代码在终端设备上是这样的过程:</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_01.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_01.jpg" alt=""></p>
 <ul>
 <li><strong>汇编语言</strong>与<strong>机器语言</strong>一一对应，每一条机器指令都有与之对应的汇编指令</li>
 <li><strong>汇编语言</strong>可以通过编译得到<strong>机器语言</strong>，<strong>机器语言</strong>可以通过反汇编得到<strong>汇编语言</strong></li>
@@ -1502,12 +1619,12 @@ int main(int argc, char * argv[]) {
 <li>学习汇编,首先需要了解CPU等硬件结构</li>
 <li>APP/程序的执行过程</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_02.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_02.jpg" alt=""></p>
 <ul>
 <li>硬件相关最为重要是CPU/内存</li>
 <li>在汇编中,大部分指令都是和CPU与内存相关的</li>
 </ul>
-<h3 id="u603B_u7EBF"><a href="#u603B_u7EBF" class="headerlink" title="总线"></a>总线</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_03.jpg" alt=""><br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_04.jpg" alt=""></p>
+<h3 id="u603B_u7EBF"><a href="#u603B_u7EBF" class="headerlink" title="总线"></a>总线</h3><p><img src="http://fishnews.cn/2018_05_15_03.jpg" alt=""><br><img src="http://fishnews.cn/2018_05_15_04.jpg" alt=""></p>
 <ul>
 <li>每一个CPU芯片都有许多管脚，这些管脚和总线相连，CPU通过总线跟外部器件进行交互</li>
 <li>总线：一根根导线的集合</li>
@@ -1518,9 +1635,9 @@ int main(int argc, char * argv[]) {
 </ul>
 </li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_05.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_05.jpg" alt=""></p>
 <p><strong>举个🌰</strong></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_06.png" alt=""></p>
 <ul>
 <li><strong>地址总线</strong><ul>
 <li>它的宽度决定了CPU的<em>寻址能力</em></li>
@@ -1540,10 +1657,10 @@ int main(int argc, char * argv[]) {
 </li>
 </ul>
 <p><strong>算法演练</strong></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_07.png" alt="练习"></p>
-<h3 id="u5185_u5B58"><a href="#u5185_u5B58" class="headerlink" title="内存"></a>内存</h3><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_08.png" alt="各类存储区的逻辑连接"></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_09.png" alt="各类存储器的逻辑连接-物理地址对应图"></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_10.png" alt="各类存储器的物理地址情况"></p>
+<p><img src="http://fishnews.cn/2018_05_15_07.png" alt="练习"></p>
+<h3 id="u5185_u5B58"><a href="#u5185_u5B58" class="headerlink" title="内存"></a>内存</h3><p><img src="http://fishnews.cn/2018_05_15_08.png" alt="各类存储区的逻辑连接"></p>
+<p><img src="http://fishnews.cn/2018_05_15_09.png" alt="各类存储器的逻辑连接-物理地址对应图"></p>
+<p><img src="http://fishnews.cn/2018_05_15_10.png" alt="各类存储器的物理地址情况"></p>
 <ul>
 <li><p>内存地址空间的大小受CPU地址总线宽度的限制。8086的地址总线宽度为20，可以定位2^20 个不同的内存单元（内存地址范围0x00000~0xFFFFF），所以8086的内存空间大小为1MB</p>
 </li>
@@ -1578,21 +1695,21 @@ int main(int argc, char * argv[]) {
 <h3 id="u6570_u636E_u7684_u5BBD_u5EA6"><a href="#u6570_u636E_u7684_u5BBD_u5EA6" class="headerlink" title="数据的宽度"></a>数据的宽度</h3><p>数学上的数字，是没有大小限制的，可以无限的大。但在计算机中，由于受硬件的制约，数据都是有长度限制的（我们称为数据宽度），超过最多宽度的数据会被丢弃</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#import <span class="title">"AppDelegate.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> test() &#123;</span><br><span class="line">    <span class="keyword">int</span> cTemp = <span class="number">0x1FFFFFFFF</span>;</span><br><span class="line">    <span class="keyword">return</span> cTemp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    printf(<span class="string">"%x"</span>,test());</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="built_in">NSStringFromClass</span>([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>拿到内存地址后，可以通过如下方法查看内存地址中的值，也可以直接通过快捷键<code>Commond + Shift + M</code>，在单步执行后(执行汇编语言时可以在控制台使用<code>ni</code>命令单步执行),内存地址中的值可能没有立刻改变，点击下一页再回来就可以看到变化</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_16.gif" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_17.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_16.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_17.png" alt=""></p>
 <h3 id="u8BA1_u7B97_u673A_u4E2D_u5E38_u89C1_u7684_u6570_u636E_u5BBD_u5EA6"><a href="#u8BA1_u7B97_u673A_u4E2D_u5E38_u89C1_u7684_u6570_u636E_u5BBD_u5EA6" class="headerlink" title="计算机中常见的数据宽度"></a>计算机中常见的数据宽度</h3><ul>
 <li>位(Bit): 1个位就是1个二进制位.0或者1</li>
 <li>字节(Byte): 1个字节由8个Bit组成(8位).内存中的最小单元Byte.</li>
 <li>字(Word): 1个字由2个字节组成(16位),这2个字节分别称为高字节和低字节.</li>
 <li>双字(Doubleword): 1个双字由两个字组成(32位)</li>
 </ul>
-<p>那么计算机存储数据它会分为有符号数和无符号数.那么关于这个看图就理解了!<br><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_11.jpg" alt=""></p>
+<p>那么计算机存储数据它会分为有符号数和无符号数.那么关于这个看图就理解了!<br><img src="http://fishnews.cn/2018_05_15_11.jpg" alt=""></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">无符号数,直接换算!</span><br><span class="line">有符号数:正数:  <span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span>    <span class="number">5</span>    <span class="number">6</span>    <span class="number">7</span> 负数:  F    E    D    B    C    A    <span class="number">9</span>    <span class="number">8</span>      -<span class="number">1</span>   -<span class="number">2</span>   -<span class="number">3</span>   -<span class="number">4</span>   -<span class="number">5</span>   -<span class="number">6</span>   -<span class="number">7</span>   -<span class="number">8</span></span><br></pre></td></tr></table></figure>
 <h3 id="u5BC4_u5B58_u5668__28_u5747_u6307_u7684_u662Farm64_u67B6_u6784_u4E0B_29"><a href="#u5BC4_u5B58_u5668__28_u5747_u6307_u7684_u662Farm64_u67B6_u6784_u4E0B_29" class="headerlink" title="寄存器 (均指的是arm64架构下)"></a>寄存器 (均指的是arm64架构下)</h3><p>CPU除了有控制器、运算器还有寄存器。其中寄存器的作用就是进行数据的临时存储。</p>
 <p>CPU的运算速度是非常快的，为了性能CPU在内部开辟一小块临时存储区域，并在进行运算时先将数据从内存复制到这一小块临时存储区域中，运算时就在这一小快临时存储区域内进行。我们称这一小块临时存储区域为寄存器。</p>
 <p>对于arm64系的CPU来说， 如果寄存器以x开头则表明的是一个64位的寄存器，如果以w开头则表明是一个32位的寄存器，在系统中没有提供16位和8位的寄存器供访问和使用。其中32位的寄存器是64位寄存器的低32位，并不是独立存在的。</p>
 <p><strong>内部部件之间由总线连接</strong></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_12.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_12.jpg" alt=""></p>
 <ul>
 <li>对程序员来说，CPU中最主要部件是寄存器，可以通过改变寄存器的内容来实现对CPU的控制</li>
 <li><p>不同的CPU，寄存器的个数、结构是不相同的</p>
@@ -1608,7 +1725,7 @@ int main(int argc, char * argv[]) {
 <li><p>假设内存中有块红色内存空间的值是3，现在想把它的值加1，并将结果存储到蓝色内存空间</p>
 </li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_14.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_14.jpg" alt=""></p>
 <ul>
 <li>CPU首先会将红色内存空间的值放到X0寄存器中：mov X0,红色内存空间</li>
 <li>然后让X0寄存器与1相加：add X0,1</li>
@@ -1617,9 +1734,9 @@ int main(int argc, char * argv[]) {
 <ul>
 <li>可以在控制台输入<code>register read</code>命令查看所有寄存器</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_24.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_18.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_19.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_24.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_18.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_19.gif" alt=""></p>
 <ul>
 <li><p>x0~ x30：通用寄存器，通常用来存放一般性的数据，xo~x7用于子程序调用时的参数传递，x0也用于返回值传递</p>
 </li>
@@ -1671,12 +1788,12 @@ int main(int argc, char * argv[]) {
 <li><p>上面说过，汇编语言单步执行指令是<code>ni</code>,PC总是指向将要执行的指令，如果修改PC的值也就可以改变执行顺序，使用命令是<code>register write  pc 内存地址</code></p>
 </li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_20.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_21.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_20.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_21.gif" alt=""></p>
 <h3 id="u6808"><a href="#u6808" class="headerlink" title="栈"></a>栈</h3><ul>
 <li>栈：是一种具有特殊的访问方式的存储空间（后进先出， Last In Out Firt，LIFO）</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_25.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_25.jpg" alt=""></p>
 <h3 id="SP_u548CFP_28x29_29_u5BC4_u5B58_u5668"><a href="#SP_u548CFP_28x29_29_u5BC4_u5B58_u5668" class="headerlink" title="SP和FP(x29)寄存器"></a>SP和FP(x29)寄存器</h3><ul>
 <li>sp寄存器在任意时刻会保存我们栈顶的地址.</li>
 <li><p>fp寄存器也称为x29寄存器属于通用寄存器,但是在某些时刻我们利用它保存栈底的地址</p>
@@ -1699,9 +1816,9 @@ int main(int argc, char * argv[]) {
 stp    x0, x1, [sp, #0x10] ;sp往上加16个字节的地址,存放x0 和 x1
 
 ldp    x1, x0, [sp, #0x10] ;将sp偏移16个字节地址的值取出来,放入x1 和 x0
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_26.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_27.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_28.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_15_26.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_27.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_28.png" alt=""></p>
 <blockquote>
 <p>注意：断在bl指令出，使用<code>s</code>命令或者点击<code>step into</code>会直接跳到已经开辟好的栈顶地址处，需要按住<code>control</code>的同时再点击<code>step into</code>，这样才会跳到未开辟前的栈顶地址处</p>
 </blockquote>
@@ -1722,8 +1839,8 @@ ldp    x1, x0, [sp, #0x10] ;将sp偏移16个字节地址的值取出来,放入x1
 </ul>
 </li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_23.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_15_22.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_23.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_15_22.gif" alt=""></p>
 <ul>
 <li><p>ret</p>
 <ul>
@@ -1745,8 +1862,8 @@ ldp    x1, x0, [sp, #0x10] ;将sp偏移16个字节地址的值取出来,放入x1
 int main(int argc, char * argv[]) { 
     sum(16, 32);
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_22_01.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_22_02.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_22_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_22_02.png" alt=""></p>
 <pre><code>int sum(int a,int b,int c,int d, int e, int f, int g,int h,int i,int j) {
     return a + b + c + d + e + f + g + h + i + j;
 }
@@ -1754,8 +1871,8 @@ int main(int argc, char * argv[]) {
 int main(int argc, char * argv[]) {
     sum(16, 16 * 2, 16 * 3, 16 * 4, 16 * 5, 16 * 6, 16 * 7, 16 * 8, 16 * 9,16 * 10);
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_22_03.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_22_04.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_22_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_22_04.png" alt=""></p>
 <h3 id="ARM64_u4E0B_u90E8_u5206_u5E38_u7528_u6C47_u7F16_u6307_u4EE4"><a href="#ARM64_u4E0B_u90E8_u5206_u5E38_u7528_u6C47_u7F16_u6307_u4EE4" class="headerlink" title="ARM64下部分常用汇编指令"></a>ARM64下部分常用汇编指令</h3><blockquote>
 <p>MOV X1，X0 ;将寄存器X0的值传送到寄存器X1</p>
 <p>ADD X0，X1，X2 ;寄存器X1和X2的值相加后传送到X0</p>
@@ -1782,7 +1899,7 @@ int main(int argc, char * argv[]) {
 <li>CPSR的低8位（包括I、F、T和M[4：0]）称为控制位，程序无法修改,除非CPU运行于特权模式下,程序才能修改控制位!</li>
 <li>N、Z、C、V均为条件码标志位。它们的内容可被算术或逻辑运算的结果所改变，并且可以决定某条指令是否被执行!意义重大!</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_23_01.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_23_01.jpg" alt=""></p>
 <h4 id="N_uFF08Negative_uFF09_u6807_u5FD7"><a href="#N_uFF08Negative_uFF09_u6807_u5FD7" class="headerlink" title="N（Negative）标志"></a>N（Negative）标志</h4><blockquote>
 <p>CPSR的第31位是 N，符号标志位。它记录相关指令执行后,其结果是否为负.如果为负 N = 1,如果是非负数 N = 0.</p>
 </blockquote>
@@ -1797,7 +1914,7 @@ int main(int argc, char * argv[]) {
 <p>减法运算（包括CMP）：当运算时产生了借位时（无符号数溢出），C=0，否则C=1</p>
 </blockquote>
 <p>&emsp;&emsp;&ensp;对于位数为N的无符号数来说，其对应的二进制信息的最高位，即第N - 1位，就是它的最高有效位，而假想存在的第N位，就是相对于最高有效位的更高位。如下图所示：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_23_02.jpg" alt=""></p>
+<p><img src="http://fishnews.cn/2018_05_23_02.jpg" alt=""></p>
 <p><strong>进位</strong></p>
 <p>我们知道，当两个数据相加的时候，有可能产生从最高有效位向更高位的进位。比如两个32位数据：0xaaaaaaaa + 0xaaaaaaaa,将产生进位。由于这个进位值在32位中无法保存，我们就只是简单的说这个进位值丢失了。其实CPU在运算的时候，并不丢弃这个进位值，而是记录在一个特殊的寄存器的某一位上。ARM下就用C位来记录这个进位值。比如，下面的指令</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mov w0,<span class="preprocessor">#<span class="number">0xaaaaaaaa</span>；<span class="number">0xa</span> 的二进制是 <span class="number">1010</span></span></span><br><span class="line">adds w0,w0,w0； 执行后 相当于 <span class="number">1010</span> &lt;&lt; <span class="number">1</span> 进位<span class="number">1</span>（无符号溢出） 所以C标记 为 <span class="number">1</span></span><br><span class="line">adds w0,w0,w0； 执行后 相当于 <span class="number">0101</span> &lt;&lt; <span class="number">1</span> 进位<span class="number">0</span>（无符号没溢出） 所以C标记 为 <span class="number">0</span></span><br><span class="line">adds w0,w0,w0； 重复上面操作</span><br><span class="line">adds w0,w0,w0</span><br></pre></td></tr></table></figure>
@@ -1845,7 +1962,7 @@ int main(int argc, char * argv[]) {
     funA();
     funB();
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_05_23_03.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_05_23_03.png" alt=""></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -1918,10 +2035,10 @@ int main(int argc, char * argv[]) {
 
 <p>Cycript 是一个能够理解Objective-C语法的javascript解释器，让开发者在命令行下和应用交互，在运行时查看和修改应用，一般用于动态调试应用</p>
 <p>1.到官网下载并拖到具体位置即可</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_16.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_17.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_16.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_17.png" alt=""></p>
 <p>2.打开.bash_profile做相应配置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_19.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_19.png" alt=""></p>
 <p>如果使用的是iTerm2和on my zsh组合，又没有设置兼容bash,则需要在.zshrc文件下配置</p>
 <p>3.在终端或iTerm2输入cycript验证是否配置成功</p>
 <p>使用commond+D退出，我在公司的电脑上验证通过，但是在自己的电脑上却报错</p>
@@ -1980,225 +2097,6 @@ int main(int argc, char * argv[]) {
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby，Cycript/">Ruby，Cycript</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-配置Cycript环境前常用工具的安装配置" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/04/22/配置Cycript环境前常用工具的安装配置/" class="article-date">
-  	<time datetime="2018-04-21T16:00:00.000Z" itemprop="datePublished">2018-04-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/22/配置Cycript环境前常用工具的安装配置/">配置Cycript环境前常用工具的安装配置</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=508481849&auto=0&height=66"></iframe>
-
-
-<p>首先，这些安装工具并非必须的，仅为提升效率使用,以简洁为主</p>
-<p><a href="https://pan.baidu.com/s/1zsMHmLO6-kp0Z4Jh7wI7kw" target="_blank" rel="external">Alfred</a>, 密码:fnsh</p>
-<p><a href="https://pan.baidu.com/s/1cxgFdn7RNXC2IwnEitk9RA" target="_blank" rel="external">pp_mac</a>, 密码:nbva</p>
-<p><a href="https://pan.baidu.com/s/1i1evnk-mKgNFzXg--Yriqg" target="_blank" rel="external">go2Shell</a>, 密码:v31a</p>
-<h5 id="Alfred_u5B89_u88C5"><a href="#Alfred_u5B89_u88C5" class="headerlink" title="Alfred安装"></a>Alfred安装</h5><p>打开安装包，将Alfred 3拖入程序，打开Alfred 3 KG，点击PATCH弹窗对话框，选择Alfred 3，如果弹出需安装Xcode_select,需要安装，然后点击save,会提示saved successfully,即破解版安装成功</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_22_01.png" alt=""></p>
-<p>然而，安装成功后打开会提示文件损坏，是因为这并非使用的App Store下载的，需打开系统偏好设设置-&gt;安全性与隐私-&gt;选择任何来源即可。如果没有任何来源选项，需设置<code>sudo spctl --master-disable</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_12.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_13.png" alt=""></p>
-<p>默认使用option+space会唤起Alfred，打开偏好设置，点击Web Search, 可以配置常用app的唤起方式，默认都是一些国外的网站。如果Alfred没有购买或者破解，这个设置是无效的。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_22_02.png" alt=""></p>
-<p>可以点击Add Custom Search自己添加一些自定义的搜索设置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_22_03.png" alt=""></p>
-<p>只需要在对应的网站上搜索，记下网址，并把具体的搜索内容改为{query}就可以找到我们自定义搜索设置中所需要的Search URL信息了。可以加一些常用的网站设置</p>
-<ul>
-<li><p>百度：<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;wd={query}" target="_blank" rel="external">https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;wd={query}</a></p>
-</li>
-<li><p>简书：<a href="http://www.jianshu.com/search?utf8=%E2%9C%93&amp;q={query}" target="_blank" rel="external">http://www.jianshu.com/search?utf8=%E2%9C%93&amp;q={query}</a></p>
-</li>
-<li><p>微信文章：<a href="http://weixin.sogou.com/weixin?type=2&amp;query={query}" target="_blank" rel="external">http://weixin.sogou.com/weixin?type=2&amp;query={query}</a></p>
-</li>
-<li><p>stackoverflow：<a href="http://www.stackoverflow.com/search?q={query}" target="_blank" rel="external">http://www.stackoverflow.com/search?q={query}</a></p>
-</li>
-<li><p>github：<a href="https://github.com/search?utf8=%E2%9C%93&amp;q={query}" target="_blank" rel="external">https://github.com/search?utf8=%E2%9C%93&amp;q={query}</a></p>
-</li>
-</ul>
-<p>另外，Alfred如果需要支持iTerm2需要做额外的设置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_22_04.png" alt=""></p>
-<p>添加的脚本内容是</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">on</span> alfred_script(q)  </span><br><span class="line">    <span class="keyword">if</span> application <span class="string">"iTerm2"</span> is running or application <span class="string">"iTerm"</span> is running then  </span><br><span class="line">        <span class="keyword">run</span> script "  </span><br><span class="line">            <span class="keyword">on</span> <span class="keyword">run</span> &#123;q&#125;  </span><br><span class="line">                tell application \<span class="string">":Applications:iTerm.app\"</span>  </span><br><span class="line">                    activate  </span><br><span class="line">                    try  </span><br><span class="line">                        select first <span class="keyword">window</span>  </span><br><span class="line">                        <span class="keyword">set</span> onlywindow to false  </span><br><span class="line">                    <span class="keyword">on</span> <span class="keyword">error</span>  </span><br><span class="line">                        create <span class="keyword">window</span> with default profile  </span><br><span class="line">                        select first <span class="keyword">window</span>  </span><br><span class="line">                        <span class="keyword">set</span> onlywindow to true  </span><br><span class="line">                    end try  </span><br><span class="line">                    tell current session of the first <span class="keyword">window</span>  </span><br><span class="line">                        <span class="keyword">if</span> onlywindow is false then  </span><br><span class="line">                            tell <span class="keyword">split</span> vertically with default profile  </span><br><span class="line">                                write text q  </span><br><span class="line">                            end tell  </span><br><span class="line">                        end <span class="keyword">if</span>  </span><br><span class="line">                    end tell  </span><br><span class="line">                end tell  </span><br><span class="line">            end <span class="keyword">run</span>  </span><br><span class="line">        " with parameters &#123;q&#125;  </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">        <span class="keyword">run</span> script "  </span><br><span class="line">            <span class="keyword">on</span> <span class="keyword">run</span> &#123;q&#125;  </span><br><span class="line">                tell application \<span class="string">":Applications:iTerm.app\"</span>  </span><br><span class="line">                    activate  </span><br><span class="line">                    try  </span><br><span class="line">                        select first <span class="keyword">window</span>  </span><br><span class="line">                    <span class="keyword">on</span> <span class="keyword">error</span>  </span><br><span class="line">                        create <span class="keyword">window</span> with default profile  </span><br><span class="line">                        select first <span class="keyword">window</span>  </span><br><span class="line">                    end try  </span><br><span class="line">                    tell the first <span class="keyword">window</span>  </span><br><span class="line">                        tell current session to write text q  </span><br><span class="line">                    end tell  </span><br><span class="line">                end tell  </span><br><span class="line">            end <span class="keyword">run</span>  </span><br><span class="line">        " with parameters &#123;q&#125;  </span><br><span class="line">    end <span class="keyword">if</span>  </span><br><span class="line">end alfred_script</span><br></pre></td></tr></table></figure>
-<h5 id="iTerm2_u5B89_u88C5"><a href="#iTerm2_u5B89_u88C5" class="headerlink" title="iTerm2安装"></a>iTerm2安装</h5><p><a href="https://www.iterm2.com/downloads.html" target="_blank" rel="external">下载地址</a></p>
-<p>下载的是压缩文件，解压后是执行程序文件，你可以直接双击，或者直接将它拖到 Applications 目录下</p>
-<p>者你可以直接使用 Homebrew 进行安装：</p>
-<pre><code>brew cask install iterm2
-</code></pre><p>iTerm2 最常用的主题是 <code>Solarized Dark theme</code>，<a href="http://ethanschoonover.com/solarized" target="_blank" rel="external">下载地址</a></p>
-<p>下载的是压缩文件，解压一下，然后打开 iTerm2偏好设置界面，然后<code>Profiles -&gt; Colors -&gt; Color Presets -&gt; Import</code>，选择刚才解压的<code>solarized-&gt;iterm2-colors-solarized-&gt;Solarized Dark.itermcolors</code>文件，导入成功，最后选择<code>Solarized Dark</code> 主题，就可以了</p>
-<h5 id="u914D_u7F6E_Oh_My_Zsh"><a href="#u914D_u7F6E_Oh_My_Zsh" class="headerlink" title="配置 Oh My Zsh"></a>配置 Oh My Zsh</h5><p>Oh My Zsh 是对主题的进一步扩展,一键安装:</p>
-<pre><code>sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
-</code></pre><p>安装好之后，需要把 Zsh 设置为当前用户的默认 Shell,这样新建标签的时候才会使用 Zsh，Mac默认使用的是bash</p>
-<p>chsh -s /bin/zsh</p>
-<p>注意，bash默认加载的文件是.bash_profile,而zsh默认.zshrc,相关配置也是在这两个文件中</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_05.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_06.png" alt=""></p>
-<p>这两个都是隐藏文件，Mac上显示隐藏文件的快捷键是shift+commond+. ,不显示隐藏文件再敲一次快捷键即可</p>
-<p>然后编辑<code>vim ~/.zshrc</code>,将主题设置为<code>ZSH_THEME=&quot;agnoster&quot;</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_14.png" alt=""></p>
-<p><code>agnoster</code>是比较常用的 zsh 主题之一，你可以挑选你喜欢的主题，<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="external">zsh 主题列表下载</a></p>
-<p>使用上面的主题，需要 <code>Meslo</code> 字体支持，要不然会出现乱码的情况，<a href="/Meslo LG M Regular for Powerline.ttf">字体下载地址</a></p>
-<p>下载好之后，直接在 Mac OS 中安装即可。</p>
-<p>然后打开 iTerm2偏好设置，然后Profiles -&gt; Text -&gt; Font -&gt; Chanage Font，选择 Meslo LG M Regular for Powerline 字体</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_09.png" alt=""></p>
-<p>选择什么样的字体和大小可以随意设置</p>
-<p>下面设置声明高亮</p>
-<p>使用Homebrew安装</p>
-<pre><code>brew install zsh-syntax-highlighting
-</code></pre><p>安装成功之后，编辑<code>vim ~/.zshrc</code>文件，在最后一行增加下面配置：</p>
-<pre><code>source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-</code></pre><p>再之后可以添加自动建议填充功能，这个功能比较实用，可以快读的敲出命令</p>
-<p>配置步骤，先克隆<code>zsh-autosuggestions</code>项目，到指定目录：</p>
-<pre><code>git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-</code></pre><p>然后编辑<code>vim ~/.zshrc</code>文件，找到plugins配置，增加<code>zsh-autosuggestions</code>插件。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_15.png" alt=""></p>
-<p>iTerm还可以额外设置很多很多功能，可自行百度</p>
-<p>下面列举一些iTerm2的快捷命令</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>command + t</td>
-<td>新建标签</td>
-</tr>
-<tr>
-<td>command + w</td>
-<td>关闭标签</td>
-</tr>
-<tr>
-<td>command + 数字 command + 左右方向键</td>
-<td>切换标签</td>
-</tr>
-<tr>
-<td>command + enter</td>
-<td>切换全屏</td>
-</tr>
-<tr>
-<td>command + f</td>
-<td>查找</td>
-</tr>
-<tr>
-<td>command + d</td>
-<td>垂直分屏</td>
-</tr>
-<tr>
-<td>command + shift + d</td>
-<td>水平分屏</td>
-</tr>
-<tr>
-<td>command + option + 方向键 command + [ 或 command + ]</td>
-<td>切换屏幕</td>
-</tr>
-<tr>
-<td>command + ;</td>
-<td>查看历史命令</td>
-</tr>
-<tr>
-<td>command + shift + h</td>
-<td>查看剪贴板历史</td>
-</tr>
-<tr>
-<td>ctrl + u</td>
-<td>清除当前行</td>
-</tr>
-<tr>
-<td>ctrl + l</td>
-<td>清屏</td>
-</tr>
-<tr>
-<td>ctrl + a</td>
-<td>到行首</td>
-</tr>
-<tr>
-<td>ctrl + e</td>
-<td>到行尾</td>
-</tr>
-<tr>
-<td>ctrl + f/b</td>
-<td>前进后退</td>
-</tr>
-<tr>
-<td>ctrl + p</td>
-<td>上一条命令</td>
-</tr>
-<tr>
-<td>ctrl + r</td>
-<td>搜索命令历史</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>注意，如果使用zsh想完全兼容bash，可以在.zshrc文件最后加上一句<code>source ~/.bash_profile</code>即可</p>
-</blockquote>
-<h5 id="goshell_u5B89_u88C5"><a href="#goshell_u5B89_u88C5" class="headerlink" title="goshell安装"></a>goshell安装</h5><p>打开安装包，要按住commond再拖动go2shell到finder中去，Mac10.10之后需要按住commond键</p>
-<p>安装完打开选择iTerm2</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_23_11.png" alt=""></p>
-<p>安装goshell可能会遇到一些问题，比如文件夹右上角显示问好之类的，这时候要点击uninstall然后再重新install</p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Alfred，goshell，iterm2，Oh-My-Zsh，pp助手/">Alfred，goshell，iterm2，Oh My Zsh，pp助手</a></li></ul>
 	</div>
 
       

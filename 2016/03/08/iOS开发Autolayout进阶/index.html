@@ -14,24 +14,24 @@
 <meta property="og:site_name" content="含笑饮砒霜">
 <meta property="og:description" content="一直想写又不想写。因为近来网上关于Autolayout的文章不在少数，重复相同的内容没什么意思。但是只写不同的地方感觉我也写不出多少，比较心塞。既然坑都占了，那就先意思一下，接下来发现Autolayout其他特性或比较高深的用法会再继续补充。
 自iOS6苹果就推出了Autolayout,但那时候很多人都在用AutoresizingMasks,国内对新鲜出土的技术并没有那么热衷，最主要的是改变终归是">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-01.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/4.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/5.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/6.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-03.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-04.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-05.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-07.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-08.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-09.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-10.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-11.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-12.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-13.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-15.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-16.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-17.png?attname=">
-<meta property="og:updated_time" content="2016-05-08T14:05:00.000Z">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-01.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/4.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/5.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/6.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-03.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-04.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-05.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-07.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-08.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-09.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-10.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-11.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-12.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-13.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-15.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-16.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-08-17.png?attname=">
+<meta property="og:updated_time" content="2018-10-13T09:32:43.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发Autolayout进阶">
 <meta name="twitter:description" content="一直想写又不想写。因为近来网上关于Autolayout的文章不在少数，重复相同的内容没什么意思。但是只写不同的地方感觉我也写不出多少，比较心塞。既然坑都占了，那就先意思一下，接下来发现Autolayout其他特性或比较高深的用法会再继续补充。
@@ -288,7 +288,7 @@
 <p> 高度约束（添加到yellowView身上）</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSLayoutConstraint *heightConstraint = [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeHeight <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>nil <span class="string">attribute:</span>NSLayoutAttributeNotAnAttribute <span class="string">multiplier:</span><span class="number">0.0</span> <span class="string">constant:</span><span class="number">50</span>];</span><br><span class="line">[yellowView <span class="string">addConstraint:</span>heightConstraint];</span><br></pre></td></tr></table></figure>
 <p>间距约束（添加到self.view身上）<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CGFloat margin = <span class="number">20</span>;</span><br><span class="line">    [self.view <span class="string">addConstraints:</span>@[</span><br><span class="line">                                [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeLeft <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>self.view <span class="string">attribute:</span>NSLayoutAttributeLeft <span class="string">multiplier:</span><span class="number">1.0</span> <span class="string">constant:</span>margin],</span><br><span class="line"> </span><br><span class="line">                                [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeRight <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>self.view <span class="string">attribute:</span>NSLayoutAttributeRight <span class="string">multiplier:</span><span class="number">1.0</span> <span class="string">constant:</span> - margin],</span><br><span class="line"> </span><br><span class="line">                                [NSLayoutConstraint <span class="string">constraintWithItem:</span>yellowView <span class="string">attribute:</span>NSLayoutAttributeBottom <span class="string">relatedBy:</span>NSLayoutRelationEqual <span class="string">toItem:</span>self.view <span class="string">attribute:</span>NSLayoutAttributeBottom <span class="string">multiplier:</span><span class="number">1.0</span> <span class="string">constant:</span> - margin]</span><br><span class="line">                                ]];</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-01.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-01.png?attname=" alt=""></p>
 <p>用到了一个基本公式<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj1.property1 = (obj2.property2 * multiplier)+ <span class="built_in">constant</span> <span class="built_in">value</span></span><br></pre></td></tr></table></figure></p>
 <p>multiplier和constant 是向量系数和偏移量,一般还要设置translateAutoresizingMaskIntoConstraints为NO,默认是YES，使得不和系统的自动伸缩约束冲突</p>
 <h4 id="u53EF_u89C6_u5316_u683C_u5F0F_u8BED_u8A00_u7EA6_u675F"><a href="#u53EF_u89C6_u5316_u683C_u5F0F_u8BED_u8A00_u7EA6_u675F" class="headerlink" title="可视化格式语言约束"></a>可视化格式语言约束</h4><p>可视化格式语言，即Visual Format Language(VFL),是为了简化Autolayout而推出的抽象语言。</p>
@@ -329,33 +329,33 @@
 <p>添加约束其实比较降低效率，随着布局的繁杂效率下降得更为明显，只在在硬件提升的同时一般我们体会的并不明显。iOS9之后新加了UIStackView,一个管理视图的容器，这样只需要对外面的这个容器添加约束，里面的只需要设置一些属性，虽然归根结底还是设置约束。虽然UIStackView是iOS9之后，但是网上已经有支持iOS9以下的框架，叫FDStackView，下载地址:<br><a href="https://github.com/ChinaFishNews/FDStackView.git" target="_blank" rel="external">https://github.com/ChinaFishNews/FDStackView.git</a></p>
 <p>下载后导入项目即可，无需做其他配置，即可在iOS9以下使用StackView。</p>
 <p>先上个图大家感受一下Autolayout</p>
-<p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/4.png?attname=" alt="">  </p>
-<p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/5.png?attname=" alt="">  </p>
-<p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/6.png?attname=" alt=""></p>
+<p> <img src="http://fishnews.cn/4.png?attname=" alt="">  </p>
+<p> <img src="http://fishnews.cn/5.png?attname=" alt="">  </p>
+<p> <img src="http://fishnews.cn/6.png?attname=" alt=""></p>
 <p>默认大家都已经可以基本使用Autolayout.</p>
 <p>一般在右下角可以方便的添加约束，也有人通过菜单栏中Editor设置，其实也可以按住control键，点击控件拖拽</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-03.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-03.png?attname=" alt=""></p>
 <p>添加约束后有时想知道在不同设备上的布局，这时候可以选中控制器，改变Size的大小，也可以这样</p>
 <p>按住option键点击Main.Storyboard</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-04.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-04.png?attname=" alt=""></p>
 <p>然后可以添加设备</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-05.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-05.png?attname=" alt=""></p>
 <p>还有时候想观察视图的层次机构，可以在运行时点击Debug View Hierarchy</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-07.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-07.png?attname=" alt=""></p>
 <p>其实还可以使用工具Reveal,之前的博文中有讲到。</p>
 <p>在添加约束的时候，左侧一般是这样的</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-08.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-08.png?attname=" alt=""></p>
 <p>为什么有的约束在这个控件下，有的约束在其他控件下呢？  是因为只有设置当前控件宽高的时候约束才会出现在当前控件下，设置和其他控件相对位置、距离的时候，会找到他们最近的父控件，在他们最近的父控件下显示约束。</p>
 <p>使用Autolayout的时候，有个属性IntrinsicContentSize，UILabel,UIButton,UIImageView拥有这个属性，可以自己根据内容调整大小，不用设置宽和高。文字有多长就显示多长，图片有多大，就显示多大，对于哪些View有IntrinsicContentSize，苹果给了一张表:</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-09.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-09.png?attname=" alt=""></p>
 <p>这张表显示，UIView和NSView是没有IntrinsicContentSize的。Sliders只能定义width。Sliders的height拥有IntrinsicContentSize，Labels, buttons, switches,and text fields完全支持，Text viewsand image views，在有内容的时候支持，没有内容的时候不支持。对于没有这个属性的，我们也希望他拥有默认宽高的话该怎么办呢？我们可以重写IntrinsicContentSize方法,这样就可以拥有默认的宽高<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (CGSize)intrinsicContentSize</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> CGSizeMake(<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>对于IntrinsicContentSize，Autolayout又把他分成了2个部分：ContentHugging和CompressionResistance。我们点击控件的时候在右侧会发现</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-10.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-10.png?attname=" alt=""></p>
 <p>ContentHugging是内容凝聚力，优先级是250，表示View的宽度和高度紧靠内容，不让其扩展的力量</p>
 <p>CompressionResistance是指压缩阻力，优先级是750，表示当有力量要对其进行压缩的时候，其阻力的大小</p>
 <p>对于同一个View，ContentHugging和CompressionResistance不会同时起作用</p>
 <p>而我们添加约束的时候是这样的,优先级是1000</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-11.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-11.png?attname=" alt=""></p>
 <p>当一个label有文字的时候，label会存在一个内容的Size。<br>如果有外力让其size扩张，ContentHugging会起作用，外力大于ContentHugging的力量，label的size由外力决定，反之，label的Size由内容决定。<br>如果有外力让其size压缩，CompressionResistance会起作用，外力大于CompressionResistance的力量，label的size由外力决定，反之，label的Size由内容决定。</p>
 <p>也就是说如果我们给label加了一个宽度约束，line设为0，我们在给line设置内容的时候，一旦内容size大于其原有大小的时候label的高度就会增加，而当我们只给label添加一个宽度的时候，一旦我们设置的内容size大于其原有宽度的时候label的宽度就会增加。而当我们同时设置宽度和高度约束的时候，无论我们怎么设置内容，其就会被固定在我们设置的这个size里，因为添加约束的优先级默认是1000，优先级最大，默认会执行这个。</p>
 <p>constraint的优先级(Priorities),优先级越高，力量越大，越被优先执行。系统的优先级由1~1000的数字表示，值越大，优先级越高。NSLayoutConstraint中一共定义了4种比较常用的优先级<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">float</span> <span class="built_in">UILayoutPriority</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityRequired</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityDefaultHigh</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">750</span>; </span><br><span class="line"> </span><br><span class="line"> <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityDefaultLow</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">250</span>; </span><br><span class="line"> </span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">UILayoutPriority</span> <span class="built_in">UILayoutPriorityFittingSizeLevel</span> <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0) = <span class="number">50</span>;</span><br></pre></td></tr></table></figure></p>
@@ -368,21 +368,21 @@
 <p>知道了各个属性的默认优先级之后，就可以解释为什么一般情况我们给Lable设置Size约束之后，Label由我们设置的Size决定，而不是由其内容决定。因为我们没有特意设置优先级，用的都是默认优先级。Size约束的优先级比CompressionResistance和ContentHugging的优先级高。如果我们想让Label由内容决定，我们可以不设置Size约束或者调低自己Size约束的优先级。</p>
 <p>上面参考了网上的一篇文章，讲的很赞，并且给了一个案例。</p>
 <p>假设有2个Label，并列放着，他们都是使用IntrinsicContentSize自动根据文字适应宽度。效果如图所示：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-12.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-12.png?attname=" alt=""></p>
 <p>那么我们设置一个优先级为500宽度为100的约束(100小于Label2的宽度，大于Label1的宽度)</p>
 <p>结果是2个Label都变成100的宽度，还是都保持原来的宽度不变？还是一个变成100，一个保持原来的宽度？我们Run一下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-13.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-13.png?attname=" alt=""></p>
 <p>Label1变成了100，Label2还是原来的宽度，为什么呢？</p>
 <blockquote>
 <p> Label1的IntrinsicContentSize宽度比100小，所以当添加一个宽度为100的约束时，ContentHugging在起作用。ContentHugging的优先级为250。宽度为100的约束优先级为500大于ContentHugging。所以宽度为100.</p>
 <p>  <br>Label2的IntrinsicContentSize宽度比100大。所以当添加一个宽度为100的约束时，CompressionResistance在起作用，CompressionResistance的优先级为750。宽度为100的约束优先级为500小于CompressionResistance。所以宽度还是IntrinsicContentSize的宽度</p>
 </blockquote>
 <p>正常情况下我们在设置Label的时候，给它加个宽度约束，运行是这样的</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-15.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-15.png?attname=" alt=""></p>
 <p>款读设置的是100，高度没有设置，内容过多的时候回自动自适应，不用使用代码计算size。但是我们设置宽度是100，但是内容太少的时候右边会有空白，这时候怎么办呢?我们可以将宽度设为less than or equal 100,这样在内容少的时候就是这样的</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-16.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-16.png?attname=" alt=""></p>
 <p>这样就解决了内容少而右边有空白的问题。有时候可能没有内容，但是我们又希望它占位，这时候该怎么办呢？我们可以这样设置，即便在没有内容的时候依然在占位</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-08-17.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-08-17.png?attname=" alt=""></p>
 <p>使用的过程中被还会有一些其他的问题</p>
 <blockquote>
 <ul>

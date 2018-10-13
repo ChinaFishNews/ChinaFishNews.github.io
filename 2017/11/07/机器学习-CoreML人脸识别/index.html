@@ -30,13 +30,13 @@
 识别面部轮廓
 
 123456fun">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_03.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_04.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_05.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_06.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_07.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_08.png">
-<meta property="og:updated_time" content="2017-11-07T14:16:50.000Z">
+<meta property="og:image" content="http://fishnews.cn/2017_11_07_03.png">
+<meta property="og:image" content="http://fishnews.cn/2017_11_07_04.png">
+<meta property="og:image" content="http://fishnews.cn/2017_11_07_05.png">
+<meta property="og:image" content="http://fishnews.cn/2017_11_07_06.png">
+<meta property="og:image" content="http://fishnews.cn/2017_11_07_07.png">
+<meta property="og:image" content="http://fishnews.cn/2017_11_07_08.png">
+<meta property="og:updated_time" content="2018-10-13T09:30:04.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习-CoreML人脸识别">
 <meta name="twitter:description" content="使用Vision框架进行人脸识别，不仅可以识别出人脸的面部轮廓，还可以识别出人脸的特征点，比如眼睛、鼻子、嘴巴等。进行人脸请求的类是VNDetectFaceRectanglesRequest，人脸特征请求的类是VNDetectFaceRectanglesRequest,请求结果的信息类是VNFaceObservation。下面直接上代码。
@@ -301,8 +301,8 @@
 <ol>
 <li>搭建基本UI</li>
 </ol>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_03.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_04.png" alt=""></p>
 <ol>
 <li>识别面部轮廓</li>
 </ol>
@@ -312,9 +312,9 @@
 <ul>
 <li>相当于在人脸上画了一个轮廓视图添加上去。boundingBox是CGRect类型，但是boundingBox返回的是x,y,w,h的比例(value:0~1)，需要进行转换。原始坐标系的原点是左上角，而这里是左下角，并且y轴的方向和原始坐标系相反。</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_05.png" alt=""></p>
 <p>3.面部轮廓展示</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_06.png" alt=""></p>
 <p>4.识别面部特征<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">processImage</span><span class="params">(image:UIImage)</span></span> &#123;</span><br><span class="line">       <span class="keyword">self</span>.resultLabel.text = <span class="string">"processing..."</span></span><br><span class="line">       <span class="keyword">let</span> handler = <span class="type">VNImageRequestHandler</span>.<span class="keyword">init</span>(cgImage: image.cgImage!)</span><br><span class="line">       <span class="keyword">let</span> request = <span class="type">VNDetectFaceLandmarksRequest</span>.<span class="keyword">init</span>(completionHandler: handleFaceDetect)</span><br><span class="line">       <span class="keyword">try</span>? handler.perform([request])</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">handleFaceDetect</span><span class="params">(request:VNRequest,error:Error?)</span></span> &#123;</span><br><span class="line">       <span class="keyword">guard</span> <span class="keyword">let</span> obversations = request.results <span class="keyword">as</span>? [<span class="type">VNFaceObservation</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">fatalError</span>(<span class="string">"no face"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">self</span>.resultLabel.text = <span class="string">"<span class="subst">\(obversations.<span class="built_in">count</span>)</span> face"</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> landmarkRegions : [<span class="type">VNFaceLandmarkRegion2D</span>] = []</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">for</span> faceObversion <span class="keyword">in</span> obversations &#123;</span><br><span class="line">           landmarkRegions += <span class="keyword">self</span>.showFaceFeature(faceObversion: faceObversion, toView: <span class="keyword">self</span>.btnImageView)</span><br><span class="line">           resultImage =  <span class="keyword">self</span>.drawOnImage(source: <span class="keyword">self</span>.resultImage,</span><br><span class="line">                                             boundingRect: faceObversion.boundingBox,</span><br><span class="line">                                             faceLandmarkRegions: landmarkRegions)</span><br><span class="line">       &#125;</span><br><span class="line"><span class="keyword">self</span>.btnImageView.setBackgroundImage(resultImage, <span class="keyword">for</span>: .normal)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>获取特征点<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">showFaceFeature</span><span class="params">(faceObversion face: VNFaceObservation, toView view: UIView)</span></span> -&gt;[<span class="type">VNFaceLandmarkRegion2D</span>] &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> landmarks = face.landmarks <span class="keyword">else</span> &#123; <span class="keyword">return</span> [] &#125;</span><br><span class="line">        <span class="keyword">var</span> landmarkRegions: [<span class="type">VNFaceLandmarkRegion2D</span>] = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> rightEye = landmarks.rightEye &#123;</span><br><span class="line">            landmarkRegions.append(rightEye)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> nose = landmarks.nose &#123;</span><br><span class="line">            landmarkRegions.append(nose)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> landmarkRegions</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
@@ -330,8 +330,8 @@
 <li>leftPupil、rightPupil： 左瞳、右瞳</li>
 </ul>
 <p>5.面部特征点展示</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_07.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_08.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_07.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_08.png" alt=""></p>
 <p><br><br><a href="https://github.com/ChinaFishNews/HumanFaceRecognize.git" target="_blank" rel="external">Demo下载</a></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>

@@ -12,8 +12,8 @@
 <meta property="og:url" content="http://chinafish.news/2017/11/07/机器学习-CoreML文字识别/index.html">
 <meta property="og:site_name" content="含笑饮砒霜">
 <meta property="og:description" content="获取带有文字的图片123456func btnPressed(_ sender: Any) &amp;#123;    let picker = UIImagePickerController()    picker.delegate = self    picker.sourceType = .savedPhotosAlbum    present(picker, animated: true, com">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_09.png">
-<meta property="og:updated_time" content="2017-11-07T14:30:46.000Z">
+<meta property="og:image" content="http://fishnews.cn/2017_11_07_09.png">
+<meta property="og:updated_time" content="2018-10-13T09:29:52.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习-CoreML文字识别">
 <meta name="twitter:description" content="获取带有文字的图片123456func btnPressed(_ sender: Any) &amp;#123;    let picker = UIImagePickerController()    picker.delegate = self    picker.sourceType = .savedPhotosAlbum    present(picker, animated: true, com">
@@ -274,7 +274,7 @@
 <p>2.添加Layer展示</p>
 <figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">func addShapesToText(obversations:[VNTextObservation],view:UIView) -&gt; [CAShapeLayer] &#123;</span><br><span class="line">       let layers: [CAShapeLayer] = obversations<span class="string">.map</span> &#123; observation in</span><br><span class="line">           </span><br><span class="line">           let w = observation<span class="string">.boundingBox.size.width</span> * view<span class="string">.bounds.width</span></span><br><span class="line">           let h = observation<span class="string">.boundingBox.size.height</span> * view<span class="string">.bounds.height</span></span><br><span class="line">           let x = observation<span class="string">.boundingBox.origin.x</span> * view<span class="string">.bounds.width</span></span><br><span class="line">           let y = view<span class="string">.bounds.height</span> - observation<span class="string">.boundingBox.origin.y</span> * view<span class="string">.bounds.height</span> - h</span><br><span class="line">           </span><br><span class="line">           let layer = CAShapeLayer()</span><br><span class="line">           layer<span class="string">.frame</span> = CGRect(x: x , y: y, width: w, height: h)</span><br><span class="line">           layer<span class="string">.borderColor</span> = UIColor<span class="string">.green.cgColor</span></span><br><span class="line">           layer<span class="string">.borderWidth</span> = 2</span><br><span class="line">           layer<span class="string">.cornerRadius</span> = 3</span><br><span class="line">           </span><br><span class="line">           return layer</span><br><span class="line">       &#125;</span></span><br><span class="line">       return layers</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>3.效果展示</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_07_09.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_09.png" alt=""></p>
 <p><br><br><a href="https://github.com/ChinaFishNews/TextRecognized.git" target="_blank" rel="external">Demo下载</a></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>

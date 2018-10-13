@@ -20,13 +20,13 @@
 只是想感受一下的话，可以简单的集成一下。下载安装好后打开
 
 将Reveal.framework导入项目，并需要添加libz.tbd库，在Other Linker Flags项增加Any iOS Si">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-12.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-11.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-13.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_20_01.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-14.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-15.png?attname=">
-<meta property="og:updated_time" content="2016-03-03T08:39:58.000Z">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-12.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-11.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-13.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016_20_01.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-14.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-15.png?attname=">
+<meta property="og:updated_time" content="2018-10-13T09:32:29.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UI分析工具Reveal的使用">
 <meta name="twitter:description" content="官网下载地址: http://revealapp.com (试用期30天)
@@ -284,14 +284,14 @@
 <p>官网下载地址: <a href="http://revealapp.com" target="_blank" rel="external">http://revealapp.com</a> (试用期30天)</p>
 <p>在真正玩这个之前，听到了很多对Reveal的褒奖，不需要重写代码可以改变用户页面，实时修改页面布局,查看任意APP的UI等。</p>
 <p>只是想感受一下的话，可以简单的集成一下。下载安装好后打开</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-12.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-12.png?attname=" alt=""></p>
 <p>将Reveal.framework导入项目，并需要添加libz.tbd库，在Other Linker Flags项增加Any iOS Simulator SDK项</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-11.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-11.png?attname=" alt=""></p>
 <p>使用模拟器和真机都可以，但是使用真机的话需要和电脑处在同一网络环境下。</p>
 <p>然后使用模拟器运行项目，打开Reveal</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-13.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_20_01.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-14.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-13.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016_20_01.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-14.png?attname=" alt=""></p>
 <p>上图左侧就是目录结构，中间是UI展示，右侧是类似于Xcode右侧的导航展示，可随意修改，并且会让模拟器的UI一并修改，虽然再次运行会恢复。</p>
 <p>虽然Xcode自带有Debug View Hierarchy,但是相对较弱。在Reveal虽然可以修改UI但是感觉也不是很方便，也可能是因为接触不多没接触到精髓，但是使用Reveal来查看UI层次结构的确更为方便，尤其是刚接手一个新的项目，点击控件的同时会显示对应的类和相关的值。</p>
 <p>因为试用期30天，网上有看到延长试用时间的方法，是进入~/Library/Preferences/这个目录，打开com.ittybittyapps.Reveal.plist文件，删除IBAApplicationPersistenceData这一项。然后再打开Reveal,会在右上角看到试用提示，再次变成30天。这只是延长使用时间，没能真正破解。还可以修改电脑上的系统时间，设为之前的时间，再次打开也可以继续使用，但是每次都要修改时间再改回来觉得比较麻烦，希望能找到好的破解方法。</p>
@@ -314,7 +314,7 @@
 </ul>
 </blockquote>
 <p>打开工程后，在appdeleget中的didfinished：方法中打下断点，并按下图编辑断点,重新运行下应用即可</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-15.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-15.png?attname=" alt=""></p>
 <p>Reveal也可以在真机调试中链接真机，需要在上图将reveal_load_sim改为reveal_load_dev,并且需要将reveal的动态链接库一并添加进工程中:</p>
 <blockquote>
 <ul>

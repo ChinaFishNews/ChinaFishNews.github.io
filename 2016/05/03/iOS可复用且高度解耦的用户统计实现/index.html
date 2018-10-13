@@ -22,18 +22,18 @@
 
 
 用户行为统计(User Behavior Statistics, UBS)一直是移动互联网产品中必不可少的环节，也俗称埋点。在保证移动端流量不会受较大影响的前提下，PM们总是希望埋点覆盖面越广越好。目前常规的做法是将埋点代码封装成工具类，但凡工程中需要埋点(如点击事件、页面跳转)的地">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_04.gif?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_05.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_06.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_07.gif?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_08.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_09.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_10.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_11.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_12.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_19.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_13.png?attname=">
-<meta property="og:updated_time" content="2017-11-18T02:39:18.000Z">
+<meta property="og:image" content="http://fishnews.cn/2016_05_03_04.gif?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016_05_03_05.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016_05_03_06.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016_05_03_07.gif?attname=">
+<meta property="og:image" content="http://fishnews.cn/2015_05_03_08.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2015_05_03_09.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2015_05_03_10.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2015_05_03_11.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2015_05_03_12.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016_05_03_19.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2015_05_03_13.png?attname=">
+<meta property="og:updated_time" content="2018-10-13T09:32:19.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS可复用且高度解耦的用户统计实现">
 <meta name="twitter:description" content="本文系转载
@@ -287,7 +287,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <video width="498" height="510 " src="http://7xqjid.com1.z0.glb.clouddn.com/2016_04_14.mp4 " poster=" " controls="controls"><br><br></video>
+        <video width="498" height="510 " src="http://fishnews.cn/2016_04_14.mp4 " poster=" " controls="controls"><br><br></video>
 
 
 <blockquote>
@@ -367,12 +367,12 @@
 </code></pre><p><code>}</code><br><code>@end</code></p>
 <p>更多关于Runtime、method swizzling、面向切面编程的介绍请参考这里</p>
 <h4 id="u4E09_u3001_u57FA_u4E8E_u8FD0_u884C_u65F6_u7684_u57CB_u70B9_u65B9_u6848"><a href="#u4E09_u3001_u57FA_u4E8E_u8FD0_u884C_u65F6_u7684_u57CB_u70B9_u65B9_u6848" class="headerlink" title="三、基于运行时的埋点方案"></a>三、基于运行时的埋点方案</h4><p>为了便于下文叙述，先引入一个简单的项目，共有两个页面(HomeViewController，DetailViewController)，如下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_04.gif?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016_05_03_04.gif?attname=" alt=""></p>
 <p>需求是:</p>
 <p>统计两个页面的展示与离开次数<br>统计收藏、分享单击事件的次数<br>对现有工程代码影响越小越好</p>
 <p>1)统计两个页面的展示与离开次数</p>
 <p>这部分应该比较直观了，摒弃掉在每个controller中埋点的方式，我们对UIViewController添加category从而Hook到viewWillAppear:与viewWillDisappear:。在这两个方法中注入埋点代码：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_05.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016_05_03_05.png?attname=" alt=""></p>
 <p>这时候问题来了，项目中每个页面都会有自己的页面事件编号(pageEventID)，此处的埋点代码如何知道要发送什么pageEventID给服务端呢？轻松祭出if-else神器：</p>
 <p><code>- (NSString *)pageEventID:(BOOL)bEnterPage</code><br><code>{</code></p>
 <p>``<br>    NSString *selfClassName = NSStringFromClass([self class]);</p>
@@ -390,7 +390,7 @@ if ([selfClassName isEqualToString:@&quot;HomeViewController&quot;]) {
 ``
 </code></pre><p><code>}</code></p>
 <p>当然，我们可以有更优雅的方式，比如用一个配置表替代上面一长串的if判断，这样无论页面数怎么增加，代码始终是那么一小段。我们新建一个WGlobalUserStatisticsConfig.plist的配置表来存放每个页面在进入以及离开时的pageEventID，结构如下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_06.png?attname=" alt=""><br>)</p>
+<p><img src="http://fishnews.cn/2016_05_03_06.png?attname=" alt=""><br>)</p>
 <p>因此，页面进出统计中获取pageEventID的代码始终是以下这几句：</p>
 <p><code>- (NSString *)pageEventID:(BOOL)bEnterPage</code><br><code>{</code></p>
 <p>  <code>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];</code></p>
@@ -402,10 +402,10 @@ if ([selfClassName isEqualToString:@&quot;HomeViewController&quot;]) {
 <p>   <code>NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:filePath];</code></p>
 <p>   <code>return dic;</code><br><code>}</code></p>
 <p>效果如下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_07.gif?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016_05_03_07.gif?attname=" alt=""></p>
 <p>以上就是完成了页面进出统计的埋点，并且达到了我们的第三点预期：对现有代码基本无影响。通过Method Swizzling的方式现有的工程甚至不需要import任何文件！后期代码变动时需要维护的仅仅是plist配置表。</p>
 <p>2)统计收藏、分享单击事件的次数<br>与上一节思路一致，要做到解耦显然需要通过category+hook来实现。本文demo中收藏跟分享都是UIButton类型，可以考虑添加UIButton的catogory。但更好的方式是添加UIControl的category，这样可以让埋点代码覆盖到所有UIControl的子类中去，比如button、switch、segment等，提高复用性。<br>既然要hook，那就要清楚到底要hookUIControl的哪(几)个方法，只有部分方法是满足埋点需求的，最好是所hook的方法能提供target、actionName等信息。这是个尝试的过程。<br>UIControl的方法列表有以下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_08.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2015_05_03_08.png?attname=" alt=""></p>
 <p>通过观察方法名和参数，我们有理由怀疑是倒数第二个，因其携带了不少貌似有价值的信息：</p>
 <p><code>- (void)sendAction:(SEL)action to:(nullable id)target forEvent:(nullable UIEvent *)event;</code></p>
 <p>于是写出测试代码看看：</p>
@@ -429,9 +429,9 @@ if ([selfClassName isEqualToString:@&quot;HomeViewController&quot;]) {
 <p><code>}</code></p>
 <p><code>@end</code></p>
 <p>Log如下图：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_09.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2015_05_03_09.png?attname=" alt=""></p>
 <p>可以看到，通过category+method swizzling的方式在没有修改现有工程任何代码的情况下已经成功Hook到所有点击事件，在Hook代码中我们知道了一个点击事件的target也就是ViewController，也知道了点击事件的响应函数名，知道了点击的TouchSet。这些信息已经能满足埋点需求了。<br>与页面统计埋点类似，我们同样采用plist配置表的方式避免一大长串的if-else判断：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_10.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2015_05_03_10.png?attname=" alt=""></p>
 <p>有了这张配置表就很容易得到某次单击事件的事件ID(ControlEventID)：</p>
 <p><code>NSString *actionString = NSStringFromSelector(action);</code></p>
 <p>//获取SEL string</p>
@@ -440,16 +440,16 @@ if ([selfClassName isEqualToString:@&quot;HomeViewController&quot;]) {
 <p><code>NSDictionary *configDict = [self dictionaryFromUserStatisticsConfigPlist];</code></p>
 <p><code>eventID = configDict[targetName][@&quot;ControlEventIDs&quot;][actionString];</code></p>
 <p>事实上，我把某个页面单元的所有事件ID分成了两类：页面事件ID(PageEventIDs，页面的进出等)、交互事件ID(ControlEventIDs，单击、双击、手势等)。分类有助于下文使用单元测试(Unit Test)进行自动化后期维护。<br>埋点效果如图：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_11.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2015_05_03_11.png?attname=" alt=""></p>
 <p>到这里先做了阶段性的总结，本文提出的思路有以下优越性：</p>
 <p>与工程代码基本解耦，避免引入“脏代码”<br>即使后期工程代码发生重构，需要修改的仅仅是plist配置表<br>维护配置表比维护散落在工程各个角落的代码简单</p>
 <p>四、基于单元测试的后期维护<br>俗话说，创业难守业更难。前面的思路基本可以完成初步的埋点需求。但是在实际项目中代码重构是很频繁的。这意味着在多人协作开发、代码重构频繁的项目中响应事件方法甚至页面名称都可能被改掉，造成事件ID获取不到导致埋点失效。<br>代码变动的情况无非以下几种(这里只介绍响应事件发生改变的情况)：</p>
 <p>1、响应事件方法名称改变或者删除<br>比如收藏事件原先是onFavBtnPressed:，之后被改成onFavouriteBtnPressed:。代码发生变动但是plist配置表中由于开发人员疏忽忘记同步修改了。这种疏忽在开发压力大进度赶的情况下是有很大概率发生的。由于代码与配置表不匹配将导致eventID为nil。在这种情况下单元测试就很有必要了，使用完备的测试用例能在发版前检测到这种不匹配情况从而避免埋点失效。<br>在单元测试中我们首先读取plist配置文件，遍历所有的页面。在一个页面内遍历所有的ControlEventIDs，对每个响应函数名进行respondsToSelector:判断：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_12.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2015_05_03_12.png?attname=" alt=""></p>
 <p>单测代码如下：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016_05_03_19.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016_05_03_19.png?attname=" alt=""></p>
 <p>我们来测试一下，如果把HomeViewController的onFavBtnPressed:改成onMyFavBtnPressed:后单元测试的结果就是：</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2015_05_03_13.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2015_05_03_13.png?attname=" alt=""></p>
 <p>这种改变给单测轻松捕捉到了，</p>
 <p>只要XCTAssert的log够详细，维护起来其实相当轻松的。<br>上图中的log已经明确指出-[HomeViewController onFavBtnPressed:]方法发生了改变。</p>
 <p>2、代码中新增了响应事件<br>这种情况常见于新版本中有新的埋点需求。如果代码中新增了响应事件并且该响应事件是在PM要求的埋点列表中，但是plist有可能会漏掉该事件。这种情况是比较棘手的。上一种情况是基于plist列表去校验代码，这里就要反过来，根据代码去校验plist是否有缺失。但问题来了，一个项目中响应函数往往是非常多的，并不是任何响应函数都需要埋点。需要埋点的响应函数与其他响应函数并没有区别。<br>对于这种情况，一种方式是加强code review避免忘记往配置表中添加埋点(这简直就是废话)；一种是：要求埋点响应函数的方法名中包含约定的字符串，比如收藏事件的方法名为onFavBtnPressed_UA:表示这个事件是需要埋点的。然后在单元测试中使用运行时APIclass_copyMethodList取出标记了_UA的所有函数，随后到plist中校验是否存在。不存在则表示测试用例不通过，提示开发人员校验。</p>

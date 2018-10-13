@@ -28,19 +28,19 @@
 
 线程
 进程想要执行任务，必须得有线程，每个进程至少要">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_01.gif">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_02.gif">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_03.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_01.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_02.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_03.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_04.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_05.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_06.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_07.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png">
-<meta property="og:updated_time" content="2018-10-07T06:53:12.910Z">
+<meta property="og:image" content="http://fishnews.cn/2018_09_16_01.gif">
+<meta property="og:image" content="http://fishnews.cn/2018_09_16_02.gif">
+<meta property="og:image" content="http://fishnews.cn/2018_09_16_03.png">
+<meta property="og:image" content="http://fishnews.cn/2018_10_06_01.png">
+<meta property="og:image" content="http://fishnews.cn/2018_10_06_02.png">
+<meta property="og:image" content="http://fishnews.cn/2018_10_06_03.png">
+<meta property="og:image" content="http://fishnews.cn/2018_10_06_04.png">
+<meta property="og:image" content="http://fishnews.cn/2018_10_06_05.png">
+<meta property="og:image" content="http://fishnews.cn/2018_10_06_06.png">
+<meta property="og:image" content="http://fishnews.cn/2018_10_06_07.png">
+<meta property="og:image" content="http://fishnews.cn/2018_10_06_08.png">
+<meta property="og:image" content="http://fishnews.cn/2018_10_06_08.png">
+<meta property="og:updated_time" content="2018-10-13T09:23:25.406Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCD探究">
 <meta name="twitter:description" content="要了解GCD(Grand Central Dispatch)，先从最基本的一些概念作为切入点
@@ -375,22 +375,22 @@
 <ul>
 <li>pthread</li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_01.gif" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_02.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_09_16_01.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_09_16_02.gif" alt=""></p>
 <p>在查看CPU的使用上也是可以直观看到是有多条线程在同时执行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_09_16_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_09_16_03.png" alt=""></p>
 <ul>
 <li>NSThread</li>
 </ul>
 <p>一个<code>NSThread</code>对象就代表一条线程，线程一旦死亡不能再开启任务</p>
 <p>线程状态</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_01.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_02.png" alt=""></p>
 <p>多线程的安全隐患</p>
 <p>多个线程访问同一块资源可能发生安全隐患</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_03.png" alt=""></p>
 <p>这个时候就需要加锁，即互斥锁</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_04.png" alt=""></p>
 <p>锁定一段代码只能使用一把锁，使用多把锁匙无效的，互斥锁能有效防止因多线程抢夺同一块资源而造成的数据安全问题，但是却需要消耗大量的CPU资源，注意，在主线程加锁是没有意义的</p>
 <p>OC在定义属性的时候有<code>nonatomic</code>和 <code>atomic</code>，即非原子属性和原子属性，默认是原子属性。原子属性，为<code>setter</code>方法加锁，非原子属性则不会加锁 。但是虽然<code>atomic</code>线程安全，却需要消耗大量的资源。<code>nonatomatic</code>非线程安全，适合内存小的移动设备。所以我们<code>iOS</code>开发，建议所有属性都声明为<code>nonatomatic</code>，在需要线程安全的地方再手动加锁</p>
 <p>在一个进程中中，线程往往不是孤立存在的，多个线程之间经常需要通信，经典的图片下载显示就需要线程间的通信，线程间通信通常可以使用<code>performSelector</code>，还可以使用<code>NSPort</code>、<code>NSMessagePort</code>、<code>NSMachPort</code>等端口，不过使用不多</p>
@@ -479,8 +479,8 @@
 </li>
 </ul>
 <p><code>GCD</code>的各种队列</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_05.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_06.png" alt=""></p>
 <table>
 <thead>
 <tr>
@@ -518,7 +518,7 @@
 </code></pre><p><code>GCD</code>中常用函数 </p>
 <pre><code>dispatch_barrier_async(dispatch_queue_t queue,dispatch_block_t block)
 </code></pre><p>   在前面任务结束后他才执行，而且它后面的任务等它执行完成后才会执行, 这个queue不能是全局的并发地列，需手动创建</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_07.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_07.png" alt=""></p>
 <pre><code>dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(&lt;#delayInSeconds#&gt; * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ })
 </code></pre><p>延迟执行, 不一定非要放到主线程</p>
 <pre><code>static dispatch_once_t onceToken;
@@ -557,7 +557,7 @@ static id _instace; \
 </code></pre><p>常用于单例模式，可以保证在程序运行过程中，一个类只有一个实例，而且该实例易于供外界访问，从而方便控制了实例个数又节约系统资源</p>
 <pre><code>dispatch_apply(&lt;#size_t iterations#&gt;, &lt;#dispatch_queue_t      _Nonnull queue#&gt;, &lt;#^(size_t)block#&gt;)
 </code></pre><p>快速迭代遍历</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_08.png" alt=""></p>
 <pre><code> dispatch_group_t group = dispatch_group_create(); 
  dispatch_queue_t queue =     dispatch_queue_create(&quot;concurrentQueue&quot;, DISPATCH_QUEUE_CONCURRENT);
 
@@ -568,7 +568,7 @@ dispatch_group_async(group, queue, ^{
 dispatch_group_notify(group, queue, ^{
    });
 </code></pre><p>队列组，等二个异步操作都执行完毕后，再回到指定线程操作</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_10_06_08.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_10_06_08.png" alt=""></p>
 <p><br><br>未完待续…</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>

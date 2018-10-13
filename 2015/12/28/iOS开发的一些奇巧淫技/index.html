@@ -18,16 +18,16 @@
 
 如何查看真机沙盒文件?一：安装iFunBox或IExployer
 二：在xcode的上部导航栏里，选择window -&amp;gt; Devices,找到目标app  ,这样我们只能看到沙盒的目录结构,看不到实体文件。然后点击Download Container ,下载后">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/1.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/3.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/4.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/5.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/6.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/7.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/8.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/9.gif?attname=">
-<meta property="og:updated_time" content="2016-05-08T13:59:04.000Z">
+<meta property="og:image" content="http://fishnews.cn/1.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/3.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/4.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/5.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/6.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/7.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/8.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/9.gif?attname=">
+<meta property="og:updated_time" content="2018-10-13T09:35:38.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发的一些奇巧淫技">
 <meta name="twitter:description" content="“奇巧淫技”并非是一些稀奇古怪的技术要点，也不是什么所谓的黑科学，只是一些平时可能会用到但有些又并不是很容易查询得到的小tips.
@@ -284,7 +284,7 @@
 <p>“奇巧淫技”并非是一些稀奇古怪的技术要点，也不是什么所谓的黑科学，只是一些平时可能会用到但有些又并不是很容易查询得到的小tips.</p>
 <p><br></p>
 <h2 id="u5982_u4F55_u67E5_u770B_u771F_u673A_u6C99_u76D2_u6587_u4EF6_3F"><a href="#u5982_u4F55_u67E5_u770B_u771F_u673A_u6C99_u76D2_u6587_u4EF6_3F" class="headerlink" title="如何查看真机沙盒文件?"></a>如何查看真机沙盒文件?</h2><p>一：安装iFunBox或IExployer</p>
-<p>二：在xcode的上部导航栏里，选择window -&gt; Devices,找到目标app <img src="http://7xqjid.com1.z0.glb.clouddn.com/1.png?attname=" alt=""> <img src="http://7xqjid.com1.z0.glb.clouddn.com/2.png?attname=" alt="">,这样我们只能看到沙盒的目录结构,看不到实体文件。然后点击Download Container <img src="http://7xqjid.com1.z0.glb.clouddn.com/3.png?attname=" alt="">,下载后保存到桌面，右键显示包内容即可。</p>
+<p>二：在xcode的上部导航栏里，选择window -&gt; Devices,找到目标app <img src="http://fishnews.cn/1.png?attname=" alt=""> <img src="http://fishnews.cn/2.png?attname=" alt="">,这样我们只能看到沙盒的目录结构,看不到实体文件。然后点击Download Container <img src="http://fishnews.cn/3.png?attname=" alt="">,下载后保存到桌面，右键显示包内容即可。</p>
 <h2 id="u5982_u4F55_u4F7F_u7528_u547D_u4EE4_u884C_u8FDB_u884C_u6253_u5305_3F"><a href="#u5982_u4F55_u4F7F_u7528_u547D_u4EE4_u884C_u8FDB_u884C_u6253_u5305_3F" class="headerlink" title="如何使用命令行进行打包?"></a>如何使用命令行进行打包?</h2><p>一： 使用原生xcodebuild、xcrun 打开终端 cd到当前项目,使用如下两条命令即可。</p>
 <h4 id="u5982_u679C_u9879_u76EE_u6CA1_u6709_u4F7F_u7528cocoapods_3A"><a href="#u5982_u679C_u9879_u76EE_u6CA1_u6709_u4F7F_u7528cocoapods_3A" class="headerlink" title="如果项目没有使用cocoapods:"></a>如果项目没有使用cocoapods:</h4><p>xcodebuild -project 项目名.xcodeproj -target 项目名 -configuration Release(生成项目名.app文件)</p>
 <p>xcrun -sdk iphoneos -v PackageApplication ./build/Release-iphoneos/项目名.app -o ~/Desktop/项目名.ipa(-o前为.app文件路径，-o后为生成的.ipa路径)</p>
@@ -297,7 +297,7 @@
 <p>xcrun -sdk iphoneos -v PackageApplication ./Demo.xcarchive/Products/Applications/Demo.app -o ~/Desktop/Demo.ipa</p>
 <h2 id="Xcode_u5386_u53F2_u7248_u672C_u4E0B_u8F7D_u5730_u5740"><a href="#Xcode_u5386_u53F2_u7248_u672C_u4E0B_u8F7D_u5730_u5740" class="headerlink" title="Xcode历史版本下载地址"></a>Xcode历史版本下载地址</h2><p><a href="https://developer.apple.com/downloads/" target="_blank" rel="external">https://developer.apple.com/downloads/</a></p>
 <h2 id="u52A0_u6025_u5BA1_u6838_u6E20_u9053_u94FE_u63A5_28_u5E76_u975E_u53EA_u662F_u52A0_u6025_uFF0C_u5305_u62EC_u5411_u82F9_u679C_u7533_u8BC9_u3001_u4FEE_u6539appstore_u4E0A_u76F8_u5173_u4FE1_u606F_u7B49_29"><a href="#u52A0_u6025_u5BA1_u6838_u6E20_u9053_u94FE_u63A5_28_u5E76_u975E_u53EA_u662F_u52A0_u6025_uFF0C_u5305_u62EC_u5411_u82F9_u679C_u7533_u8BC9_u3001_u4FEE_u6539appstore_u4E0A_u76F8_u5173_u4FE1_u606F_u7B49_29" class="headerlink" title="加急审核渠道链接(并非只是加急，包括向苹果申诉、修改appstore上相关信息等)"></a>加急审核渠道链接(并非只是加急，包括向苹果申诉、修改appstore上相关信息等)</h2><p><a href="https://developer.apple.com/appstore/contact/appreviewteam/index.html" target="_blank" rel="external">https://developer.apple.com/appstore/contact/appreviewteam/index.html</a><br>也可以直接从ITunes右下角contact us也可以,但是无法填写相关文字描述</p>
-<h2 id="Autolayout_u53CASizeClass_u793A_u610F_u56FE"><a href="#Autolayout_u53CASizeClass_u793A_u610F_u56FE" class="headerlink" title="Autolayout及SizeClass示意图"></a>Autolayout及SizeClass示意图</h2><p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/4.png?attname=" alt=""><br> <img src="http://7xqjid.com1.z0.glb.clouddn.com/5.png?attname=" alt=""><br> <img src="http://7xqjid.com1.z0.glb.clouddn.com/6.png?attname=" alt=""></p>
+<h2 id="Autolayout_u53CASizeClass_u793A_u610F_u56FE"><a href="#Autolayout_u53CASizeClass_u793A_u610F_u56FE" class="headerlink" title="Autolayout及SizeClass示意图"></a>Autolayout及SizeClass示意图</h2><p> <img src="http://fishnews.cn/4.png?attname=" alt=""><br> <img src="http://fishnews.cn/5.png?attname=" alt=""><br> <img src="http://fishnews.cn/6.png?attname=" alt=""></p>
 <h2 id="u7A97_u53E3_u4E2D_u6709_u591A_u4E2Aresponder_2C_u5982_u4F55_u5FEB_u901F_u91CA_u653E_u952E_u76D8"><a href="#u7A97_u53E3_u4E2D_u6709_u591A_u4E2Aresponder_2C_u5982_u4F55_u5FEB_u901F_u91CA_u653E_u952E_u76D8" class="headerlink" title="窗口中有多个responder,如何快速释放键盘"></a>窗口中有多个responder,如何快速释放键盘</h2><p>一：<code>[[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];</code></p>
 <p>二：<br><code>[self.view endEditing:YES];</code></p>
 <h2 id="u5982_u4F55_u53BB_u9664UITableView_u4E2DGroup_u6837_u5F0Fcell_u7684_u8FB9_u6846"><a href="#u5982_u4F55_u53BB_u9664UITableView_u4E2DGroup_u6837_u5F0Fcell_u7684_u8FB9_u6846" class="headerlink" title="如何去除UITableView中Group样式cell的边框"></a>如何去除UITableView中Group样式cell的边框</h2><p>一： </p>
@@ -316,10 +316,10 @@
 <p><code>self.imageView.image = [[UIImage imageNamed:@&quot;back&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];</code></p>
 <p><code>self.imageView.tintColor = [UIColor redColor];</code></p>
 <p>也可以在Asset catelog中设置render as</p>
-<p> <img src="http://7xqjid.com1.z0.glb.clouddn.com/7.png?attname=" alt=""></p>
-<h2 id="u5982_u4F55_u653E_u5927_u56FE_u7247_u4F7F_u4E4B_u4E0D_u5931_u771F_u4E14_u4E0D_u4EA7_u751F_u952F_u9F7F"><a href="#u5982_u4F55_u653E_u5927_u56FE_u7247_u4F7F_u4E4B_u4E0D_u5931_u771F_u4E14_u4E0D_u4EA7_u751F_u952F_u9F7F" class="headerlink" title="如何放大图片使之不失真且不产生锯齿"></a>如何放大图片使之不失真且不产生锯齿</h2><p>在Asset Catalog的Attribtues Pane中设置Single(前提是图片必须是矢量图) Vector为SingleVector <img src="http://7xqjid.com1.z0.glb.clouddn.com/8.png?attname=" alt=""></p>
+<p> <img src="http://fishnews.cn/7.png?attname=" alt=""></p>
+<h2 id="u5982_u4F55_u653E_u5927_u56FE_u7247_u4F7F_u4E4B_u4E0D_u5931_u771F_u4E14_u4E0D_u4EA7_u751F_u952F_u9F7F"><a href="#u5982_u4F55_u653E_u5927_u56FE_u7247_u4F7F_u4E4B_u4E0D_u5931_u771F_u4E14_u4E0D_u4EA7_u751F_u952F_u9F7F" class="headerlink" title="如何放大图片使之不失真且不产生锯齿"></a>如何放大图片使之不失真且不产生锯齿</h2><p>在Asset Catalog的Attribtues Pane中设置Single(前提是图片必须是矢量图) Vector为SingleVector <img src="http://fishnews.cn/8.png?attname=" alt=""></p>
 <h2 id="u5982_u4F55_u5728_u62C9_u4F38_u56FE_u7247_u7684_u65F6_u5019_u4F7F_u4E4B_u4E0D_u53D8_u5F62"><a href="#u5982_u4F55_u5728_u62C9_u4F38_u56FE_u7247_u7684_u65F6_u5019_u4F7F_u4E4B_u4E0D_u53D8_u5F62" class="headerlink" title="如何在拉伸图片的时候使之不变形"></a>如何在拉伸图片的时候使之不变形</h2><p>一：<code>stretchableImageWithLeftCapWidth: topCapHeight:</code></p>
-<p>二：在Xcode中选中图片，然后点击右下角的Show Slicing：<img src="http://7xqjid.com1.z0.glb.clouddn.com/9.gif?attname=" alt=""></p>
+<p>二：在Xcode中选中图片，然后点击右下角的Show Slicing：<img src="http://fishnews.cn/9.gif?attname=" alt=""></p>
 <h2 id="Storyboard_u4E2D_u5982_u4F55_u6B63_u786E_u8BBE_u7F6E_u63A7_u4EF6_u900F_u660E_u5EA6"><a href="#Storyboard_u4E2D_u5982_u4F55_u6B63_u786E_u8BBE_u7F6E_u63A7_u4EF6_u900F_u660E_u5EA6" class="headerlink" title="Storyboard中如何正确设置控件透明度"></a>Storyboard中如何正确设置控件透明度</h2><p>在直接设置alpha的情况下，如果上面有文字的话会随着透明度的变大而变得越来越不清楚。</p>
 <p>此时应该这样设置 Background →0ther →0pacity</p>
 <h2 id="5BUIScreen_mainScreen_5D-bounds_u83B7_u53D6_u5C4F_u5E55_u5927_u5C0F_u4E0D_u5BF9_u7684_u95EE_u9898"><a href="#5BUIScreen_mainScreen_5D-bounds_u83B7_u53D6_u5C4F_u5E55_u5927_u5C0F_u4E0D_u5BF9_u7684_u95EE_u9898" class="headerlink" title="[UIScreen mainScreen].bounds获取屏幕大小不对的问题"></a>[UIScreen mainScreen].bounds获取屏幕大小不对的问题</h2><p><code>#define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width</code></p>

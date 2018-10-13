@@ -20,21 +20,21 @@
 我们知道，一个程序的入口函数，也就是在main.m文件中
 
 程序启动首先就会走到这里，这里有个自动释放池，一般在创建大量临时变量的时候会手动创建释放池，这里将整个程序运行期间都置于这个释放池内，程序运行结束之时，自动释放池结束，内存回收。这个自动释放池内，就一句代码，这是什么意思？进入UIApplicationMain函">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_01.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_02.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_03.gif">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_01.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_04.gif">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_06.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_02.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_07.gif">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_02.gif">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_03.gif">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_04.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_06.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_05.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_08.png">
-<meta property="og:updated_time" content="2018-04-06T11:35:23.000Z">
+<meta property="og:image" content="http://fishnews.cn/2018_03_30_01.png">
+<meta property="og:image" content="http://fishnews.cn/2018_03_30_02.png">
+<meta property="og:image" content="http://fishnews.cn/2018_03_30_03.gif">
+<meta property="og:image" content="http://fishnews.cn/2018_04_06_01.png">
+<meta property="og:image" content="http://fishnews.cn/2018_03_30_04.gif">
+<meta property="og:image" content="http://fishnews.cn/2018_03_30_06.png">
+<meta property="og:image" content="http://fishnews.cn/2018_04_06_02.png">
+<meta property="og:image" content="http://fishnews.cn/2018_03_30_07.gif">
+<meta property="og:image" content="http://fishnews.cn/2018_04_01_02.gif">
+<meta property="og:image" content="http://fishnews.cn/2018_04_01_03.gif">
+<meta property="og:image" content="http://fishnews.cn/2018_04_06_04.png">
+<meta property="og:image" content="http://fishnews.cn/2018_04_06_06.png">
+<meta property="og:image" content="http://fishnews.cn/2018_04_06_05.png">
+<meta property="og:image" content="http://fishnews.cn/2018_04_06_08.png">
+<meta property="og:updated_time" content="2018-10-13T09:29:00.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RunLoop探究">
 <meta name="twitter:description" content="RunLoop,即运行循环，你非要叫它跑圈，也不是不可以
@@ -294,9 +294,9 @@
 <p>RunLoop,即运行循环，你非要叫它跑圈，也不是不可以</p>
 <p>这哥们到底是什么？</p>
 <p>我们知道，一个程序的入口函数，也就是在main.m文件中</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_01.png" alt=""></p>
 <p>程序启动首先就会走到这里，这里有个自动释放池，一般在创建大量临时变量的时候会手动创建释放池，这里将整个程序运行期间都置于这个释放池内，程序运行结束之时，自动释放池结束，内存回收。这个自动释放池内，就一句代码，这是什么意思？进入<code>UIApplicationMain</code>函数内可以发现，这个函数返回值是<code>int</code>型。那我们换种写法</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_02.png" alt=""></p>
 <p>运行起来，会发现第十六行并不会执行，代码停留在了第十五行，不会再继续往下执行，也就是说<code>UIApplicationMain</code>函数一直没有返回。我们的程序一直是在主线程上执行的，我们打印下看看</p>
 <pre><code>NSLog(@&quot;thread=%@&quot;,[NSThread currentThread]);
 
@@ -322,7 +322,7 @@
 </code></pre><p>一个很简单的时钟事件，这个时候你会发现方法并没有走。上面已经提到，<code>RunLoop</code>用来监听事件，需要将<code>timer</code>加到<code>RunLoop</code>中去</p>
 <pre><code>[[NSRunLoop currentRunLoop] addTimer:timer     forMode:NSDefaultRunLoopMode];
 </code></pre><p>注意RunLoop无法手动创建，只能获取，不过其实第一次获取就是创建。这里面有个<code>mode</code>属性，暂时写默认，这时候运行程序，正常运行。这时候我们往控制器上拖个textView, 运行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_03.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_03.gif" alt=""></p>
 <p>问题出来了，启动后时钟事件正常运行，但是一旦拖动textView,时钟事件就停止打印，不拖动textView,时钟事件又正常运行。这是什么情况？</p>
 <p>上面我们将<code>timer</code>丢给<code>RunLoop</code>的时候，使用的模式<code>mode</code>是<code>NSDefaultRunLoopMode</code>默认模式。</p>
 <p>iOS中有两套API来访问和使用RunLoop对象，分别是OC语言中的<code>Foundation</code>框架(<code>NSRunLoop</code>)和C语言中的<code>Core Foundation</code>框架(<code>CFRunLoopRef</code>),<code>NSRunLoop</code>是基于<code>CFRunLoopRef</code>的一层<code>OC</code>包装</p>
@@ -336,7 +336,7 @@
 <li><code>NSConnectionReplyMode</code></li>
 <li><code>NSModalPanelRunLoopMode</code></li>
 </ul>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_01.png" alt=""></p>
 <p><code>NSDefaultRunLoopMode</code>模式就是<code>RunLoop</code>的默认模式，而<code>UITrackingRunLoopMode</code>模式则是<code>UI</code>模式，<code>UI</code>模式只能被触摸事件唤醒，所以优先级最高。这里第三种模式<code>NSRunLoopCommonModes</code>严格来说不是一种模式，而是一种占位模式，既能起到默认模式的效果又能起到<code>UI</code>模式的效果。第四种和第五种模式分别是在刚启动进入<code>App</code>时进入的第一个<code>Mode</code>，启动后就不再使用，和接受系统时间的内部<code>Mode</code>,作为开发者这两种模式基本不会使用到，</p>
 <p><code>Core Foundation</code>中关于<code>RunLoop</code>有五个类</p>
 <ul>
@@ -359,21 +359,21 @@
 <p>上面我们是把时钟加到默认模式下，现在我们加在<code>UI</code>模式看下效果</p>
 <pre><code>[[NSRunLoop currentRunLoop] addTimer:timer     forMode:UITrackingRunLoopMode];
 </code></pre><p>再次运行程序</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_04.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_04.gif" alt=""></p>
 <p>问题又出来了，当我们拖到<code>textView</code>时，时钟事件可以正常打印，但是一旦停止就不再打印了。这是因为，时钟是加到<code>RunLoop</code>的<code>UI</code>模式下的，而<code>UI</code>模式只有在触摸屏幕的时候才会唤醒，而没有触摸屏幕的时候<code>RunLoop</code>则处于休眠状态，所以才会出现此问题。怎么才能解决这个问题呢？将这个时钟既加到默认模式下，又加到<code>UI</code>模式下</p>
 <pre><code> [[NSRunLoop currentRunLoop] addTimer:timer     forMode:NSDefaultRunLoopMode];
 [[NSRunLoop currentRunLoop] addTimer:timer     forMode:UITrackingRunLoopMode];
 </code></pre><p>这要添加两次，而🍎肯定考虑到了这点，所以有了<code>NSRunLoopCommonModes</code>这种占位模式</p>
 <p>[[NSRunLoop currentRunLoop] addTimer:timer     forMode:NSRunLoopCommonModes];</p>
 <p>再次运行，会发现上述问题都得到了解决，拖拽不再影响时钟方法的执行了。简单画个图</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_06.png" alt=""></p>
 <p>这是🍎官网的图</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_02.png" alt=""></p>
 <p>上面提到，<code>RunLoop</code>的作用之一就是监听事件并执行，事件可以有很多种，比如时钟事件、监听事件、网络事件等等。<code>UI</code>模式下的这些事件必须通过触摸才能唤醒<code>RunLoop</code>去执行，执行完之后RunLoop就处于休眠状态，循环往复。而默认模式下，只要有这些事件，就会及时通知<code>RunLoop</code>去执行。</p>
 <p>继续深究，如果这个事件是个耗时操作会怎样？我们在<code>timerMethod</code>这个时间下模拟一下</p>
 <pre><code>[NSThread sleepForTimeInterval:1.0];
 </code></pre><p>我让它每次睡个2秒钟再执行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_03_30_07.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_03_30_07.gif" alt=""></p>
 <p>问题又出来了，你会发现<code>UI</code>被卡住了，因为当前是在主线程上执行，每次都强迫它睡2秒，这绝壁会卡住。既然这样，那就让这个耗时操作放在子线程去执行</p>
 <pre><code>- (void)viewDidLoad {
     [super viewDidLoad];
@@ -413,7 +413,7 @@ _thread = thread;
     [_thread start];
 }
 </code></pre><p>运行，触摸屏幕的时候再次开启这个线程，开启前打印一下</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_02.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_01_02.gif" alt=""></p>
 <p>这个线程对象还在，但是开启会崩</p>
 <p>这是因为，这个线程已经挂了，已经被释放了，肯定无法被开启，但是这个<code>OC</code>对象<code>thread</code>还在，因为被我们强引用了。强引用线程对象，并不会阻止线程的释放。所以会出现上述情况。事实上，子线程<code>block</code>内的代码执行完线程就会被释放，要想线程不被释放。就必须让线程有执行不完的任务。那我们可以手动让线程一直在执行,在<code>block</code>内加如下代码</p>
 <pre><code>while (true) {     }
@@ -427,7 +427,7 @@ _thread = thread;
 <p>这里就让线程存活指定时间感受一下</p>
 <pre><code>[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
 </code></pre><p>再次运行,一切都很明了了</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_01_03.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_01_03.gif" alt=""></p>
 <p>这里如果想强制退出子线程，使用<code>[NSThead exit]</code>,不过并不建议这么做</p>
 <p>有必要强调一下，如果在主线程调用<code>[NSThead exit]</code>会怎样？</p>
 <p>你会发现程序并不会挂掉，但是主线程卡死了，子线程仍然在继续。其实在<code>CPU</code>眼里，主线程和其他子线程一样，一样可以强退</p>
@@ -474,14 +474,14 @@ _thread = thread;
     CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer,     kCFRunLoopDefaultMode);
     CFRelease(observer);
 }
-</code></pre><p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_04.png" alt=""></p>
+</code></pre><p><img src="http://fishnews.cn/2018_04_06_04.png" alt=""></p>
 <p>可以看到<code>RunLoop</code>的运行逻辑，每次都是从睡眠中唤醒，处理一些事件，最后处于休眠状态。监听状态变化的<code>block</code>中可以根据自己需求定义一些处理事件</p>
 <p>在项目中经常会遇到加载图片的需求，现在一般都使用<code>SDWebImage</code>库，如果不使用这个库怎么处理？</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_06.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_05.png" alt=""></p>
 <p>主要逻辑就是将一个个图片下载任务放入队列，下载成功存入内存缓存，然后写入沙盒，下次再次显示时先从内存缓存里获取，获取不到则从沙盒获取，依然获取不到则进行下载任务。其实使用<code>SDWebImage</code>库也依然会进行这些操作。</p>
 <p>如果，这些下载的图片非常的大，分辨率比较高，你会发现这时候滑动的时候会有明显卡顿，是因为即便下载是在子线程，但是在渲染的时候图片会解压缩，这是在主线程进行的，是个耗时的操作，图片分辨率高的情况下卡顿尤其明显。这些下载下来的图片是在一次<code>RunLoop</code>循环的时候渲染显示，如果一次<code>RunLooop</code>循环只处理一张图片，卡顿就会得到有效解决，这需要用到<code>Observer</code>来监听<code>RunLoop</code>的状态，<code>RunLoop</code>在处理完事件会进入休眠状态，那就每次监听在<code>RunLoop</code>进入休眠状态前处理这些图片，直到没有图片处理然后进入休眠状态</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_04_06_08.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_06_08.png" alt=""></p>
 <p><a href="https://github.com/ChinaFishNews/RunLoopDemo" target="_blank" rel="external">RunLoopDemo</a></p>
 <p><a href="https://github.com/ChinaFishNews/LoadManyPictures" target="_blank" rel="external">LoadManyPictures</a></p>
 <p><a href="https://github.com/ChinaFishNews/LoadBigImage" target="_blank" rel="external">LoadBigImage</a></p>

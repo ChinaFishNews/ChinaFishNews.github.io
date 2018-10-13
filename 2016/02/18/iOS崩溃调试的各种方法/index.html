@@ -36,16 +36,16 @@ Xcode自带的查看设备崩溃信息
 
 
 自己实现应用内崩溃收集苹果提供了异常处理的类，NSException">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-01.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-02.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-03.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-04.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-05.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-09.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-06.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-07.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-08.png?attname=">
-<meta property="og:updated_time" content="2016-05-08T14:01:22.000Z">
+<meta property="og:image" content="http://fishnews.cn/2016-02-18-01.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-02-18-02.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-02-18-03.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-02-18-04.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-02-18-05.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-02-18-09.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-02-18-06.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-02-18-07.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-02-18-08.png?attname=">
+<meta property="og:updated_time" content="2018-10-13T09:36:05.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS崩溃调试的多种方法">
 <meta name="twitter:description" content="在iOS开发调试及上线后，程序都经常需要调试，简单点来说开发时打断点，复杂的情况下需要分析crash文件，尤其是上线后也需要修复崩溃的bug。
@@ -321,12 +321,12 @@ Xcode自带的查看设备崩溃信息
 </li>
 </ul>
 <h3 id="u81EA_u5DF1_u5B9E_u73B0_u5E94_u7528_u5185_u5D29_u6E83_u6536_u96C6"><a href="#u81EA_u5DF1_u5B9E_u73B0_u5E94_u7528_u5185_u5D29_u6E83_u6536_u96C6" class="headerlink" title="自己实现应用内崩溃收集"></a>自己实现应用内崩溃收集</h3><p>苹果提供了异常处理的类，NSException,这个类可以创建及获取一个异常对象。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-01.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-02-18-01.png?attname=" alt=""></p>
 <h3 id="u4F7F_u7528_u82F9_u679C_u63D0_u4F9B_u7684Carsh_u5D29_u6E83_u6536_u96C6_u670D_u52A1"><a href="#u4F7F_u7528_u82F9_u679C_u63D0_u4F9B_u7684Carsh_u5D29_u6E83_u6536_u96C6_u670D_u52A1" class="headerlink" title="使用苹果提供的Carsh崩溃收集服务"></a>使用苹果提供的Carsh崩溃收集服务</h3><p>苹果在Xcode中为我们集成了崩溃统计功能，在Window-&gt;Organizer-&gt;Crashes中可以看到</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-02.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-02-18-02.png?attname=" alt=""></p>
 <p>但是，苹果自带的这个崩溃统计工具需要在手机上额外设置。<br>设置-&gt;隐私-&gt;诊断与用量-&gt;诊断与用户数据(iOS8以下在通用中设置)，选择自动发送并与开发者分享即可。</p>
 <h3 id="Xcode_u81EA_u5E26_u7684_u67E5_u770B_u8BBE_u5907_u5D29_u6E83_u4FE1_u606F"><a href="#Xcode_u81EA_u5E26_u7684_u67E5_u770B_u8BBE_u5907_u5D29_u6E83_u4FE1_u606F" class="headerlink" title="Xcode自带的查看设备崩溃信息"></a>Xcode自带的查看设备崩溃信息</h3><p>打开Xcode,选择Windows－&gt; Devices －&gt; 选择自己的手机 -&gt; View Device Logs 就可以查看我们的崩溃信息。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-03.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-02-18-03.png?attname=" alt=""></p>
 <p>如果手机上的应用是这台电脑打包安装的，这样崩溃信息已经为我们符号化好了，点击去之后，如果还是没有符号化完毕 ，我们选择文件，然后右击选择Re-Sysbomlicate就可以。如果是使用其他电脑进行的打包，我们可以在这里面将Crash文件导出，自己通过命令行的方式进行解析。</p>
 <h3 id="u4F7F_u7528_u7B2C_u4E09_u65B9_u7EDF_u8BA1_u5DE5_u5177"><a href="#u4F7F_u7528_u7B2C_u4E09_u65B9_u7EDF_u8BA1_u5DE5_u5177" class="headerlink" title="使用第三方统计工具"></a>使用第三方统计工具</h3><p>之前使用过友盟，还需要使用工具自行解析，感觉并不是很好，还有比如百度统计，BugHD,Fabric等很多。崩溃收集统计函数应该只进行一次调用，如果用第三方的话也最好只用一个第三方，这样我们获取崩溃统计信息的途径也是唯一的。第三方统计工具并不是用的越多越好，使用多个崩溃收集第三方会导致NSSetUncaughtExceptionHandler()函数指针的恶意覆盖，导致有些第三方不能收到崩溃信息。</p>
 <p>我现在在用的是Fabric，感觉相当不错，下篇文章再做讲解。另外BugHD也还是不错，就是延迟太久才能收到.使用BugHD,需前往官网注册，创建项目，然后集成代码，整个流程非常简单。</p>
@@ -336,10 +336,10 @@ Xcode自带的查看设备崩溃信息
 <p>2 在 AppDelegate.m 中导入头文件:<br><br>#import \<bughd bughd.h\=""> //导入头文件<br>然后在<br><br> application:didFinishLaunchingWithOptions: 方法中加入一行:<br><br>[BugHD handleCrashWithKey:@”你的GENERAL_KEY”]; 即可。</bughd></p>
 </blockquote>
 <p>GENERAL_KEY在创建项目时会自动生成。默认是在release模式下词汇收集错误信息，会将错误信息显示在官网并会发到注册邮箱里。Debug模式下也希望收到错误信息的话，需要设置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-04.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-02-18-04.png?attname=" alt=""></p>
 <p>捕捉到的错误信息</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-05.png?attname=" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-09.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-02-18-05.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-02-18-09.png?attname=" alt=""></p>
 <p>但是这个错误信息延迟的太久，可能需要半天甚至一天的时间才能收集到。</p>
 <h3 id="dSYM"><a href="#dSYM" class="headerlink" title="dSYM"></a>dSYM</h3><p>上述中提到的dSYM，是一种文件格式。我们每次Archive之后，都会生成一个dSYM文件，也就是符号集。符号集是我们打包之后，和.app文件同级的后缀名为.dSYM的文件，这个文件必须使用Xcode进行打包才有。每一个.dSYM文件都有一个UUID，和.app文件中的UUID对应，代表着是一个应用。而.dSYM文件中每一条崩溃信息也有一个单独的UUID，用来和程序的UUID进行校对。符号集中存储着文件名、方法名、行号的信息，是和可执行文件的16进制函数地址对应的，通过分析崩溃的.Crash文件可以准确知道具体的崩溃信息。必须使用当前应用打包的电脑所生成的dSYM文件，其他电脑生成的文件可能会导致分析不准确。</p>
 <h3 id="u5D29_u6E83_u5206_u6790"><a href="#u5D29_u6E83_u5206_u6790" class="headerlink" title="崩溃分析"></a>崩溃分析</h3><p>这个崩溃分析我自己并没有实现，觉得比较繁琐，在使用友盟的时候，也需要使用错误分析工具来实现。以下，是网上找的一个方法，可以自行参考。</p>
@@ -355,9 +355,9 @@ Xcode自带的查看设备崩溃信息
 <p>在解析崩溃信息的时候，首先在桌面上建立一个Crash文件夹，然后将.Crash、.dSYM、symbolicatecrash放在这个文件夹中，这样进入这个文件夹下，直接一行命令就解决了。</p>
 <p>symbolicatecrash我们可以在下面路径下可以找到，我用的是Xcode7，其他版本Xcode路径可能不一样，请自行查找。<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/Applications/</span>Xcode.app<span class="regexp">/Contents/</span>SharedFrameworks<span class="regexp">/DTDeviceKitBase.framework/</span>Versions<span class="regexp">/A/</span>Resources<span class="regexp">/symbolicatecrash</span></span><br></pre></td></tr></table></figure></p>
 <p>然后Window-&gt;Organizer-&gt;Archives中，选中archive的版本右击，选择Show in Finder就可以获取dSYM文件了。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-06.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-02-18-06.png?attname=" alt=""></p>
 <p>将.Crash、.dSYM、symbolicatecrash三个文件都放在我们在桌面建立的Crash文件夹中。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-07.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-02-18-07.png?attname=" alt=""></p>
 <p>开启命令行工具，进入崩溃文件夹中</p>
 <blockquote>
 <p>cd /Users/username/Desktop/崩溃文件夹</p>
@@ -379,7 +379,7 @@ Xcode自带的查看设备崩溃信息
 <p>export DEVELOPER_DIR=/Applications/XCode.app/Contents/Developer</p>
 </blockquote>
 <p>解析完成后会生成一个新的.Crash文件，这个文件中就是崩溃详细信息。图中红色标注的部分就是我们代码崩溃的部分。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-02-18-08.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-02-18-08.png?attname=" alt=""></p>
 <p>注意，以下情况不会有崩溃信息产生：</p>
 <ul>
 <li><p>内存访问错误(不是野指针错误)</p>

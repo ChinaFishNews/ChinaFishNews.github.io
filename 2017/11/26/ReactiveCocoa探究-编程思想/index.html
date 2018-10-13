@@ -16,19 +16,19 @@ block常用用法1. block作为对象的属性新建一个Single工程，创建�
 <meta property="og:description" content="谈到ReactiveCocoa(RAC),说它比较火似乎也没有那么火，一些大厂用的也并不多，说它不火貌似又经常看到或听到一些鼓吹RAC的文章和言论。尽管它很强大，但是也并没有很普及，即便它很强大！
 在了解ReactiveCocoa前，先简单粗略回顾一下block的几种常用用法及几种常见的编程思想。
 block常用用法1. block作为对象的属性新建一个Single工程，创建一个Person类，在">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_01.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_02.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_03.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_01.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_02.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_03.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_04.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_05.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_02.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_03.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_04.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_01.png">
-<meta property="og:updated_time" content="2017-12-24T08:20:50.000Z">
+<meta property="og:image" content="http://fishnews.cn/2017_11_26_01.png">
+<meta property="og:image" content="http://fishnews.cn/2017_11_26_02.png">
+<meta property="og:image" content="http://fishnews.cn/2017_11_26_03.png">
+<meta property="og:image" content="http://fishnews.cn/2017_12_01_01.png">
+<meta property="og:image" content="http://fishnews.cn/2017_12_01_02.png">
+<meta property="og:image" content="http://fishnews.cn/2017_12_01_03.png">
+<meta property="og:image" content="http://fishnews.cn/2017_12_01_04.png">
+<meta property="og:image" content="http://fishnews.cn/2017_12_01_05.png">
+<meta property="og:image" content="http://fishnews.cn/2017_12_24_02.png">
+<meta property="og:image" content="http://fishnews.cn/2017_12_24_03.png">
+<meta property="og:image" content="http://fishnews.cn/2017_12_24_04.png">
+<meta property="og:image" content="http://fishnews.cn/2017_12_24_01.png">
+<meta property="og:updated_time" content="2018-10-13T09:29:25.196Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa探究-编程思想">
 <meta name="twitter:description" content="谈到ReactiveCocoa(RAC),说它比较火似乎也没有那么火，一些大厂用的也并不多，说它不火貌似又经常看到或听到一些鼓吹RAC的文章和言论。尽管它很强大，但是也并没有很普及，即便它很强大！
@@ -285,8 +285,8 @@ block常用用法1. block作为对象的属性新建一个Single工程，创建�
 <p>谈到ReactiveCocoa(RAC),说它比较火似乎也没有那么火，一些大厂用的也并不多，说它不火貌似又经常看到或听到一些鼓吹RAC的文章和言论。尽管它很强大，但是也并没有很普及，即便它很强大！</p>
 <p>在了解ReactiveCocoa前，先简单粗略回顾一下block的几种常用用法及几种常见的编程思想。</p>
 <h3 id="block_u5E38_u7528_u7528_u6CD5"><a href="#block_u5E38_u7528_u7528_u6CD5" class="headerlink" title="block常用用法"></a>block常用用法</h3><h4 id="1-_block_u4F5C_u4E3A_u5BF9_u8C61_u7684_u5C5E_u6027"><a href="#1-_block_u4F5C_u4E3A_u5BF9_u8C61_u7684_u5C5E_u6027" class="headerlink" title="1. block作为对象的属性"></a>1. block作为对象的属性</h4><p>新建一个Single工程，创建一个Person类，在Person类中声明一个block。系统有个内置的block代码块</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_01.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_26_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_26_02.png" alt=""></p>
 <blockquote>
 <p>注意，在非ARC环境下block需要使用copy声明，使用copy的原因,是把block从栈区拷贝到堆区,因为栈区中的变量出了作用域之后就会被销毁,无法在全局使用,所以应该把栈区的属性拷贝到堆区中全局共享,这样就不会被销毁了,在MRC手动管理的就是堆区,不需要系统管理,MRC环境必须使用copy把变量拷贝到全局的堆区。而如果在ARC环境下就可以不使用copy修饰,因为ARC下的属性本来就在堆区。所以现在在默认是ARC环境下依然沿袭了之前的使用方式copy，使用strong也没有问题。</p>
 </blockquote>
@@ -394,7 +394,7 @@ redView.backgroundColor = [UIColor redColor];
     return [self addConstraintWithLayoutAttribute:NSLayoutAttributeLeft];
 }
 </code></pre><p>这是一个get方法，上文有提到OC中只有形如get方法才可以使用点语法点出来。而这个get方法返回的是一个<code>MASConstraint</code>，你会发现<code>MASConstraint</code>类中这些全是get方法，而返回值全是调用者本身<code>MASConstraint</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_11_26_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_26_03.png" alt=""></p>
 <p>随便点进去一个get方法</p>
 <pre><code>- (MASConstraint *)addConstraintWithLayoutAttribute:    (NSLayoutAttribute)layoutAttribute {
     NSAssert(!self.hasLayoutRelation, @&quot;Attributes should be     chained before defining the constraint relation&quot;);
@@ -512,10 +512,10 @@ double result = manger.add(3).minus(3).result;
    NSLog(@&quot;%f&quot;,h_Result);
 </code></pre><h4 id="u54CD_u5E94_u5F0F_u7F16_u7A0B_u601D_u60F3_28RP_29"><a href="#u54CD_u5E94_u5F0F_u7F16_u7A0B_u601D_u60F3_28RP_29" class="headerlink" title="响应式编程思想(RP)"></a>响应式编程思想(RP)</h4><p>响应式编程不需要考虑调用顺序，只需要考虑结果。 iOS中最具代表性的就是<code>KVO</code>的使用。看一下简单实用。</p>
 <p>先创建一个<code>Person</code>类，声明一个<code>name</code>属性，监听<code>Person</code>的<code>name</code>属性</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_01_01.png" alt=""></p>
 <p>你会发现没什么毛病。如果这时候，我们把<code>name</code>属性变成一个成员变量，再去使用箭头函数方式去修改<code>name</code>的值</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_01_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_01_03.png" alt=""></p>
 <p>这个时候你会发现并没有走进监听函数。这和上面正常使用的时候有什么区别呢？那就是修改<code>name</code>属性的时候，成员变量不会调用<code>set</code>方法, 而使用点语法总是会调用<code>set</code>函数。有理由相信，使用<code>KVO</code>的时候重写了属性的<code>set</code>方法。</p>
 <blockquote>
 <h3 id="u600E_u4E48_u53EF_u4EE5_u91CD_u5199set_u65B9_u6CD5_uFF1F"><a href="#u600E_u4E48_u53EF_u4EE5_u91CD_u5199set_u65B9_u6CD5_uFF1F" class="headerlink" title="怎么可以重写set方法？"></a>怎么可以重写<code>set</code>方法？</h3><ol>
@@ -535,15 +535,15 @@ double result = manger.add(3).minus(3).result;
 <p> iOS中有个<code>isa</code>指针, 修改当前对象的isa指针,指向自定义的子类!</p>
 </blockquote>
 <p>验证一下猜测，查看一下在走进监听方法后对象的<code>isa</code>指针指向。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_04.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_01_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_01_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_01_05.png" alt=""></p>
 <p>知道了<code>KVO</code>的内部机制，那我们自己就可以写一个简单的<code>KVO</code>。</p>
 <p>以上面为例，监听Person类的name属性，创建一个NSObject的分类，添加监听方法并实现,最后再使用添加的这个方法监听即可。</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_03.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_24_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_24_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_24_04.png" alt=""></p>
 <p>注意在使用<code>objc_msgSend</code>时需要在Build Setting中将<code>Enable Strict Checking of objc_msgSend Calls</code>设置为<code>NO</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2017_12_24_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_12_24_01.png" alt=""></p>
 <p><a href="https://github.com/ChinaFishNews/ReactProgrammingDemo" target="_blank" rel="external">Demo下载</a></p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>

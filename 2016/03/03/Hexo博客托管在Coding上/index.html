@@ -14,16 +14,16 @@
 <meta property="og:site_name" content="含笑饮砒霜">
 <meta property="og:description" content="昨天GitCafe官网上发布声明，截至2016年5月31日停止所有服务，届时上面的资料和项目都将被永久删除，需要尽快将资料和项目迁移至Coding,只是因为被Coding收购了。操了个蛋，之前的博客就是托管在GitCafe上和GitHub上的，好在还有GitHub做后盾，不用太担心。虽然会一直服务到5月31号，不过还是决定将 博客迁移到Coding上。
 前面的一些安装步骤就此省略，和托管在GitC">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-01.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-02.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-03.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-04.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-05.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-06.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-01.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-02.png?attname=">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-03.png?attname=">
-<meta property="og:updated_time" content="2016-05-08T14:04:23.000Z">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-01.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-02.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-03.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-04.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-05.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-03-06.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-05-01.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-05-02.png?attname=">
+<meta property="og:image" content="http://fishnews.cn/2016-03-05-03.png?attname=">
+<meta property="og:updated_time" content="2018-10-13T09:32:53.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客托管在Coding上">
 <meta name="twitter:description" content="昨天GitCafe官网上发布声明，截至2016年5月31日停止所有服务，届时上面的资料和项目都将被永久删除，需要尽快将资料和项目迁移至Coding,只是因为被Coding收购了。操了个蛋，之前的博客就是托管在GitCafe上和GitHub上的，好在还有GitHub做后盾，不用太担心。虽然会一直服务到5月31号，不过还是决定将 博客迁移到Coding上。
@@ -285,26 +285,26 @@
 <p>这一步可能会报错 ERROR Deployer not found: git  使用如下命令</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
 <p>然后回到Coding的仓库下面进行如下配置</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-01.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-01.png?attname=" alt=""></p>
 <p>按照如图，点击检测，会提醒没有检测到环境，不过直接点强制开启就可以了</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-02.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-02.png?attname=" alt=""></p>
 <p>访问域名这一项可以随意填写，应用内存选的稍微大一些，点击显示高级选项</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-03.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-03.png?attname=" alt=""></p>
 <p>将运行环境设置为Html,没设置前在部署的时候会导致失败。其他的不用填写，点击一键部署，可能会部署失败。如果部署失败可以查看日志或者查看常见部署问题解答。至此，配置就结束了，可以使用<code>chinafishnews.coding.io</code>访问博客了，<code>chinafishnews</code>是刚才填写的域名。</p>
 <p>但是这样的话，每次写文章发布后都需要手动到这里部署，比较麻烦。可以使用<code>webhook</code>来自动部署。如下图所示</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-04.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-04.png?attname=" alt=""></p>
 <p>点击新建Hook</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-05.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-05.png?attname=" alt=""></p>
 <p>上面 的输入框中是填你的博客域名，也就是前面部署的时候那个域名地址，然后在后面加上/_</p>
 <p>下面的输入框是输入token,直接填写<code>{ {TOKEN} }</code>就可以了</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-03-06.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-03-06.png?attname=" alt=""></p>
 <p>然后点击环境变量，变量名填WEBHOOK_TOKEN,值为<code>{ {TOKEN} }</code>。然后回到控制台重新启动应用就可以了。这样就实现了自动部署。</p>
 <p>另外，之前的域名指向的是GitCafe，现在被Coding收购，GitCafe的功能激也都基本被保留，只是需要重新解析域名，但是，也有一些改动。如下图添加域名</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-01.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-05-01.png?attname=" alt=""></p>
 <p><b>注意<b>，部署分支的coding-pages需改成master,这是因为Hexo中_config.yml文件中的的coding源默认是master。否则无法成功。</b></b></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-02.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-05-02.png?attname=" alt=""></p>
 <p>然后到阿里云重新解析域名</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2016-03-05-03.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-03-05-03.png?attname=" alt=""></p>
 <p>注意，gitcafe中填写的是chinafishnews.gitcafe.io,<code>chinafishnews</code>是gitcafe上自己的用户名，而coding上需改成ChinaFish.coding.me,<code>chinafish</code>是coding上自己的用户名，上图中也有提示已经绑定的域名(CNAME记录指向ChinaFish.coding.me)，稍等片刻便可以使用chinafish.news访问博客了。</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>

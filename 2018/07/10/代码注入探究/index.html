@@ -14,23 +14,23 @@
 <meta property="og:site_name" content="含笑饮砒霜">
 <meta property="og:description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行的过程
 这里使用的是动态库(.framework、.dylib)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以.framework和.dylib后缀结尾，通常把它们叫做Framework和Shared Library。Framework本质上是由Shared Library加上头文件head">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_02.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_03.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_14_04.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_14_02.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_14_03.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_01.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_02.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_03.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_06.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_04.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_05.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_01.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_02.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_03.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_04.png">
-<meta property="og:image" content="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_05.png">
-<meta property="og:updated_time" content="2018-07-19T16:52:55.937Z">
+<meta property="og:image" content="http://fishnews.cn/2018_07_11_02.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_11_03.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_14_04.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_14_02.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_14_03.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_15_01.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_15_02.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_15_03.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_15_06.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_15_04.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_15_05.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_20_01.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_20_02.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_20_03.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_20_04.png">
+<meta property="og:image" content="http://fishnews.cn/2018_07_20_05.png">
+<meta property="og:updated_time" content="2018-10-13T09:25:17.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码注入探究">
 <meta name="twitter:description" content="iOS中对ipa包进行代码注入，就是将外部代码注入现有ipa包中，进而进行打包并最终被执行的过程
@@ -287,39 +287,39 @@
 <p>这里使用的是动态库(<code>.framework</code>、<code>.dylib</code>)注入的方式, 所有的系统库都属于动态库。动态库一般有两种，分别以<code>.framework</code>和<code>.dylib</code>后缀结尾，通常把它们叫做<code>Framework</code>和<code>Shared Library</code>。<code>Framework</code>本质上是由<code>Shared Library</code>加上头文件<code>header</code>和其他资源文件打包得到。说到动态库，就不得不说静态库(<code>.a</code>)，静态库可以看做是一个具有特定功能的代码块，如果项目中引用了静态库，则编译时会将静态库直接复制到可执行文件(<code>MachO</code>)中,进而会导致<code>MachO</code>文件变大，而<code>MachO</code>文件的大小直接影响项目的启动时间和占用内存的大小</p>
 <p>而项目中引用动态库时，动态库不会复制到<code>MachO</code>文件中，只有当动态库真正被用到时才会去加载。如果<code>App</code>将动态库作为它的依赖库，则在<code>MachO</code>文件中会添加这个动态库的引用，如果<code>App</code>在运行时动态加载动态库，则在<code>MachO</code>文件中不会添加动态库的引用。在使用<code>App</code>时，静态库和动态库都会被加载到内存中。当多个<code>app</code>使用同一个库时，如果这个库是动态库，由于动态库是可以被多个app的进程共用的，所以在内存中只会存在一份,而且使用这个动态库时，可能这个动态库已经存在于内存中了，因为其他启动的<code>app</code>也许也依赖了这个库。如果是静态库，由于每个<code>app</code>的<code>MachO</code>文件中都会存在一份，则内存中可能会存在多份。相对静态库，使用动态库可以减少<code>app</code>占用的内存大小和启动时间</p>
 <p>使用动态库的<code>App</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_11_02.png" alt=""></p>
 <p>使用静态库的<code>App</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_11_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_11_03.png" alt=""></p>
 <p>使用动态库有两种方式，一种是将动态库添加为依赖库，这样会在工程启动时加载动态库，一种是使用<code>dlopen</code>在运行时加载动态库，这两种方式的区别在于加载动态库的时机。在<code>iOS</code>中一般使用第一种方法，第二种如果在<code>iOS</code>中使用了这种方式，一般是不能上架到<code>App Store</code>的</p>
 <h5 id="Framework_u6CE8_u5165"><a href="#Framework_u6CE8_u5165" class="headerlink" title="Framework注入"></a>Framework注入</h5><p>以下均使用真机运行。这里以微信为例，打开<code>ipa</code>包，查看<code>Framework</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_14_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_14_04.png" alt=""></p>
 <p>再使用MachOView打开微信的可执行文件(这次比较意外竟然闪退，github从新下载源码编译即可，记得把BaseSDK改成Mac系统的版本号),可见<code>Load Commonds</code>是根据动态库指定的路径去加载的</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_14_02.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_14_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_14_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_14_03.png" alt=""></p>
 <p>那我们可以自己创建一个动态库去注入到微信的可执行文件中</p>
 <p>首先创建一个动态库，然后编译运行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_01.png" alt=""></p>
 <p>可以看到安装包中<code>Frameworks</code>目录下已经有了我们创建的动态库</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_02.png" alt=""></p>
 <p>但是此时<code>MachO</code>文件内并没有这个库，也就是说运行后这个库的代码并不会被执行，也就是这个库并没有被链接到可执行文件中</p>
 <p>使用<code>yololib</code>工具可以修改<code>MachO</code>文件，将动态库写入<code>MachO</code>文件中。注意要将<code>yololib</code>复制到<code>/usr/local/bin</code>或<code>$PATH</code>中的其他路径，这样就可以在终端使用这个命令</p>
 <p><code>yololib</code>需要两个参数，第一个参数指定被修改的<code>MachO</code>文件的路径，第二个参数指定动态库的路径，也可以将此命令写入脚本和<code>ipa</code>包重签一并执行</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_03.png" alt=""></p>
 <p>在使用<code>yololib</code>去添加动态库依赖时，会修改<code>MachO</code>文件的两个地方,修改<code>MachO</code>文件的头文件和添加一个<code>dylib_command</code>结构体,由于增加了一条<code>Load Commands</code>，所以需要修改的是<code>ncmds</code>和<code>sizeofcmds</code>这两个字段，它们分别表示<code>Load Commands</code>的总数目和总大小。再次编译后，通过<code>MachOView</code>查看可执行文件</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_06.png" alt=""></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_06.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_04.png" alt=""></p>
 <p>这之后再次运行即可看到我们注入的代码了</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_15_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_15_05.png" alt=""></p>
 <h5 id="Dylib_u6CE8_u5165"><a href="#Dylib_u6CE8_u5165" class="headerlink" title="Dylib注入"></a>Dylib注入</h5><p>首先创建一个<code>dylib</code>库,这是个<code>macOS</code>的库</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_20_01.png" alt=""></p>
 <p><code>Embed Frameworks</code>添加依赖</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_20_02.png" alt=""></p>
 <p>将<code>Base SDK</code>改为<code>iphoneos</code>,默认是<code>macos</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_20_03.png" alt=""></p>
 <p><code>Code Signing identity</code> 改为<code>iphone developer</code>, 默认是<code>Mac developer</code></p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_04.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_20_04.png" alt=""></p>
 <p>这时候编译运行，包中已经有了这个<code>dylib</code>库</p>
-<p><img src="http://7xqjid.com1.z0.glb.clouddn.com/2018_07_20_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_07_20_05.png" alt=""></p>
 <p>再使用<code>yololib</code>将这个库写入<code>MachO</code>文件中运行即可</p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#INJECT_DYLIB_RELATIVE_PATH=<span class="string">"Frameworks/libfishInject.dylib"</span></span></span><br><span class="line"><span class="preprocessor">#yololib <span class="string">"$TARGET_APP_PATH/$APP_BINARY"</span> <span class="string">"$IINJECT_DYLIB_RELATIVE_PATH"</span></span></span><br></pre></td></tr></table></figure>
 <p><a href="https://github.com/ChinaFishNews/InjectCode.git" target="_blank" rel="external">InjectCode</a></p>
