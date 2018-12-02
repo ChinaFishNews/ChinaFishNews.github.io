@@ -36,7 +36,7 @@ Vision是将各">
 <meta property="og:image" content="http://fishnews.cn/%202017_10_29_08.png">
 <meta property="og:image" content="http://fishnews.cn/2017_10_29_09.png">
 <meta property="og:image" content="http://fishnews.cn/2019_10_29_10.gif">
-<meta property="og:updated_time" content="2018-10-13T09:30:41.998Z">
+<meta property="og:updated_time" content="2018-12-02T14:38:59.486Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习-CoreML基于图像处理">
 <meta name="twitter:description" content="Vision是建立在Core ML上层的Framework。Vision专门用来处理视觉。Vison可以进行多种应用场景的机器学习处理，使用场景：
@@ -344,6 +344,8 @@ Vision是将各">
 <h4 id="u4E0A_u56FE_u53EF_u4EE5_u770B_u5230_uFF0C_u540C_u6837_u7684_u573A_u666F_u56FE_u7247_uFF0CcoreML_u548CVision_u9884_u6D4B_u7684_u7ED3_u679C_u5E76_u4E0D_u4E00_u6837_uFF0C_u540C_u4E00_u573A_u666F_u6216_u56FE_u7247_uFF0CcoreML_u9884_u6D4B_u7684_u7ED3_u679C_u53EF_u4FE1_u5EA6_u66F4_u9AD8_uFF0CVision_u53EF_u80FD_u5728_u5C01_u88C5coreML_u65F6_u505A_u4E86_u4E00_u4E9B_u5176_u4ED6_u64CD_u4F5C_uFF0C_u5177_u4F53_u4E0D_u5F97_u800C_u77E5_u3002_u4F46_u662F_u4F7F_u7528coreML_u5904_u7406_u8FC7_u7A0B_u8F83Vision_u66F4_u4E3A_u7E41_u7410_uFF0C_u9996_u5148_u9700_u8981_u5C06_u56FE_u7247_u88C1_u526A_u6210_u6A21_u578B_u9700_u8981_u7684_u6307_u5B9A_u5927_u5C0F_uFF0C_u800C_u540E_u9700_u8981_u5C06_u56FE_u7247_u683C_u5F0F_u8F6C_u5316_u4E3A_u6A21_u578B_u9700_u8981_u7684CVPixelBuffer_u7C7B_u578B_u3002_u9009_u62E9_u54EA_u79CD_u6A21_u5F0F_u9700_u6839_u636E_u5177_u4F53_u9700_u6C42_u800C_u5B9A_u3002"><a href="#u4E0A_u56FE_u53EF_u4EE5_u770B_u5230_uFF0C_u540C_u6837_u7684_u573A_u666F_u56FE_u7247_uFF0CcoreML_u548CVision_u9884_u6D4B_u7684_u7ED3_u679C_u5E76_u4E0D_u4E00_u6837_uFF0C_u540C_u4E00_u573A_u666F_u6216_u56FE_u7247_uFF0CcoreML_u9884_u6D4B_u7684_u7ED3_u679C_u53EF_u4FE1_u5EA6_u66F4_u9AD8_uFF0CVision_u53EF_u80FD_u5728_u5C01_u88C5coreML_u65F6_u505A_u4E86_u4E00_u4E9B_u5176_u4ED6_u64CD_u4F5C_uFF0C_u5177_u4F53_u4E0D_u5F97_u800C_u77E5_u3002_u4F46_u662F_u4F7F_u7528coreML_u5904_u7406_u8FC7_u7A0B_u8F83Vision_u66F4_u4E3A_u7E41_u7410_uFF0C_u9996_u5148_u9700_u8981_u5C06_u56FE_u7247_u88C1_u526A_u6210_u6A21_u578B_u9700_u8981_u7684_u6307_u5B9A_u5927_u5C0F_uFF0C_u800C_u540E_u9700_u8981_u5C06_u56FE_u7247_u683C_u5F0F_u8F6C_u5316_u4E3A_u6A21_u578B_u9700_u8981_u7684CVPixelBuffer_u7C7B_u578B_u3002_u9009_u62E9_u54EA_u79CD_u6A21_u5F0F_u9700_u6839_u636E_u5177_u4F53_u9700_u6C42_u800C_u5B9A_u3002" class="headerlink" title="上图可以看到，同样的场景图片，coreML和Vision预测的结果并不一样，同一场景或图片，coreML预测的结果可信度更高，Vision可能在封装coreML时做了一些其他操作，具体不得而知。但是使用coreML处理过程较Vision更为繁琐，首先需要将图片裁剪成模型需要的指定大小，而后需要将图片格式转化为模型需要的CVPixelBuffer类型。选择哪种模式需根据具体需求而定。"></a>上图可以看到，同样的场景图片，coreML和Vision预测的结果并不一样，同一场景或图片，coreML预测的结果可信度更高，Vision可能在封装coreML时做了一些其他操作，具体不得而知。但是使用coreML处理过程较Vision更为繁琐，首先需要将图片裁剪成模型需要的指定大小，而后需要将图片格式转化为模型需要的CVPixelBuffer类型。选择哪种模式需根据具体需求而定。</h4><h4 id="Demo_u4E0B_u8F7D"><a href="#Demo_u4E0B_u8F7D" class="headerlink" title="Demo下载"></a><a href="https://github.com/ChinaFishNews/CoreMLOrVisionRecognizePhoto" target="_blank" rel="external">Demo下载</a></h4><hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
+<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
 <p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
 <p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
 <p>如有转载，请注明出处，谢谢！</p>
