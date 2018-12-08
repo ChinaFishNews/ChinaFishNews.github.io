@@ -221,6 +221,125 @@
 
       <div class="body-wrap">
   
+    <article id="post-使用Cycript修改微信红包数额" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/04/22/使用Cycript修改微信红包数额/" class="article-date">
+  	<time datetime="2018-04-21T16:00:00.000Z" itemprop="datePublished">2018-04-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/22/使用Cycript修改微信红包数额/">使用Cycript修改微信红包数额</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=125446&auto=0&height=66"></iframe>
+
+
+<p>这里使用的是非越狱手机、pp助手(<a href="https://pan.baidu.com/s/1cxgFdn7RNXC2IwnEitk9RA" target="_blank" rel="external">https://pan.baidu.com/s/1cxgFdn7RNXC2IwnEitk9RA</a>, 密码:nbva)用来下载越狱包、及安装MonkeyDev</p>
+<p>由于是非越狱手机，所以需要借助pp助手下载一个微信越狱包，那为什么要安装MonkeyDev呢？</p>
+<p>MonkeyDev是一个非越狱开发集成神器</p>
+<ul>
+<li>可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进</li>
+<li>只需拖入一个砸壳应用，自动集成class-dump、restore-symbol、Reveal、Cycript和注入的动态库并重签名安装到非越狱机器</li>
+<li>支持调试自己编写的动态库和第三方App</li>
+<li>支持通过CocoaPods第三方应用集成SDK以及非越狱插件，简单来说就是通过CocoaPods搭建了一个非越狱插件商店</li>
+</ul>
+<p>安装：</p>
+<p>1.安装最新的theos</p>
+<pre><code>sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
+</code></pre><p>2.安装ldid</p>
+<pre><code>brew install ldid
+</code></pre><p>3.选择指定Xcode进行安装</p>
+<pre><code>sudo xcode-select -s /Applications/Xcode-beta.app
+
+sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-install)&quot;
+</code></pre><ul>
+<li>默认安装的xcode为xcode-select -p</li>
+</ul>
+<p>4.卸载</p>
+<pre><code>sudo /bin/sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/AloneMonkey/MonkeyDev/master/bin/md-uninstall)&quot;
+</code></pre><p>使用：</p>
+<p>1.新建一个monkeyDev工程</p>
+<p><img src="http://fishnews.cn/2018_04_23-25.png" alt=""></p>
+<p>2.将微信越狱包拖到此文件下然后真机运行</p>
+<p><img src="http://fishnews.cn/2018_04_23_26.png" alt=""></p>
+<p>3.启动成功后进入Cycript环境并修改</p>
+<p><img src="http://fishnews.cn/2018_04_23_27.png" alt=""></p>
+<p>使用cycript -r 网络IP地址：端口号 进行cycript环境，手机需和Mac处于同一网络下，端口号可以自行修改</p>
+<p><img src="http://fishnews.cn/2018_04_23_35.png" alt=""></p>
+<p>这个命令可以写成一个脚本，将这个脚本放在指定目录，并且在.bash_profile中做好配置,以后就不用每次输入</p>
+<p><img src="http://fishnews.cn/2018_04_23_42.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_43.png" alt=""></p>
+<h5 id="u9690_u85CF_u72B6_u6001_u680F"><a href="#u9690_u85CF_u72B6_u6001_u680F" class="headerlink" title="隐藏状态栏"></a>隐藏状态栏</h5><p><img src="http://fishnews.cn/2018_04_23_28.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_32.png" alt=""></p>
+<h5 id="u81EA_u5B9A_u4E49_u5F39_u6846"><a href="#u81EA_u5B9A_u4E49_u5F39_u6846" class="headerlink" title="自定义弹框"></a>自定义弹框</h5><p><img src="http://fishnews.cn/2018_04_23_29.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_33.png" alt=""></p>
+<h5 id="u8BBE_u7F6E_u63A8_u9001_u901A_u77E5_u4E2A_u6570"><a href="#u8BBE_u7F6E_u63A8_u9001_u901A_u77E5_u4E2A_u6570" class="headerlink" title="设置推送通知个数"></a>设置推送通知个数</h5><p><img src="http://fishnews.cn/2018_04_23_30.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_34.png" alt=""></p>
+<h5 id="u67E5_u770B_u5F53_u524D_u7A0B_u5E8F_u6240_u6709_u7684UILabel"><a href="#u67E5_u770B_u5F53_u524D_u7A0B_u5E8F_u6240_u6709_u7684UILabel" class="headerlink" title="查看当前程序所有的UILabel"></a>查看当前程序所有的UILabel</h5><p><img src="http://fishnews.cn/2018_04_23_37.png" alt=""></p>
+<h5 id="u4FEE_u6539_u7EA2_u5305_u6570_u989D"><a href="#u4FEE_u6539_u7EA2_u5305_u6570_u989D" class="headerlink" title="修改红包数额"></a>修改红包数额</h5><p><img src="http://fishnews.cn/2018_04_23_38.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_39.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_40.png" alt=""></p>
+<p>如果想修改某个控件的值，可以使用choose方法，也可以直接通过Xcode查看层次结构找到该控件的地址，然后再做修改</p>
+<p><img src="http://fishnews.cn/2018_04_23_41.png" alt=""></p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
+<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cycript/">Cycript</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-配置Cycript环境前常用工具的安装配置" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -417,6 +536,127 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Alfred，goshell，iterm2，Oh-My-Zsh，pp助手/">Alfred，goshell，iterm2，Oh My Zsh，pp助手</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-配置Cycript环境及部分常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/04/22/配置Cycript环境及部分常用命令/" class="article-date">
+  	<time datetime="2018-04-21T16:00:00.000Z" itemprop="datePublished">2018-04-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/22/配置Cycript环境及部分常用命令/">配置Cycript环境及部分常用命令</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=108914&auto=0&height=66"></iframe>
+
+
+<p>Cycript 是一个能够理解Objective-C语法的javascript解释器，让开发者在命令行下和应用交互，在运行时查看和修改应用，一般用于动态调试应用</p>
+<p>1.到官网下载并拖到具体位置即可</p>
+<p><img src="http://fishnews.cn/2018_04_23_16.png" alt=""></p>
+<p><img src="http://fishnews.cn/2018_04_23_17.png" alt=""></p>
+<p>2.打开.bash_profile做相应配置</p>
+<p><img src="http://fishnews.cn/2018_04_23_19.png" alt=""></p>
+<p>如果使用的是iTerm2和on my zsh组合，又没有设置兼容bash,则需要在.zshrc文件下配置</p>
+<p>3.在终端或iTerm2输入cycript验证是否配置成功</p>
+<p>使用commond+D退出，我在公司的电脑上验证通过，但是在自己的电脑上却报错</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">dyld:</span> <span class="constant">Library</span> not <span class="symbol">loaded:</span> /<span class="constant">System</span>/<span class="constant">Library</span>/<span class="constant">Frameworks</span>/<span class="constant">Ruby</span>.framework/<span class="constant">Versions</span>/<span class="number">2.0</span>/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libruby</span>.2.0.0.<span class="title">dylib</span></span></span><br><span class="line">  <span class="constant">Referenced</span> <span class="symbol">from:</span> /<span class="constant">Users</span>/devzkn/<span class="constant">Downloads</span>/cycript_0.<span class="number">9.594</span>/<span class="constant">Cycript</span>.<span class="keyword">lib</span>/cycript-apl</span><br><span class="line">  <span class="constant">Reason</span>: image not found</span><br></pre></td></tr></table></figure>
+<p>这个错误是因为ruby版本太高导致</p>
+<p>解决方法：</p>
+<ul>
+<li>查看电脑ruby版本，我的版本是2.3<ul>
+<li>cd /System/Library/Frameworks/Ruby.framework/Versions/</li>
+<li>ls</li>
+</ul>
+</li>
+<li><p>关闭系统的SIP</p>
+<ul>
+<li>在 OS X El Capitan 中有一个跟安全相关的模式叫 SIP（System Integrity Protection ），它禁止让软件以 root 身份来在 Mac 上运行，在升级到 OS X 10.11 中或许你就会看到部分应用程序被禁用了，这些或许是你通过终端或者第三方软件源安装。对于大多数用户来说，这种安全设置很方便，但是也有些开发者或者高级 Mac 用户不需要这样的设置</li>
+<li>电脑重启按住command+R，进入恢复模式</li>
+<li>打开终端，输入csrutil disable，重启</li>
+<li>如果想打开SIP，重复上两步，命令改为csrutil enable</li>
+</ul>
+</li>
+<li><p>直接复制一份，改为2.0即可</p>
+<ul>
+<li><p><code>sudo mkdir -p /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/</code></p>
+</li>
+<li><p><code>sudo ln -s /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/libruby.2.0.0.dylib</code></p>
+</li>
+<li><p>根据每个人ruby版本不同，将上面第二条命令的/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/lib/libruby.2.3.0.dylib中的2.3改成本机的ruby版本。<br>这里不是降级ruby，只是复制一份2.0的ruby的dylib，让cycript运行起来</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>4.cycript部分常用命令</p>
+<ul>
+<li>获取项目单例： UIApp或者[uiapplication sharedApplication]</li>
+<li>格式化： .toString()</li>
+<li>根据地址获取对象： #内存地址</li>
+<li>打印当前页面view层级： UIApp.keyWindow.recursiveDescription().toString()</li>
+<li>获取下一个响应者： [#内存地址 nextResponder]</li>
+<li>查找指定类型: choose(UILabel)</li>
+<li>获取指定对象的所有属性： [#内存地址 _ivarDescription].toString()</li>
+<li>查看安装的进程： ps -e |grep  /var/mobile*</li>
+<li>查看架构层级： [[UIApp keyWindow] _autolayoutTrace].toString()</li>
+</ul>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
+<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby，Cycript/">Ruby，Cycript</a></li></ul>
 	</div>
 
       
@@ -2036,198 +2276,6 @@ double result = manger.add(3).minus(3).result;
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/转载/">转载</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-机器学习-CoreML目标跟踪" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/11/12/机器学习-CoreML目标跟踪/" class="article-date">
-  	<time datetime="2017-11-11T16:00:00.000Z" itemprop="datePublished">2017-11-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/12/机器学习-CoreML目标跟踪/">机器学习-CoreML目标跟踪</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=507777634&auto=0&height=66"></iframe>
-
-
-<p>物体跟踪需要处理连续的视频帧，所以需要<code>VNSequenceRequestHandler</code>类来处理多帧图像，之前识别单张图片使用的是<code>VNImageRequestHandler</code>类。跟踪多物体时，可以使用VNDetectedObjectObservation.uuid区分跟踪对象，并做相应处理。这里粗略演示一下追踪单个物体。</p>
-<ol>
-<li>前期UI准备</li>
-</ol>
-<p><img src="http://fishnews.cn/2017_11_12_02.png" alt=""></p>
-<p><img src="http://fishnews.cn/2017_11_12_03.png" alt=""></p>
-<p><img src="http://fishnews.cn/2017_11_12_04.png" alt=""></p>
-<p>2  捕获对象，设置精准追踪</p>
-<p><img src="http://fishnews.cn/2017_11_12_05.png" alt=""></p>
-<p><img src="http://fishnews.cn/2017_11_12_06.png" alt=""></p>
-<p>3.效果演示<br><img src="http://fishnews.cn/2017_11_07_10.gif" alt=""></p>
-<p><img src="http://fishnews.cn/2017_11_12_01.gif" alt=""></p>
-<p><br><br><a href="https://github.com/ChinaFishNews/ObjectsTracking" target="_blank" rel="external">Demo下载</a></p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
-<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vision-目标跟踪，VNDetectedObjectObservation-VNSequenceRequestHandler/">Vision,目标跟踪，VNDetectedObjectObservation,VNSequenceRequestHandler</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Swift/">Swift</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-机器学习-CoreML人脸识别" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/11/07/机器学习-CoreML人脸识别/" class="article-date">
-  	<time datetime="2017-11-06T16:00:00.000Z" itemprop="datePublished">2017-11-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/07/机器学习-CoreML人脸识别/">机器学习-CoreML人脸识别</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=167850&auto=0&height=66"></iframe>
-
-<p>使用Vision框架进行人脸识别，不仅可以识别出人脸的面部轮廓，还可以识别出人脸的特征点，比如眼睛、鼻子、嘴巴等。进行人脸请求的类是<code>VNDetectFaceRectanglesRequest</code>，人脸特征请求的类是<code>VNDetectFaceRectanglesRequest</code>,请求结果的信息类是<code>VNFaceObservation</code>。下面直接上代码。</p>
-<ol>
-<li>搭建基本UI</li>
-</ol>
-<p><img src="http://fishnews.cn/2017_11_07_03.png" alt=""></p>
-<p><img src="http://fishnews.cn/2017_11_07_04.png" alt=""></p>
-<ol>
-<li>识别面部轮廓</li>
-</ol>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">processImage</span><span class="params">(image:UIImage)</span></span> &#123;</span><br><span class="line">       <span class="keyword">self</span>.resultLabel.text = <span class="string">"processing..."</span></span><br><span class="line">       <span class="keyword">let</span> handler = <span class="type">VNImageRequestHandler</span>.<span class="keyword">init</span>(cgImage: image.cgImage!)</span><br><span class="line">       <span class="keyword">let</span> request = <span class="type">VNDetectFaceRectanglesRequest</span>.<span class="keyword">init</span>(completionHandler: handleFaceDetect)</span><br><span class="line">       <span class="keyword">try</span>? handler.perform([request])</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">handleFaceDetect</span><span class="params">(request:VNRequest,error:Error?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> obversations = request.results <span class="keyword">as</span>? [<span class="type">VNFaceObservation</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">"no face"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">self</span>.resultLabel.text = <span class="string">"<span class="subst">\(obversations.<span class="built_in">count</span>)</span>face"</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> subView <span class="keyword">in</span> <span class="keyword">self</span>.btnImageView.subviews <span class="keyword">where</span> subView.tag == <span class="number">100</span> &#123;</span><br><span class="line">            subView.removeFromSuperview()</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> faceObversion <span class="keyword">in</span> obversations &#123;</span><br><span class="line">            <span class="keyword">self</span>.showFaceContour(faceObversion: faceObversion, toView: <span class="keyword">self</span>.btnImageView)</span><br><span class="line">            </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">func showFaceContour(faceObversion face : VNFaceObservation, toView view : UIView) &#123;</span><br><span class="line">    let boundingBox = face<span class="string">.boundingBox</span></span><br><span class="line">    let imageBoundingBox = view<span class="string">.bounds</span></span><br><span class="line">    </span><br><span class="line">    let w = boundingBox<span class="string">.size.width</span> * imageBoundingBox<span class="string">.width</span></span><br><span class="line">    let h = boundingBox<span class="string">.size.height</span> * imageBoundingBox<span class="string">.height</span></span><br><span class="line">    </span><br><span class="line">    let x = boundingBox<span class="string">.origin.x</span> * imageBoundingBox<span class="string">.width</span></span><br><span class="line">    let y = imageBoundingBox<span class="string">.height</span> - boundingBox<span class="string">.origin.y</span> * imageBoundingBox<span class="string">.height</span> - h</span><br><span class="line">    </span><br><span class="line">    let subview = UIView(frame: CGRect(x: x, y: y, width: w, height: h))</span><br><span class="line">    subview<span class="string">.layer.borderColor</span> = UIColor<span class="string">.green.cgColor</span></span><br><span class="line">    subview<span class="string">.layer.borderWidth</span> = 1</span><br><span class="line">    subview<span class="string">.layer.cornerRadius</span> = 1</span><br><span class="line">    subview<span class="string">.tag</span> = 100</span><br><span class="line">    view<span class="string">.addSubview(subview)</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>相当于在人脸上画了一个轮廓视图添加上去。boundingBox是CGRect类型，但是boundingBox返回的是x,y,w,h的比例(value:0~1)，需要进行转换。原始坐标系的原点是左上角，而这里是左下角，并且y轴的方向和原始坐标系相反。</li>
-</ul>
-<p><img src="http://fishnews.cn/2017_11_07_05.png" alt=""></p>
-<p>3.面部轮廓展示</p>
-<p><img src="http://fishnews.cn/2017_11_07_06.png" alt=""></p>
-<p>4.识别面部特征<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">processImage</span><span class="params">(image:UIImage)</span></span> &#123;</span><br><span class="line">       <span class="keyword">self</span>.resultLabel.text = <span class="string">"processing..."</span></span><br><span class="line">       <span class="keyword">let</span> handler = <span class="type">VNImageRequestHandler</span>.<span class="keyword">init</span>(cgImage: image.cgImage!)</span><br><span class="line">       <span class="keyword">let</span> request = <span class="type">VNDetectFaceLandmarksRequest</span>.<span class="keyword">init</span>(completionHandler: handleFaceDetect)</span><br><span class="line">       <span class="keyword">try</span>? handler.perform([request])</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">handleFaceDetect</span><span class="params">(request:VNRequest,error:Error?)</span></span> &#123;</span><br><span class="line">       <span class="keyword">guard</span> <span class="keyword">let</span> obversations = request.results <span class="keyword">as</span>? [<span class="type">VNFaceObservation</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">fatalError</span>(<span class="string">"no face"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">self</span>.resultLabel.text = <span class="string">"<span class="subst">\(obversations.<span class="built_in">count</span>)</span> face"</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> landmarkRegions : [<span class="type">VNFaceLandmarkRegion2D</span>] = []</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">for</span> faceObversion <span class="keyword">in</span> obversations &#123;</span><br><span class="line">           landmarkRegions += <span class="keyword">self</span>.showFaceFeature(faceObversion: faceObversion, toView: <span class="keyword">self</span>.btnImageView)</span><br><span class="line">           resultImage =  <span class="keyword">self</span>.drawOnImage(source: <span class="keyword">self</span>.resultImage,</span><br><span class="line">                                             boundingRect: faceObversion.boundingBox,</span><br><span class="line">                                             faceLandmarkRegions: landmarkRegions)</span><br><span class="line">       &#125;</span><br><span class="line"><span class="keyword">self</span>.btnImageView.setBackgroundImage(resultImage, <span class="keyword">for</span>: .normal)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>获取特征点<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">showFaceFeature</span><span class="params">(faceObversion face: VNFaceObservation, toView view: UIView)</span></span> -&gt;[<span class="type">VNFaceLandmarkRegion2D</span>] &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> landmarks = face.landmarks <span class="keyword">else</span> &#123; <span class="keyword">return</span> [] &#125;</span><br><span class="line">        <span class="keyword">var</span> landmarkRegions: [<span class="type">VNFaceLandmarkRegion2D</span>] = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> rightEye = landmarks.rightEye &#123;</span><br><span class="line">            landmarkRegions.append(rightEye)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> nose = landmarks.nose &#123;</span><br><span class="line">            landmarkRegions.append(nose)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> landmarkRegions</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>重新绘制图片（含面部特征）<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">func drawOnImage(source: UIImage,</span><br><span class="line">                   boundingRect: CGRect,</span><br><span class="line">                   faceLandmarkRegions: [VNFaceLandmarkRegion2D]) -&gt; UIImage &#123;</span><br><span class="line">      UIGraphicsBeginImageContextWithOptions(source.<span class="built_in">size</span>, <span class="keyword">false</span>, <span class="number">1</span>)</span><br><span class="line">      let context = UIGraphicsGetCurrentContext()!</span><br><span class="line">      context.translateBy(x: <span class="number">0</span>, y: source.<span class="built_in">size</span>.<span class="variable">height</span>)</span><br><span class="line">      context.scaleBy(x: <span class="number">1.0</span>, y: -<span class="number">1.0</span>)</span><br><span class="line">      context.setBlendMode(CGBlendMode.colorBurn)</span><br><span class="line">      context.setLineJoin(.<span class="built_in">round</span>)</span><br><span class="line">      context.setLineCap(.<span class="built_in">round</span>)</span><br><span class="line">      context.setShouldAntialias(<span class="keyword">true</span>)</span><br><span class="line">      context.setAllowsAntialiasing(<span class="keyword">true</span>)</span><br><span class="line">      context.setLineWidth(<span class="number">5.0</span>)</span><br><span class="line">      context.setStrokeColor(UIColor.black.cgColor)</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// origin image</span></span><br><span class="line">      let <span class="built_in">rect</span> = CGRect(x: <span class="number">0</span>, y:<span class="number">0</span>, <span class="variable">width</span>: source.<span class="built_in">size</span>.<span class="variable">width</span>, <span class="variable">height</span>: source.<span class="built_in">size</span>.<span class="variable">height</span>)</span><br><span class="line">      context.<span class="title">draw</span>(source.cgImage!, in: <span class="built_in">rect</span>)</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// face contour</span></span><br><span class="line">      let rectWidth = source.<span class="built_in">size</span>.<span class="variable">width</span> * boundingRect.<span class="built_in">size</span>.<span class="variable">width</span></span><br><span class="line">      let rectHeight = source.<span class="built_in">size</span>.<span class="variable">height</span> * boundingRect.<span class="built_in">size</span>.<span class="variable">height</span></span><br><span class="line">      context.addRect(CGRect(x: boundingRect.origin.x * source.<span class="built_in">size</span>.<span class="variable">width</span>, y:boundingRect.origin.y * source.<span class="built_in">size</span>.<span class="variable">height</span>, <span class="variable">width</span>: rectWidth, <span class="variable">height</span>: rectHeight))</span><br><span class="line">      context.drawPath(using: CGPathDrawingMode.<span class="built_in">stroke</span>)</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// draw face feature</span></span><br><span class="line">      context.setStrokeColor(UIColor.<span class="built_in">red</span>.cgColor)</span><br><span class="line">      <span class="keyword">for</span> faceLandmarkRegion in faceLandmarkRegions &#123;</span><br><span class="line">          var points: [CGPoint] = []</span><br><span class="line">          <span class="keyword">for</span> i in <span class="number">0.</span>.&lt;faceLandmarkRegion.pointCount &#123;</span><br><span class="line">              let <span class="built_in">point</span> = faceLandmarkRegion.normalizedPoints[i]</span><br><span class="line">              let p = CGPoint(x: CGFloat(<span class="built_in">point</span>.x), y: CGFloat(<span class="built_in">point</span>.y))</span><br><span class="line">              points.<span class="built_in">append</span>(p)</span><br><span class="line">          &#125;</span><br><span class="line">          let mappedPoints = points.<span class="built_in">map</span> &#123; CGPoint(x: boundingRect.origin.x * source.<span class="built_in">size</span>.<span class="variable">width</span> + $<span class="number">0.</span>x * rectWidth, y: boundingRect.origin.y * source.<span class="built_in">size</span>.<span class="variable">height</span> + $<span class="number">0.</span>y * rectHeight) &#125;</span><br><span class="line">          context.addLines(between: mappedPoints)</span><br><span class="line">          context.drawPath(using: CGPathDrawingMode.<span class="built_in">stroke</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      let coloredImg : UIImage = UIGraphicsGetImageFromCurrentImageContext()!</span><br><span class="line">      UIGraphicsEndImageContext()</span><br><span class="line">      <span class="keyword">return</span> coloredImg</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p> VNDetectFaceLandmarksRequest请求返回的也是VNFaceObservation，但是这个时候VNFaceObservation 对象的landmarks属性就会有值，这个属性里面存储了人物面部特征的点<br>如：</p>
-<ul>
-<li>faceContour：脸部轮廓</li>
-<li>leftEye、rightEye： 左眼、右眼</li>
-<li>nose： 鼻子</li>
-<li>noseCrest: 鼻嵴</li>
-<li>outerLips、innerLips： 外唇、内唇</li>
-<li>leftEyebrow、rightEyebrow: 左眉毛、右眉毛</li>
-<li>leftPupil、rightPupil： 左瞳、右瞳</li>
-</ul>
-<p>5.面部特征点展示</p>
-<p><img src="http://fishnews.cn/2017_11_07_07.png" alt=""></p>
-<p><img src="http://fishnews.cn/2017_11_07_08.png" alt=""></p>
-<p><br><br><a href="https://github.com/ChinaFishNews/HumanFaceRecognize.git" target="_blank" rel="external">Demo下载</a></p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
-<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Core-ML-Vision-人脸识别/">Core ML, Vision,人脸识别</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Swift/">Swift</a>
 	</div>
 
 

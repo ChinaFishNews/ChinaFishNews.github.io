@@ -221,6 +221,198 @@
 
       <div class="body-wrap">
   
+    <article id="post-机器学习-CoreML目标跟踪" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/12/机器学习-CoreML目标跟踪/" class="article-date">
+  	<time datetime="2017-11-11T16:00:00.000Z" itemprop="datePublished">2017-11-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/12/机器学习-CoreML目标跟踪/">机器学习-CoreML目标跟踪</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=507777634&auto=0&height=66"></iframe>
+
+
+<p>物体跟踪需要处理连续的视频帧，所以需要<code>VNSequenceRequestHandler</code>类来处理多帧图像，之前识别单张图片使用的是<code>VNImageRequestHandler</code>类。跟踪多物体时，可以使用VNDetectedObjectObservation.uuid区分跟踪对象，并做相应处理。这里粗略演示一下追踪单个物体。</p>
+<ol>
+<li>前期UI准备</li>
+</ol>
+<p><img src="http://fishnews.cn/2017_11_12_02.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_12_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_12_04.png" alt=""></p>
+<p>2  捕获对象，设置精准追踪</p>
+<p><img src="http://fishnews.cn/2017_11_12_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_12_06.png" alt=""></p>
+<p>3.效果演示<br><img src="http://fishnews.cn/2017_11_07_10.gif" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_12_01.gif" alt=""></p>
+<p><br><br><a href="https://github.com/ChinaFishNews/ObjectsTracking" target="_blank" rel="external">Demo下载</a></p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
+<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vision-目标跟踪，VNDetectedObjectObservation-VNSequenceRequestHandler/">Vision,目标跟踪，VNDetectedObjectObservation,VNSequenceRequestHandler</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Swift/">Swift</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-机器学习-CoreML人脸识别" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/07/机器学习-CoreML人脸识别/" class="article-date">
+  	<time datetime="2017-11-06T16:00:00.000Z" itemprop="datePublished">2017-11-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/07/机器学习-CoreML人脸识别/">机器学习-CoreML人脸识别</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=167850&auto=0&height=66"></iframe>
+
+<p>使用Vision框架进行人脸识别，不仅可以识别出人脸的面部轮廓，还可以识别出人脸的特征点，比如眼睛、鼻子、嘴巴等。进行人脸请求的类是<code>VNDetectFaceRectanglesRequest</code>，人脸特征请求的类是<code>VNDetectFaceRectanglesRequest</code>,请求结果的信息类是<code>VNFaceObservation</code>。下面直接上代码。</p>
+<ol>
+<li>搭建基本UI</li>
+</ol>
+<p><img src="http://fishnews.cn/2017_11_07_03.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_04.png" alt=""></p>
+<ol>
+<li>识别面部轮廓</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">processImage</span><span class="params">(image:UIImage)</span></span> &#123;</span><br><span class="line">       <span class="keyword">self</span>.resultLabel.text = <span class="string">"processing..."</span></span><br><span class="line">       <span class="keyword">let</span> handler = <span class="type">VNImageRequestHandler</span>.<span class="keyword">init</span>(cgImage: image.cgImage!)</span><br><span class="line">       <span class="keyword">let</span> request = <span class="type">VNDetectFaceRectanglesRequest</span>.<span class="keyword">init</span>(completionHandler: handleFaceDetect)</span><br><span class="line">       <span class="keyword">try</span>? handler.perform([request])</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">handleFaceDetect</span><span class="params">(request:VNRequest,error:Error?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> obversations = request.results <span class="keyword">as</span>? [<span class="type">VNFaceObservation</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">"no face"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">self</span>.resultLabel.text = <span class="string">"<span class="subst">\(obversations.<span class="built_in">count</span>)</span>face"</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> subView <span class="keyword">in</span> <span class="keyword">self</span>.btnImageView.subviews <span class="keyword">where</span> subView.tag == <span class="number">100</span> &#123;</span><br><span class="line">            subView.removeFromSuperview()</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> faceObversion <span class="keyword">in</span> obversations &#123;</span><br><span class="line">            <span class="keyword">self</span>.showFaceContour(faceObversion: faceObversion, toView: <span class="keyword">self</span>.btnImageView)</span><br><span class="line">            </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">func showFaceContour(faceObversion face : VNFaceObservation, toView view : UIView) &#123;</span><br><span class="line">    let boundingBox = face<span class="string">.boundingBox</span></span><br><span class="line">    let imageBoundingBox = view<span class="string">.bounds</span></span><br><span class="line">    </span><br><span class="line">    let w = boundingBox<span class="string">.size.width</span> * imageBoundingBox<span class="string">.width</span></span><br><span class="line">    let h = boundingBox<span class="string">.size.height</span> * imageBoundingBox<span class="string">.height</span></span><br><span class="line">    </span><br><span class="line">    let x = boundingBox<span class="string">.origin.x</span> * imageBoundingBox<span class="string">.width</span></span><br><span class="line">    let y = imageBoundingBox<span class="string">.height</span> - boundingBox<span class="string">.origin.y</span> * imageBoundingBox<span class="string">.height</span> - h</span><br><span class="line">    </span><br><span class="line">    let subview = UIView(frame: CGRect(x: x, y: y, width: w, height: h))</span><br><span class="line">    subview<span class="string">.layer.borderColor</span> = UIColor<span class="string">.green.cgColor</span></span><br><span class="line">    subview<span class="string">.layer.borderWidth</span> = 1</span><br><span class="line">    subview<span class="string">.layer.cornerRadius</span> = 1</span><br><span class="line">    subview<span class="string">.tag</span> = 100</span><br><span class="line">    view<span class="string">.addSubview(subview)</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>相当于在人脸上画了一个轮廓视图添加上去。boundingBox是CGRect类型，但是boundingBox返回的是x,y,w,h的比例(value:0~1)，需要进行转换。原始坐标系的原点是左上角，而这里是左下角，并且y轴的方向和原始坐标系相反。</li>
+</ul>
+<p><img src="http://fishnews.cn/2017_11_07_05.png" alt=""></p>
+<p>3.面部轮廓展示</p>
+<p><img src="http://fishnews.cn/2017_11_07_06.png" alt=""></p>
+<p>4.识别面部特征<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">processImage</span><span class="params">(image:UIImage)</span></span> &#123;</span><br><span class="line">       <span class="keyword">self</span>.resultLabel.text = <span class="string">"processing..."</span></span><br><span class="line">       <span class="keyword">let</span> handler = <span class="type">VNImageRequestHandler</span>.<span class="keyword">init</span>(cgImage: image.cgImage!)</span><br><span class="line">       <span class="keyword">let</span> request = <span class="type">VNDetectFaceLandmarksRequest</span>.<span class="keyword">init</span>(completionHandler: handleFaceDetect)</span><br><span class="line">       <span class="keyword">try</span>? handler.perform([request])</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">handleFaceDetect</span><span class="params">(request:VNRequest,error:Error?)</span></span> &#123;</span><br><span class="line">       <span class="keyword">guard</span> <span class="keyword">let</span> obversations = request.results <span class="keyword">as</span>? [<span class="type">VNFaceObservation</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">fatalError</span>(<span class="string">"no face"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">self</span>.resultLabel.text = <span class="string">"<span class="subst">\(obversations.<span class="built_in">count</span>)</span> face"</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> landmarkRegions : [<span class="type">VNFaceLandmarkRegion2D</span>] = []</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">for</span> faceObversion <span class="keyword">in</span> obversations &#123;</span><br><span class="line">           landmarkRegions += <span class="keyword">self</span>.showFaceFeature(faceObversion: faceObversion, toView: <span class="keyword">self</span>.btnImageView)</span><br><span class="line">           resultImage =  <span class="keyword">self</span>.drawOnImage(source: <span class="keyword">self</span>.resultImage,</span><br><span class="line">                                             boundingRect: faceObversion.boundingBox,</span><br><span class="line">                                             faceLandmarkRegions: landmarkRegions)</span><br><span class="line">       &#125;</span><br><span class="line"><span class="keyword">self</span>.btnImageView.setBackgroundImage(resultImage, <span class="keyword">for</span>: .normal)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取特征点<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">showFaceFeature</span><span class="params">(faceObversion face: VNFaceObservation, toView view: UIView)</span></span> -&gt;[<span class="type">VNFaceLandmarkRegion2D</span>] &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> landmarks = face.landmarks <span class="keyword">else</span> &#123; <span class="keyword">return</span> [] &#125;</span><br><span class="line">        <span class="keyword">var</span> landmarkRegions: [<span class="type">VNFaceLandmarkRegion2D</span>] = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> rightEye = landmarks.rightEye &#123;</span><br><span class="line">            landmarkRegions.append(rightEye)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> nose = landmarks.nose &#123;</span><br><span class="line">            landmarkRegions.append(nose)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> landmarkRegions</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>重新绘制图片（含面部特征）<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">func drawOnImage(source: UIImage,</span><br><span class="line">                   boundingRect: CGRect,</span><br><span class="line">                   faceLandmarkRegions: [VNFaceLandmarkRegion2D]) -&gt; UIImage &#123;</span><br><span class="line">      UIGraphicsBeginImageContextWithOptions(source.<span class="built_in">size</span>, <span class="keyword">false</span>, <span class="number">1</span>)</span><br><span class="line">      let context = UIGraphicsGetCurrentContext()!</span><br><span class="line">      context.translateBy(x: <span class="number">0</span>, y: source.<span class="built_in">size</span>.<span class="variable">height</span>)</span><br><span class="line">      context.scaleBy(x: <span class="number">1.0</span>, y: -<span class="number">1.0</span>)</span><br><span class="line">      context.setBlendMode(CGBlendMode.colorBurn)</span><br><span class="line">      context.setLineJoin(.<span class="built_in">round</span>)</span><br><span class="line">      context.setLineCap(.<span class="built_in">round</span>)</span><br><span class="line">      context.setShouldAntialias(<span class="keyword">true</span>)</span><br><span class="line">      context.setAllowsAntialiasing(<span class="keyword">true</span>)</span><br><span class="line">      context.setLineWidth(<span class="number">5.0</span>)</span><br><span class="line">      context.setStrokeColor(UIColor.black.cgColor)</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// origin image</span></span><br><span class="line">      let <span class="built_in">rect</span> = CGRect(x: <span class="number">0</span>, y:<span class="number">0</span>, <span class="variable">width</span>: source.<span class="built_in">size</span>.<span class="variable">width</span>, <span class="variable">height</span>: source.<span class="built_in">size</span>.<span class="variable">height</span>)</span><br><span class="line">      context.<span class="title">draw</span>(source.cgImage!, in: <span class="built_in">rect</span>)</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// face contour</span></span><br><span class="line">      let rectWidth = source.<span class="built_in">size</span>.<span class="variable">width</span> * boundingRect.<span class="built_in">size</span>.<span class="variable">width</span></span><br><span class="line">      let rectHeight = source.<span class="built_in">size</span>.<span class="variable">height</span> * boundingRect.<span class="built_in">size</span>.<span class="variable">height</span></span><br><span class="line">      context.addRect(CGRect(x: boundingRect.origin.x * source.<span class="built_in">size</span>.<span class="variable">width</span>, y:boundingRect.origin.y * source.<span class="built_in">size</span>.<span class="variable">height</span>, <span class="variable">width</span>: rectWidth, <span class="variable">height</span>: rectHeight))</span><br><span class="line">      context.drawPath(using: CGPathDrawingMode.<span class="built_in">stroke</span>)</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// draw face feature</span></span><br><span class="line">      context.setStrokeColor(UIColor.<span class="built_in">red</span>.cgColor)</span><br><span class="line">      <span class="keyword">for</span> faceLandmarkRegion in faceLandmarkRegions &#123;</span><br><span class="line">          var points: [CGPoint] = []</span><br><span class="line">          <span class="keyword">for</span> i in <span class="number">0.</span>.&lt;faceLandmarkRegion.pointCount &#123;</span><br><span class="line">              let <span class="built_in">point</span> = faceLandmarkRegion.normalizedPoints[i]</span><br><span class="line">              let p = CGPoint(x: CGFloat(<span class="built_in">point</span>.x), y: CGFloat(<span class="built_in">point</span>.y))</span><br><span class="line">              points.<span class="built_in">append</span>(p)</span><br><span class="line">          &#125;</span><br><span class="line">          let mappedPoints = points.<span class="built_in">map</span> &#123; CGPoint(x: boundingRect.origin.x * source.<span class="built_in">size</span>.<span class="variable">width</span> + $<span class="number">0.</span>x * rectWidth, y: boundingRect.origin.y * source.<span class="built_in">size</span>.<span class="variable">height</span> + $<span class="number">0.</span>y * rectHeight) &#125;</span><br><span class="line">          context.addLines(between: mappedPoints)</span><br><span class="line">          context.drawPath(using: CGPathDrawingMode.<span class="built_in">stroke</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      let coloredImg : UIImage = UIGraphicsGetImageFromCurrentImageContext()!</span><br><span class="line">      UIGraphicsEndImageContext()</span><br><span class="line">      <span class="keyword">return</span> coloredImg</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p> VNDetectFaceLandmarksRequest请求返回的也是VNFaceObservation，但是这个时候VNFaceObservation 对象的landmarks属性就会有值，这个属性里面存储了人物面部特征的点<br>如：</p>
+<ul>
+<li>faceContour：脸部轮廓</li>
+<li>leftEye、rightEye： 左眼、右眼</li>
+<li>nose： 鼻子</li>
+<li>noseCrest: 鼻嵴</li>
+<li>outerLips、innerLips： 外唇、内唇</li>
+<li>leftEyebrow、rightEyebrow: 左眉毛、右眉毛</li>
+<li>leftPupil、rightPupil： 左瞳、右瞳</li>
+</ul>
+<p>5.面部特征点展示</p>
+<p><img src="http://fishnews.cn/2017_11_07_07.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_08.png" alt=""></p>
+<p><br><br><a href="https://github.com/ChinaFishNews/HumanFaceRecognize.git" target="_blank" rel="external">Demo下载</a></p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
+<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Core-ML-Vision-人脸识别/">Core ML, Vision,人脸识别</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Swift/">Swift</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-机器学习-CoreML文字识别" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -392,10 +584,10 @@
 
 
   
-    <article id="post-机器学习-CoreML基于图像处理" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-机器学习-CoreML入门 结合ARKit" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/10/29/机器学习-CoreML基于图像处理/" class="article-date">
+      <a href="/2017/10/29/机器学习-CoreML入门 结合ARKit/" class="article-date">
   	<time datetime="2017-10-28T16:00:00.000Z" itemprop="datePublished">2017-10-29</time>
 </a>
     </div>
@@ -409,7 +601,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/29/机器学习-CoreML基于图像处理/">机器学习-CoreML基于图像处理</a>
+      <a class="article-title" href="/2017/10/29/机器学习-CoreML入门 结合ARKit/">机器学习-CoreML入门 结合ARKit</a>
     </h1>
   
 
@@ -419,52 +611,100 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=492151700&auto=0&height=66"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=456481586&auto=0&height=66"></iframe>
 
-<p>Vision是建立在Core ML上层的Framework。Vision专门用来处理视觉。Vison可以进行多种应用场景的机器学习处理，使用场景：</p>
+<h4 id="ARKit_3A"><a href="#ARKit_3A" class="headerlink" title="ARKit:"></a>ARKit:</h4><p>iOS11引入的全新的框架，允许开发者轻松地为 iPhone 和 iPad 创建无与伦比的增强现实体验。通过将虚拟对象和虚拟信息同用户周围的环境相互融合，ARKit 使得应 用跳出屏幕的限制，让它们能够以全新的方式与现实世界进行交互。</p>
 <ul>
-<li>人脸检测：支持检测笑脸、侧脸、局部遮挡脸部、戴眼镜和帽子等场景，可以标记出人脸的矩形区域</li>
-<li>人脸特征点：可以标记出人脸和眼睛、眉毛、鼻子、嘴、牙齿的轮廓，以及人脸的中轴线</li>
-<li>图像配准</li>
-<li>矩形检测</li>
-<li>二维码/条形码检测</li>
-<li>文字检测</li>
-<li>目标跟踪</li>
+<li><p>所谓的增强现实 (Augmented Reality, AR)，指的是向设备摄像头产生的实时动态视图中，添加 2D 或者 3D 元素，然后用某种方法让这些元素看起来就处于现实世界当中，所产生的一种用户体验。ARKit 提供设备动作追踪、相机场景捕获和高级场景处理，并让AR元素的展示变得极为便利，从而大大简化了建立 AR用户体验的工作难度。</p>
+</li>
+<li><p>ARSession类：<br> 这是一个单例, 是ARKit的核心类，用于控制设备摄像头，处理传感器数据，对捕获的图像进行分析等</p>
+</li>
+<li><p>ARSessionConfiguration类：<br>跟踪设备 向的 个基本配置, 在运行时，需要指定AR运行的配置</p>
+</li>
+<li><p>ARWorldTrackingSessionConfiguration类：<br>配置跟踪设备的方向和位置,以及检测设备摄像头所看到的现实世界的表面</p>
+</li>
+<li><p>ARSCNView类：<br>用来增强相机通过 3D SceneKit 所捕捉到的内容并展示 AR 效果的一个 view</p>
+</li>
+<li><p>ARSKView类：<br>用来增强相机通过 2D SpriteKit 所捕捉到的内容并展示AR 效果的一个 view</p>
+</li>
+<li><p>ARAnchor类：<br>真实世界的位置和方向,用于在一个AR场景中放置一个物体</p>
+</li>
+<li><p>ARPlaneAnchor类：<br>在一个AR Session会话中检测一个真实世界中平面的位置和方向的相关信息</p>
+</li>
+<li><p>ARHitTestResult类：<br>在一个AR Session会话中通过检测相机视图中的一个点来获取真实世界中表面的相关信息</p>
+</li>
+<li><p>ARFrame类：<br>捕获一个视频图像和位置追踪信息作为一个AR会话的一部分</p>
+</li>
+<li><p>ARCamera类：<br>在一个AR会话中摄像机的位置和成像特征信息为捕获视频帧</p>
+</li>
 </ul>
-<p>Vision是将各种功能的Request提供给一个 RequestHandler，Handler持有图片信息，并将处理结果分发给每个Request的completion Block中。可以从 results 属性中得到 Observation 数组，然后进行更新 UI 等操作。Vision中包含的重要类：</p>
 <ul>
-<li>VNImageRequestHandler: 处理单张图片的分析请求的类</li>
-<li>VNSequenceRequestHandler: 处理连续图片的分析请求的类</li>
-<li>VNDetectFaceRectanglesRequest: 图片中人脸的分析请求类</li>
-<li>VNDetectFaceLandmarksRequest: 图片中人脸特征(眼睛、嘴)的分析请求类</li>
-<li>VNFaceObservation: 通过图片分析请求得到的人脸信息</li>
-<li>VNDetectBarcodesRequest: 查找图片中二维码的请求</li>
-<li>VNBarcodeObservation: 图片请求获取的二维码的信息</li>
-<li>VNCoreMLRequest: 使用 Core ML 处理图片生成的请求类</li>
-<li>VNClassificationObservation: 图片分析请求获取的场景分类信息</li>
-<li>VNPixelBufferObservation:Core ML图片分析请求输出的图片信息</li>
-<li>VNCoreMLFeatureValueObservation: Core ML 图片分析请求获取的一系列 key-value 信息</li>
+<li>ARLightEstimate类<br>在一个AR会话中估计场景照明信息关联到一个捕获的视频帧</li>
 </ul>
-<p>Vision支持的图片类型包括：</p>
+<h4 id="coreML"><a href="#coreML" class="headerlink" title="coreML"></a>coreML</h4><p>iOS11引入的一个全新的机器学习框架，同时伴随着Vision框架。Core ML 是特定框架功能的基础，支持用于用户图像分析的 Vision，用于自然语言处理的 Foundation (如 NSLinguisticTagger 类）和用于评估已经学习到的决策树 GamePlayKit。Core ML 本身构建于低层面的原语上，比如 Accelerate、BNNS、Metal Performance Shaders。coreML让我们更容易在App中使用训练过的模型, 而Vision让我们轻松访问苹果的模型，用于面部检测、面部特征点、文字、矩形、条形码和物体等。Vision模型中可以包装任意的图像分析coreML模型。Vision框架其实就是对coreML框架的一层封装，使用起来更加方便。根据官方文档提供的图像可以看出，这两个框架的作用，就是将一个ML模型，转换成我们的app工程可以直接使用的对象。<br><img src="http://fishnews.cn/2017_10_29_01.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_11_07_02.png" alt=""></p>
 <ul>
-<li>CVPixelBufferRef</li>
-<li>CGImageRef</li>
-<li>CIImage</li>
-<li>NSURL</li>
-<li>NSData</li>
+<li>机器学习(ML:Machine Learning)：<br>是一种人工智能，计算机会“学习”而不是被明确编程。不用编写算法，机器学习工具通过在大量数据中寻找模式，使计算机能够开发和优化算法。机器学习(ML)是人工智能(AI)的一个分支，深度学习(DL)又是更小分一个分支，大概关系如图所示</li>
 </ul>
-<p>关联关系如下：</p>
-<p><img src="http://fishnews.cn/2017_11_07_01.png" alt=""></p>
-<p>到官网先下载一个模型，比如GoogLeNetPlaces(<a href="https://developer.apple.com/machine-learning/" target="_blank" rel="external">链接</a>)，一个识别场景的模型,创建一个Single View App工程，拖入下载好的模型 ,搭建基本的UI页面</p>
-<p><img src="http://fishnews.cn/%202017_10_29_08.png" alt=""></p>
-<p>使用两种方式分析图片场景，coreML和Vision。</p>
-<p><img src="http://fishnews.cn/2017_10_29_09.png" alt=""></p>
-<h4 id="Vision_u5904_u7406_u56FE_u7247"><a href="#Vision_u5904_u7406_u56FE_u7247" class="headerlink" title="Vision处理图片"></a>Vision处理图片</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">coreMLprocessImage</span><span class="params">(image:UIImage)</span></span> &#123;</span><br><span class="line">      <span class="keyword">let</span> hander = <span class="type">VNImageRequestHandler</span>(cgImage:image.cgImage!)</span><br><span class="line">      <span class="keyword">let</span> model = <span class="keyword">try</span>! <span class="type">VNCoreMLModel</span>(<span class="keyword">for</span>:modelFile.model)</span><br><span class="line">      <span class="keyword">let</span> request = <span class="type">VNCoreMLRequest</span>(model:model,completionHandler:completionHandler)</span><br><span class="line">      <span class="keyword">try</span>? hander.perform([request])</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="u5904_u7406_u7ED3_u679C"><a href="#u5904_u7406_u7ED3_u679C" class="headerlink" title="处理结果"></a>处理结果</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">completionHandler</span><span class="params">(request:VNRequest,error:Error?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> results = request.results <span class="keyword">as</span>? [<span class="type">VNClassificationObservation</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">"no result"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// result</span></span><br><span class="line">        <span class="keyword">var</span> bestPredication = <span class="string">""</span></span><br><span class="line">        <span class="keyword">var</span> bestConfidence:<span class="type">VNConfidence</span> = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> classIdentifier <span class="keyword">in</span> results &#123;</span><br><span class="line">            <span class="keyword">if</span> classIdentifier.confidence &gt; bestConfidence &#123;</span><br><span class="line">                bestPredication = classIdentifier.identifier</span><br><span class="line">                bestConfidence = classIdentifier.confidence</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">            <span class="keyword">self</span>.resultLabel.text = <span class="string">"Predication:<span class="subst">\(bestPredication)</span> Confidence:<span class="subst">\(lroundf(bestConfidence * <span class="number">100</span>)</span>)%"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="coreML_u5904_u7406_u56FE_u7247"><a href="#coreML_u5904_u7406_u56FE_u7247" class="headerlink" title="coreML处理图片"></a>coreML处理图片</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">coreMLAndVisionProcessImage</span><span class="params">(image:UIImage)</span></span> &#123;</span><br><span class="line">       <span class="keyword">let</span> imageWidth:<span class="type">CGFloat</span> = <span class="number">224.0</span></span><br><span class="line">       <span class="keyword">let</span> imageHeight:<span class="type">CGFloat</span> = <span class="number">224.0</span></span><br><span class="line">       <span class="type">UIGraphicsBeginImageContext</span>(<span class="type">CGSize</span>(width:imageWidth, height:imageHeight))</span><br><span class="line">       image.draw(<span class="keyword">in</span>:<span class="type">CGRect</span>(x:<span class="number">0</span>, y:<span class="number">0</span>, width:imageHeight, height:imageHeight))</span><br><span class="line">       <span class="keyword">let</span> resizedImage = <span class="type">UIGraphicsGetImageFromCurrentImageContext</span>()</span><br><span class="line">       <span class="type">UIGraphicsEndImageContext</span>()</span><br><span class="line">       <span class="keyword">guard</span> resizedImage != <span class="literal">nil</span> <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">fatalError</span>(<span class="string">"resized Image fail"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       <span class="comment">// image-&gt;CVPixelBuffer</span></span><br><span class="line">       <span class="keyword">guard</span> <span class="keyword">let</span> pixelBuffer = imageCovertToPixelBuffer(from: resizedImage!) <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">fatalError</span>(<span class="string">"UIImage-&gt;CVPixelBuffer failed"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">guard</span> <span class="keyword">let</span> outPut = <span class="keyword">try</span>? modelFile.prediction(sceneImage: pixelBuffer) <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">fatalError</span>(<span class="string">"failed"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">           <span class="keyword">self</span>.resultLabel.text = <span class="string">"Predication:<span class="subst">\(outPut.sceneLabel)</span> Confidence:<span class="subst">\(lroundf(Float(outPut.sceneLabelProbs[outPut.sceneLabel]! * <span class="number">100</span>)</span>))%"</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="u5C06UIImage_u8F6C_u6210CVPixelBuffer"><a href="#u5C06UIImage_u8F6C_u6210CVPixelBuffer" class="headerlink" title="将UIImage转成CVPixelBuffer"></a>将UIImage转成CVPixelBuffer</h4><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">func imageCovertToPixelBuffer(from <span class="built_in">image</span>: UIImage) -&gt; CVPixelBuffer? &#123;</span><br><span class="line">     let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary</span><br><span class="line">     var pixelBuffer : CVPixelBuffer?</span><br><span class="line">     let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(<span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">width</span>), Int(<span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">height</span>), kCVPixelFormatType_32ARGB, attrs, &amp;pixelBuffer)</span><br><span class="line">     guard (status == kCVReturnSuccess) <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">return</span> nil</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     CVPixelBufferLockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: <span class="number">0</span>))</span><br><span class="line">     let pixelData = CVPixelBufferGetBaseAddress(pixelBuffer!)</span><br><span class="line">     </span><br><span class="line">     let rgbColorSpace = CGColorSpaceCreateDeviceRGB()</span><br><span class="line">     let context = CGContext(data: pixelData, <span class="variable">width</span>: Int(<span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">width</span>), <span class="variable">height</span>: Int(<span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">height</span>), bitsPerComponent: <span class="number">8</span>, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!), space: rgbColorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)</span><br><span class="line">     </span><br><span class="line">     context?.translateBy(x: <span class="number">0</span>, y: <span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">height</span>)</span><br><span class="line">     context?.scaleBy(x: <span class="number">1.0</span>, y: -<span class="number">1.0</span>)</span><br><span class="line">     </span><br><span class="line">     UIGraphicsPushContext(context!)</span><br><span class="line">     <span class="built_in">image</span>.<span class="title">draw</span>(in: CGRect(x: <span class="number">0</span>, y: <span class="number">0</span>, <span class="variable">width</span>: <span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">width</span>, <span class="variable">height</span>: <span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">height</span>))</span><br><span class="line">     UIGraphicsPopContext()</span><br><span class="line">     CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: <span class="number">0</span>))</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">return</span> pixelBuffer</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="u7ED3_u679C_u6F14_u793A"><a href="#u7ED3_u679C_u6F14_u793A" class="headerlink" title="结果演示"></a>结果演示</h4><p><img src="http://fishnews.cn/2019_10_29_10.gif" alt=""></p>
-<h4 id="u4E0A_u56FE_u53EF_u4EE5_u770B_u5230_uFF0C_u540C_u6837_u7684_u573A_u666F_u56FE_u7247_uFF0CcoreML_u548CVision_u9884_u6D4B_u7684_u7ED3_u679C_u5E76_u4E0D_u4E00_u6837_uFF0C_u540C_u4E00_u573A_u666F_u6216_u56FE_u7247_uFF0CcoreML_u9884_u6D4B_u7684_u7ED3_u679C_u53EF_u4FE1_u5EA6_u66F4_u9AD8_uFF0CVision_u53EF_u80FD_u5728_u5C01_u88C5coreML_u65F6_u505A_u4E86_u4E00_u4E9B_u5176_u4ED6_u64CD_u4F5C_uFF0C_u5177_u4F53_u4E0D_u5F97_u800C_u77E5_u3002_u4F46_u662F_u4F7F_u7528coreML_u5904_u7406_u8FC7_u7A0B_u8F83Vision_u66F4_u4E3A_u7E41_u7410_uFF0C_u9996_u5148_u9700_u8981_u5C06_u56FE_u7247_u88C1_u526A_u6210_u6A21_u578B_u9700_u8981_u7684_u6307_u5B9A_u5927_u5C0F_uFF0C_u800C_u540E_u9700_u8981_u5C06_u56FE_u7247_u683C_u5F0F_u8F6C_u5316_u4E3A_u6A21_u578B_u9700_u8981_u7684CVPixelBuffer_u7C7B_u578B_u3002_u9009_u62E9_u54EA_u79CD_u6A21_u5F0F_u9700_u6839_u636E_u5177_u4F53_u9700_u6C42_u800C_u5B9A_u3002"><a href="#u4E0A_u56FE_u53EF_u4EE5_u770B_u5230_uFF0C_u540C_u6837_u7684_u573A_u666F_u56FE_u7247_uFF0CcoreML_u548CVision_u9884_u6D4B_u7684_u7ED3_u679C_u5E76_u4E0D_u4E00_u6837_uFF0C_u540C_u4E00_u573A_u666F_u6216_u56FE_u7247_uFF0CcoreML_u9884_u6D4B_u7684_u7ED3_u679C_u53EF_u4FE1_u5EA6_u66F4_u9AD8_uFF0CVision_u53EF_u80FD_u5728_u5C01_u88C5coreML_u65F6_u505A_u4E86_u4E00_u4E9B_u5176_u4ED6_u64CD_u4F5C_uFF0C_u5177_u4F53_u4E0D_u5F97_u800C_u77E5_u3002_u4F46_u662F_u4F7F_u7528coreML_u5904_u7406_u8FC7_u7A0B_u8F83Vision_u66F4_u4E3A_u7E41_u7410_uFF0C_u9996_u5148_u9700_u8981_u5C06_u56FE_u7247_u88C1_u526A_u6210_u6A21_u578B_u9700_u8981_u7684_u6307_u5B9A_u5927_u5C0F_uFF0C_u800C_u540E_u9700_u8981_u5C06_u56FE_u7247_u683C_u5F0F_u8F6C_u5316_u4E3A_u6A21_u578B_u9700_u8981_u7684CVPixelBuffer_u7C7B_u578B_u3002_u9009_u62E9_u54EA_u79CD_u6A21_u5F0F_u9700_u6839_u636E_u5177_u4F53_u9700_u6C42_u800C_u5B9A_u3002" class="headerlink" title="上图可以看到，同样的场景图片，coreML和Vision预测的结果并不一样，同一场景或图片，coreML预测的结果可信度更高，Vision可能在封装coreML时做了一些其他操作，具体不得而知。但是使用coreML处理过程较Vision更为繁琐，首先需要将图片裁剪成模型需要的指定大小，而后需要将图片格式转化为模型需要的CVPixelBuffer类型。选择哪种模式需根据具体需求而定。"></a>上图可以看到，同样的场景图片，coreML和Vision预测的结果并不一样，同一场景或图片，coreML预测的结果可信度更高，Vision可能在封装coreML时做了一些其他操作，具体不得而知。但是使用coreML处理过程较Vision更为繁琐，首先需要将图片裁剪成模型需要的指定大小，而后需要将图片格式转化为模型需要的CVPixelBuffer类型。选择哪种模式需根据具体需求而定。</h4><h4 id="Demo_u4E0B_u8F7D"><a href="#Demo_u4E0B_u8F7D" class="headerlink" title="Demo下载"></a><a href="https://github.com/ChinaFishNews/CoreMLOrVisionRecognizePhoto" target="_blank" rel="external">Demo下载</a></h4><hr>
+<p><img src="http://fishnews.cn/2017_10_29_07.png" alt=""></p>
+<h4 id="Demo_uFF1A"><a href="#Demo_uFF1A" class="headerlink" title="Demo："></a>Demo：</h4><ol>
+<li>建立一个工程，选择Augmented Reality App, 会帮我们创建一个ARSCNView视图</li>
+</ol>
+<p><img src="http://fishnews.cn/2017_10_29_02.png" alt=""></p>
+<p>2.到官网下载一个模型 <a href="https://developer.apple.com/machine-learning/" target="_blank" rel="external">模型下载</a>, 每个模型的作用都有对应的解释，能识别的图像种类也不尽相同，根据不同需求下载不同模型</p>
+<p><img src="http://fishnews.cn/2017_10_29_03.gif" alt=""></p>
+<p>3.将模型拖入工程中，可能需要加载一会才会显示，如下图所示。选中模型，会出现模型相关信息，大小、功能、类型等。Model Class下会有一个箭头，点击进入会看到模型的源码。Model Evaluation Parameter下会有模型的输入(input)输出(outPuts)信息。输入的需要时大小为224*224的图片，而返回的结果一个是classLabelProbs,即信任度或百分比，而classLabel即得到的结果。不同模型的输输出并不相同。注意右下角的Target Members在Xcode9中默认不会勾选，需要手动选中。</p>
+<p><img src="http://fishnews.cn/2017_10_29_04.png" alt=""></p>
+<p>4.创建模型并声明相关变量<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var resentModel = Resnet50()</span><br><span class="line"></span><br><span class="line">var hitTestResult: ARHitTestResult!</span><br><span class="line"></span><br><span class="line">var visionRequests = [<span class="link_label">VNRequest</span>](<span class="link_url"></span>)</span><br></pre></td></tr></table></figure></p>
+<p>5.给当前场景添加一个手势<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">registerGestureRecognizers</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> tapGesture = <span class="type">UITapGestureRecognizer</span>(target:<span class="keyword">self</span>, action:#selector(tapped))</span><br><span class="line">        sceneView.addGestureRecognizer(tapGesture)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>6.点击场景<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">@objc</span> <span class="func"><span class="keyword">func</span> <span class="title">tapped</span><span class="params">(tapGesture:UITapGestureRecognizer)</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> sceneView = tapGesture.view <span class="keyword">as</span>! <span class="type">ARSCNView</span></span><br><span class="line">        <span class="keyword">let</span> touchLocation = tapGesture.location(<span class="keyword">in</span>: <span class="keyword">self</span>.sceneView)</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> currentFrame = sceneView.session.currentFrame <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">"no pixel"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)</span><br><span class="line">        <span class="keyword">if</span> hitTestResults.isEmpty &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> hitTestResult = hitTestResults.first <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">"not first object"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.hitTestResult = hitTestResult;</span><br><span class="line">        <span class="comment">// image-&gt;pixel</span></span><br><span class="line">        <span class="keyword">let</span> pixelBuffer = currentFrame.capturedImage;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Vision</span></span><br><span class="line">        performVisonRequest(pixelBuffer: pixelBuffer)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>7.通过Vision处理<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">performVisonRequest</span><span class="params">(pixelBuffer:CVPixelBuffer)</span></span> &#123;</span><br><span class="line">       <span class="keyword">let</span> visionModel = <span class="keyword">try</span>! <span class="type">VNCoreMLModel</span>(<span class="keyword">for</span>:<span class="keyword">self</span>.resentModel.model)</span><br><span class="line">       <span class="keyword">let</span> request:<span class="type">VNCoreMLRequest</span> = <span class="type">VNCoreMLRequest</span>(model:visionModel) &#123; request,error <span class="keyword">in</span></span><br><span class="line">           <span class="keyword">if</span> error != <span class="literal">nil</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">           <span class="keyword">guard</span> <span class="keyword">let</span> observations = request.results <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="built_in">fatalError</span>(<span class="string">"no result"</span>)</span><br><span class="line">           &#125;</span><br><span class="line">           </span><br><span class="line">           <span class="keyword">let</span> observation = observations.first <span class="keyword">as</span>! <span class="type">VNClassificationObservation</span></span><br><span class="line">           <span class="built_in">print</span>(<span class="string">"name is <span class="subst">\(observation.identifier)</span> \n confidence is <span class="subst">\(observation.confidence)</span>"</span>)</span><br><span class="line">           </span><br><span class="line">           <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">               <span class="keyword">self</span>.displayPredictions(text: observation.identifier)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       request.imageCropAndScaleOption = .centerCrop;</span><br><span class="line">       visionRequests = [request]</span><br><span class="line">       <span class="keyword">let</span> imageRequestHandler:<span class="type">VNImageRequestHandler</span> = <span class="type">VNImageRequestHandler</span>(cvPixelBuffer:pixelBuffer,orientation:.upMirrored,options:[:])</span><br><span class="line"></span><br><span class="line">       <span class="type">DispatchQueue</span>.global().async &#123;</span><br><span class="line">           <span class="keyword">try</span>? imageRequestHandler.perform(<span class="keyword">self</span>.visionRequests)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>8.展示预测结果</p>
+<p>func displayPredictions(text:String)  {<br>        let parentNode = SCNNode()</p>
+<pre><code>    // 1cm
+    let sphere = SCNSphere(radius:0.01)
+    let sphereMaterial = SCNMaterial()
+    sphereMaterial.diffuse.contents = UIColor.orange
+    sphere.firstMaterial = sphereMaterial
+
+    let sphereNode = SCNNode(geometry:sphere)
+    parentNode.addChildNode(sphereNode)
+
+    // text
+    let textGeo = SCNText(string:text,extrusionDepth:0)
+    textGeo.alignmentMode = kCAAlignmentCenter
+    textGeo.firstMaterial?.diffuse.contents = UIColor.orange
+    textGeo.firstMaterial?.specular.contents = UIColor.white
+    textGeo.firstMaterial?.isDoubleSided = true
+    textGeo.font = UIFont(name:&quot;Futura&quot;,size:0.20)
+
+    let textNode = SCNNode(geometry:textGeo)
+    textNode.position = SCNVector3(x:self.hitTestResult.worldTransform.columns.3.x,
+                                   y:self.hitTestResult.worldTransform.columns.3.y,
+                                   z:self.hitTestResult.worldTransform.columns.3.z)
+    textNode.scale = SCNVector3Make(0.2,0.2,0.2)
+    parentNode.addChildNode(textNode)
+
+    parentNode.position = SCNVector3(x:self.hitTestResult.worldTransform.columns.3.x,
+                                     y:self.hitTestResult.worldTransform.columns.3.y,
+                                     z:self.hitTestResult.worldTransform.columns.3.z)
+    // show AR resutl
+    self.sceneView.scene.rootNode.addChildNode(parentNode)
+}
+</code></pre><p>9.结果展示</p>
+<p>运行项目，将真机对准物体，距离适中。注意苹果AR仅支持搭载A9/A10及更先进处理器的iOS 11设备，接下来新出的苹果设备，也同样会支持苹果AR功能。目前支持机型如下：</p>
+<ul>
+<li>iPhone6s和6S Plus</li>
+<li>iPhone7和7 Plu</li>
+<li>iPhone SE</li>
+<li>iPad Pro （9.7， 10.5和12.9）</li>
+<li>iPad （2017</li>
+</ul>
+<p>最终展示效果如下,结果其实可能并不准确，但是提供了一个可能性。展示结果也可以呈现多样性，比如显示百分比，显示可信度排名前几的分析对象等</p>
+<p><img src="http://fishnews.cn/2017_10_29_05.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_10_29_06.png" alt=""></p>
+<p><br></p>
+<h5 id="Demo_u4E0B_u8F7D"><a href="#Demo_u4E0B_u8F7D" class="headerlink" title="Demo下载"></a><a href="https://github.com/ChinaFishNews/ARKit-And-CoreMl" target="_blank" rel="external">Demo下载</a></h5><hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
 <p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
@@ -480,7 +720,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/人工智能，机器学习，CoreML-Vision/">人工智能，机器学习，CoreML, Vision</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习，人工智能，CoreML-Vision-ARKit/">机器学习，人工智能，CoreML, Vision, ARKit</a></li></ul>
 	</div>
 
       
@@ -702,10 +942,10 @@
 
 
   
-    <article id="post-机器学习-CoreML入门 结合ARKit" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-机器学习-CoreML基于图像处理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/10/29/机器学习-CoreML入门 结合ARKit/" class="article-date">
+      <a href="/2017/10/29/机器学习-CoreML基于图像处理/" class="article-date">
   	<time datetime="2017-10-28T16:00:00.000Z" itemprop="datePublished">2017-10-29</time>
 </a>
     </div>
@@ -719,7 +959,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/29/机器学习-CoreML入门 结合ARKit/">机器学习-CoreML入门 结合ARKit</a>
+      <a class="article-title" href="/2017/10/29/机器学习-CoreML基于图像处理/">机器学习-CoreML基于图像处理</a>
     </h1>
   
 
@@ -729,100 +969,52 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=456481586&auto=0&height=66"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=492151700&auto=0&height=66"></iframe>
 
-<h4 id="ARKit_3A"><a href="#ARKit_3A" class="headerlink" title="ARKit:"></a>ARKit:</h4><p>iOS11引入的全新的框架，允许开发者轻松地为 iPhone 和 iPad 创建无与伦比的增强现实体验。通过将虚拟对象和虚拟信息同用户周围的环境相互融合，ARKit 使得应 用跳出屏幕的限制，让它们能够以全新的方式与现实世界进行交互。</p>
+<p>Vision是建立在Core ML上层的Framework。Vision专门用来处理视觉。Vison可以进行多种应用场景的机器学习处理，使用场景：</p>
 <ul>
-<li><p>所谓的增强现实 (Augmented Reality, AR)，指的是向设备摄像头产生的实时动态视图中，添加 2D 或者 3D 元素，然后用某种方法让这些元素看起来就处于现实世界当中，所产生的一种用户体验。ARKit 提供设备动作追踪、相机场景捕获和高级场景处理，并让AR元素的展示变得极为便利，从而大大简化了建立 AR用户体验的工作难度。</p>
-</li>
-<li><p>ARSession类：<br> 这是一个单例, 是ARKit的核心类，用于控制设备摄像头，处理传感器数据，对捕获的图像进行分析等</p>
-</li>
-<li><p>ARSessionConfiguration类：<br>跟踪设备 向的 个基本配置, 在运行时，需要指定AR运行的配置</p>
-</li>
-<li><p>ARWorldTrackingSessionConfiguration类：<br>配置跟踪设备的方向和位置,以及检测设备摄像头所看到的现实世界的表面</p>
-</li>
-<li><p>ARSCNView类：<br>用来增强相机通过 3D SceneKit 所捕捉到的内容并展示 AR 效果的一个 view</p>
-</li>
-<li><p>ARSKView类：<br>用来增强相机通过 2D SpriteKit 所捕捉到的内容并展示AR 效果的一个 view</p>
-</li>
-<li><p>ARAnchor类：<br>真实世界的位置和方向,用于在一个AR场景中放置一个物体</p>
-</li>
-<li><p>ARPlaneAnchor类：<br>在一个AR Session会话中检测一个真实世界中平面的位置和方向的相关信息</p>
-</li>
-<li><p>ARHitTestResult类：<br>在一个AR Session会话中通过检测相机视图中的一个点来获取真实世界中表面的相关信息</p>
-</li>
-<li><p>ARFrame类：<br>捕获一个视频图像和位置追踪信息作为一个AR会话的一部分</p>
-</li>
-<li><p>ARCamera类：<br>在一个AR会话中摄像机的位置和成像特征信息为捕获视频帧</p>
-</li>
+<li>人脸检测：支持检测笑脸、侧脸、局部遮挡脸部、戴眼镜和帽子等场景，可以标记出人脸的矩形区域</li>
+<li>人脸特征点：可以标记出人脸和眼睛、眉毛、鼻子、嘴、牙齿的轮廓，以及人脸的中轴线</li>
+<li>图像配准</li>
+<li>矩形检测</li>
+<li>二维码/条形码检测</li>
+<li>文字检测</li>
+<li>目标跟踪</li>
 </ul>
+<p>Vision是将各种功能的Request提供给一个 RequestHandler，Handler持有图片信息，并将处理结果分发给每个Request的completion Block中。可以从 results 属性中得到 Observation 数组，然后进行更新 UI 等操作。Vision中包含的重要类：</p>
 <ul>
-<li>ARLightEstimate类<br>在一个AR会话中估计场景照明信息关联到一个捕获的视频帧</li>
+<li>VNImageRequestHandler: 处理单张图片的分析请求的类</li>
+<li>VNSequenceRequestHandler: 处理连续图片的分析请求的类</li>
+<li>VNDetectFaceRectanglesRequest: 图片中人脸的分析请求类</li>
+<li>VNDetectFaceLandmarksRequest: 图片中人脸特征(眼睛、嘴)的分析请求类</li>
+<li>VNFaceObservation: 通过图片分析请求得到的人脸信息</li>
+<li>VNDetectBarcodesRequest: 查找图片中二维码的请求</li>
+<li>VNBarcodeObservation: 图片请求获取的二维码的信息</li>
+<li>VNCoreMLRequest: 使用 Core ML 处理图片生成的请求类</li>
+<li>VNClassificationObservation: 图片分析请求获取的场景分类信息</li>
+<li>VNPixelBufferObservation:Core ML图片分析请求输出的图片信息</li>
+<li>VNCoreMLFeatureValueObservation: Core ML 图片分析请求获取的一系列 key-value 信息</li>
 </ul>
-<h4 id="coreML"><a href="#coreML" class="headerlink" title="coreML"></a>coreML</h4><p>iOS11引入的一个全新的机器学习框架，同时伴随着Vision框架。Core ML 是特定框架功能的基础，支持用于用户图像分析的 Vision，用于自然语言处理的 Foundation (如 NSLinguisticTagger 类）和用于评估已经学习到的决策树 GamePlayKit。Core ML 本身构建于低层面的原语上，比如 Accelerate、BNNS、Metal Performance Shaders。coreML让我们更容易在App中使用训练过的模型, 而Vision让我们轻松访问苹果的模型，用于面部检测、面部特征点、文字、矩形、条形码和物体等。Vision模型中可以包装任意的图像分析coreML模型。Vision框架其实就是对coreML框架的一层封装，使用起来更加方便。根据官方文档提供的图像可以看出，这两个框架的作用，就是将一个ML模型，转换成我们的app工程可以直接使用的对象。<br><img src="http://fishnews.cn/2017_10_29_01.png" alt=""></p>
-<p><img src="http://fishnews.cn/2017_11_07_02.png" alt=""></p>
+<p>Vision支持的图片类型包括：</p>
 <ul>
-<li>机器学习(ML:Machine Learning)：<br>是一种人工智能，计算机会“学习”而不是被明确编程。不用编写算法，机器学习工具通过在大量数据中寻找模式，使计算机能够开发和优化算法。机器学习(ML)是人工智能(AI)的一个分支，深度学习(DL)又是更小分一个分支，大概关系如图所示</li>
+<li>CVPixelBufferRef</li>
+<li>CGImageRef</li>
+<li>CIImage</li>
+<li>NSURL</li>
+<li>NSData</li>
 </ul>
-<p><img src="http://fishnews.cn/2017_10_29_07.png" alt=""></p>
-<h4 id="Demo_uFF1A"><a href="#Demo_uFF1A" class="headerlink" title="Demo："></a>Demo：</h4><ol>
-<li>建立一个工程，选择Augmented Reality App, 会帮我们创建一个ARSCNView视图</li>
-</ol>
-<p><img src="http://fishnews.cn/2017_10_29_02.png" alt=""></p>
-<p>2.到官网下载一个模型 <a href="https://developer.apple.com/machine-learning/" target="_blank" rel="external">模型下载</a>, 每个模型的作用都有对应的解释，能识别的图像种类也不尽相同，根据不同需求下载不同模型</p>
-<p><img src="http://fishnews.cn/2017_10_29_03.gif" alt=""></p>
-<p>3.将模型拖入工程中，可能需要加载一会才会显示，如下图所示。选中模型，会出现模型相关信息，大小、功能、类型等。Model Class下会有一个箭头，点击进入会看到模型的源码。Model Evaluation Parameter下会有模型的输入(input)输出(outPuts)信息。输入的需要时大小为224*224的图片，而返回的结果一个是classLabelProbs,即信任度或百分比，而classLabel即得到的结果。不同模型的输输出并不相同。注意右下角的Target Members在Xcode9中默认不会勾选，需要手动选中。</p>
-<p><img src="http://fishnews.cn/2017_10_29_04.png" alt=""></p>
-<p>4.创建模型并声明相关变量<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var resentModel = Resnet50()</span><br><span class="line"></span><br><span class="line">var hitTestResult: ARHitTestResult!</span><br><span class="line"></span><br><span class="line">var visionRequests = [<span class="link_label">VNRequest</span>](<span class="link_url"></span>)</span><br></pre></td></tr></table></figure></p>
-<p>5.给当前场景添加一个手势<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">registerGestureRecognizers</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> tapGesture = <span class="type">UITapGestureRecognizer</span>(target:<span class="keyword">self</span>, action:#selector(tapped))</span><br><span class="line">        sceneView.addGestureRecognizer(tapGesture)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>6.点击场景<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">@objc</span> <span class="func"><span class="keyword">func</span> <span class="title">tapped</span><span class="params">(tapGesture:UITapGestureRecognizer)</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> sceneView = tapGesture.view <span class="keyword">as</span>! <span class="type">ARSCNView</span></span><br><span class="line">        <span class="keyword">let</span> touchLocation = tapGesture.location(<span class="keyword">in</span>: <span class="keyword">self</span>.sceneView)</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> currentFrame = sceneView.session.currentFrame <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">"no pixel"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)</span><br><span class="line">        <span class="keyword">if</span> hitTestResults.isEmpty &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> hitTestResult = hitTestResults.first <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">"not first object"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">self</span>.hitTestResult = hitTestResult;</span><br><span class="line">        <span class="comment">// image-&gt;pixel</span></span><br><span class="line">        <span class="keyword">let</span> pixelBuffer = currentFrame.capturedImage;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Vision</span></span><br><span class="line">        performVisonRequest(pixelBuffer: pixelBuffer)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>7.通过Vision处理<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">performVisonRequest</span><span class="params">(pixelBuffer:CVPixelBuffer)</span></span> &#123;</span><br><span class="line">       <span class="keyword">let</span> visionModel = <span class="keyword">try</span>! <span class="type">VNCoreMLModel</span>(<span class="keyword">for</span>:<span class="keyword">self</span>.resentModel.model)</span><br><span class="line">       <span class="keyword">let</span> request:<span class="type">VNCoreMLRequest</span> = <span class="type">VNCoreMLRequest</span>(model:visionModel) &#123; request,error <span class="keyword">in</span></span><br><span class="line">           <span class="keyword">if</span> error != <span class="literal">nil</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">           <span class="keyword">guard</span> <span class="keyword">let</span> observations = request.results <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="built_in">fatalError</span>(<span class="string">"no result"</span>)</span><br><span class="line">           &#125;</span><br><span class="line">           </span><br><span class="line">           <span class="keyword">let</span> observation = observations.first <span class="keyword">as</span>! <span class="type">VNClassificationObservation</span></span><br><span class="line">           <span class="built_in">print</span>(<span class="string">"name is <span class="subst">\(observation.identifier)</span> \n confidence is <span class="subst">\(observation.confidence)</span>"</span>)</span><br><span class="line">           </span><br><span class="line">           <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">               <span class="keyword">self</span>.displayPredictions(text: observation.identifier)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       request.imageCropAndScaleOption = .centerCrop;</span><br><span class="line">       visionRequests = [request]</span><br><span class="line">       <span class="keyword">let</span> imageRequestHandler:<span class="type">VNImageRequestHandler</span> = <span class="type">VNImageRequestHandler</span>(cvPixelBuffer:pixelBuffer,orientation:.upMirrored,options:[:])</span><br><span class="line"></span><br><span class="line">       <span class="type">DispatchQueue</span>.global().async &#123;</span><br><span class="line">           <span class="keyword">try</span>? imageRequestHandler.perform(<span class="keyword">self</span>.visionRequests)</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>8.展示预测结果</p>
-<p>func displayPredictions(text:String)  {<br>        let parentNode = SCNNode()</p>
-<pre><code>    // 1cm
-    let sphere = SCNSphere(radius:0.01)
-    let sphereMaterial = SCNMaterial()
-    sphereMaterial.diffuse.contents = UIColor.orange
-    sphere.firstMaterial = sphereMaterial
-
-    let sphereNode = SCNNode(geometry:sphere)
-    parentNode.addChildNode(sphereNode)
-
-    // text
-    let textGeo = SCNText(string:text,extrusionDepth:0)
-    textGeo.alignmentMode = kCAAlignmentCenter
-    textGeo.firstMaterial?.diffuse.contents = UIColor.orange
-    textGeo.firstMaterial?.specular.contents = UIColor.white
-    textGeo.firstMaterial?.isDoubleSided = true
-    textGeo.font = UIFont(name:&quot;Futura&quot;,size:0.20)
-
-    let textNode = SCNNode(geometry:textGeo)
-    textNode.position = SCNVector3(x:self.hitTestResult.worldTransform.columns.3.x,
-                                   y:self.hitTestResult.worldTransform.columns.3.y,
-                                   z:self.hitTestResult.worldTransform.columns.3.z)
-    textNode.scale = SCNVector3Make(0.2,0.2,0.2)
-    parentNode.addChildNode(textNode)
-
-    parentNode.position = SCNVector3(x:self.hitTestResult.worldTransform.columns.3.x,
-                                     y:self.hitTestResult.worldTransform.columns.3.y,
-                                     z:self.hitTestResult.worldTransform.columns.3.z)
-    // show AR resutl
-    self.sceneView.scene.rootNode.addChildNode(parentNode)
-}
-</code></pre><p>9.结果展示</p>
-<p>运行项目，将真机对准物体，距离适中。注意苹果AR仅支持搭载A9/A10及更先进处理器的iOS 11设备，接下来新出的苹果设备，也同样会支持苹果AR功能。目前支持机型如下：</p>
-<ul>
-<li>iPhone6s和6S Plus</li>
-<li>iPhone7和7 Plu</li>
-<li>iPhone SE</li>
-<li>iPad Pro （9.7， 10.5和12.9）</li>
-<li>iPad （2017</li>
-</ul>
-<p>最终展示效果如下,结果其实可能并不准确，但是提供了一个可能性。展示结果也可以呈现多样性，比如显示百分比，显示可信度排名前几的分析对象等</p>
-<p><img src="http://fishnews.cn/2017_10_29_05.png" alt=""></p>
-<p><img src="http://fishnews.cn/2017_10_29_06.png" alt=""></p>
-<p><br></p>
-<h5 id="Demo_u4E0B_u8F7D"><a href="#Demo_u4E0B_u8F7D" class="headerlink" title="Demo下载"></a><a href="https://github.com/ChinaFishNews/ARKit-And-CoreMl" target="_blank" rel="external">Demo下载</a></h5><hr>
+<p>关联关系如下：</p>
+<p><img src="http://fishnews.cn/2017_11_07_01.png" alt=""></p>
+<p>到官网先下载一个模型，比如GoogLeNetPlaces(<a href="https://developer.apple.com/machine-learning/" target="_blank" rel="external">链接</a>)，一个识别场景的模型,创建一个Single View App工程，拖入下载好的模型 ,搭建基本的UI页面</p>
+<p><img src="http://fishnews.cn/%202017_10_29_08.png" alt=""></p>
+<p>使用两种方式分析图片场景，coreML和Vision。</p>
+<p><img src="http://fishnews.cn/2017_10_29_09.png" alt=""></p>
+<h4 id="Vision_u5904_u7406_u56FE_u7247"><a href="#Vision_u5904_u7406_u56FE_u7247" class="headerlink" title="Vision处理图片"></a>Vision处理图片</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">coreMLprocessImage</span><span class="params">(image:UIImage)</span></span> &#123;</span><br><span class="line">      <span class="keyword">let</span> hander = <span class="type">VNImageRequestHandler</span>(cgImage:image.cgImage!)</span><br><span class="line">      <span class="keyword">let</span> model = <span class="keyword">try</span>! <span class="type">VNCoreMLModel</span>(<span class="keyword">for</span>:modelFile.model)</span><br><span class="line">      <span class="keyword">let</span> request = <span class="type">VNCoreMLRequest</span>(model:model,completionHandler:completionHandler)</span><br><span class="line">      <span class="keyword">try</span>? hander.perform([request])</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="u5904_u7406_u7ED3_u679C"><a href="#u5904_u7406_u7ED3_u679C" class="headerlink" title="处理结果"></a>处理结果</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">completionHandler</span><span class="params">(request:VNRequest,error:Error?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> results = request.results <span class="keyword">as</span>? [<span class="type">VNClassificationObservation</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">"no result"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// result</span></span><br><span class="line">        <span class="keyword">var</span> bestPredication = <span class="string">""</span></span><br><span class="line">        <span class="keyword">var</span> bestConfidence:<span class="type">VNConfidence</span> = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> classIdentifier <span class="keyword">in</span> results &#123;</span><br><span class="line">            <span class="keyword">if</span> classIdentifier.confidence &gt; bestConfidence &#123;</span><br><span class="line">                bestPredication = classIdentifier.identifier</span><br><span class="line">                bestConfidence = classIdentifier.confidence</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">            <span class="keyword">self</span>.resultLabel.text = <span class="string">"Predication:<span class="subst">\(bestPredication)</span> Confidence:<span class="subst">\(lroundf(bestConfidence * <span class="number">100</span>)</span>)%"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="coreML_u5904_u7406_u56FE_u7247"><a href="#coreML_u5904_u7406_u56FE_u7247" class="headerlink" title="coreML处理图片"></a>coreML处理图片</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">coreMLAndVisionProcessImage</span><span class="params">(image:UIImage)</span></span> &#123;</span><br><span class="line">       <span class="keyword">let</span> imageWidth:<span class="type">CGFloat</span> = <span class="number">224.0</span></span><br><span class="line">       <span class="keyword">let</span> imageHeight:<span class="type">CGFloat</span> = <span class="number">224.0</span></span><br><span class="line">       <span class="type">UIGraphicsBeginImageContext</span>(<span class="type">CGSize</span>(width:imageWidth, height:imageHeight))</span><br><span class="line">       image.draw(<span class="keyword">in</span>:<span class="type">CGRect</span>(x:<span class="number">0</span>, y:<span class="number">0</span>, width:imageHeight, height:imageHeight))</span><br><span class="line">       <span class="keyword">let</span> resizedImage = <span class="type">UIGraphicsGetImageFromCurrentImageContext</span>()</span><br><span class="line">       <span class="type">UIGraphicsEndImageContext</span>()</span><br><span class="line">       <span class="keyword">guard</span> resizedImage != <span class="literal">nil</span> <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">fatalError</span>(<span class="string">"resized Image fail"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       <span class="comment">// image-&gt;CVPixelBuffer</span></span><br><span class="line">       <span class="keyword">guard</span> <span class="keyword">let</span> pixelBuffer = imageCovertToPixelBuffer(from: resizedImage!) <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">fatalError</span>(<span class="string">"UIImage-&gt;CVPixelBuffer failed"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">guard</span> <span class="keyword">let</span> outPut = <span class="keyword">try</span>? modelFile.prediction(sceneImage: pixelBuffer) <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="built_in">fatalError</span>(<span class="string">"failed"</span>)</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">           <span class="keyword">self</span>.resultLabel.text = <span class="string">"Predication:<span class="subst">\(outPut.sceneLabel)</span> Confidence:<span class="subst">\(lroundf(Float(outPut.sceneLabelProbs[outPut.sceneLabel]! * <span class="number">100</span>)</span>))%"</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="u5C06UIImage_u8F6C_u6210CVPixelBuffer"><a href="#u5C06UIImage_u8F6C_u6210CVPixelBuffer" class="headerlink" title="将UIImage转成CVPixelBuffer"></a>将UIImage转成CVPixelBuffer</h4><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">func imageCovertToPixelBuffer(from <span class="built_in">image</span>: UIImage) -&gt; CVPixelBuffer? &#123;</span><br><span class="line">     let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary</span><br><span class="line">     var pixelBuffer : CVPixelBuffer?</span><br><span class="line">     let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(<span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">width</span>), Int(<span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">height</span>), kCVPixelFormatType_32ARGB, attrs, &amp;pixelBuffer)</span><br><span class="line">     guard (status == kCVReturnSuccess) <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">return</span> nil</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     CVPixelBufferLockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: <span class="number">0</span>))</span><br><span class="line">     let pixelData = CVPixelBufferGetBaseAddress(pixelBuffer!)</span><br><span class="line">     </span><br><span class="line">     let rgbColorSpace = CGColorSpaceCreateDeviceRGB()</span><br><span class="line">     let context = CGContext(data: pixelData, <span class="variable">width</span>: Int(<span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">width</span>), <span class="variable">height</span>: Int(<span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">height</span>), bitsPerComponent: <span class="number">8</span>, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!), space: rgbColorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)</span><br><span class="line">     </span><br><span class="line">     context?.translateBy(x: <span class="number">0</span>, y: <span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">height</span>)</span><br><span class="line">     context?.scaleBy(x: <span class="number">1.0</span>, y: -<span class="number">1.0</span>)</span><br><span class="line">     </span><br><span class="line">     UIGraphicsPushContext(context!)</span><br><span class="line">     <span class="built_in">image</span>.<span class="title">draw</span>(in: CGRect(x: <span class="number">0</span>, y: <span class="number">0</span>, <span class="variable">width</span>: <span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">width</span>, <span class="variable">height</span>: <span class="built_in">image</span>.<span class="built_in">size</span>.<span class="variable">height</span>))</span><br><span class="line">     UIGraphicsPopContext()</span><br><span class="line">     CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: <span class="number">0</span>))</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">return</span> pixelBuffer</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="u7ED3_u679C_u6F14_u793A"><a href="#u7ED3_u679C_u6F14_u793A" class="headerlink" title="结果演示"></a>结果演示</h4><p><img src="http://fishnews.cn/2019_10_29_10.gif" alt=""></p>
+<h4 id="u4E0A_u56FE_u53EF_u4EE5_u770B_u5230_uFF0C_u540C_u6837_u7684_u573A_u666F_u56FE_u7247_uFF0CcoreML_u548CVision_u9884_u6D4B_u7684_u7ED3_u679C_u5E76_u4E0D_u4E00_u6837_uFF0C_u540C_u4E00_u573A_u666F_u6216_u56FE_u7247_uFF0CcoreML_u9884_u6D4B_u7684_u7ED3_u679C_u53EF_u4FE1_u5EA6_u66F4_u9AD8_uFF0CVision_u53EF_u80FD_u5728_u5C01_u88C5coreML_u65F6_u505A_u4E86_u4E00_u4E9B_u5176_u4ED6_u64CD_u4F5C_uFF0C_u5177_u4F53_u4E0D_u5F97_u800C_u77E5_u3002_u4F46_u662F_u4F7F_u7528coreML_u5904_u7406_u8FC7_u7A0B_u8F83Vision_u66F4_u4E3A_u7E41_u7410_uFF0C_u9996_u5148_u9700_u8981_u5C06_u56FE_u7247_u88C1_u526A_u6210_u6A21_u578B_u9700_u8981_u7684_u6307_u5B9A_u5927_u5C0F_uFF0C_u800C_u540E_u9700_u8981_u5C06_u56FE_u7247_u683C_u5F0F_u8F6C_u5316_u4E3A_u6A21_u578B_u9700_u8981_u7684CVPixelBuffer_u7C7B_u578B_u3002_u9009_u62E9_u54EA_u79CD_u6A21_u5F0F_u9700_u6839_u636E_u5177_u4F53_u9700_u6C42_u800C_u5B9A_u3002"><a href="#u4E0A_u56FE_u53EF_u4EE5_u770B_u5230_uFF0C_u540C_u6837_u7684_u573A_u666F_u56FE_u7247_uFF0CcoreML_u548CVision_u9884_u6D4B_u7684_u7ED3_u679C_u5E76_u4E0D_u4E00_u6837_uFF0C_u540C_u4E00_u573A_u666F_u6216_u56FE_u7247_uFF0CcoreML_u9884_u6D4B_u7684_u7ED3_u679C_u53EF_u4FE1_u5EA6_u66F4_u9AD8_uFF0CVision_u53EF_u80FD_u5728_u5C01_u88C5coreML_u65F6_u505A_u4E86_u4E00_u4E9B_u5176_u4ED6_u64CD_u4F5C_uFF0C_u5177_u4F53_u4E0D_u5F97_u800C_u77E5_u3002_u4F46_u662F_u4F7F_u7528coreML_u5904_u7406_u8FC7_u7A0B_u8F83Vision_u66F4_u4E3A_u7E41_u7410_uFF0C_u9996_u5148_u9700_u8981_u5C06_u56FE_u7247_u88C1_u526A_u6210_u6A21_u578B_u9700_u8981_u7684_u6307_u5B9A_u5927_u5C0F_uFF0C_u800C_u540E_u9700_u8981_u5C06_u56FE_u7247_u683C_u5F0F_u8F6C_u5316_u4E3A_u6A21_u578B_u9700_u8981_u7684CVPixelBuffer_u7C7B_u578B_u3002_u9009_u62E9_u54EA_u79CD_u6A21_u5F0F_u9700_u6839_u636E_u5177_u4F53_u9700_u6C42_u800C_u5B9A_u3002" class="headerlink" title="上图可以看到，同样的场景图片，coreML和Vision预测的结果并不一样，同一场景或图片，coreML预测的结果可信度更高，Vision可能在封装coreML时做了一些其他操作，具体不得而知。但是使用coreML处理过程较Vision更为繁琐，首先需要将图片裁剪成模型需要的指定大小，而后需要将图片格式转化为模型需要的CVPixelBuffer类型。选择哪种模式需根据具体需求而定。"></a>上图可以看到，同样的场景图片，coreML和Vision预测的结果并不一样，同一场景或图片，coreML预测的结果可信度更高，Vision可能在封装coreML时做了一些其他操作，具体不得而知。但是使用coreML处理过程较Vision更为繁琐，首先需要将图片裁剪成模型需要的指定大小，而后需要将图片格式转化为模型需要的CVPixelBuffer类型。选择哪种模式需根据具体需求而定。</h4><h4 id="Demo_u4E0B_u8F7D"><a href="#Demo_u4E0B_u8F7D" class="headerlink" title="Demo下载"></a><a href="https://github.com/ChinaFishNews/CoreMLOrVisionRecognizePhoto" target="_blank" rel="external">Demo下载</a></h4><hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
 <p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
@@ -838,7 +1030,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习，人工智能，CoreML-Vision-ARKit/">机器学习，人工智能，CoreML, Vision, ARKit</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/人工智能，机器学习，CoreML-Vision/">人工智能，机器学习，CoreML, Vision</a></li></ul>
 	</div>
 
       
@@ -1010,152 +1202,6 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/OC/">OC</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-六月" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/05/31/六月/" class="article-date">
-  	<time datetime="2017-05-30T16:00:00.000Z" itemprop="datePublished">2017-05-31</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/31/六月/">六月</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=159401&auto=0&height=66"></iframe>
-
-
-
-<p>又到六一了，去年的这个时候和老大请了半天假，陪伴另一个儿童。今年那个儿童又长大了一岁，应该也不需要我再请假陪伴了。端午这三天假才刚准备进入状态就火速结束了(此处没有事后烟)，可怜那个儿童连着三天都上班，我也不能挥霍的太过分，简直了。</p>
-<p>七年过去了，七年是什么概念，可能当时你身体都可以进入的人现在连朋友圈都进不了了。还有一周又要高考了，我记得那会最后一门英语考的时候外面乌黑一片，山雨欲来风满楼，仿佛是为了我考试灾难性的结果买下伏笔，根本无心静下来思考，虽然不知道填的啥但就觉得填的是对的，这想法也是没谁了，这也是整个高考期间的缩影。我记得第一天考试正是NBA总决赛湖人VS绿军的第七场，晚上我竟然丧心病狂的去网吧看了下比赛回放，这把我激动的，晚上觉都没睡好。事后想了下，这可能也是为了衬托我考试灾难性的后果，毕竟以乐景写哀更见其哀。这一年又一年过去了，每年都会想起，无法释怀，又怎么去释怀。多说有泪，不能再说了~</p>
-<p><img src="http://fishnews.cn/2017_05_31_01.jpg" alt=""></p>
-<p>现在又逢NBA总决赛及欧冠决赛了，借此预测一波，勇士4：1骑士 or 4：2夺冠，皇马1：0尤文 or 2：1夺冠，坐等被证实。现在我还记得13年那个夏天我预测好声音汪峰组张恒远夺冠，结果很明显。</p>
-<p>都说爱笑的女生运气不会太差，而JJ长的男生，亦是如此，然而运气不错，但也架不住明目张胆的折腾。这几天中金某领导潜规则实习生，据说此人年薪千万，然而掩盖不了low穿地心的本质。今年互联网平均年薪据调查首次超过金融业位居榜首，为十二万多，值得恭喜一波，讲真，我也不知道有啥值得恭喜的。《欢乐颂》最近这么火，里面的应勤又给广大IT男招黑了，其实不觉得有什么问题考虑到应勤自身的状况。一开始我还以为给IT男洗白了呢，谁知道闹了这么一出，平心而论，应勤配得上邱莹莹，但是否配得上邱莹莹的爱，仁者见仁了。好在最后两人又和好了，感情中这事没道理可讲，还是应了那句话，你说要敬往事一杯酒，再爱也不回头，然而就算你醉到黄昏独自愁，如果那人伸出手，你还是会跟他走！</p>
-<p>金三银四铜五过去了，铁六锡七铝八就要来了。这一晃17年快过一半了，这一天天过得，纸醉金迷，酒肉池林。想做点什么，应该做点什么。于我而言，六月份是个比较独特的月份。要是有的选，我愿意牺牲点什么，换回之前几年的六月份，重新来过的机会。事实是，没有机会！</p>
-<p>不打扰，我似乎很难做到，然而我似乎又做到了。是否有人知道我在说什么，谁知道呢，会有人的！</p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
-<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/随笔/">随笔</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/01/01/2016/" class="article-date">
-  	<time datetime="2016-12-31T16:00:00.000Z" itemprop="datePublished">2017-01-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/01/2016/">2016</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=28240119&auto=0&height=66"></iframe>
-
-<p>16年永久性的成为了过往！</p>
-<p>一如既往，朋友圈充满了各种过去一年的总结汇报以及来年的心愿展望，什么新的一年要成功脱单、加薪升职、胸再大点腰再细点、JJ再长点个子再高点之类的，像我这种只阅不发的人简直是一股清流。也不知道是男票女票不好玩还是不好用，竟然还有力气还有时间发动态，真是难得。微信各种群都是些骚乱的人们，当然可能并不乱。红包发个不停，抢了半天不够再发一个出去的，真是蛋疼，现在基本都不抢了。但是有个群例外，爱得威技术部，是我喜欢的氛围，要么不发，要发就数额不菲，都自觉的轮着来。想想离职快两年了也没退群，基本是装死的状态，一直也心系爱得威。那是我职业生涯的第一站，对我之后的各种装逼也产生了深远影响。现在想来，当时老大给的各种排期都比较宽松充裕，而年轻人总是急于冒进，每次都强行装逼觉得分分钟可以搞定，几次意外发生后也就吸取教训了。后来又来个新人，又在走我之前的老路，总是眼高于顶，你说给一天时间他说一小时足矣，结果很明显，脸打得啪啪响。时至今日，我的做事风格也归咎于此，需要一天的时间我可能会要两天，无他，只因可能会面临各种意外，而且提前搞定了还皆大欢喜。当时学到的各种基础对我后来也都起了极大的帮助，现在我所掌握的几门语言也都是在那段时间学习的，虽然有的现在已经仅剩点概念了。那会还学了半年日语，以至于每次看岛国爱情动作片的时候我都会下意识的去拼写日语单词，并尝试去纠正语法和发音，也学到了些许，是的。那也是我至今为止最为上进的一段时间吧，早上坐地铁全是背日语单词和课文，而现在我早上坐地铁关注的全tm是谁又偷我能量了，谁的能量又可以偷了，我罗是否又进球了，我科是不是又有什么记录被破了，偶尔心情好的话还会关注下周围妹子的罩杯大小，定期锻炼下眼力，真是堕落！</p>
-<p>这几天又被余太逼着做饭了，我内心是拒绝的。这种属于细水长流的活岂是一朝一夕之事，想我16年全年厨艺都进步寥寥，也不知何时能大成！在上海的这几年，是真切的感受到了上海女人在家里的话语权实在太大，严重带坏了那些来上海工作的妹子们。开始来上海时都是妹子，后来都成了汉子，这些人最大的毛病就是妄图改造自己的另一半，自己却拒绝被改造。感情中最难能可贵的是什么，从来不是那些，彼此送的手表和项链，甚至也不是那些甜蜜的短信和合照，甚至都不是毫无保留的付出，而是彼此留在对方身上的，如同河流留给山川的，那些你对我，造成的改变。付出并不难，改变才是！也不知道何时才能顿悟，依然任重道远啊。</p>
-<p>16年年初定的几个目标基本都完成了一半,希望自己稳重些，的确是重了不少；希望一年存款30万，结果果然存了有3万大概；希望在技术上有更多积累，所以微信上收藏了少说也有几百篇从未打开过的技术文章。一切都进展的难以置信的顺利，也不知道17年是个什么鸟样！</p>
-<p>但是生活，最重要的是开心！</p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
-<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/随笔/">随笔</a>
 	</div>
 
 
