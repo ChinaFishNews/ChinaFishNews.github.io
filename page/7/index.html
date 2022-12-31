@@ -319,6 +319,125 @@
 
 
   
+    <article id="post-将Hexo博客同时搭建在Github和Gitcafe上" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/21/将Hexo博客同时搭建在Github和Gitcafe上/" class="article-date">
+  	<time datetime="2016-02-20T16:00:00.000Z" itemprop="datePublished">2016-02-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/21/将Hexo博客同时搭建在Github和Gitcafe上/">将Hexo博客同时搭建在Github和Gitcafe上</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>Hexo博客是基于nodejs的，那么如何搭建呢，这里我选择了gitcafe和github，主要是国内用户访问github很慢，所以同时托管在这两个平台上。 整个搭建过程如下</p>
+<p>1.安装nodejs。我选择了使用homebrew安装nodejs，如何安装brewhome呢？使用如下命令<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ruby</span> -<span class="keyword">e</span> "$(curl -fsSL http<span class="variable">s:</span>//raw.github.<span class="keyword">com</span>/Homebrew/homebrew/<span class="keyword">go</span>/install)”</span><br></pre></td></tr></table></figure></p>
+<p>然后使用如下命令安装nodejs<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install <span class="keyword">node</span><span class="identifier"></span><span class="title"></span></span><br></pre></td></tr></table></figure></p>
+<p>当然安装nodejs的方法有多种，可以使用git安装也可以下载源码(  <a href="http://nodejs.org/download/" target="_blank" rel="external">http://nodejs.org/download/</a> )自行安装。</p>
+<p>2.安装Hexo</p>
+<p>使用nodejs自带的npm安装,先cd到安装位置，然后使用如下命令<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> hexo</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> init</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+<p>也可以下载源码自行安装(  <a href="http://www.nodejs.org/download/" target="_blank" rel="external">http://www.nodejs.org/download/</a>)</p>
+<p>3.安装git</p>
+<p>现在的mac系统已经自带git了，不需要安装。当然如果没有安装git，可以使用homebrewa安装</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">sudo</span> <span class="keyword">brew </span>install git</span><br></pre></td></tr></table></figure>
+<p>同样也可以下载源码(  <a href="https://www.kernel.org/pub/software/scm/git/" target="_blank" rel="external">https://www.kernel.org/pub/software/scm/git/</a> )自行安装</p>
+<p>4.配置SSH key</p>
+<p>使用如下命令生成私钥<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>将生成的key(id_rsa.pub文件，添加到github和gitcafe上（Account Settings-&gt;SSH Public Keys），如果之前已经设置过则无需再次设置，主要是为了增加读写权限。</p>
+<ol>
+<li>创建项目</li>
+</ol>
+<p>在github和gitcafe上分别创建与用户名对应的仓库，仓库名为your_user_name.github.io和your_user_name</p>
+<p><img src="http://fishnews.cn/2016-02-21-15.png?attname=" alt=""></p>
+<p><img src="http://fishnews.cn/2016-02-21-16.png?attname=" alt=""></p>
+<ol>
+<li>修改hexo根目录下_config.yml文件</li>
+</ol>
+<p>我是同时托管在github和gitcafe上，做如下设置，ChinaFishNews需换成自己的用户名</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line"><span class="attribute">type</span>: git</span><br><span class="line"><span class="attribute">repository</span>:</span><br><span class="line"><span class="attribute">github</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.github.io.git</span><br><span class="line"><span class="attribute">gitcafe</span>: git<span class="variable">@gitcafe</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.git,gitcafe-pages</span><br></pre></td></tr></table></figure>
+<p>如果只托管在github上这样设置</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line"><span class="attribute">type</span>: git</span><br><span class="line"><span class="attribute">repository</span>:  git<span class="variable">@github</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.github.io.git</span><br><span class="line"><span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure>
+<p>如果只托管在gitcafe上这样设置</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line"><span class="attribute">type</span>: git</span><br><span class="line"><span class="attribute">repository</span>:  git<span class="variable">@gitcafe</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.git</span><br><span class="line"><span class="attribute">branch</span>: gitcafe-pages</span><br></pre></td></tr></table></figure>
+<p>注意，:后面空一格，否则会失败，hexo语法极其严格，在使用markdown写博客的时候也要格外注意。</p>
+<p>7 Start the server</p>
+<p>hexo博客已搭建好了，可以cd到hexo目录 运行</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">server</span></span><br></pre></td></tr></table></figure>
+<p>在浏览器中打开 <a href="http://localhost:4000/，这时可以看到Hexo已为你生成了一篇博客。" target="_blank" rel="external">http://localhost:4000/，这时可以看到Hexo已为你生成了一篇博客。</a></p>
+<ol>
+<li>部署到服务器<br>hexo server只是在本地浏览，这时候可以部署到服务器了,使用如下命令</li>
+</ol>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> g</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> d</span><br></pre></td></tr></table></figure>
+<p>这时候在浏览器上输入chinafishnews.gitcafe.io或者chinafishnews.github.io就可以访问你的博客了(chinafishnews替换为你的用户名)</p>
+<h3 id="u5E38_u7528_u5199_u4F5C_u547D_u4EE4"><a href="#u5E38_u7528_u5199_u4F5C_u547D_u4EE4" class="headerlink" title="常用写作命令"></a>常用写作命令</h3><ul>
+<li>建立新文章：hexo n “新文章名”</li>
+<li>预览文章：hexo s</li>
+<li>生成网页：hexo g</li>
+<li>发布文章：hexo d</li>
+<li>生成网页并发布文章：hexo d -g</li>
+<li>查看Hexo的版本: hexo version</li>
+</ul>
+<h3 id="u4E66_u5199_u535A_u5BA2"><a href="#u4E66_u5199_u535A_u5BA2" class="headerlink" title="书写博客"></a>书写博客</h3><p>可以使用markdown软件书写博客，Mark案例如下<a href="http://mahua.jser.me" target="_blank" rel="external">http://mahua.jser.me</a> 或<a href="https://www.zybuluo.com/mdeditor#fn:code可以参考学习" target="_blank" rel="external">https://www.zybuluo.com/mdeditor#fn:code可以参考学习</a></p>
+<p><img src="http://fishnews.cn/2016-02-21-17.png?attname=" alt=""></p>
+<p>这是我的一篇博客的案例，titile为标题，data是发布日期，categories: OC指的是属于分类中的OC这一分类,tags指的是添加的标签，除title外剩下的不是必须的，但一但添加，格式必须书写正确，否则会发布失败。文件可随意编辑，语法极其严格，一定要多加注意！</p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
+<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Hexo博客主题设置" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -382,79 +501,6 @@
     <div class="article-info article-info-index">
       
       
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS性能调优-使用Instruments诊断App" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/19/iOS性能调优-使用Instruments诊断App/" class="article-date">
-  	<time datetime="2016-02-18T16:00:00.000Z" itemprop="datePublished">2016-02-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/19/iOS性能调优-使用Instruments诊断App/">iOS性能调优-使用Instruments诊断App</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
-
-<p>Instruments是Xcode提供的一个强大的工具，Allocations,Leaks,Time Profiler被戏称为Instruments的救命三招。Alocations通常用来跟踪app内存使用情况，Leaks用来检查app运行时产生的内存泄露，Time profiler用来帮助我们分析代码的执行时间，找出程序变慢的原因。</p>
-<p>本来想写一篇总结Instruments下各工具使用的博客，网上查了下，资料已经很丰富，讲解的也远比我想讲的要好的多，最主要的是，写博客太费时间，尤其是长篇博客，在此，对那些乐此不疲产生优质文章的博主、作者致以崇高的敬意,感谢你们的劳动成果让开发者们受益！</p>
-<p>下面这篇文章讲得比价全面，可以自行阅读探索</p>
-<p><a href="http://www.cocoachina.com/swift/20150623/12237.html" target="_blank" rel="external">如何使用Instruments诊断App（Swift版)</a></p>
-<hr>
-<p>如有任何错误之处或疑问，请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
-<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leaks，Allocations-Time-Profiler/">Leaks，Allocations,Time Profiler</a></li></ul>
-	</div>
-
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/进阶/">进阶</a>
@@ -578,6 +624,79 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/转载/">转载</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-iOS性能调优-使用Instruments诊断App" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/19/iOS性能调优-使用Instruments诊断App/" class="article-date">
+  	<time datetime="2016-02-18T16:00:00.000Z" itemprop="datePublished">2016-02-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/19/iOS性能调优-使用Instruments诊断App/">iOS性能调优-使用Instruments诊断App</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>Instruments是Xcode提供的一个强大的工具，Allocations,Leaks,Time Profiler被戏称为Instruments的救命三招。Alocations通常用来跟踪app内存使用情况，Leaks用来检查app运行时产生的内存泄露，Time profiler用来帮助我们分析代码的执行时间，找出程序变慢的原因。</p>
+<p>本来想写一篇总结Instruments下各工具使用的博客，网上查了下，资料已经很丰富，讲解的也远比我想讲的要好的多，最主要的是，写博客太费时间，尤其是长篇博客，在此，对那些乐此不疲产生优质文章的博主、作者致以崇高的敬意,感谢你们的劳动成果让开发者们受益！</p>
+<p>下面这篇文章讲得比价全面，可以自行阅读探索</p>
+<p><a href="http://www.cocoachina.com/swift/20150623/12237.html" target="_blank" rel="external">如何使用Instruments诊断App（Swift版)</a></p>
+<hr>
+<p>如有任何错误之处或疑问，请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
+<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leaks，Allocations-Time-Profiler/">Leaks，Allocations,Time Profiler</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
 	</div>
 
 
@@ -1225,82 +1344,9 @@
 
 
   
-    <article id="post-写在开篇" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/12/20/写在开篇/" class="article-date">
-  	<time datetime="2015-12-19T16:00:00.000Z" itemprop="datePublished">2015-12-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/20/写在开篇/">写在开篇</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
-
-
-<p>一直以来都有记录的习惯，尤其是做开发，这个习惯必不可少。中学时代老师经常提醒我们要常做笔记，记录一些疑难要点、好词好句和曾经做错的题目，当时不以为然，后来也证明不听老师话的结果，惨不忍睹！</p>
-<p>之前一直在用印象笔记，粗略查了下里面记录了上千篇，至少有一半不是我自己总结的，还有四分之一现在看来都不值一提，剩下的四分之一才感觉依然很有价值。相关Demo写了少说也有几百个，良莠不齐。</p>
-<p>做iOS开发也有两年多了，感觉也到了该回馈社会的时候了，请原谅我使用”回馈社会”这么装逼的字眼。依然记得刚开始工作时的阵痛，虽然只有不到两个月的时间。万事开头难，尤其是做技术，没人指引对于新手来说的确是痛苦的，尽管成长的很快。在此感谢入行之初帮助过我的那些前辈，尤其是上海的那哥们和苏州的一妹子，虽然他们未必看得到。一直以来也都有在尝试帮助他人，不过也都是在公司内部或相关技术交流群里，范围终归有限。所以从现在开始尝试写些博客，尽自己绵薄之力。很多网上的文章都是互相转载未经查证，或者炫技卖弄隐藏关键点，让人作呕！也希望更多的博主能保证文章质量，杜绝浮躁之风，尽管没什么卵用。</p>
-<p>接下来有时间的话会陆续上传或撰写一些技术要点和生活感悟，有些技术要点可能在现在看来都不算一个点了，但是对于新人来说也许依然会感到陌生，重要的是，我喜欢这种可以看到自己成长的过程！</p>
-<p>网络文明依然需要大家共同努力，希望尽量做到谨慎拍砖，砖要轻拍，拍之有理。但是谁又会理会呢？</p>
-<p>读万卷书不如行万里路，行万里路不如阅人无数，阅人无数不如名师指路，名师指路不如自己去悟！共勉！</p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
-<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/随笔/">随笔</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
     </nav>
   
 </div>
