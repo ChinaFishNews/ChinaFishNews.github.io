@@ -221,10 +221,10 @@
 
       <div class="body-wrap">
   
-    <article id="post-Markdown在线编辑" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Hexo博客托管在Coding上" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/03/Markdown在线编辑/" class="article-date">
+      <a href="/2016/03/03/Hexo博客托管在Coding上/" class="article-date">
   	<time datetime="2016-03-02T16:00:00.000Z" itemprop="datePublished">2016-03-03</time>
 </a>
     </div>
@@ -238,7 +238,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/03/Markdown在线编辑/">Markdown在线编辑</a>
+      <a class="article-title" href="/2016/03/03/Hexo博客托管在Coding上/">Hexo博客托管在Coding上</a>
     </h1>
   
 
@@ -249,14 +249,37 @@
       
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
 
-<p>MarkDwon是一种轻量级的标记语法，容易排版，可轻松转化为Pdf、Html格式文件，支持MarkDwon的编辑器有很多，包括像Markdown Pro、Mou、MacDwon、MacHub等等。</p>
-<p>提供一个Markdown Pro的下载地址:<a href="http://pan.baidu.com/s/1c0Pk4oS" target="_blank" rel="external">http://pan.baidu.com/s/1c0Pk4oS</a> 密码:sehk</p>
-<p>如何编辑使用呢?</p>
-<p>在此提供两个官方案例:</p>
-<p><a href="https://www.zybuluo.com/mdeditor#fn:code" target="_blank" rel="external">https://www.zybuluo.com/mdeditor#fn:code</a> 和</p>
-<p><a href="https://www.zybuluo.com/mdeditor#fn:code" target="_blank" rel="external">https://www.zybuluo.com/mdeditor#fn:code</a></p>
-<p>模仿案例上的格式基本迅速就可以掌握使用方法</p>
-<p>里面用到的图片，我是上传到七牛云存储上，之前尝试过上传到百度云或者直接放在当前目录下，有时并不能显示成功，放在七牛云上下载显示的很快，基本没出现过问题。</p>
+<p>昨天GitCafe官网上发布声明，截至2016年5月31日停止所有服务，届时上面的资料和项目都将被永久删除，需要尽快将资料和项目迁移至Coding,只是因为被Coding收购了。操了个蛋，之前的博客就是托管在GitCafe上和GitHub上的，好在还有GitHub做后盾，不用太担心。虽然会一直服务到5月31号，不过还是决定将 博客迁移到Coding上。</p>
+<p>前面的一些安装步骤就此省略，和托管在GitCafe和GitHub上的步骤一样，如果不太清楚可以参考之前的博文，之前已经安装了则可直接进行下面的步骤。</p>
+<p>到Coding.net官网创建一个项目，名字可以随意，不过我还是创建了一个和用户名一样的项目名。</p>
+<p>然后到Hexo的安装目录中打开_cinfig.yml文件，找到<code>deploy</code>项，按如下修改<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: </span><br><span class="line">      <span class="attribute">github</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.github.io.git</span><br><span class="line">      <span class="attribute">coding</span>: <span class="attribute">https</span>:<span class="comment">//git.coding.net/ChinaFish/ChinaFish.git</span></span><br></pre></td></tr></table></figure></p>
+<p>我还是将博客同时托管在Coding和GitHub两个平台上，无他，只因更相信GitHub。这里面的<code>ChinaFish</code>和<code>ChinaFishNews</code>都是第一个是用户名，第二个是项目名，之前的设置是<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: </span><br><span class="line">      <span class="attribute">github</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.github.io.git</span><br><span class="line">     # <span class="attribute">gitcafe</span>: git<span class="variable">@gitcafe</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.git,gitcafe-pages</span><br></pre></td></tr></table></figure></p>
+<p>可惜GitCafe被收购了。</p>
+<p>然后打开终端使用下面命令push到仓库<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>这一步可能会报错 ERROR Deployer not found: git  使用如下命令</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
+<p>然后回到Coding的仓库下面进行如下配置</p>
+<p><img src="http://fishnews.cn/2016-03-03-01.png?attname=" alt=""></p>
+<p>按照如图，点击检测，会提醒没有检测到环境，不过直接点强制开启就可以了</p>
+<p><img src="http://fishnews.cn/2016-03-03-02.png?attname=" alt=""></p>
+<p>访问域名这一项可以随意填写，应用内存选的稍微大一些，点击显示高级选项</p>
+<p><img src="http://fishnews.cn/2016-03-03-03.png?attname=" alt=""></p>
+<p>将运行环境设置为Html,没设置前在部署的时候会导致失败。其他的不用填写，点击一键部署，可能会部署失败。如果部署失败可以查看日志或者查看常见部署问题解答。至此，配置就结束了，可以使用<code>chinafishnews.coding.io</code>访问博客了，<code>chinafishnews</code>是刚才填写的域名。</p>
+<p>但是这样的话，每次写文章发布后都需要手动到这里部署，比较麻烦。可以使用<code>webhook</code>来自动部署。如下图所示</p>
+<p><img src="http://fishnews.cn/2016-03-03-04.png?attname=" alt=""></p>
+<p>点击新建Hook</p>
+<p><img src="http://fishnews.cn/2016-03-03-05.png?attname=" alt=""></p>
+<p>上面 的输入框中是填你的博客域名，也就是前面部署的时候那个域名地址，然后在后面加上/_</p>
+<p>下面的输入框是输入token,直接填写<code>{ {TOKEN} }</code>就可以了</p>
+<p><img src="http://fishnews.cn/2016-03-03-06.png?attname=" alt=""></p>
+<p>然后点击环境变量，变量名填WEBHOOK_TOKEN,值为<code>{ {TOKEN} }</code>。然后回到控制台重新启动应用就可以了。这样就实现了自动部署。</p>
+<p>另外，之前的域名指向的是GitCafe，现在被Coding收购，GitCafe的功能激也都基本被保留，只是需要重新解析域名，但是，也有一些改动。如下图添加域名</p>
+<p><img src="http://fishnews.cn/2016-03-05-01.png?attname=" alt=""></p>
+<p><b>注意<b>，部署分支的coding-pages需改成master,这是因为Hexo中_config.yml文件中的的coding源默认是master。否则无法成功。</b></b></p>
+<p><img src="http://fishnews.cn/2016-03-05-02.png?attname=" alt=""></p>
+<p>然后到阿里云重新解析域名</p>
+<p><img src="http://fishnews.cn/2016-03-05-03.png?attname=" alt=""></p>
+<p>注意，gitcafe中填写的是chinafishnews.gitcafe.io,<code>chinafishnews</code>是gitcafe上自己的用户名，而coding上需改成ChinaFish.coding.me,<code>chinafish</code>是coding上自己的用户名，上图中也有提示已经绑定的域名(CNAME记录指向ChinaFish.coding.me)，稍等片刻便可以使用chinafish.news访问博客了。</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -273,86 +296,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MarkDown、Mou、Macdown/">MarkDown、Mou、Macdown</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/进阶/">进阶</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iOS程序后台无限运行" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/01/iOS程序后台无限运行/" class="article-date">
-  	<time datetime="2016-02-29T16:00:00.000Z" itemprop="datePublished">2016-03-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/01/iOS程序后台无限运行/">iOS程序后台无限运行</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
-
-<p>让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景是因为积分墙刷榜，这个程序要在后台一直运行，来监测其他app的行为，如注册、登陆、认证等，这就要这个app持续运行。鉴于苹果对iOS系统的封闭政策，我们的APP在进入后台能做的事情相对有限。一般只有几秒的时间留给用户进行一些清理和数据保存的时间，当然可以使用开启新任务向系统借点时间，但这时间也是有限的， 不会超过10分钟，10分钟后无论怎么向系统申请继续后台，系统会强制挂起App，挂起所有后台操作、线程，直到用户再次点击App之后才会继续运行。但是系统也预留了一些特殊应用可以实现真后台的方法，包括VoIP、GPS、Audio等。</p>
-<p>这里使用了MMPDeepSleepPreventer类，这个类就是通过一直播放无声音乐来实现永久后台运行。一般来说在播放音乐的时候，如果打开其他播放音乐的应用，那之前的音乐就会被关闭，但是MMPDeepSleepPreventer这个类使用了定时器每5秒播放一次，所以不会被中断，除非手动kill掉项目。</p>
-<p>下载链接:<a href="https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git" target="_blank" rel="external">https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git</a></p>
-<p><img src="http://fishnews.cn/2016-03-02-01.png?attname=" alt=""></p>
-<p>把上述问价导入项目，添加AVFoundation.framework、AudioToolbox.framework</p>
-<p>在Info.plist中设置添加Required background modes键值，设置为App provides Voice over IP services</p>
-<p>另外在Bulid Phases中将MMPDeepSleepPreventer.m类设置为-fno-objc-arc</p>
-<p>然后需在AppDelegate中设置<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#import</span> &lt;AVFoundation/AVFoundation.h&gt;</span><br><span class="line"><span class="id">#import</span> <span class="string">"MMPDeepSleepPreventer.h"</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MMPDeepSleepPreventer * soundBoard =  <span class="string">[MMPDeepSleepPreventer new]</span>;</span><br><span class="line"><span class="string">[soundBoard startPreventSleep]</span>;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
-<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MMPDeepSleepPreventer-后台无限运行/">MMPDeepSleepPreventer,后台无限运行</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coding-net/">Coding.net</a></li></ul>
 	</div>
 
       
@@ -461,6 +405,85 @@
 
 
   
+    <article id="post-iOS程序后台无限运行" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/01/iOS程序后台无限运行/" class="article-date">
+  	<time datetime="2016-02-29T16:00:00.000Z" itemprop="datePublished">2016-03-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/01/iOS程序后台无限运行/">iOS程序后台无限运行</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
+
+<p>让我们的应用一直在后台运行不被系统kill掉，这种需求并不多见。在我呆的上家公司里，期间有段时间研究了很多稀奇古怪的问题，比如safari和app互通、监测当前手机打开哪些程序、监测手机app各自运行时间、程序一直运行不被系统杀死等等很多，当然有些并没有研究出结果，也许本来就实现不了。这个后台无限运行，想上App Store肯定是会被拒的，在用企业证书分发的app有些可能会用到，之前用到这个的场景是因为积分墙刷榜，这个程序要在后台一直运行，来监测其他app的行为，如注册、登陆、认证等，这就要这个app持续运行。鉴于苹果对iOS系统的封闭政策，我们的APP在进入后台能做的事情相对有限。一般只有几秒的时间留给用户进行一些清理和数据保存的时间，当然可以使用开启新任务向系统借点时间，但这时间也是有限的， 不会超过10分钟，10分钟后无论怎么向系统申请继续后台，系统会强制挂起App，挂起所有后台操作、线程，直到用户再次点击App之后才会继续运行。但是系统也预留了一些特殊应用可以实现真后台的方法，包括VoIP、GPS、Audio等。</p>
+<p>这里使用了MMPDeepSleepPreventer类，这个类就是通过一直播放无声音乐来实现永久后台运行。一般来说在播放音乐的时候，如果打开其他播放音乐的应用，那之前的音乐就会被关闭，但是MMPDeepSleepPreventer这个类使用了定时器每5秒播放一次，所以不会被中断，除非手动kill掉项目。</p>
+<p>下载链接:<a href="https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git" target="_blank" rel="external">https://github.com/ChinaFishNews/MMPDeepSleepPreventer.git</a></p>
+<p><img src="http://fishnews.cn/2016-03-02-01.png?attname=" alt=""></p>
+<p>把上述问价导入项目，添加AVFoundation.framework、AudioToolbox.framework</p>
+<p>在Info.plist中设置添加Required background modes键值，设置为App provides Voice over IP services</p>
+<p>另外在Bulid Phases中将MMPDeepSleepPreventer.m类设置为-fno-objc-arc</p>
+<p>然后需在AppDelegate中设置<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#import</span> &lt;AVFoundation/AVFoundation.h&gt;</span><br><span class="line"><span class="id">#import</span> <span class="string">"MMPDeepSleepPreventer.h"</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MMPDeepSleepPreventer * soundBoard =  <span class="string">[MMPDeepSleepPreventer new]</span>;</span><br><span class="line"><span class="string">[soundBoard startPreventSleep]</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
+<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MMPDeepSleepPreventer-后台无限运行/">MMPDeepSleepPreventer,后台无限运行</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/进阶/">进阶</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-iOS开发使用AVPlayer、MoviePlayer播放本地、网络视频" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -519,86 +542,6 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/Swift/">Swift</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-遍地的奢华与奇缺的教养" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/26/遍地的奢华与奇缺的教养/" class="article-date">
-  	<time datetime="2016-02-25T16:00:00.000Z" itemprop="datePublished">2016-02-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/26/遍地的奢华与奇缺的教养/">遍地的奢华与奇缺的教养</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>本文系转载</p>
-<p>作者：梁文道</p>
-<p>来源：新华网思客精选</p>
-<p> 原题:《什么是奢华，什么是教养》</p>
-</blockquote>
-<p>今天的中国，无论你走到哪里，几乎都能看见“奢华”这两个字。每一本时尚生活杂志都在不厌其烦地告诉你有关奢华的故事，每一个商品广告都试图让你感到它要卖的商品有多奢华。<br>于是房子是奢华的，车子是奢华的，大衣是奢华的，手表是奢华的，皮鞋也是奢华的，就连内裤也可以很奢华，乃至于我刚刚吃过的涮羊肉也标榜自己的用料十分奢华。本来这种东西是可以见怪不怪的，正所谓奢华见惯亦平常。</p>
-<p>可是有一天，我在杂志上看到一篇介绍英国手工定制鞋的文章，作者先是不断渲染英国绅士的低调含蓄，一两千字之后笔锋忽然一转，他还是未能免俗地要大谈这鞋子有多奢华，并将其定位为“低调的奢华”。然后把绅士等同于品位，再将品位等同于奢华。许多媒体早就在“奢华”和“品位”之间画上等号了，但现在有人进一步连“绅士”也挂了上去，这就让我觉得有些刺眼了。</p>
-<p>我的生活奢华不起，我的言行也离绅士甚远，可我总算读过不少传说中的英国绅士写的东西，在我的印象中，绅士和奢华根本是两个完全不同的概念。且看19世纪英国绅士之间的通信，关于绅士的品位，他们是这么说的：“×××的家朴实无华，真是难得的好品位。”“他是那种老派的绅士，一件大衣穿了20年。”他们会称赞一个人的朴实和惜物，低调而不张扬，却绝对不会把看得见的奢华当作品位，尤其不会把它视为绅士的品位。</p>
-<p>就以一双手工制作的顶级皮鞋来说吧，它是很贵，但它可以穿上一二十年，这里头的学问不只是它自身的质量，更是你穿它、用它的态度。</p>
-<p>首先，你会珍惜它，所以走路的姿势是端正的，不会在街上看见什么都随便踢一脚。其次，你愿意花点时间和心思去护理它，平常回家脱下来不忘为它拂尘拭灰，周末则悠悠闲闲地替它抹油补色，权当一种调剂身心的休息活动（就算他有佣人，他也宁愿自己动手）。所以这双鞋能够穿得久，10年之后，它略显老态，但不腐旧，看得出是经过了不错的照料，也看得出其主人对它的爱惜。</p>
-<p><b> 这叫作绅士<b>。</b></b></p>
-<p>不一定喜欢昂贵的身外物，但一定不随便花钱，朝秦暮楚。他的品位不在于他买了什么，而在于他的生活风格甚至为人；他拥有的物质不能说明他，他拥有物质的方式才能道出他是个怎么样的人。</p>
-<p>当然，一个人不能做物质的奴隶，但他的人格、性情或许可以借着物质偶尔散发出来。<b>简单地讲，这就是教养<br>。</b></p>
-<p>“教养”是一个何其古老、于今天何其陌生的词啊。这个词本来才是品位的绝配，不过，由于教养困难，奢华容易，我们今天才会把品位许给了奢华，让空洞的、无止境的消费去遮掩教养的匮乏。久而久之，甚至开始有人以为，英国的传统绅士皆以奢华为人生第一目标。如果你觉得“教养”太过抽象，我可以为你举一些没有教养的好例子。开着一部奔驰车在街上横冲直撞，觉得行人全是活该被吓死的贱民，这是没有教养的。手上戴着伯爵表，然后借醉酒臭骂上错菜的服务员小妹妹，这也是没有教养的。教养不必来自家教，更不是贵族的专利，上进的绅士更看重后天的自我养成。</p>
-<p>然而，如今有力奢华地招摇过市之辈多如过江之鲫，甘于谦逊、力求品格善美的人却几不可闻，岂不可叹？我只不过是在北京一家火锅店见着它用“奢华”二字形容自己的材料，便忍不住发出这一大堆牢骚，这自然也是没有教养的表现。</p>
-<p><br>奢华和教养的分界点在哪里？一个向外——求胜。一个向内——求安。无时无刻不在和他人相比，自然就倾慕奢华。无时无刻不在要求自己进步，自然就有了教养<br>。</p>
-<p>真正的奢华是内心的高尚，这不是昂贵的物品所能装饰出来的。所以如何去做一个高尚的人，这才是我们最应该要去购买的“奢侈品”，当你拥有了这件专属于你的私人定制品时，你所散发出的气质会遮挡每一件价值不菲的身外之物。</p>
-<p>在这个最美好，同时也是最物质的年代，我们都应变得物质。但这里所说的物质我们不能狭隘的只看它表面的意思、不能只想到现在的社会风气所熏陶出来的“物质”。现代社会的物质更准确的理解就是梁文道老师在文章中所说的“一个人的人格、性情或许可以借着物质偶尔散发出来。简单地讲，这就是教养。”</p>
-<p>如果有了教养，你的内心自然会变得高尚，内心高尚的人，请你自信的告诉世人，你就是一件无与伦比的奢侈品。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/转载/">转载</a>
 	</div>
 
 
@@ -685,6 +628,86 @@
 <p>你活得青春无敌、你过得光鲜亮丽，却看不见你身后，默默供养着你的父母，为了让你过上更好的生活，还在向这个世界低声下气。</p>
 <p>别在缺钱的时候才想起父母，他们不是ATM，他们胸膛上有温度，他们心跳里有感情。</p>
 <p>—— 爸妈爱我们，爱得不容易。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/转载/">转载</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-遍地的奢华与奇缺的教养" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/26/遍地的奢华与奇缺的教养/" class="article-date">
+  	<time datetime="2016-02-25T16:00:00.000Z" itemprop="datePublished">2016-02-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/26/遍地的奢华与奇缺的教养/">遍地的奢华与奇缺的教养</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文系转载</p>
+<p>作者：梁文道</p>
+<p>来源：新华网思客精选</p>
+<p> 原题:《什么是奢华，什么是教养》</p>
+</blockquote>
+<p>今天的中国，无论你走到哪里，几乎都能看见“奢华”这两个字。每一本时尚生活杂志都在不厌其烦地告诉你有关奢华的故事，每一个商品广告都试图让你感到它要卖的商品有多奢华。<br>于是房子是奢华的，车子是奢华的，大衣是奢华的，手表是奢华的，皮鞋也是奢华的，就连内裤也可以很奢华，乃至于我刚刚吃过的涮羊肉也标榜自己的用料十分奢华。本来这种东西是可以见怪不怪的，正所谓奢华见惯亦平常。</p>
+<p>可是有一天，我在杂志上看到一篇介绍英国手工定制鞋的文章，作者先是不断渲染英国绅士的低调含蓄，一两千字之后笔锋忽然一转，他还是未能免俗地要大谈这鞋子有多奢华，并将其定位为“低调的奢华”。然后把绅士等同于品位，再将品位等同于奢华。许多媒体早就在“奢华”和“品位”之间画上等号了，但现在有人进一步连“绅士”也挂了上去，这就让我觉得有些刺眼了。</p>
+<p>我的生活奢华不起，我的言行也离绅士甚远，可我总算读过不少传说中的英国绅士写的东西，在我的印象中，绅士和奢华根本是两个完全不同的概念。且看19世纪英国绅士之间的通信，关于绅士的品位，他们是这么说的：“×××的家朴实无华，真是难得的好品位。”“他是那种老派的绅士，一件大衣穿了20年。”他们会称赞一个人的朴实和惜物，低调而不张扬，却绝对不会把看得见的奢华当作品位，尤其不会把它视为绅士的品位。</p>
+<p>就以一双手工制作的顶级皮鞋来说吧，它是很贵，但它可以穿上一二十年，这里头的学问不只是它自身的质量，更是你穿它、用它的态度。</p>
+<p>首先，你会珍惜它，所以走路的姿势是端正的，不会在街上看见什么都随便踢一脚。其次，你愿意花点时间和心思去护理它，平常回家脱下来不忘为它拂尘拭灰，周末则悠悠闲闲地替它抹油补色，权当一种调剂身心的休息活动（就算他有佣人，他也宁愿自己动手）。所以这双鞋能够穿得久，10年之后，它略显老态，但不腐旧，看得出是经过了不错的照料，也看得出其主人对它的爱惜。</p>
+<p><b> 这叫作绅士<b>。</b></b></p>
+<p>不一定喜欢昂贵的身外物，但一定不随便花钱，朝秦暮楚。他的品位不在于他买了什么，而在于他的生活风格甚至为人；他拥有的物质不能说明他，他拥有物质的方式才能道出他是个怎么样的人。</p>
+<p>当然，一个人不能做物质的奴隶，但他的人格、性情或许可以借着物质偶尔散发出来。<b>简单地讲，这就是教养<br>。</b></p>
+<p>“教养”是一个何其古老、于今天何其陌生的词啊。这个词本来才是品位的绝配，不过，由于教养困难，奢华容易，我们今天才会把品位许给了奢华，让空洞的、无止境的消费去遮掩教养的匮乏。久而久之，甚至开始有人以为，英国的传统绅士皆以奢华为人生第一目标。如果你觉得“教养”太过抽象，我可以为你举一些没有教养的好例子。开着一部奔驰车在街上横冲直撞，觉得行人全是活该被吓死的贱民，这是没有教养的。手上戴着伯爵表，然后借醉酒臭骂上错菜的服务员小妹妹，这也是没有教养的。教养不必来自家教，更不是贵族的专利，上进的绅士更看重后天的自我养成。</p>
+<p>然而，如今有力奢华地招摇过市之辈多如过江之鲫，甘于谦逊、力求品格善美的人却几不可闻，岂不可叹？我只不过是在北京一家火锅店见着它用“奢华”二字形容自己的材料，便忍不住发出这一大堆牢骚，这自然也是没有教养的表现。</p>
+<p><br>奢华和教养的分界点在哪里？一个向外——求胜。一个向内——求安。无时无刻不在和他人相比，自然就倾慕奢华。无时无刻不在要求自己进步，自然就有了教养<br>。</p>
+<p>真正的奢华是内心的高尚，这不是昂贵的物品所能装饰出来的。所以如何去做一个高尚的人，这才是我们最应该要去购买的“奢侈品”，当你拥有了这件专属于你的私人定制品时，你所散发出的气质会遮挡每一件价值不菲的身外之物。</p>
+<p>在这个最美好，同时也是最物质的年代，我们都应变得物质。但这里所说的物质我们不能狭隘的只看它表面的意思、不能只想到现在的社会风气所熏陶出来的“物质”。现代社会的物质更准确的理解就是梁文道老师在文章中所说的“一个人的人格、性情或许可以借着物质偶尔散发出来。简单地讲，这就是教养。”</p>
+<p>如果有了教养，你的内心自然会变得高尚，内心高尚的人，请你自信的告诉世人，你就是一件无与伦比的奢侈品。</p>
 
       
     </div>

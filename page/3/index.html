@@ -1055,88 +1055,6 @@ double result = manger.add(3).minus(3).result;
 
 
   
-    <article id="post-机器学习-CoreML文字识别" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/11/07/机器学习-CoreML文字识别/" class="article-date">
-  	<time datetime="2017-11-06T16:00:00.000Z" itemprop="datePublished">2017-11-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/07/机器学习-CoreML文字识别/">机器学习-CoreML文字识别</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=421563094&auto=0&height=66"></iframe>
-
-
-<ol>
-<li>获取带有文字的图片<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">btnPressed</span><span class="params">(<span class="number">_</span> sender: Any)</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> picker = <span class="type">UIImagePickerController</span>()</span><br><span class="line">    picker.delegate = <span class="keyword">self</span></span><br><span class="line">    picker.sourceType = .savedPhotosAlbum</span><br><span class="line">    present(picker, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// UIImagePickerControllerDelegate</span></span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">imagePickerController</span><span class="params">(<span class="number">_</span> picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])</span></span> &#123;</span><br><span class="line">        picker.dismiss(animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> image = (info[<span class="type">UIImagePickerControllerOriginalImage</span>] <span class="keyword">as</span>? <span class="type">UIImage</span>) <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">"no image"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">self</span>.btnImageView.setBackgroundImage(image, <span class="keyword">for</span>: .normal)</span><br><span class="line"><span class="comment">//        self.btnImageView.layer.sublayers?.forEach &#123; $0.removeFromSuperlayer() &#125;</span></span><br><span class="line"><span class="comment">//        if self.btnImageView.layer.sublayers != nil &#123;</span></span><br><span class="line"><span class="comment">//            for layer in self.btnImageView.layer.sublayers! &#123;</span></span><br><span class="line"><span class="comment">//                layer.removeFromSuperlayer()</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> textLayers:[<span class="type">CAShapeLayer</span>] = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> cgImage = image.cgImage &#123;</span><br><span class="line">            <span class="keyword">let</span> textRecognizedRequest = <span class="type">VNDetectTextRectanglesRequest</span>.<span class="keyword">init</span>(completionHandler: &#123; (request:<span class="type">VNRequest</span>, error:<span class="type">Error</span>?) <span class="keyword">in</span></span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> (request.results <span class="keyword">as</span>? [<span class="type">VNTextObservation</span>]) != <span class="literal">nil</span> &#123;</span><br><span class="line">                    textLayers = <span class="keyword">self</span>.addShapesToText(obversations: request.results <span class="keyword">as</span>! [<span class="type">VNTextObservation</span>], view: <span class="keyword">self</span>.btnImageView)</span><br><span class="line">                    <span class="keyword">for</span> layer <span class="keyword">in</span> textLayers &#123;</span><br><span class="line">                        <span class="keyword">self</span>.btnImageView.layer.addSublayer(layer)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> handler = <span class="type">VNImageRequestHandler</span>.<span class="keyword">init</span>(cgImage: cgImage, options: [:])</span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> <span class="number">_</span> = <span class="keyword">try</span>? handler.perform([textRecognizedRequest]) <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">fatalError</span>(<span class="string">"failed"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>2.添加Layer展示</p>
-<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">func addShapesToText(obversations:[VNTextObservation],view:UIView) -&gt; [CAShapeLayer] &#123;</span><br><span class="line">       let layers: [CAShapeLayer] = obversations<span class="string">.map</span> &#123; observation in</span><br><span class="line">           </span><br><span class="line">           let w = observation<span class="string">.boundingBox.size.width</span> * view<span class="string">.bounds.width</span></span><br><span class="line">           let h = observation<span class="string">.boundingBox.size.height</span> * view<span class="string">.bounds.height</span></span><br><span class="line">           let x = observation<span class="string">.boundingBox.origin.x</span> * view<span class="string">.bounds.width</span></span><br><span class="line">           let y = view<span class="string">.bounds.height</span> - observation<span class="string">.boundingBox.origin.y</span> * view<span class="string">.bounds.height</span> - h</span><br><span class="line">           </span><br><span class="line">           let layer = CAShapeLayer()</span><br><span class="line">           layer<span class="string">.frame</span> = CGRect(x: x , y: y, width: w, height: h)</span><br><span class="line">           layer<span class="string">.borderColor</span> = UIColor<span class="string">.green.cgColor</span></span><br><span class="line">           layer<span class="string">.borderWidth</span> = 2</span><br><span class="line">           layer<span class="string">.cornerRadius</span> = 3</span><br><span class="line">           </span><br><span class="line">           return layer</span><br><span class="line">       &#125;</span></span><br><span class="line">       return layers</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>3.效果展示</p>
-<p><img src="http://fishnews.cn/2017_11_07_09.png" alt=""></p>
-<p><br><br><a href="https://github.com/ChinaFishNews/TextRecognized.git" target="_blank" rel="external">Demo下载</a></p>
-<hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
-<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vision-文字检测，VNDetectTextRectanglesRequest/">Vision,文字检测，VNDetectTextRectanglesRequest</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Swift/">Swift</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-机器学习-CoreML人脸识别" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1244,6 +1162,88 @@ double result = manger.add(3).minus(3).result;
 
 
   
+    <article id="post-机器学习-CoreML文字识别" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/07/机器学习-CoreML文字识别/" class="article-date">
+  	<time datetime="2017-11-06T16:00:00.000Z" itemprop="datePublished">2017-11-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/07/机器学习-CoreML文字识别/">机器学习-CoreML文字识别</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=421563094&auto=0&height=66"></iframe>
+
+
+<ol>
+<li>获取带有文字的图片<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">btnPressed</span><span class="params">(<span class="number">_</span> sender: Any)</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> picker = <span class="type">UIImagePickerController</span>()</span><br><span class="line">    picker.delegate = <span class="keyword">self</span></span><br><span class="line">    picker.sourceType = .savedPhotosAlbum</span><br><span class="line">    present(picker, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// UIImagePickerControllerDelegate</span></span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">imagePickerController</span><span class="params">(<span class="number">_</span> picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])</span></span> &#123;</span><br><span class="line">        picker.dismiss(animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> image = (info[<span class="type">UIImagePickerControllerOriginalImage</span>] <span class="keyword">as</span>? <span class="type">UIImage</span>) <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">fatalError</span>(<span class="string">"no image"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">self</span>.btnImageView.setBackgroundImage(image, <span class="keyword">for</span>: .normal)</span><br><span class="line"><span class="comment">//        self.btnImageView.layer.sublayers?.forEach &#123; $0.removeFromSuperlayer() &#125;</span></span><br><span class="line"><span class="comment">//        if self.btnImageView.layer.sublayers != nil &#123;</span></span><br><span class="line"><span class="comment">//            for layer in self.btnImageView.layer.sublayers! &#123;</span></span><br><span class="line"><span class="comment">//                layer.removeFromSuperlayer()</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> textLayers:[<span class="type">CAShapeLayer</span>] = []</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> cgImage = image.cgImage &#123;</span><br><span class="line">            <span class="keyword">let</span> textRecognizedRequest = <span class="type">VNDetectTextRectanglesRequest</span>.<span class="keyword">init</span>(completionHandler: &#123; (request:<span class="type">VNRequest</span>, error:<span class="type">Error</span>?) <span class="keyword">in</span></span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> (request.results <span class="keyword">as</span>? [<span class="type">VNTextObservation</span>]) != <span class="literal">nil</span> &#123;</span><br><span class="line">                    textLayers = <span class="keyword">self</span>.addShapesToText(obversations: request.results <span class="keyword">as</span>! [<span class="type">VNTextObservation</span>], view: <span class="keyword">self</span>.btnImageView)</span><br><span class="line">                    <span class="keyword">for</span> layer <span class="keyword">in</span> textLayers &#123;</span><br><span class="line">                        <span class="keyword">self</span>.btnImageView.layer.addSublayer(layer)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> handler = <span class="type">VNImageRequestHandler</span>.<span class="keyword">init</span>(cgImage: cgImage, options: [:])</span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> <span class="number">_</span> = <span class="keyword">try</span>? handler.perform([textRecognizedRequest]) <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">fatalError</span>(<span class="string">"failed"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>2.添加Layer展示</p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="component">func addShapesToText(obversations:[VNTextObservation],view:UIView) -&gt; [CAShapeLayer] &#123;</span><br><span class="line">       let layers: [CAShapeLayer] = obversations<span class="string">.map</span> &#123; observation in</span><br><span class="line">           </span><br><span class="line">           let w = observation<span class="string">.boundingBox.size.width</span> * view<span class="string">.bounds.width</span></span><br><span class="line">           let h = observation<span class="string">.boundingBox.size.height</span> * view<span class="string">.bounds.height</span></span><br><span class="line">           let x = observation<span class="string">.boundingBox.origin.x</span> * view<span class="string">.bounds.width</span></span><br><span class="line">           let y = view<span class="string">.bounds.height</span> - observation<span class="string">.boundingBox.origin.y</span> * view<span class="string">.bounds.height</span> - h</span><br><span class="line">           </span><br><span class="line">           let layer = CAShapeLayer()</span><br><span class="line">           layer<span class="string">.frame</span> = CGRect(x: x , y: y, width: w, height: h)</span><br><span class="line">           layer<span class="string">.borderColor</span> = UIColor<span class="string">.green.cgColor</span></span><br><span class="line">           layer<span class="string">.borderWidth</span> = 2</span><br><span class="line">           layer<span class="string">.cornerRadius</span> = 3</span><br><span class="line">           </span><br><span class="line">           return layer</span><br><span class="line">       &#125;</span></span><br><span class="line">       return layers</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>3.效果展示</p>
+<p><img src="http://fishnews.cn/2017_11_07_09.png" alt=""></p>
+<p><br><br><a href="https://github.com/ChinaFishNews/TextRecognized.git" target="_blank" rel="external">Demo下载</a></p>
+<hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
+<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vision-文字检测，VNDetectTextRectanglesRequest/">Vision,文字检测，VNDetectTextRectanglesRequest</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Swift/">Swift</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-机器学习-CoreML结合Siri" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1308,101 +1308,6 @@ double result = manger.add(3).minus(3).result;
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Core-ML-Siri-AVFoundation/">Core ML, Siri, AVFoundation</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Swift/">Swift</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-机器学习-将第三方模型转换成Core ML或自己训练模型" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/10/29/机器学习-将第三方模型转换成Core ML或自己训练模型/" class="article-date">
-  	<time datetime="2017-10-28T16:00:00.000Z" itemprop="datePublished">2017-10-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/29/机器学习-将第三方模型转换成Core ML或自己训练模型/">机器学习-将第三方模型转换成Core ML或自己训练模型</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=427017020&auto=0&height=66"></iframe>
-
-<p>苹果官方提供的model功能有限，我们可以自己训练模型或者将第三方模型转化成苹果可以识别的模型。</p>
-<p><img src="http://fishnews.cn/2019_10_29__22.gif" alt=""></p>
-<h4 id="u5C06_u7B2C_u4E09_u65B9_u6A21_u578B_u8F6C_u5316_u6210_u82F9_u679C_u53EF_u4EE5_u8BC6_u522B_u7684_u6A21_u578B"><a href="#u5C06_u7B2C_u4E09_u65B9_u6A21_u578B_u8F6C_u5316_u6210_u82F9_u679C_u53EF_u4EE5_u8BC6_u522B_u7684_u6A21_u578B" class="headerlink" title="将第三方模型转化成苹果可以识别的模型"></a>将第三方模型转化成苹果可以识别的模型</h4><p>这里以苹果给出的参考为例,也可以下载<a href="http://caffe.berkeleyvision.org/model_zoo.html" target="_blank" rel="external">Caffee model</a></p>
-<p><img src="http://fishnews.cn/2017_10_29_23.png" alt=""></p>
-<p>其中.txt文件是所有预测结果，.prototxt是模型结构文件。</p>
-<p>打开Anaconda的spyder, 使用coremltools转换<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">coreml_model = coremltools<span class="class">.converters</span><span class="class">.caffe</span><span class="class">.convert</span>((<span class="string">'./caffee model/bvlc_alexnet.caffemodel'</span>, </span><br><span class="line">                                                     <span class="string">'./caffee model/deploy.prototxt'</span>),</span><br><span class="line">                                                    predicted_feature_name=<span class="string">'./caffee model/class_labels.txt'</span>)</span><br><span class="line"></span><br><span class="line">coreml_model<span class="class">.author</span> = <span class="string">"Fish News"</span></span><br><span class="line">coreml_model<span class="class">.license</span> = <span class="string">"BSD"</span></span><br><span class="line">coreml_model<span class="class">.short_description</span> = <span class="string">"this is a test description"</span></span><br><span class="line"></span><br><span class="line">coreml_model.<span class="function"><span class="title">save</span><span class="params">(<span class="string">'BVLCObjectClassifier.mlmodel'</span>)</span></span></span><br></pre></td></tr></table></figure></p>
-<p>上图的model的author、short_description、输入输出等属性可自行设置。</p>
-<p><img src="http://fishnews.cn/2017_10_29_26.png" alt=""></p>
-<p>转换成功后会得到一个mlmodel文件，拖入工程后即可使用</p>
-<p><img src="http://fishnews.cn/2017_10_29_28.png" alt=""></p>
-<h4 id="u81EA_u5DF1_u8BAD_u7EC3_u6A21_u578B"><a href="#u81EA_u5DF1_u8BAD_u7EC3_u6A21_u578B" class="headerlink" title="自己训练模型"></a>自己训练模型</h4><p>我们使用sklearn库内置的iris数据，或者使用自己提供的csv格式的数据进行训练</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import datasets</span><br><span class="line">from sklearn<span class="class">.linear_model</span> import LogisticRegression</span><br><span class="line">import coremltools</span><br><span class="line"></span><br><span class="line">iris = datasets.<span class="function"><span class="title">load_iris</span><span class="params">()</span></span></span><br><span class="line">model = <span class="function"><span class="title">LogisticRegression</span><span class="params">()</span></span></span><br><span class="line">model.<span class="function"><span class="title">fit</span><span class="params">(iris.data,iris.target)</span></span></span><br><span class="line">print iris<span class="class">.target_names</span>[model.<span class="function"><span class="title">predict</span><span class="params">([ [<span class="number">1.0</span> ,<span class="number">2.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>] ])</span></span>]</span><br><span class="line">print iris<span class="class">.data</span><span class="class">.shape</span></span><br><span class="line">coreml_model = coremltools<span class="class">.converters</span><span class="class">.sklearn</span><span class="class">.convert</span>(model,iris<span class="class">.feature_names</span>, <span class="string">'iris class'</span>)</span><br><span class="line">coreml_model.<span class="function"><span class="title">save</span><span class="params">(<span class="string">'iris.mlmodel'</span>)</span></span></span><br></pre></td></tr></table></figure>
-<p><img src="http://fishnews.cn/2017_10_29_27.png" alt=""></p>
-<p>训练好后会生成iris.mlmodel模型，拖入工程进行测试</p>
-<h4 id="u6D4B_u8BD5_u5DF2_u8BAD_u7EC3_u597D_u7684_u6A21_u578B"><a href="#u6D4B_u8BD5_u5DF2_u8BAD_u7EC3_u597D_u7684_u6A21_u578B" class="headerlink" title="测试已训练好的模型"></a>测试已训练好的模型</h4><ul>
-<li>搭建UI,iris.mlmodel需要四个参数，分别是speal length,speal width,petal length,petal width</li>
-</ul>
-<p><img src="http://fishnews.cn/2017_10_29_30.png" alt=""></p>
-<p><img src="http://fishnews.cn/2017_10_29_31.png" alt=""></p>
-<p><img src="http://fishnews.cn/2017_10_29_32.png" alt=""></p>
-<ul>
-<li>结果展示</li>
-</ul>
-<p><img src="http://fishnews.cn/2017_10_29__33.gif" alt=""></p>
-<h4 id="Demo_u4E0B_u8F7D"><a href="#Demo_u4E0B_u8F7D" class="headerlink" title="Demo下载"></a><a href="https://github.com/ChinaFishNews/IrisModelPredication.git" target="_blank" rel="external">Demo下载</a></h4><hr>
-<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
-<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
-<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
-<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
-<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
-<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
-<p>如有转载，请注明出处，谢谢！</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coremlTools-scikitLearn-Python-Anaconda/">coremlTools,scikitLearn,Python,Anaconda</a></li></ul>
 	</div>
 
       
@@ -1565,6 +1470,101 @@ double result = manger.add(3).minus(3).result;
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习，人工智能，CoreML-Vision-ARKit/">机器学习，人工智能，CoreML, Vision, ARKit</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Swift/">Swift</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-机器学习-将第三方模型转换成Core ML或自己训练模型" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/29/机器学习-将第三方模型转换成Core ML或自己训练模型/" class="article-date">
+  	<time datetime="2017-10-28T16:00:00.000Z" itemprop="datePublished">2017-10-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/29/机器学习-将第三方模型转换成Core ML或自己训练模型/">机器学习-将第三方模型转换成Core ML或自己训练模型</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><br></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=427017020&auto=0&height=66"></iframe>
+
+<p>苹果官方提供的model功能有限，我们可以自己训练模型或者将第三方模型转化成苹果可以识别的模型。</p>
+<p><img src="http://fishnews.cn/2019_10_29__22.gif" alt=""></p>
+<h4 id="u5C06_u7B2C_u4E09_u65B9_u6A21_u578B_u8F6C_u5316_u6210_u82F9_u679C_u53EF_u4EE5_u8BC6_u522B_u7684_u6A21_u578B"><a href="#u5C06_u7B2C_u4E09_u65B9_u6A21_u578B_u8F6C_u5316_u6210_u82F9_u679C_u53EF_u4EE5_u8BC6_u522B_u7684_u6A21_u578B" class="headerlink" title="将第三方模型转化成苹果可以识别的模型"></a>将第三方模型转化成苹果可以识别的模型</h4><p>这里以苹果给出的参考为例,也可以下载<a href="http://caffe.berkeleyvision.org/model_zoo.html" target="_blank" rel="external">Caffee model</a></p>
+<p><img src="http://fishnews.cn/2017_10_29_23.png" alt=""></p>
+<p>其中.txt文件是所有预测结果，.prototxt是模型结构文件。</p>
+<p>打开Anaconda的spyder, 使用coremltools转换<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">coreml_model = coremltools<span class="class">.converters</span><span class="class">.caffe</span><span class="class">.convert</span>((<span class="string">'./caffee model/bvlc_alexnet.caffemodel'</span>, </span><br><span class="line">                                                     <span class="string">'./caffee model/deploy.prototxt'</span>),</span><br><span class="line">                                                    predicted_feature_name=<span class="string">'./caffee model/class_labels.txt'</span>)</span><br><span class="line"></span><br><span class="line">coreml_model<span class="class">.author</span> = <span class="string">"Fish News"</span></span><br><span class="line">coreml_model<span class="class">.license</span> = <span class="string">"BSD"</span></span><br><span class="line">coreml_model<span class="class">.short_description</span> = <span class="string">"this is a test description"</span></span><br><span class="line"></span><br><span class="line">coreml_model.<span class="function"><span class="title">save</span><span class="params">(<span class="string">'BVLCObjectClassifier.mlmodel'</span>)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>上图的model的author、short_description、输入输出等属性可自行设置。</p>
+<p><img src="http://fishnews.cn/2017_10_29_26.png" alt=""></p>
+<p>转换成功后会得到一个mlmodel文件，拖入工程后即可使用</p>
+<p><img src="http://fishnews.cn/2017_10_29_28.png" alt=""></p>
+<h4 id="u81EA_u5DF1_u8BAD_u7EC3_u6A21_u578B"><a href="#u81EA_u5DF1_u8BAD_u7EC3_u6A21_u578B" class="headerlink" title="自己训练模型"></a>自己训练模型</h4><p>我们使用sklearn库内置的iris数据，或者使用自己提供的csv格式的数据进行训练</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import datasets</span><br><span class="line">from sklearn<span class="class">.linear_model</span> import LogisticRegression</span><br><span class="line">import coremltools</span><br><span class="line"></span><br><span class="line">iris = datasets.<span class="function"><span class="title">load_iris</span><span class="params">()</span></span></span><br><span class="line">model = <span class="function"><span class="title">LogisticRegression</span><span class="params">()</span></span></span><br><span class="line">model.<span class="function"><span class="title">fit</span><span class="params">(iris.data,iris.target)</span></span></span><br><span class="line">print iris<span class="class">.target_names</span>[model.<span class="function"><span class="title">predict</span><span class="params">([ [<span class="number">1.0</span> ,<span class="number">2.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>] ])</span></span>]</span><br><span class="line">print iris<span class="class">.data</span><span class="class">.shape</span></span><br><span class="line">coreml_model = coremltools<span class="class">.converters</span><span class="class">.sklearn</span><span class="class">.convert</span>(model,iris<span class="class">.feature_names</span>, <span class="string">'iris class'</span>)</span><br><span class="line">coreml_model.<span class="function"><span class="title">save</span><span class="params">(<span class="string">'iris.mlmodel'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="http://fishnews.cn/2017_10_29_27.png" alt=""></p>
+<p>训练好后会生成iris.mlmodel模型，拖入工程进行测试</p>
+<h4 id="u6D4B_u8BD5_u5DF2_u8BAD_u7EC3_u597D_u7684_u6A21_u578B"><a href="#u6D4B_u8BD5_u5DF2_u8BAD_u7EC3_u597D_u7684_u6A21_u578B" class="headerlink" title="测试已训练好的模型"></a>测试已训练好的模型</h4><ul>
+<li>搭建UI,iris.mlmodel需要四个参数，分别是speal length,speal width,petal length,petal width</li>
+</ul>
+<p><img src="http://fishnews.cn/2017_10_29_30.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_10_29_31.png" alt=""></p>
+<p><img src="http://fishnews.cn/2017_10_29_32.png" alt=""></p>
+<ul>
+<li>结果展示</li>
+</ul>
+<p><img src="http://fishnews.cn/2017_10_29__33.gif" alt=""></p>
+<h4 id="Demo_u4E0B_u8F7D"><a href="#Demo_u4E0B_u8F7D" class="headerlink" title="Demo下载"></a><a href="https://github.com/ChinaFishNews/IrisModelPredication.git" target="_blank" rel="external">Demo下载</a></h4><hr>
+<p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
+<p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
+<p>微信公众号<code>OldDriverWeekly</code>，欢迎关注并提出宝贵意见</p>
+<p><a href="https://juejin.im/user/5a52075e6fb9a01c9d31b107" target="_blank" rel="external">老司机iOS周报</a>,欢迎关注或订阅</p>
+<p><a href="http://www.ggteach.com/index.html" target="_blank" rel="external">刚刚在线工作室</a>，欢迎关注或提出建设性意见！</p>
+<p><a href="http://bbs.ggteach.com" target="_blank" rel="external">刚刚在线论坛</a>, 欢迎踊跃提问或解答！</p>
+<p>如有转载，请注明出处，谢谢！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coremlTools-scikitLearn-Python-Anaconda/">coremlTools,scikitLearn,Python,Anaconda</a></li></ul>
 	</div>
 
       

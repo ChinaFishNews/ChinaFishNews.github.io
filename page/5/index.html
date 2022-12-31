@@ -1524,10 +1524,10 @@ self.cityTf.text = @&quot;GuangTong&quot;;
 
 
   
-    <article id="post-Hexo博客托管在Coding上" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Markdown在线编辑" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/03/Hexo博客托管在Coding上/" class="article-date">
+      <a href="/2016/03/03/Markdown在线编辑/" class="article-date">
   	<time datetime="2016-03-02T16:00:00.000Z" itemprop="datePublished">2016-03-03</time>
 </a>
     </div>
@@ -1541,7 +1541,7 @@ self.cityTf.text = @&quot;GuangTong&quot;;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/03/Hexo博客托管在Coding上/">Hexo博客托管在Coding上</a>
+      <a class="article-title" href="/2016/03/03/Markdown在线编辑/">Markdown在线编辑</a>
     </h1>
   
 
@@ -1552,37 +1552,14 @@ self.cityTf.text = @&quot;GuangTong&quot;;
       
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=5023390&auto=0&height=66"></iframe>
 
-<p>昨天GitCafe官网上发布声明，截至2016年5月31日停止所有服务，届时上面的资料和项目都将被永久删除，需要尽快将资料和项目迁移至Coding,只是因为被Coding收购了。操了个蛋，之前的博客就是托管在GitCafe上和GitHub上的，好在还有GitHub做后盾，不用太担心。虽然会一直服务到5月31号，不过还是决定将 博客迁移到Coding上。</p>
-<p>前面的一些安装步骤就此省略，和托管在GitCafe和GitHub上的步骤一样，如果不太清楚可以参考之前的博文，之前已经安装了则可直接进行下面的步骤。</p>
-<p>到Coding.net官网创建一个项目，名字可以随意，不过我还是创建了一个和用户名一样的项目名。</p>
-<p>然后到Hexo的安装目录中打开_cinfig.yml文件，找到<code>deploy</code>项，按如下修改<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: </span><br><span class="line">      <span class="attribute">github</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.github.io.git</span><br><span class="line">      <span class="attribute">coding</span>: <span class="attribute">https</span>:<span class="comment">//git.coding.net/ChinaFish/ChinaFish.git</span></span><br></pre></td></tr></table></figure></p>
-<p>我还是将博客同时托管在Coding和GitHub两个平台上，无他，只因更相信GitHub。这里面的<code>ChinaFish</code>和<code>ChinaFishNews</code>都是第一个是用户名，第二个是项目名，之前的设置是<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: </span><br><span class="line">      <span class="attribute">github</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.github.io.git</span><br><span class="line">     # <span class="attribute">gitcafe</span>: git<span class="variable">@gitcafe</span>.<span class="attribute">com</span>:ChinaFishNews/ChinaFishNews.git,gitcafe-pages</span><br></pre></td></tr></table></figure></p>
-<p>可惜GitCafe被收购了。</p>
-<p>然后打开终端使用下面命令push到仓库<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">hexo</span> generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
-<p>这一步可能会报错 ERROR Deployer not found: git  使用如下命令</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
-<p>然后回到Coding的仓库下面进行如下配置</p>
-<p><img src="http://fishnews.cn/2016-03-03-01.png?attname=" alt=""></p>
-<p>按照如图，点击检测，会提醒没有检测到环境，不过直接点强制开启就可以了</p>
-<p><img src="http://fishnews.cn/2016-03-03-02.png?attname=" alt=""></p>
-<p>访问域名这一项可以随意填写，应用内存选的稍微大一些，点击显示高级选项</p>
-<p><img src="http://fishnews.cn/2016-03-03-03.png?attname=" alt=""></p>
-<p>将运行环境设置为Html,没设置前在部署的时候会导致失败。其他的不用填写，点击一键部署，可能会部署失败。如果部署失败可以查看日志或者查看常见部署问题解答。至此，配置就结束了，可以使用<code>chinafishnews.coding.io</code>访问博客了，<code>chinafishnews</code>是刚才填写的域名。</p>
-<p>但是这样的话，每次写文章发布后都需要手动到这里部署，比较麻烦。可以使用<code>webhook</code>来自动部署。如下图所示</p>
-<p><img src="http://fishnews.cn/2016-03-03-04.png?attname=" alt=""></p>
-<p>点击新建Hook</p>
-<p><img src="http://fishnews.cn/2016-03-03-05.png?attname=" alt=""></p>
-<p>上面 的输入框中是填你的博客域名，也就是前面部署的时候那个域名地址，然后在后面加上/_</p>
-<p>下面的输入框是输入token,直接填写<code>{ {TOKEN} }</code>就可以了</p>
-<p><img src="http://fishnews.cn/2016-03-03-06.png?attname=" alt=""></p>
-<p>然后点击环境变量，变量名填WEBHOOK_TOKEN,值为<code>{ {TOKEN} }</code>。然后回到控制台重新启动应用就可以了。这样就实现了自动部署。</p>
-<p>另外，之前的域名指向的是GitCafe，现在被Coding收购，GitCafe的功能激也都基本被保留，只是需要重新解析域名，但是，也有一些改动。如下图添加域名</p>
-<p><img src="http://fishnews.cn/2016-03-05-01.png?attname=" alt=""></p>
-<p><b>注意<b>，部署分支的coding-pages需改成master,这是因为Hexo中_config.yml文件中的的coding源默认是master。否则无法成功。</b></b></p>
-<p><img src="http://fishnews.cn/2016-03-05-02.png?attname=" alt=""></p>
-<p>然后到阿里云重新解析域名</p>
-<p><img src="http://fishnews.cn/2016-03-05-03.png?attname=" alt=""></p>
-<p>注意，gitcafe中填写的是chinafishnews.gitcafe.io,<code>chinafishnews</code>是gitcafe上自己的用户名，而coding上需改成ChinaFish.coding.me,<code>chinafish</code>是coding上自己的用户名，上图中也有提示已经绑定的域名(CNAME记录指向ChinaFish.coding.me)，稍等片刻便可以使用chinafish.news访问博客了。</p>
+<p>MarkDwon是一种轻量级的标记语法，容易排版，可轻松转化为Pdf、Html格式文件，支持MarkDwon的编辑器有很多，包括像Markdown Pro、Mou、MacDwon、MacHub等等。</p>
+<p>提供一个Markdown Pro的下载地址:<a href="http://pan.baidu.com/s/1c0Pk4oS" target="_blank" rel="external">http://pan.baidu.com/s/1c0Pk4oS</a> 密码:sehk</p>
+<p>如何编辑使用呢?</p>
+<p>在此提供两个官方案例:</p>
+<p><a href="https://www.zybuluo.com/mdeditor#fn:code" target="_blank" rel="external">https://www.zybuluo.com/mdeditor#fn:code</a> 和</p>
+<p><a href="https://www.zybuluo.com/mdeditor#fn:code" target="_blank" rel="external">https://www.zybuluo.com/mdeditor#fn:code</a></p>
+<p>模仿案例上的格式基本迅速就可以掌握使用方法</p>
+<p>里面用到的图片，我是上传到七牛云存储上，之前尝试过上传到百度云或者直接放在当前目录下，有时并不能显示成功，放在七牛云上下载显示的很快，基本没出现过问题。</p>
 <hr>
 <p>如有任何疑问或问题请联系我:fishnewsdream@gmail.com,欢迎交流，共同提高！</p>
 <p>Objective-C/Swift技术开发交流群201556264，讨论何种技术并不受限，欢迎各位大牛百家争鸣！</p>
@@ -1599,7 +1576,7 @@ self.cityTf.text = @&quot;GuangTong&quot;;
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coding-net/">Coding.net</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MarkDown、Mou、Macdown/">MarkDown、Mou、Macdown</a></li></ul>
 	</div>
 
       
